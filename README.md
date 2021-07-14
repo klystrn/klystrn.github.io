@@ -1,7 +1,57 @@
-# Responsive Portfolio Website Alexa
-## [Watch it on youtube](https://youtu.be/27JtRAI3QO8)
-### Responsive Portfolio Website Alexa
-Responsive Portfolio Website Using Html, Css and JavaScript, With a beautiful user interface. It contains a Header, Home, About, Skills, Qualification, Services, Portfolio, Project in mind, Testimonial, Contact and Footer.
-Don't forget to join the channel for more videos like this. [Bedimcode](https://www.youtube.com/c/Bedimcode)
+Hello! I'm Reginald and I made this website to apply my knowledge in HTML, CSS, and JavaScript. Look below for the full list of features and content in my website!
 
-![Resume cv](/preview.png)
+GENERAL:
+    - Dynamic & reactive components
+    - Hovering over buttons will change your cursor to a pointer
+    - Switch between light-mode & dark-mode
+    - Navigation header to move throughout the website
+    - Rounded and modified scroll bar
+    - Small arrow to go back to top in bottom right corner
+
+HOME:
+    - Reactive components and text
+    - Link to Google Drive containing my certificates
+    - Link to download my CV as a pdf
+    - Links to my LinkedIn, Instagram, and Telegram
+
+ABOUT:
+    - Reactive components and text
+    - Short elaborations on myself (Computing, ACE, Taekwondo)
+    - Quick stats on myself (Computing, ACE, Taekwondo)
+
+SKILLS:
+    - Reactive drop down buttons
+    - Drop down lists of my skills, proficiencies and qualities
+    - Quick details on each aspect (Programming, Leadership, Taekwondo, Service-Learning)
+
+TIMELINES:
+    - Reactive tab buttons
+    - Timelines on each aspect (SST, Computing+, Programming, Taekwondo)
+    - Each event has the event name, details and month + year
+
+PROGRAMMING:
+    - Reactive navigation buttons
+    - Details on my programming projects
+    - Screenshots of the programming project
+    - Links to relevant resources
+
+ACE:
+    - Reactive buttons to activate modal-view
+    - List of ACE and Service-Learning projects I have led
+    - Descriptions on each project abd the roles I took in each project
+    - List of achievements in each project
+
+REFLECTIONS:
+    - Reactive drop down buttons
+    - Drop down text of my reflections
+    - See more button to view my full reflection as a PDF
+
+C3:
+    - Description + Mission + Vision of C3
+    - Link to view business plan for C3 on Notion
+    - Reactive buttons to activate modal-view
+    - Modal views of C3 products
+
+TESTIMONIALS:
+    -  Teacher description, email, role and photos
+    - See more buttons to view full testimonials
