@@ -787,6 +787,11 @@ img{
     font-size: var(--normal-font-size);
     font-weight: medium;
     margin-bottom: var(--mb-0-75);
+    transition: .3s;
+}
+
+.qualification__title:hover{
+    transform: translateY(-0.125rem);
 }
 
 .qualification__subtitle{
