@@ -46,6 +46,12 @@ REFLECTIONS:
     - Drop down text of my reflections
     - See more button to view my full reflection as a PDF
 
+C3:
+    - Description + Mission + Vision of C3
+    - Link to view business plan for C3 on Notion
+    - Reactive buttons to activate modal-view
+    - Modal views of C3 products
+
 TESTIMONIALS:
     -  Teacher description, email, role and photos
     - See more buttons to view full testimonials
