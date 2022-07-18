@@ -1166,7 +1166,7 @@ img{
 .footer__link{
     font-size: var(--smaller-font-size);
     text-align: center;
-    color: white;
+    margin-top: 1rem;
 }
 
 .footer__title,
