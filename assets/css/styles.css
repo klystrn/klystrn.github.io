@@ -1163,6 +1163,13 @@ img{
     margin-top: var(--mb-3);
 }
 
+.footer__link{
+    font-size: var(--smaller-font-size);
+    text-align: center;
+    color: white;
+    margin-top: var(--mb-3);
+}
+
 .footer__title,
 .footer__subtitle,
 .footer__link,
