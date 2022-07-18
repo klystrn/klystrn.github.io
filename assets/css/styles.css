@@ -1167,7 +1167,6 @@ img{
     font-size: var(--smaller-font-size);
     text-align: center;
     color: white;
-    margin-top: var(--mb-3);
 }
 
 .footer__title,
