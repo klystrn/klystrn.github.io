@@ -352,7 +352,8 @@ img{
 }
 
 .home__blob-img{
-    width: 100px;
+    width: 300px;
+    height: 450px
 }
 
 .home__blob:hover{
@@ -412,6 +413,8 @@ img{
 .home__subtitle:not(:hover){
     transition: .3s;
 }
+
+
 
 .home__description1{
     margin-bottom: var(--mb-0-5);
@@ -557,21 +560,20 @@ img{
 }
 
 /*==================== ABOUT ====================*/
-.about__img{
-    width: 200px;
-    height: 500px;
-    border-radius: .5rem;
-    justify-self: center;
-    align-self: center;
+.about__images-grid {
+    display: grid;
 }
 
-.about__img:hover{
-    transform: scale(1.075);
-    transition: .3s;
+.about__img1{
+    width: 350px;
+    height: 525px;
+    border-radius: 0.75rem;
 }
 
-.about__img:not(:hover){
-    transition: .3s;
+.about__img2{
+    width: 350px;
+    height: 233px;
+    border-radius: 0.75rem;
 }
 
 .about__description1{
