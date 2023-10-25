@@ -1037,32 +1037,6 @@ img{
     visibility: visible;
 }
 
-/*==================== Reflections ====================*/
-.reflection__text{
-    font-size: 0.95rem;
-    font-weight: 8px;
-}
-
-.reflection__icon{
-    font-size: 2rem;
-    color: var(--first-color);
-    margin-left: 2rem;
-}
-
-.reflection__title{
-    font-size: 1.25rem;
-    display: block;
-    text-align: center;
-    margin-bottom: 0.75rem;
-}
-
-.reflection__title2{
-    font-size: 1.05rem;
-    display: block;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
 /*==================== TESTIMONIAL ====================*/
 .testimonial__data,
 .testimonial__header{
