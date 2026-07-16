@@ -156,18 +156,6 @@
     "mini": { "blurb": "mock start-up pitch around code collaboration and AI; highest grade band", "tag": "Pitch" }
   },
   {
-    "id": "igp", "sym": "IGP", "flag": false, "repo": "interschool-games-planner",
-    "title": "Interschool Games Planner", "sector": "TOOLS · SST",
-    "from": "2021", "to": "2021", "year": "2021", "role": "Solo builder", "status": "shipped",
-    "desc": "A Python scheduler built for SST teachers to plan interschool games, replacing a slow manual process.",
-    "skills": ["Python", "Scheduling", "Algorithms"],
-    "stats": { "Status": "Shipped", "Role": "Solo builder", "Client": "SST teachers", "Year": "2021" },
-    "langs": [["Python", 100, "#3572A5"]],
-    "curve": [2, 4, 7, 6, 9, 12, 11, 14, 17, 16, 19, 22],
-    "miles": [[2, "Scheduling logic working"], [6, "Teacher inputs supported"], [10, "Adopted for games planning"]],
-    "mini": { "blurb": "Python scheduler built for SST teachers to plan interschool games", "tag": "Python" }
-  },
-  {
     "id": "locx", "sym": "LOCX", "flag": false, "repo": "locationx",
     "title": "locationX", "sector": "CAPSTONE · SST",
     "from": "2021", "to": "2021", "year": "2021", "role": "Capstone team, SST", "status": "shipped",
