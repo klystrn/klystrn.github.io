@@ -1,0 +1,116 @@
+/* ===== v7 · batch edits: cursors, responsiveness, new furniture ===== */
+
+/* --- Cursors: two per mode (default + interactive), mode-themed --- */
+/* Vanilla: circular transparent liquid-glass bubble; red-rimmed on interactives */
+body[data-mode="vanilla"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='26'%20height='26'%3E%3Cdefs%3E%3CradialGradient%20id='g'%20cx='35%25'%20cy='30%25'%20r='75%25'%3E%3Cstop%20offset='0'%20stop-color='white'%20stop-opacity='.9'/%3E%3Cstop%20offset='.45'%20stop-color='white'%20stop-opacity='.28'/%3E%3Cstop%20offset='1'%20stop-color='white'%20stop-opacity='.05'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle%20cx='13'%20cy='13'%20r='10'%20fill='url(%23g)'%20stroke='rgba(21,24,28,.55)'%20stroke-width='1.3'/%3E%3Cellipse%20cx='9.5'%20cy='8.5'%20rx='3.2'%20ry='1.9'%20fill='white'%20opacity='.85'%20transform='rotate(-25%209.5%208.5)'/%3E%3C/svg%3E") 13 13, auto}
+body[data-mode="vanilla"] :is(a,button,[role="button"],input,select,textarea,label,summary,.pj[data-sym],.xp-card,.cn-node,.cert-more,.try-btn){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='26'%20height='26'%3E%3Cdefs%3E%3CradialGradient%20id='g'%20cx='35%25'%20cy='30%25'%20r='75%25'%3E%3Cstop%20offset='0'%20stop-color='white'%20stop-opacity='.95'/%3E%3Cstop%20offset='.45'%20stop-color='%23ffdede'%20stop-opacity='.35'/%3E%3Cstop%20offset='1'%20stop-color='%23d92b35'%20stop-opacity='.08'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle%20cx='13'%20cy='13'%20r='10.5'%20fill='url(%23g)'%20stroke='%23d92b35'%20stroke-width='1.6'/%3E%3Cellipse%20cx='9.5'%20cy='8.5'%20rx='3.2'%20ry='1.9'%20fill='white'%20opacity='.9'%20transform='rotate(-25%209.5%208.5)'/%3E%3C/svg%3E") 13 13, pointer}
+/* Tech: smaller cyan chevron; block-caret (terminal selection) on interactives */
+body[data-mode="tech"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M4%202.5l7%205.5-7%205.5'%20fill='none'%20stroke='%2356d4dd'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E") 11 8, auto}
+body[data-mode="tech"] :is(a,button,[role="button"],input,.node,.etab,.flink,.kbar-it){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='18'%3E%3Crect%20x='3'%20y='2.5'%20width='9'%20height='13'%20rx='1.5'%20fill='rgba(86,212,221,.32)'%20stroke='%2356d4dd'%20stroke-width='1.4'/%3E%3C/svg%3E") 7 9, pointer}
+/* Finance: amber crosshair + green dot; target-lock ring on interactives */
+body[data-mode="finance"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='22'%20height='22'%3E%3Cpath%20d='M11%200v7M11%2015v7M0%2011h7M15%2011h7'%20stroke='%23f5b942'%20stroke-width='2'/%3E%3Ccircle%20cx='11'%20cy='11'%20r='2'%20fill='%232fd17a'/%3E%3C/svg%3E") 11 11, crosshair}
+body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl-tab){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='22'%20height='22'%3E%3Cpath%20d='M11%200v5M11%2017v5M0%2011h5M17%2011h5'%20stroke='%23f5b942'%20stroke-width='2'/%3E%3Ccircle%20cx='11'%20cy='11'%20r='6.5'%20fill='none'%20stroke='%232fd17a'%20stroke-width='1.6'/%3E%3Ccircle%20cx='11'%20cy='11'%20r='2'%20fill='%232fd17a'/%3E%3C/svg%3E") 11 11, pointer}
+
+/* --- "Built by" credit, themed per mode --- */
+.credit{text-align:center;font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:18px 0 26px;opacity:.6}
+.mv .credit{color:var(--vfaint)}
+.mv .credit b{color:var(--ultra);font-family:var(--serif);font-style:italic;font-weight:600;text-transform:none;letter-spacing:0;font-size:12.5px}
+.mt .credit{color:var(--tfaint);font-family:var(--jb);text-transform:none;letter-spacing:.04em}
+.mf .credit{color:var(--ffaint)}
+.life-panel .credit{color:inherit;opacity:.45;padding-top:26px}
+
+/* --- Vanilla: contact box hugs its buttons --- */
+.mv .contact{padding:46px 24px}
+
+/* --- Vanilla: scroll progress bar --- */
+.mv-progress{position:fixed;top:0;left:0;height:3px;background:var(--ultra,#d92b35);z-index:120;width:0;pointer-events:none}
+
+/* --- Vanilla: floating section rail --- */
+.mv-rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:90}
+.mv-rail button{width:10px;height:10px;border-radius:50%;border:1.5px solid #b9bfcc;background:transparent;padding:0;position:relative;transition:transform .2s,background .2s,border-color .2s}
+.mv-rail button.on{background:#d92b35;border-color:#d92b35;transform:scale(1.3)}
+.mv-rail button:hover{border-color:#d92b35}
+.mv-rail .lbl{position:absolute;right:22px;top:50%;transform:translateY(-50%);font-family:var(--plex);font-size:10px;color:#4c545e;background:#fff;border:1px solid #dcdfd9;border-radius:5px;padding:3px 9px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
+.mv-rail button:hover .lbl{opacity:1}
+@media(max-width:1100px){.mv-rail{display:none}}
+
+/* --- Vanilla: testimonials carousel --- */
+.ts-car{overflow:hidden}
+.ts-track{display:flex;margin-left:calc(var(--k,0)*-50%);transition:margin-left .6s cubic-bezier(.3,.8,.3,1)}
+.ts-slide{flex:0 0 50%;padding:0 7px;box-sizing:border-box;display:flex}
+.ts-slide .ts{flex:1}
+@media(max-width:760px){.ts-slide{flex:0 0 100%}.ts-track{margin-left:calc(var(--k,0)*-100%)}}
+.ts-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.ts-dots button{width:8px;height:8px;border-radius:50%;border:none;background:#dcdfd9;padding:0;transition:transform .2s,background .2s}
+.ts-dots button.on{background:#d92b35;transform:scale(1.25)}
+@media(prefers-reduced-motion:reduce){.ts-track{transition:none}.mv-progress{display:none}}
+
+/* --- Tech: command palette (⌘K) --- */
+.kbar-ov{position:fixed;inset:0;z-index:210;background:rgba(4,6,10,.62);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:12vh 16px 0}
+.kbar{width:min(540px,100%);background:#11151e;border:1px solid #2a3550;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden;font-family:var(--jb)}
+.kbar input{width:100%;background:#0b0e14;border:none;outline:none;color:#d6dde8;font-family:var(--jb);font-size:14px;padding:14px 16px;border-bottom:1px solid #1d2430;caret-color:#56d4dd}
+.kbar-list{max-height:300px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#232c3d #11151e}
+.kbar-it{display:flex;gap:10px;align-items:center;padding:9px 14px;font-size:12.5px;color:#8792a4}
+.kbar-it.on{background:rgba(86,212,221,.09);color:#56d4dd}
+.kbar-it .ico{width:16px;text-align:center;flex:none}
+.kbar-it .path{margin-left:auto;font-size:10px;color:#57627a;flex:none;padding-left:12px}
+.kbar-hint{padding:8px 14px;font-size:10px;color:#57627a;border-top:1px solid #1d2430;display:flex;gap:16px;flex-wrap:wrap}
+.kbar-empty{padding:16px 14px;font-size:12px;color:#57627a;font-style:italic}
+.kbtn{background:none;border:1px solid #2a3550;color:#57627a;border-radius:6px;font-family:var(--jb);font-size:10px;padding:3px 9px;margin-left:12px;flex:none}
+.kbtn:hover{color:#56d4dd;border-color:rgba(86,212,221,.4)}
+
+/* --- Tech: git-blame hover tooltip --- */
+.blame-tip{position:fixed;z-index:220;background:#0c1017;border:1px solid rgba(86,212,221,.5);color:#d6dde8;font-family:var(--jb);font-size:11px;padding:6px 10px;border-radius:6px;pointer-events:none;white-space:nowrap}
+.blame-tip .tg{color:#b18aff}
+.blame-tip .hs{color:#ffab70}
+@media(hover:none){.blame-tip{display:none}}
+
+/* --- Finance: fundamentals strip --- */
+.mf .fund-strip{display:flex;border:1px solid var(--fline);border-radius:10px;background:var(--fpanel);margin-bottom:14px;overflow-x:auto;scrollbar-width:thin}
+.mf .fund-cell{flex:1;min-width:104px;padding:10px 14px;border-right:1px solid var(--fls)}
+.mf .fund-cell:last-child{border-right:none}
+.mf .fund-k{font-family:var(--plex);font-size:9.5px;letter-spacing:.13em;color:var(--ffaint);text-transform:uppercase;white-space:nowrap}
+.mf .fund-v{font-family:var(--plex);font-size:15px;font-weight:700;margin-top:3px;white-space:nowrap}
+.mf .fund-v.u{color:var(--up)}
+
+/* --- Finance: sector allocation --- */
+.mf .alloc{padding:14px}
+.mf .alloc-bar{display:flex;height:12px;border-radius:6px;overflow:hidden;border:1px solid var(--fls)}
+.mf .alloc-bar i{display:block;height:100%}
+.mf .alloc-key{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.mf .alloc-row{display:flex;align-items:center;gap:9px;font-family:var(--plex);font-size:11px;color:var(--fdim)}
+.mf .alloc-row b{width:9px;height:9px;border-radius:2px;display:inline-block;flex:none}
+.mf .alloc-row .pct{margin-left:auto;color:var(--ftxt)}
+
+/* --- Finance: live pulse on status dot --- */
+.mf .dot{animation:fpulse 1.6s ease-in-out infinite}
+@keyframes fpulse{50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.mf .dot{animation:none}}
+
+/* --- Responsive fixes --- */
+@media(max-width:860px){
+  /* tech mobile tree: horizontal strip, never letter-wrap */
+  .mt .tree{gap:2px}
+  .mt .node{white-space:nowrap!important;word-break:normal!important;flex:none}
+}
+@media(max-width:600px){
+  .mv .tl-item{padding-left:52px}
+  .mv .spine,.mv .spine-fill{left:14px}
+  .mv .tl-node{left:6px}
+  .mv .tl-mile{flex-wrap:wrap}
+  .mv .tl-mile span{margin-left:0;padding-left:18px;width:100%}
+  .mv section{padding:64px 0}
+  .mv .hero{padding:100px 0 40px}
+  .pj-modal .box{padding:26px 20px}
+  .mf .term-head{gap:8px 16px;padding-bottom:12px}
+  .mf .th-sym{font-size:20px}
+  .mf .th-status{margin-left:0}
+  .mf .fund-cell{min-width:92px;padding:8px 10px}
+  .mt .window{margin:70px 6px 24px}
+  .mt .epane{padding:18px 14px}
+}
+@media(max-width:380px){
+  .tab-btn{padding:8px 8px;font-size:11px}
+  .mode-btn{padding:6px 6px;font-size:9px}
+  .pill .brand{font-size:12px;padding:0 2px 0 7px}
+}

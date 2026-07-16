@@ -3,6 +3,7 @@ import identity from '../../data/identity.json';
 import experience from '../../data/experience.json';
 import { PROJECTS } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
+import { prefersReducedMotion } from '../../lib/hooks';
 import { openNames } from './files.jsx';
 
 const HELP =
@@ -17,7 +18,7 @@ const FS = {
 const DIRMAP = { '~/experience': ['exp'], '~/projects': ['proj'], '~/projects/supplementary': ['proj', 'supp'] };
 const NAMES = openNames();
 
-/* Terminal starts with `help` already run (v6 behaviour). */
+/* Terminal boots by running `help` (v6 behaviour), typed out char-by-char. */
 const INITIAL = [
   { kind: 'cmd', cwd: '~', text: 'help' },
   { kind: 'out', text: HELP },
@@ -25,7 +26,26 @@ const INITIAL = [
 
 export default function Terminal({ openFile, expandDirs }) {
   const { setMode, toast } = useMode();
-  const [lines, setLines] = useState(INITIAL);
+  const [lines, setLines] = useState(() => (prefersReducedMotion() ? INITIAL : []));
+  const [booting, setBooting] = useState(() => (prefersReducedMotion() ? null : ''));
+
+  // Boot sequence: type "help", then print its output.
+  useEffect(() => {
+    if (booting === null) return undefined;
+    let i = 0;
+    const iv = setInterval(() => {
+      i += 1;
+      if (i <= 4) {
+        setBooting('help'.slice(0, i));
+      } else {
+        clearInterval(iv);
+        setBooting(null);
+        setLines(INITIAL);
+      }
+    }, 90);
+    return () => clearInterval(iv);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [cwd, setCwd] = useState('~');
   const [hist, setHist] = useState([]);
   const histIdx = useRef(-1);
@@ -130,6 +150,13 @@ export default function Terminal({ openFile, expandDirs }) {
     <div className="term" onClick={() => inputRef.current && inputRef.current.focus()}>
       <div className="term-h"><b>terminal</b><span>zsh · try: help</span></div>
       <div className="term-body" ref={bodyRef}>
+        {booting !== null && (
+          <div className="tl">
+            <span className="pr">klystrn@portfolio</span> <span className="out">~ %</span>{' '}
+            <span className="cmd">{booting}</span>
+            <span className="cursor" />
+          </div>
+        )}
         {lines.map((l, i) =>
           l.kind === 'cmd' ? (
             <div className="tl" key={i}>

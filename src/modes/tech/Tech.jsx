@@ -1,23 +1,81 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import identity from '../../data/identity.json';
 import experience from '../../data/experience.json';
-import { FLAGSHIP, SUPPLEMENTARY } from '../../lib/projects';
+import timeline from '../../data/timeline.json';
+import { PROJECTS, FLAGSHIP, SUPPLEMENTARY } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { buildFiles } from './files.jsx';
 import Terminal from './Terminal';
+import Palette from './Palette';
+
+/* Session-scoped: the palette force-opens only on the first Tech visit. */
+let paletteIntroShown = false;
+
+/* Map each file to its "last commit" for the git-blame hover tooltip. */
+function buildBlame() {
+  const commits = timeline.commits;
+  const latest = commits[0];
+  const byTag = (tag) => commits.find((c) => c.tag === tag);
+  const byYear = (y) => commits.find((c) => c.when <= String(y)) || latest;
+  const blame = {
+    readme: latest,
+    timeline: latest,
+    approvals: latest,
+    stack: latest,
+    certs: byYear(2025),
+    contact: latest,
+    jpmc: byTag('jpmc'),
+    ali: byTag('alibaba'),
+    saf: byTag('saf'),
+  };
+  const tagFor = (p) => {
+    if (p.sector.includes('MARKETS')) return 'trade';
+    if (p.sector.includes('JPMC')) return 'jpmc';
+    if (p.sector.includes('SAF')) return 'saf';
+    if (p.sector.includes('NP') || p.sector.includes('ASP.NET') || p.sector.includes('UI/UX')) return 'np';
+    if (p.sector.includes('SST') || Number(p.from) <= 2021) return 'sst';
+    return null;
+  };
+  PROJECTS.forEach((p) => {
+    const t = tagFor(p);
+    blame[`p_${p.id}`] = (t && byTag(t)) || byYear(p.from);
+  });
+  return blame;
+}
 
 export default function Tech() {
   const { setMode, toast, pendingFinanceSym } = useMode();
   const FILES = useMemo(buildFiles, []);
+  const BLAME = useMemo(buildBlame, []);
   const [openTabs, setOpenTabs] = useState(['readme']);
   const [activeF, setActiveF] = useState('readme');
   const [dirs, setDirs] = useState({ exp: true, proj: false, supp: false });
-  const [hint, setHint] = useState(true);
+  const [palette, setPalette] = useState(false);
+  const [tip, setTip] = useState(null);
   const paneRef = useRef(null);
 
   useEffect(() => {
     if (paneRef.current) paneRef.current.scrollTop = 0;
   }, [activeF]);
+
+  // Force first-visit users into the quick-open flow; ⌘K/Ctrl+K afterwards.
+  useEffect(() => {
+    if (!paletteIntroShown) {
+      paletteIntroShown = true;
+      const t = setTimeout(() => setPalette(true), 700);
+      return () => clearTimeout(t);
+    }
+  }, []);
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPalette((p) => !p);
+      }
+    };
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
+  }, []);
 
   const openFile = (f) => {
     if (!FILES[f]) return;
@@ -34,7 +92,34 @@ export default function Tech() {
   };
   const expandDirs = (keys) => setDirs((d) => ({ ...d, ...Object.fromEntries(keys.map((k) => [k, true])) }));
   const toggleDir = (k) => setDirs((d) => ({ ...d, [k]: !d[k] }));
-  const treeClick = () => setHint(false);
+
+  const paletteItems = useMemo(() => {
+    const flagIds = new Set(FLAGSHIP.map((p) => `p_${p.id}`));
+    const suppIds = new Set(SUPPLEMENTARY.map((p) => `p_${p.id}`));
+    const icoFor = (id) =>
+      id === 'readme' ? '▣' : id === 'timeline' ? '⎇' : id === 'approvals' ? '✓'
+      : id === 'stack' ? '{}' : id === 'certs' ? '🔒' : id === 'contact' ? '@' : '◆';
+    const pathFor = (id) =>
+      experience.some((x) => x.id === id) ? 'experience/'
+      : flagIds.has(id) ? 'projects/'
+      : suppIds.has(id) ? 'projects/supplementary/'
+      : '~';
+    return Object.entries(FILES).map(([id, f]) => ({ id, label: f.label, ico: icoFor(id), path: pathFor(id) }));
+  }, [FILES]);
+
+  const pickFromPalette = (id) => {
+    if (experience.some((x) => x.id === id)) expandDirs(['exp']);
+    else if (id.startsWith('p_')) {
+      expandDirs(SUPPLEMENTARY.some((p) => `p_${p.id}` === id) ? ['proj', 'supp'] : ['proj']);
+    }
+    openFile(id);
+  };
+
+  const showBlame = (e, f) => {
+    const c = BLAME[f];
+    if (!c) return;
+    setTip({ x: e.clientX, y: e.clientY, hash: c.hash, tag: c.tag, when: c.when });
+  };
   const gotoFinance = (sym) => {
     pendingFinanceSym.current = sym;
     setMode('finance');
@@ -51,6 +136,8 @@ export default function Tech() {
     <div
       className={`node ${lvl ? `lvl${lvl}` : ''} ${activeF === f ? 'on' : ''}`}
       onClick={() => openFile(f)}
+      onMouseMove={(e) => showBlame(e, f)}
+      onMouseLeave={() => setTip(null)}
     >
       <span className="ico">{ico}</span>
       {label}
@@ -69,15 +156,10 @@ export default function Tech() {
         <div className="titlebar">
           <div className="dots"><i /><i /><i /></div>
           <div className="tb-title"><b>klystrn</b> · ~/portfolio · zsh</div>
+          <button className="kbtn" onClick={() => setPalette(true)} aria-label="Quick open">⌘K</button>
         </div>
         <div className="ide">
-          <aside className="tree" onClick={treeClick}>
-            <div className="tree-h">Explorer · klystrn</div>
-            {hint && (
-              <div className="tree-hint">
-                click a file to open it<span>this explorer is the nav</span>
-              </div>
-            )}
+          <aside className="tree"><div className="tree-h">Explorer · klystrn</div>
             <FileNode f="readme" ico="▣" label="README.md" />
             <FileNode f="timeline" ico="⎇" label="timeline.git" />
             <DirNode k="exp" label="experience/" />
@@ -135,6 +217,13 @@ export default function Tech() {
           </div>
         </div>
       </div>
+      <div className="credit">{`// built by ${identity.name}`}</div>
+      <Palette open={palette} onClose={() => setPalette(false)} onPick={pickFromPalette} items={paletteItems} />
+      {tip && (
+        <div className="blame-tip" style={{ left: tip.x + 14, top: tip.y + 16 }}>
+          ⎇ last commit <span className="hs">{tip.hash}</span> · <span className="tg">{tip.tag}</span> · {tip.when}
+        </div>
+      )}
     </div>
   );
 }

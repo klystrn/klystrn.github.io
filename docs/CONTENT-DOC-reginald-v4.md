@@ -293,15 +293,42 @@ Vanilla shows top 7 + "…and 7 more". Tech certs.lock shows top 7 + comment. Fu
 | Testimonials | "In others' words." | — | APPROVALS.md | Analyst Coverage · Testimonials |
 | Contact | "Let's build something." | "Open to opportunities in software engineering, fintech…" | CONTACT.me | Trade Ticket |
 
-## 16 · MODE CURSORS (custom cursor per mode — editable specs)
+## 16 · MODE CURSORS (custom cursor per mode — REVISED 2026-07-16)
 
-| Mode | Cursor | Design |
+Two cursors per mode: a default cursor and an interactive variant shown over links, buttons, and
+clickable cards (replaces the earlier "clickable elements keep the native pointer" decision).
+
+| Mode | Default cursor | Interactive cursor |
 |---|---|---|
-| Vanilla | Ink arrow with red edge | Editorial pointer: dark ink arrowhead, crimson outline (matches accent) |
-| Tech | Cyan chevron ❯ | Terminal prompt glyph, points right; hotspot at the tip |
-| Finance | Amber crosshair + green dot | Chart crosshair with a green centre point, like a trading terminal |
+| Vanilla | Circular transparent liquid-glass bubble (specular highlight, dark rim) | Same bubble, red-rimmed (#d92b35) with a warm tint |
+| Tech | Cyan chevron ❯, scaled down (16px — the 22px version read too big) | Cyan terminal block-caret (translucent fill) |
+| Finance | Amber crosshair + green centre dot | Target-lock: crosshair with a green acquisition ring |
 
-Clickable elements keep the native pointer/hand so interactivity stays obvious. [Edit designs freely.]
+## 17 · SITE FURNITURE & INTERACTION DECISIONS (batch 1 · 2026-07-16)
+
+Locked in during the first post-launch edit batch; implemented in the React build.
+
+- **Credit line:** "Built by Reginald Tan" at the bottom of every page, styled per mode
+  (Vanilla: serif italic name in red · Tech: `// built by …` comment · Finance: uppercase ticker style).
+- **Vanilla footer:** consolidated to ONE footer — the dark contact box keeps only the icon buttons
+  (email · LinkedIn · GitHub · résumé pill) with padding, no heading or prose; the old light
+  button row below it is removed.
+- **Vanilla try-other-modes box:** removed entirely once the visitor has seen both Tech and
+  Finance (no more struck-through "completionist" state).
+- **Vanilla additions:** top-of-viewport scroll progress bar (red accent) · floating right-side
+  section dot-rail (hidden ≤1100px) · testimonials carousel (auto-rotate 5s, pauses on hover,
+  dot controls; no auto-rotate under reduced motion).
+- **Tech first-visit nudge:** the passive pulsing tree hint is replaced by a ⌘K/Ctrl+K command
+  palette that auto-opens on the first Tech visit of a session (fuzzy file search; also a ⌘K chip
+  in the titlebar). Terminal boots by *typing* `help` character-by-character. Tree files show a
+  git-blame tooltip on hover (last commit hash · branch · year, derived from timeline commits).
+- **Finance additions:** boot "live flicker" — quotes jitter briefly then settle on derived values
+  (skipped under reduced motion) plus a pulsing LIVE dot · a fundamentals strip of derived career
+  metrics (yrs active, projects, shipped, avg growth, positions, licences — all computed from data,
+  never hand-typed) · a Sector Exposure · Allocation panel showing cluster-strength percentages
+  from §7's skills table as a stacked bar.
+- **Responsive pass:** Tech mobile explorer fixed (horizontal chip strip, no letter-wrapping),
+  tighter Vanilla timeline/type scale ≤600px, Finance header/strip wrapping, smaller nav pill ≤380px.
 
 ---
 ### Outstanding items summary (everything blocking JSON conversion)

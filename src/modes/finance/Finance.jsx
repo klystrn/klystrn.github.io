@@ -4,14 +4,48 @@ import experience from '../../data/experience.json';
 import education from '../../data/education.json';
 import testimonials from '../../data/testimonials.json';
 import awards from '../../data/awards.json';
+import certs from '../../data/certs.json';
+import skills from '../../data/skills.json';
+import timeline from '../../data/timeline.json';
 import feed from '../../data/feed.json';
 import headers from '../../data/headers.json';
 import { PROJECTS, FLAGSHIP, SUPPLEMENTARY, bySym } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
-import { useMarquee } from '../../lib/hooks';
+import { useMarquee, prefersReducedMotion } from '../../lib/hooks';
 import Chart from './Chart';
 
 const PENDING_NOTE = '[Note pending, content doc §10]';
+
+/* Derived career fundamentals — computed from data at render, never hand-typed. */
+function fundamentals() {
+  const firstYear = Number(timeline.phases[0].when.split('–')[0]);
+  const yrs = new Date().getFullYear() - firstYear;
+  const shipped = PROJECTS.filter((p) => p.status === 'shipped').length;
+  const growths = PROJECTS.map((p) => p.curve[p.curve.length - 1] - p.curve[0]);
+  const avg = Math.round(growths.reduce((a, b) => a + b, 0) / growths.length);
+  return [
+    ['YRS ACTIVE', `${yrs}Y`],
+    ['PROJECTS', `${PROJECTS.length}`],
+    ['SHIPPED', `${shipped}/${PROJECTS.length}`],
+    ['AVG GROWTH', `+${avg} PTS`, 'u'],
+    ['POSITIONS', `${experience.length}`],
+    ['LICENCES', `${certs.length}`],
+  ];
+}
+
+/* Cluster strengths from skills.json → portfolio-style sector allocation. */
+const ALLOC_COLORS = { tech: '#5aa2ff', ai: '#b18aff', trade: '#2fd17a', design: '#f5b942' };
+function allocation() {
+  const sums = {};
+  skills.leaves.forEach((l) => { sums[l.cluster] = (sums[l.cluster] || 0) + l.strength; });
+  const total = Object.values(sums).reduce((a, b) => a + b, 0);
+  return Object.entries(skills.hubs).map(([k, h]) => ({
+    key: k,
+    label: h.label,
+    pct: Math.round((sums[k] / total) * 100),
+    color: ALLOC_COLORS[k],
+  }));
+}
 
 function spark(c) {
   const max = Math.max(...c);
@@ -59,8 +93,33 @@ export default function Finance() {
   const { toast, pendingFinanceSym } = useMode();
   const [tab, setTab] = useState('flag');
   const [sym, setSym] = useState('ATW');
+  const [flick, setFlick] = useState(null);
   const fin = identity.finance;
   const c = identity.contact;
+
+  // Live-terminal boot flicker: quotes jitter briefly, then settle on the
+  // derived values. Purely cosmetic; skipped for prefers-reduced-motion.
+  useEffect(() => {
+    if (prefersReducedMotion()) return undefined;
+    let n = 0;
+    const iv = setInterval(() => {
+      n += 1;
+      if (n > 8) {
+        clearInterval(iv);
+        setFlick(null);
+        return;
+      }
+      const m = {};
+      PROJECTS.forEach((p) => { m[p.sym] = Math.random() * 0.6 - 0.3; });
+      setFlick(m);
+    }, 150);
+    return () => clearInterval(iv);
+  }, []);
+
+  const chgOf = (p) =>
+    flick && flick[p.sym] != null
+      ? `+${(p.curve[p.curve.length - 1] - p.curve[0] + flick[p.sym]).toFixed(1)} pts`
+      : p.chg;
 
   // Consume a ticker handed over from Tech mode ("$SYM in Finance mode →").
   useEffect(() => {
@@ -105,9 +164,17 @@ export default function Finance() {
           <div className="th-name">{fin.name}</div>
           <div className="th-quote" dangerouslySetInnerHTML={{ __html: fin.quoteHtml }} />
           <div className="th-status">
-            <span className="dot" /> {fin.statusLine}
+            <span className="dot" /> LIVE · {fin.statusLine}
           </div>
         </header>
+        <div className="fund-strip">
+          {fundamentals().map(([k, v, cls]) => (
+            <div className="fund-cell" key={k}>
+              <div className="fund-k">{k}</div>
+              <div className={`fund-v ${cls || ''}`}>{v}</div>
+            </div>
+          ))}
+        </div>
         <div className="grid">
           <div className="col">
             <section className="panel">
@@ -134,7 +201,7 @@ export default function Finance() {
                       >
                         <span className="wl-sym">${p.sym}</span>
                         <span className="wl-name">{p.title}</span>
-                        <span className="wl-chg u">{p.chg}</span>
+                        <span className="wl-chg u">{chgOf(p)}</span>
                         <svg className="wl-spark" viewBox="0 0 100 22" preserveAspectRatio="none">
                           <polyline points={spark(p.curve)} fill="none" stroke="#2fd17a" strokeWidth="1.4" />
                         </svg>
@@ -151,7 +218,7 @@ export default function Finance() {
                 <div className="det-sym">${sel.sym}</div>
                 <div className="det-name">{sel.title}</div>
                 <div className="det-quote">
-                  <span className="u">▲ {sel.chg} since inception</span>
+                  <span className="u">▲ {chgOf(sel)} since inception</span>
                 </div>
               </div>
               <Chart project={sel} />
@@ -230,6 +297,28 @@ export default function Finance() {
             </section>
             <section className="panel">
               <div className="p-head">
+                <span className="p-title">Sector Exposure · Allocation</span>
+                <span className="p-hint">by skill strength</span>
+              </div>
+              <div className="alloc">
+                <div className="alloc-bar">
+                  {allocation().map((a) => (
+                    <i key={a.key} style={{ width: `${a.pct}%`, background: a.color }} />
+                  ))}
+                </div>
+                <div className="alloc-key">
+                  {allocation().map((a) => (
+                    <div className="alloc-row" key={a.key}>
+                      <b style={{ background: a.color }} />
+                      {a.label}
+                      <span className="pct">{a.pct}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+            <section className="panel">
+              <div className="p-head">
                 <span className="p-title">{headers.finance.coverage}</span>
               </div>
               {testimonials.map((t) => (
@@ -262,6 +351,7 @@ export default function Finance() {
         </div>
       </main>
       <footer className="foot">{fin.disclaimer}</footer>
+      <div className="credit">BUILT BY {identity.name.toUpperCase()} · ${fin.sym}</div>
     </div>
   );
 }

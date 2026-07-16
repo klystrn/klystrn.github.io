@@ -4,15 +4,13 @@ import experience from '../../data/experience.json';
 import timeline from '../../data/timeline.json';
 import awards from '../../data/awards.json';
 import certs from '../../data/certs.json';
-import testimonials from '../../data/testimonials.json';
 import headers from '../../data/headers.json';
 import { FLAGSHIP, SUPPLEMENTARY } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { useReveal, useCountUp } from '../../lib/hooks';
 import Constellation from './Constellation';
 import Modal from './Modal';
-
-const PENDING_QUOTE = '[Quote pending, content doc §10]';
+import { ProgressBar, SectionRail, TestimonialsCarousel } from './Furniture';
 
 function Stat({ n, label }) {
   const ref = useCountUp(n);
@@ -116,6 +114,8 @@ export default function Vanilla() {
 
   return (
     <div className="mv" ref={rootRef}>
+      <ProgressBar />
+      <SectionRail />
       <header className="hero" id="home">
         <div className="hero-grid" aria-hidden="true" />
         <div className="wrap hero-in">
@@ -277,50 +277,36 @@ export default function Vanilla() {
         <div className="wrap">
           <div className="eyebrow reveal">{headers.testimonials.eyebrow}</div>
           <h2 className="sec reveal">{headers.testimonials.vanilla}</h2>
-          <div className="ts-grid">
-            {testimonials.map((t) => (
-              <div className="ts reveal" key={t.slug}>
-                <q>{t.quote || PENDING_QUOTE}</q>
-                <div className="by">
-                  {t.name}
-                  <span>{t.title}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TestimonialsCarousel />
         </div>
       </section>
 
-      <section className="try-modes">
-        <div className="try-box reveal">
-          <div className="t">{tryMsg}</div>
-          <div className="try-btns">
-            <button className={`try-btn ${seenTech ? 'done' : ''}`} onClick={() => setMode('tech')}>
-              ⌘ open Tech mode
-            </button>
-            <button className={`try-btn ${seenFin ? 'done' : ''}`} onClick={() => setMode('finance')}>
-              ▲ open Finance mode
-            </button>
+      {!(seenTech && seenFin) && (
+        <section className="try-modes">
+          <div className="try-box reveal">
+            <div className="t">{tryMsg}</div>
+            <div className="try-btns">
+              <button className={`try-btn ${seenTech ? 'done' : ''}`} onClick={() => setMode('tech')}>
+                ⌘ open Tech mode
+              </button>
+              <button className={`try-btn ${seenFin ? 'done' : ''}`} onClick={() => setMode('finance')}>
+                ▲ open Finance mode
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="contact" id="contact">
-        <h2 dangerouslySetInnerHTML={{ __html: headers.contactHtml.vanilla }} />
-        <p>{headers.contactHtml.vanillaSub}</p>
         <div className="icon-btns">
           <a className="ibtn" href={`mailto:${c.email}`} aria-label="Email Reginald" title="Email"><MailIcon /></a>
           <a className="ibtn" href={c.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn"><LinkedInIcon /></a>
+          <a className="ibtn" href={c.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><GitHubIcon /></a>
           <a className="btn line" href={c.cvUrl || '#'} onClick={cvClick}>Résumé</a>
         </div>
       </section>
 
-      <footer className="foot2">
-        <a className="fibtn" href={`mailto:${c.email}`} aria-label="Email"><MailIcon /></a>
-        <a className="fibtn" href={c.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon /></a>
-        <a className="fibtn" href={c.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GitHubIcon /></a>
-        <a className="btn line" style={{ padding: '10px 20px', fontSize: 13 }} href={c.cvUrl || '#'} onClick={cvClick}>Résumé</a>
-      </footer>
+      <div className="credit">Built by <b>{identity.name}</b></div>
 
       <Modal data={modal} onClose={() => setModal(null)} />
     </div>
