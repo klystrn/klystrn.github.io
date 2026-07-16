@@ -277,15 +277,15 @@ Vanilla shows top 7 + "…and 7 more". Tech certs.lock shows top 7 + comment. Fu
 
 ## 14 · ASSET CHECKLIST
 
-- [ ] CV PDF (current)
-- [ ] Rahul Varma quote / testimonial PDF
-- [ ] Dimuthu Makawita quote / testimonial PDF
+- [x] CV PDF (current)
+- [x] Rahul Varma quote / testimonial PDF
+- [x] Dimuthu Makawita quote / testimonial PDF
 - [ ] 2–3 photos of you (About/hero)
 - [ ] 1–3 images per flagship project (atw-01.png, tcs-01.png, athn-01.png*, frts-01.png, srts-01.png) *if shareable
 - [ ] 6–10 photography shots (Life tab, later)
 - [x] Favicon mark — DECISION 2026-07-16: the typographic red italic "R." (same as the nav
       monogram), shipped as an SVG favicon
-- [ ] Google Drive folder URL for certificates (powers the "view all" button): [PENDING — paste URL]
+- [x] Google Drive folder URL for certificates (powers the "view all" button): [https://drive.google.com/drive/folders/1ZERfpR6xgMSrJyxMapfdozw5U_tW2Xws?usp=sharing]
 > DECISION: no hand-drawn signature. The monogram stays the typographic red "R." across all modes.
 
 ## 15 · SECTION HEADERS & SUBHEADERS (→ headers.json)

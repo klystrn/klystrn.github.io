@@ -1,7 +1,7 @@
 {
   "about":        { "eyebrow": "01 · About",        "vanilla": "The short version.",                    "vanillaSub": null },
-  "timeline":     { "eyebrow": "02 · Journey",      "vanilla": "My life on a line.",                    "vanillaSub": "Scroll to timetravel with me." },
-  "experience":   { "eyebrow": "03 · Experience",   "vanilla": "Where my hours went",                   "vanillaSub": null },
+  "timeline":     { "eyebrow": "02 · Journey",      "vanilla": "My life on a line.",                    "vanillaSub": "Scroll to time-travel with me." },
+  "experience":   { "eyebrow": "03 · Experience",   "vanilla": "Where my hours went.",                   "vanillaSub": null },
   "projects":     { "eyebrow": "04 · Projects",     "vanilla": "The work curation.",                    "vanillaSub": "These are my flagship projects. My full project catalogue lives in Tech mode (repos) and Finance mode (tickers)." },
   "skills":       { "eyebrow": "05 · Skills",       "vanilla": "One person, multiple skillsets.",       "vanillaSub": null },
   "awards":       { "eyebrow": "Awards & honours",  "certsEyebrow": "Certificates" },
