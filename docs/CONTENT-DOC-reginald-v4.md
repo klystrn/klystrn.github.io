@@ -14,21 +14,23 @@
   1. "Business analytics, with a *market* mind."
   2. "Financial technology, with an *analytical* mind."
   3. "Software engineering, with a *business* mind."
-- Sub-line (hero lede): "Nine years of code, two years of markets. Built a globally used tool inside
-  J.P. Morgan, kept servers alive at Alibaba Cloud, shipped biometrics with AIDC. Currently leading a
-  media & design team at SAF Guards HQ and automating a trading workflow after hours." [CONFIRM]
+- Sub-line (hero lede): "Nine years of coding, two years of equity trading. Built tools for a cloud 
+  migration in J.P. Morgan, developed facial recognition software for a biometrics firm, & taught workshops
+  at Overflow. Currently leading a media & design team in the Singapore Armed Forces and automating a trading
+  workflow in after-hours."
 - Location: Singapore
-- Current status: NS @ SAF Guards HQ — Team Manager (Media & Design) · AI Task Force (DECISION: no end date shown)
+- Current status: NS @ SAF Guards HQ - Team Manager (Media & Design) · AI Task Force (DECISION: no end date shown)
 - Target: finance, tech, and fintech opportunities (site deliberately shows breadth beyond these)
-- Goal pull-quote: "The goal: build the systems that move money. Financial technology, done properly." [CONFIRM]
+- Goal pull-quote: "The goal: make the decisions that enable corporations to make & move money strategically." 
 - About paragraphs (Vanilla, 2 paras):
-  1. "I shipped my first real product, Sorts, an iOS app for educators, at fourteen. Since then: an
+  1. "At fourteen, I shipped my first real product, Sorts, an iOS app for educators. Since then, I've completed an
      O-Level Computing specialisation at SST, a Diploma in IT at Ngee Ann Polytechnic on the Ngee Ann
-     Scholarship (Director's List, twice), and a year inside J.P. Morgan building a workload-monitoring
-     tool now used globally, with a stint running server operations at Alibaba Cloud's Singapore data
-     centres along the way."
-  2. "Alongside the engineering runs a second obsession: financial markets. Two years of live trading,
-     and now the tooling to match, from a Trading Command Sheet to a Claude-powered automated workflow."
+     Scholarship (Director's List, twice), and a year at J.P. Morgan migrating investment banking processes and
+     building a cloud-workload monitoring tool now used globally, with a stint running server operations 
+     at Alibaba Cloud's Singapore data centres along the way."
+  2. "Beyond my background in data analytics & software engineering lies a second obsession: financial markets. I've been 
+      trading equities for two years, building workflows and tooling to further my passion, from a portfolio tracker to a 
+      Claude-powered automated trading workflow."
 
 ## 2 · QUICK STATS (→ identity.json, animated counters)
 
@@ -49,14 +51,15 @@
 - Detail: Specialised in workload migration, data analytics, and tool development. Created a tool used
   globally by various lines of business to monitor their workloads and visualise areas for optimisation.
   Served as SME for cloud migration workload & data visualisation. Largely classified.
-- Skills: Python, Data analytics, Cloud infrastructure, Tool development
+- Skills: Python, Data analytics, AWS, Cloud infrastructure, Tool development
 - Finance-mode tag: BLUE CHIP · Privacy note: "Specific internals are JPMC-internal; happy to go deeper in an interview."
 
 ### Alibaba Cloud · SG Data Centres
 - Title: Assistant IT Engineer (Server Tech) · Dates: 2025 · 8-week part-time
 - Summary: Back-office server operations at the Singapore data centres.
-- Detail: Handled server equipment and transferred confidential client data between servers. Short but
-  memorable; a ground-level view of the background processes that keep servers functional and operable.
+- Detail: Handled server equipment and transferred confidential client data between servers. This 8 week attachment 
+  was short but memorable. It provided me with a a ground-level view of the background processes that keep servers 
+  functional and operable.
 - Skills: Server operations, Data handling, Hardware, Networking
 - Finance-mode tag: INFRASTRUCTURE
 
@@ -64,8 +67,9 @@
 - Title: Team Manager, Media & Design · AI Task Force · Dates: 2025–now (NS)
 - Summary: Leading a team of 8; building an army chatbot for combatants.
 - Detail: Managerial role over a team of 8 for the media & design team: multiple large-scale projects
-  for army exercises and events (classified); managing Guards HQ Facebook and Instagram. On the AI Task
-  Force, building an army chatbot interface for Guards combatants.
+  for army exercises and events (classified); managing Guards HQ Facebook and Instagram. Sitting on the AI Task
+  Force and Recruitment Team, I'm working on multiple projects, like building an army chatbot for Guards combatants 
+  and managing the media for division-level exercises.
 - Skills: Team management, Photoshop, Illustrator, AI / Claude
 - Finance-mode tag: SOVEREIGN · Privacy note: "Several projects (Ex COORES and others) are classified."
 > DECISION LOCKED: Guards media IC counts as work experience (managerial, deliverables, 8 reports).
