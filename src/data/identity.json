@@ -3,7 +3,11 @@
   "credit": "Built by Reginald Tan",
   "location": "Singapore",
   "eyebrow": "Reginald Tan · Singapore",
-  "positioningHtml": "Software engineering,<br>with a <em>market</em> mind.",
+  "positioningLinesHtml": [
+    "Business analytics,<br>with a <em>market</em> mind.",
+    "Financial technology,<br>with an <em>analytical</em> mind.",
+    "Software engineering,<br>with a <em>business</em> mind."
+  ],
   "lede": "Nine years of code, two years of markets. Built a globally used tool inside J.P. Morgan, kept servers alive at Alibaba Cloud, shipped biometrics with AIDC. Currently leading a media & design team at SAF Guards HQ and automating a trading workflow after hours.",
   "status": "NS @ SAF Guards HQ — Team Manager (Media & Design) · AI Task Force",
   "goal": "The goal: build the systems that move money. Financial technology, done properly.",

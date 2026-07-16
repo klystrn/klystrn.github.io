@@ -9,7 +9,11 @@
 ## 1 · IDENTITY (→ identity.json — hero + About in all modes)
 
 - Full name: Reginald Tan
-- Positioning line (hero): "Software engineering, with a market mind." [CONFIRM or rewrite]
+- Positioning lines (hero — vertical rotating carousel of 3, CONFIRMED 2026-07-16, replaces the
+  single line; emphasised word in italics per line):
+  1. "Business analytics, with a *market* mind."
+  2. "Financial technology, with an *analytical* mind."
+  3. "Software engineering, with a *business* mind."
 - Sub-line (hero lede): "Nine years of code, two years of markets. Built a globally used tool inside
   J.P. Morgan, kept servers alive at Alibaba Cloud, shipped biometrics with AIDC. Currently leading a
   media & design team at SAF Guards HQ and automating a trading workflow after hours." [CONFIRM]
@@ -275,7 +279,8 @@ Vanilla shows top 7 + "…and 7 more". Tech certs.lock shows top 7 + comment. Fu
 - [ ] 2–3 photos of you (About/hero)
 - [ ] 1–3 images per flagship project (atw-01.png, tcs-01.png, athn-01.png*, frts-01.png, srts-01.png) *if shareable
 - [ ] 6–10 photography shots (Life tab, later)
-- [ ] Favicon mark
+- [x] Favicon mark — DECISION 2026-07-16: the typographic red italic "R." (same as the nav
+      monogram), shipped as an SVG favicon
 - [ ] Google Drive folder URL for certificates (powers the "view all" button): [PENDING — paste URL]
 > DECISION: no hand-drawn signature. The monogram stays the typographic red "R." across all modes.
 
@@ -329,6 +334,16 @@ Locked in during the first post-launch edit batch; implemented in the React buil
   from §7's skills table as a stacked bar.
 - **Responsive pass:** Tech mobile explorer fixed (horizontal chip strip, no letter-wrapping),
   tighter Vanilla timeline/type scale ≤600px, Finance header/strip wrapping, smaller nav pill ≤380px.
+
+### Batch 1.1 addendum (same day)
+
+- **Favicon:** typographic red italic "R." as SVG (§14 resolved).
+- **Hero:** positioning line replaced by a vertical rotating carousel of the three §1 sentences
+  (3.8s interval; static first line under reduced motion).
+- **Supplementary projects:** rows in Vanilla are now clickable and open the same detail modal as
+  flagship cards (description, skills, key stats, privacy note where applicable).
+- **Constellation:** ASP.NET Core and Vue.js nodes nudged apart from Prompt Engineering so their
+  labels no longer overlap in the top-left cluster.
 
 ---
 ### Outstanding items summary (everything blocking JSON conversion)

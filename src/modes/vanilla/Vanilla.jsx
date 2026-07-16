@@ -10,7 +10,7 @@ import { useMode } from '../../chrome/ModeContext';
 import { useReveal, useCountUp } from '../../lib/hooks';
 import Constellation from './Constellation';
 import Modal from './Modal';
-import { ProgressBar, SectionRail, TestimonialsCarousel } from './Furniture';
+import { ProgressBar, SectionRail, TestimonialsCarousel, RotatingHero } from './Furniture';
 
 function Stat({ n, label }) {
   const ref = useCountUp(n);
@@ -120,7 +120,7 @@ export default function Vanilla() {
         <div className="hero-grid" aria-hidden="true" />
         <div className="wrap hero-in">
           <div className="eyebrow">{identity.eyebrow}</div>
-          <h1 dangerouslySetInnerHTML={{ __html: identity.positioningHtml }} />
+          <RotatingHero lines={identity.positioningLinesHtml} />
           <p className="lede">{identity.lede}</p>
           <div className="cta">
             <a className="btn solid" href={c.cvUrl || '#'} onClick={cvClick}>Download résumé</a>
@@ -228,7 +228,14 @@ export default function Vanilla() {
           <div className="eyebrow reveal" style={{ marginTop: 48 }}>Supplementary</div>
           <div className="pj-minis reveal">
             {SUPPLEMENTARY.map((p) => (
-              <div className="pj-mini" key={p.sym}>
+              <div
+                className="pj-mini"
+                key={p.sym}
+                role="button"
+                tabIndex={0}
+                onClick={() => openProject(p)}
+                onKeyDown={(e) => e.key === 'Enter' && openProject(p)}
+              >
                 <span className="yr">{p.year}</span>
                 <span>
                   <b>{p.title}</b> <span className="d">· {p.mini?.blurb || p.desc}</span>

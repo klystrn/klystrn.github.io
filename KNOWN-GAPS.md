@@ -5,8 +5,8 @@ ships silently wrong. Fix in `src/data/*.json` (content) — components carry no
 
 ## Content (needs Reginald's input)
 
-1. **§1 hero copy** — positioning line, sub-line, and goal pull-quote still marked `[CONFIRM]`;
-   currently shipping as written. → `identity.json`
+1. **§1 hero copy** — positioning lines confirmed 2026-07-16 (rotating carousel of three);
+   sub-line and goal pull-quote still marked `[CONFIRM]`, shipping as written. → `identity.json`
 2. **§10 testimonial quotes** — Rahul Varma and Dimuthu Makawita render the
    `[Quote pending]` placeholder. → `testimonials.json` (`quote: null`)
 3. **§15 header rewrites** — Timeline ("A line that keeps trending up.") and Experience
@@ -21,7 +21,7 @@ ships silently wrong. Fix in `src/data/*.json` (content) — components carry no
       (the "view all ↗" button falls back to an in-page modal until set)
 - [ ] 2–3 personal photos (About/hero)
 - [ ] 1–3 images per flagship project (`atw-01.png`, `tcs-01.png`, …)
-- [ ] Favicon mark (site currently ships without one)
+- [x] Favicon — resolved: typographic red "R." SVG (`public/favicon.svg`)
 - [ ] Testimonial PDFs (Rahul Varma, Dimuthu Makawita)
 
 ## News feed

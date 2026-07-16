@@ -4,6 +4,33 @@ import { prefersReducedMotion } from '../../lib/hooks';
 
 const PENDING_QUOTE = '[Quote pending, content doc §10]';
 
+/* Hero positioning line: vertical carousel over the three §1 sentences. */
+export function RotatingHero({ lines }) {
+  const [idx, setIdx] = useState(0);
+  const [prev, setPrev] = useState(null);
+  useEffect(() => {
+    if (prefersReducedMotion() || lines.length < 2) return undefined;
+    const iv = setInterval(() => {
+      setIdx((i) => {
+        setPrev(i);
+        return (i + 1) % lines.length;
+      });
+    }, 3800);
+    return () => clearInterval(iv);
+  }, [lines.length]);
+  return (
+    <h1 className="hero-rot">
+      {lines.map((l, k) => (
+        <span
+          key={k}
+          className={`hero-line ${k === idx ? 'on' : k === prev ? 'out' : ''}`}
+          dangerouslySetInnerHTML={{ __html: l }}
+        />
+      ))}
+    </h1>
+  );
+}
+
 /* Thin red line at the very top of the viewport, fills with scroll. */
 export function ProgressBar() {
   const ref = useRef(null);
