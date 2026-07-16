@@ -7,9 +7,11 @@ body[data-mode="vanilla"] :is(a,button,[role="button"],input,select,textarea,lab
 /* Tech: smaller cyan chevron; block-caret (terminal selection) on interactives */
 body[data-mode="tech"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M4%202.5l7%205.5-7%205.5'%20fill='none'%20stroke='%2356d4dd'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E") 11 8, auto}
 body[data-mode="tech"] :is(a,button,[role="button"],input,.node,.etab,.flink,.kbar-it){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='18'%3E%3Crect%20x='3'%20y='2.5'%20width='9'%20height='13'%20rx='1.5'%20fill='rgba(86,212,221,.32)'%20stroke='%2356d4dd'%20stroke-width='1.4'/%3E%3C/svg%3E") 7 9, pointer}
-/* Finance: amber crosshair + green dot; target-lock ring on interactives */
-body[data-mode="finance"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='22'%20height='22'%3E%3Cpath%20d='M11%200v7M11%2015v7M0%2011h7M15%2011h7'%20stroke='%23f5b942'%20stroke-width='2'/%3E%3Ccircle%20cx='11'%20cy='11'%20r='2'%20fill='%232fd17a'/%3E%3C/svg%3E") 11 11, crosshair}
-body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl-tab){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='22'%20height='22'%3E%3Cpath%20d='M11%200v5M11%2017v5M0%2011h5M17%2011h5'%20stroke='%23f5b942'%20stroke-width='2'/%3E%3Ccircle%20cx='11'%20cy='11'%20r='6.5'%20fill='none'%20stroke='%232fd17a'%20stroke-width='1.6'/%3E%3Ccircle%20cx='11'%20cy='11'%20r='2'%20fill='%232fd17a'/%3E%3C/svg%3E") 11 11, pointer}
+/* Finance: smaller blue crosshair + white dot (green/amber read as buy/sell
+   noise and were hard to see against the dark terminal palette); target-lock
+   ring on interactives */
+body[data-mode="finance"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%200v5M8%2011v5M0%208h5M11%208h5'%20stroke='%235aa2ff'%20stroke-width='2'/%3E%3Ccircle%20cx='8'%20cy='8'%20r='1.6'%20fill='white'/%3E%3C/svg%3E") 8 8, crosshair}
+body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl-tab){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='18'%20height='18'%3E%3Cpath%20d='M9%200v4M9%2014v4M0%209h4M14%209h4'%20stroke='%235aa2ff'%20stroke-width='2'/%3E%3Ccircle%20cx='9'%20cy='9'%20r='5'%20fill='none'%20stroke='%235aa2ff'%20stroke-width='1.4'/%3E%3Ccircle%20cx='9'%20cy='9'%20r='1.8'%20fill='white'/%3E%3C/svg%3E") 9 9, pointer}
 
 /* --- "Built by" credit, themed per mode --- */
 .credit{text-align:center;font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:18px 0 26px;opacity:.6}
@@ -46,12 +48,17 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .mv-rail button:hover .lbl{opacity:1}
 @media(max-width:1100px){.mv-rail{display:none}}
 
-/* --- Vanilla: testimonials carousel --- */
-.ts-car{overflow:hidden}
-.ts-track{display:flex;margin-left:calc(var(--k,0)*-50%);transition:margin-left .6s cubic-bezier(.3,.8,.3,1)}
-.ts-slide{flex:0 0 50%;padding:0 7px;box-sizing:border-box;display:flex}
-.ts-slide .ts{flex:1}
-@media(max-width:760px){.ts-slide{flex:0 0 100%}.ts-track{margin-left:calc(var(--k,0)*-100%)}}
+/* --- Vanilla: testimonials carousel (one card at a time) --- */
+.ts-car{position:relative;padding:0 64px}
+.ts-window{overflow:hidden}
+.ts-track{display:flex;transform:translateX(calc(var(--k,0)*-100%));transition:transform .5s cubic-bezier(.3,.8,.3,1)}
+.ts-slide{flex:0 0 100%;box-sizing:border-box}
+.ts-slide .ts{width:100%;box-sizing:border-box}
+.ts-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--vline);background:var(--card);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s;padding:0;z-index:2}
+.ts-nav:hover{border-color:var(--ultra);color:var(--ultra)}
+.ts-nav.prev{left:0}
+.ts-nav.next{right:0}
+@media(max-width:600px){.ts-car{padding:0 48px}.ts-nav{width:36px;height:36px}}
 .ts-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
 .ts-dots button{width:8px;height:8px;border-radius:50%;border:none;background:#dcdfd9;padding:0;transition:transform .2s,background .2s}
 .ts-dots button.on{background:#d92b35;transform:scale(1.25)}

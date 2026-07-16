@@ -92,10 +92,23 @@ export default function Constellation({ header }) {
   const scale = 3.1 - 2.1 * ease;
   const fade = (t) => (progress >= t ? Math.min((progress - t) / 0.12, 1) : 0);
 
-  const enter = (id) => { if (!pinned) setHotId(id); };
+  // Nodes are still animating scale/opacity in until the scroll-driven zoom
+  // finishes; hover/click before then reads as random flicker (mid-transition
+  // nodes are oversized and only partially faded in), so gate interaction on
+  // the constellation being fully zoomed out.
+  const settled = progress >= 1;
+  useEffect(() => {
+    if (!settled) {
+      setHotId(null);
+      setPinned(false);
+    }
+  }, [settled]);
+
+  const enter = (id) => { if (settled && !pinned) setHotId(id); };
   const leave = () => { if (!pinned) setHotId(null); };
   const click = (e, id) => {
     e.stopPropagation();
+    if (!settled) return;
     if (pinned && hotId === id) { setPinned(false); setHotId(null); return; }
     setPinned(true);
     setHotId(id);
@@ -129,7 +142,7 @@ export default function Constellation({ header }) {
               <g
                 key={n.id}
                 className={`cn-node ${n.kind} ${hot && hot.nodes.has(n.id) ? 'hot' : ''}`}
-                style={{ opacity: fade(n.t) }}
+                style={{ opacity: fade(n.t), pointerEvents: settled ? 'auto' : 'none' }}
                 onMouseEnter={() => enter(n.id)}
                 onMouseLeave={leave}
                 onClick={(e) => click(e, n.id)}

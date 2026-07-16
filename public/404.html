@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Reginald Tan · Portfolio</title>
+  <script type="text/javascript">
+    // GitHub Pages has no server-side rewrite for client-side routes, so a
+    // direct load or refresh of /tech or /finance 404s. This encodes the
+    // real path into a query string and redirects to index.html, which
+    // decodes it back before React Router ever sees the URL (see the
+    // matching script in index.html). Root user site (klystrn.github.io),
+    // so no repo-name path segment to preserve.
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      '/?/' +
+      l.pathname.slice(1).replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+<body></body>
+</html>

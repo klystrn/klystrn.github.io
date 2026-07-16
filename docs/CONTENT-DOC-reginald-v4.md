@@ -307,7 +307,7 @@ clickable cards (replaces the earlier "clickable elements keep the native pointe
 |---|---|---|
 | Vanilla | Circular transparent liquid-glass bubble (specular highlight, dark rim) | Same bubble, red-rimmed (#d92b35) with a warm tint |
 | Tech | Cyan chevron ❯, scaled down (16px — the 22px version read too big) | Cyan terminal block-caret (translucent fill) |
-| Finance | Amber crosshair + green centre dot | Target-lock: crosshair with a green acquisition ring |
+| Finance | Blue crosshair + white centre dot, 16px (REVISED: amber/green didn't read against the dark palette, sized down) | Target-lock: blue crosshair with a blue acquisition ring, white dot |
 
 ## 17 · SITE FURNITURE & INTERACTION DECISIONS (batch 1 · 2026-07-16)
 

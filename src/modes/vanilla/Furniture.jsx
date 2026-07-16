@@ -96,36 +96,56 @@ export function SectionRail() {
   );
 }
 
-/* Auto-rotating testimonials carousel; pauses on hover, dots to jump. */
+const ChevronLeft = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+);
+const ChevronRight = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+);
+
+/* One card visible at a time; auto-rotates, pauses on hover, arrows + dots to navigate. */
 export function TestimonialsCarousel() {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const n = testimonials.length;
-  // One card per slide on mobile, two visible per view on desktop (50% slides).
+  const next = () => setIdx((i) => (i + 1) % n);
+  const prev = () => setIdx((i) => (i - 1 + n) % n);
+
   useEffect(() => {
-    if (prefersReducedMotion() || paused) return;
-    const iv = setInterval(() => setIdx((i) => (i + 1) % n), 5000);
+    if (prefersReducedMotion() || paused) return undefined;
+    const iv = setInterval(next, 5000);
     return () => clearInterval(iv);
-  }, [paused, n]);
+    // Manual nav (idx change) restarts the countdown from a full 5s.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paused, n, idx]);
+
   return (
     <div
       className="ts-car reveal"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="ts-track" style={{ '--k': idx }}>
-        {[...testimonials, ...testimonials.slice(0, 2)].map((t, i) => (
-          <div className="ts-slide" key={`${t.slug}-${i}`}>
-            <div className="ts">
-              <q>{t.quote || PENDING_QUOTE}</q>
-              <div className="by">
-                {t.name}
-                <span>{t.title}</span>
+      <button className="ts-nav prev" aria-label="Previous testimonial" onClick={prev}>
+        <ChevronLeft />
+      </button>
+      <div className="ts-window">
+        <div className="ts-track" style={{ '--k': idx }}>
+          {testimonials.map((t) => (
+            <div className="ts-slide" key={t.slug}>
+              <div className="ts">
+                <q>{t.quote || PENDING_QUOTE}</q>
+                <div className="by">
+                  {t.name}
+                  <span>{t.title}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+      <button className="ts-nav next" aria-label="Next testimonial" onClick={next}>
+        <ChevronRight />
+      </button>
       <div className="ts-dots">
         {testimonials.map((t, i) => (
           <button
