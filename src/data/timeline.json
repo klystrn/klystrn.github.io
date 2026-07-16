@@ -1,0 +1,69 @@
+{
+  "phases": [
+    {
+      "when": "2018–2021",
+      "phase": "SST",
+      "desc": "O-Levels with a Computing specialisation, where the building started.",
+      "tag": "education",
+      "miles": [
+        { "b": "3M makeathon", "text": ", portable water filter for third-world water shortage", "when": "2018" },
+        { "b": "Sorts ships", "text": ", lead programmer at 14", "when": "2019" },
+        { "b": "Chairperson, ACE board", "text": ", sign-ups up nearly 250%", "when": "2020" },
+        { "b": "Graduated", "text": " · DrCT International Bronze", "when": "2021" }
+      ]
+    },
+    {
+      "when": "2022–2025",
+      "phase": "Ngee Ann Polytechnic",
+      "desc": "Diploma in IT, School of InfoComm Technology, on the Ngee Ann Scholarship.",
+      "tag": "education",
+      "miles": [
+        { "b": "Director's List", "text": ", twice", "when": "2022 · 2023" },
+        { "b": "Head Secretary, Overflow", "text": ", 16 workshops taught", "when": "2023" },
+        { "b": "Child mentor", "text": ", Touch Young Arrows", "when": "2023" },
+        { "b": "FRATS capstone", "text": " with AIDC (Indonesia)", "when": "2024" },
+        { "b": "Server tech, Alibaba Cloud SG", "text": ", 8-week back-office role", "when": "2025" }
+      ]
+    },
+    {
+      "when": "2024–2025",
+      "phase": "J.P. Morgan",
+      "desc": "Software Engineer Intern, Corporate & Investment Bank.",
+      "tag": "experience",
+      "miles": [
+        { "b": "Workload migration, analytics & tooling", "text": " on Athena", "when": "2024" },
+        { "b": "Monitoring tool adopted globally", "text": " across lines of business", "when": "2025" },
+        { "b": "SME", "text": ", cloud migration workload & data visualisation", "when": "2024–2025" }
+      ]
+    },
+    {
+      "when": "2025–now",
+      "phase": "Guards HQ",
+      "desc": "National Service with the SAF.",
+      "tag": "service",
+      "miles": [
+        { "b": "Working party", "text": ", Ex COORES", "when": "2025" },
+        { "b": "Team Manager", "text": ", media & design, team of 8", "when": "2026" },
+        { "b": "AI Task Force", "text": ", chatbot for combatants", "when": "2026" },
+        { "b": "Automated Trading Workflow", "text": ", built after hours", "when": "2026" }
+      ]
+    }
+  ],
+  "commits": [
+    { "msg": "feat: army chatbot for Guards combatants (AI task force)", "tag": "saf", "hash": "f21ac07", "when": "2026", "c": "#7ee08a" },
+    { "msg": "role: team manager, media & design, team of 8", "tag": "saf", "hash": "d4e9b13", "when": "2026", "c": "#7ee08a" },
+    { "msg": "ship: automated trading workflow (Claude + MCP)", "tag": "trade", "hash": "a3f9e12", "when": "2026", "c": "#ffab70" },
+    { "msg": "init: trading command sheet", "tag": "trade", "hash": "9c1d2aa", "when": "2026", "c": "#ffab70" },
+    { "msg": "merge: JPMC internship, monitoring tool live globally", "tag": "jpmc", "hash": "91c04bd", "when": "2025", "c": "#56d4dd" },
+    { "msg": "ops: server tech @ Alibaba Cloud SG, 8 weeks", "tag": "alibaba", "hash": "77aa310", "when": "2025", "c": "#56d4dd" },
+    { "msg": "ship: FRATS capstone with AIDC", "tag": "np", "hash": "c2d881f", "when": "2024", "c": "#b18aff" },
+    { "msg": "role: head secretary, Overflow · 16 workshops", "tag": "np", "hash": "4be7c09", "when": "2023", "c": "#b18aff" },
+    { "msg": "xtra: child mentor @ Touch Young Arrows", "tag": "xtra", "hash": "e0b1c55", "when": "2023", "c": "#ff7eb6" },
+    { "msg": "chore: Ngee Ann Scholarship · Director's List ×2", "tag": "np", "hash": "e19d3a4", "when": "2022", "c": "#b18aff" },
+    { "msg": "merge: graduated SST, O-Levels with Computing", "tag": "sst", "hash": "58f2b77", "when": "2021", "c": "#5aa2ff" },
+    { "msg": "role: chairperson, ACE board (+250% sign-ups)", "tag": "sst", "hash": "b90e441", "when": "2020", "c": "#5aa2ff" },
+    { "msg": "init: sorts-ios, first shipped product, age 14", "tag": "sst", "hash": "0000001", "when": "2019", "c": "#5aa2ff" },
+    { "msg": "xtra: 3M makeathon, portable water filter", "tag": "xtra", "hash": "3ma8e01", "when": "2018", "c": "#ff7eb6" },
+    { "msg": "initial commit, hello world", "tag": "root", "hash": "genesis", "when": "2005", "c": "#8792a4" }
+  ]
+}

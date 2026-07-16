@@ -1,0 +1,16 @@
+[
+  { "name": "J.P. Morgan Polytechnic Internship Programme", "short": "J.P. Morgan Polytechnic Internship Programme", "issuer": "JPMorganChase", "year": "2025", "slug": "jpm-poly-internship-programme", "curated": true },
+  { "name": "AI4I — Literacy in AI", "short": "AI4I: Literacy in AI", "issuer": "AI Singapore", "year": "2024", "slug": "ai4i-literacy-in-ai", "curated": true },
+  { "name": "PolyForum Certificate of Participation", "short": "PolyForum Participation", "issuer": "Polytechnic Forum", "year": "2023", "slug": "polyforum-participation", "curated": false },
+  { "name": "IBM Enterprise Design Thinking Practitioner", "short": "IBM Enterprise Design Thinking Practitioner", "issuer": "IBM", "year": "2023", "slug": "ibm-design-thinking-practitioner", "curated": true },
+  { "name": "React.js Essentials Training", "short": "React.js Essentials Training", "issuer": "LinkedIn Learning", "year": "2023", "slug": "react-essentials", "curated": true },
+  { "name": "Programming Foundations: Data Structures", "short": "Programming Foundations: Data Structures", "issuer": "LinkedIn Learning", "year": "2023", "slug": "data-structures", "curated": true },
+  { "name": "Cloud Explorer Badge", "short": "AWS Educate Cloud Explorer", "issuer": "AWS Educate", "year": "2022", "slug": "aws-cloud-explorer", "curated": true },
+  { "name": "Fundamentals of Dynamic Programming", "short": "Fundamentals of Dynamic Programming", "issuer": "LinkedIn Learning", "year": "2021", "slug": "dynamic-programming-fundamentals", "curated": false },
+  { "name": "Succeeding in Web Development: Full Stack & Front End", "short": "Full Stack & Front End Web Development", "issuer": "LinkedIn Learning", "year": "2021", "slug": "full-stack-and-front-end", "curated": false },
+  { "name": "Python: Recursion", "short": "Python: Recursion", "issuer": "LinkedIn Learning", "year": "2021", "slug": "python-recursion", "curated": false },
+  { "name": "Learning Cloud Computing: Core Concepts", "short": "Cloud Computing: Core Concepts", "issuer": "LinkedIn Learning", "year": "2021", "slug": "cloud-computing-core-concepts", "curated": false },
+  { "name": "Youth Cyber Exploration Programme", "short": "Youth Cyber Exploration Programme", "issuer": "CSA Singapore, Cybint", "year": "2020", "slug": "ycep-cybersecurity", "curated": true },
+  { "name": "Learn JavaScript", "short": "Learn JavaScript", "issuer": "CodeCademy", "year": "2020", "slug": "learn-javascript", "curated": false },
+  { "name": "Learn Command Line", "short": "Learn Command Line", "issuer": "CodeCademy", "year": "2020", "slug": "learn-command-line", "curated": false }
+]

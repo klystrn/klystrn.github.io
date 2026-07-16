@@ -1,0 +1,46 @@
+{
+  "name": "Reginald Tan",
+  "location": "Singapore",
+  "eyebrow": "Reginald Tan · Singapore",
+  "positioningHtml": "Software engineering,<br>with a <em>market</em> mind.",
+  "lede": "Nine years of code, two years of markets. Built a globally used tool inside J.P. Morgan, kept servers alive at Alibaba Cloud, shipped biometrics with AIDC. Currently leading a media & design team at SAF Guards HQ and automating a trading workflow after hours.",
+  "status": "NS @ SAF Guards HQ — Team Manager (Media & Design) · AI Task Force",
+  "goal": "The goal: build the systems that move money. Financial technology, done properly.",
+  "aboutHtml": [
+    "I shipped my first real product, <b>Sorts</b>, an iOS app for educators, at fourteen. Since then: an O-Level Computing specialisation at <b>SST</b>, a Diploma in IT at <b>Ngee Ann Polytechnic</b> on the Ngee Ann Scholarship (Director's List, twice), and a year inside <b>J.P. Morgan</b> building a workload-monitoring tool now used globally, with a stint running server operations at <b>Alibaba Cloud's</b> Singapore data centres along the way.",
+    "Alongside the engineering runs a second obsession: <b>financial markets</b>. Two years of live trading, and now the tooling to match, from a Trading Command Sheet to a Claude-powered automated workflow."
+  ],
+  "stats": [
+    { "n": 2, "label": "director's lists", "key": "directors_lists" },
+    { "n": 9, "label": "years writing code", "key": "years_writing_code" },
+    { "n": 2, "label": "years trading", "key": "years_trading" },
+    { "n": 7, "label": "IT competitions", "key": "it_competitions" },
+    { "n": 11, "label": "IT projects", "key": "it_projects" },
+    { "n": 16, "label": "workshops led", "key": "workshops_led" }
+  ],
+  "contact": {
+    "email": "reginald.140105@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/reginald-tan/",
+    "linkedinHandle": "in/reginald-tan",
+    "github": "https://github.com/klystrn",
+    "githubHandle": "@klystrn",
+    "cvUrl": "",
+    "driveUrl": ""
+  },
+  "finance": {
+    "sym": "RTAN",
+    "exch": "SGX-EDU",
+    "name": "Reginald Tan · Software Engineering × Financial Markets",
+    "quoteHtml": "CAREER INDEX <b>▲ trending up since 2018</b>",
+    "statusLine": "MARKET OPEN · SINGAPORE",
+    "ticket": "Open a position in $RTAN. No lock-up period. Responds within one trading day.",
+    "disclaimer": "DISCLAIMER: $RTAN is not a listed security. All charts represent skill and project progression, not financial performance. Past growth is, in this one case, indicative of future results. © Reginald Tan."
+  },
+  "tech": {
+    "titlebar": "klystrn · ~/portfolio · zsh",
+    "readmeTagline": "# software engineering × financial markets",
+    "readmeBadges": ["📍 Singapore", "● open to opportunities", "FinTech", "now: Guards HQ, media team manager · AI task force"],
+    "readmeAboutHtml": "Builder since <code>sorts-ios</code> (2019, shipped at 14). Diploma in IT @ NP on the Ngee Ann Scholarship, Director's List ×2. Interned at J.P. Morgan on the Athena platform and built a workload-monitoring tool now used globally; ran server ops at Alibaba Cloud's SG data centres. Two years in the markets, now automating the workflow with Claude and MCP.",
+    "readmeStatus": "\"SAF Guards HQ, ORD loading\""
+  }
+}

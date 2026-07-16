@@ -1,0 +1,26 @@
+[
+  {
+    "id": "np",
+    "school": "Ngee Ann Polytechnic",
+    "programme": "Diploma in Information Technology, School of InfoComm Technology",
+    "years": "2022–2025",
+    "financeName": "Ngee Ann Polytechnic · Diploma in IT",
+    "financeTag": "UPLISTED 2022",
+    "financeMeta": "NGEE ANN SCHOLARSHIP · DIRECTOR'S LIST ×2 · SCHOOL OF ICT",
+    "financeDesc": "OOP, ASP.NET Core, DSA, databases, data analytics, UI/UX. Head Secretary of Overflow, 16 workshops. Capstone: $FRTS with AIDC. Organised Open House 2023 and RED Camp.",
+    "academics": "OOP, ASP.NET Core, Data Structures & Algorithms, Databases, Data Analytics, UI/UX design. Languages developed: Python, C#, C++, JavaScript.",
+    "beyond": "Organised Open House 2023, RED Camp, internal CCA events, and a class visit teaching elderly residents to use smart devices."
+  },
+  {
+    "id": "sst",
+    "school": "School of Science & Technology, Singapore",
+    "programme": "O-Levels, Computing specialisation",
+    "years": "2018–2021",
+    "financeName": "School of Science & Technology · O-Levels, Computing",
+    "financeTag": "IPO 2018",
+    "financeMeta": "GRADUATED 2021 · ACE CHAIRPERSON · SERVICE LEADER",
+    "financeDesc": "Dynamic programming, computer architecture, networking, AI & ML. First shipped products ($SRTS, interschool games planner). Still gives talks to new cohorts.",
+    "academics": "Dynamic programming, computer architecture, networking, AI & machine learning.",
+    "beyond": "Built Sorts (iOS) and a Python interschool-games planner for teachers. Service Leader; post-graduation talks and open-house panels."
+  }
+]

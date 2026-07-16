@@ -1,0 +1,82 @@
+[
+  {
+    "id": "jpmc",
+    "org": "J.P. Morgan Chase · Corporate & Investment Bank",
+    "orgShort": "J.P. Morgan Chase · CIB",
+    "role": "Software Engineer Intern",
+    "when": "2024–2025",
+    "location": "Singapore",
+    "vanillaTag": "FinTech",
+    "financeTag": "BLUE CHIP",
+    "vanillaDesc": "Workload migration, data analytics and tool development on the Athena platform. Built a monitoring and visualisation tool used globally across lines of business; served as SME for cloud migration workload and data visualisation.",
+    "financeMeta": "POSITION 2024–2025 · SOFTWARE ENGINEER INTERN · SINGAPORE",
+    "financeDesc": "Workload migration, data analytics and tool development on Athena. Built a monitoring and visualisation tool used globally across lines of business; SME for cloud migration workload and data visualisation.",
+    "detail": {
+      "meta": "2024–2025 · Software Engineer Intern · Singapore",
+      "body": "Specialised in workload migration, data analytics, and tool development on the Athena platform. Created a tool used globally by various lines of business to monitor their workloads and visualise areas for optimisation. Served as SME for cloud migration workload and data visualisation.",
+      "skills": ["Python", "Data analytics", "Cloud infrastructure", "Tool development"],
+      "stats": { "Years": "2024–2025", "Role": "SWE Intern", "Scope": "Global, multi-LOB" },
+      "private": "Specific internals are JPMC-internal, so the write-up stays high-level here. Happy to go deeper in an interview."
+    },
+    "tech": {
+      "file": "jpmc-athena.md",
+      "title": "J.P. Morgan Chase · CIB",
+      "badges": [["b-vi", "2024–2025"], ["b-cy", "Software Engineer Intern"], ["b-gr", "✓ shipped globally"]],
+      "bodyHtml": "Specialised in <b>workload migration, data analytics, and tool development</b> on the Athena platform. Created a tool used globally by various lines of business to monitor workloads and visualise areas for optimisation. SME for cloud migration workload and data visualisation.",
+      "highlights": ["Monitoring & visualisation tool adopted across LOBs worldwide", "Python at scale: Athena, parallel computing, in-memory databases", "Largely classified; happy to go deeper in an interview"]
+    }
+  },
+  {
+    "id": "ali",
+    "org": "Alibaba Cloud · SG Data Centres",
+    "orgShort": "Alibaba Cloud · SG Data Centres",
+    "role": "Assistant IT Engineer · Server Tech",
+    "when": "2025",
+    "location": "Singapore",
+    "vanillaTag": "Infrastructure",
+    "financeTag": "INFRASTRUCTURE",
+    "vanillaDesc": "8-week part-time role in the back office: server equipment, confidential client data transfers between servers, and a ground-level view of what keeps the cloud physically running.",
+    "financeMeta": "POSITION 2025 · ASSISTANT IT ENGINEER, SERVER TECH · 8 WEEKS",
+    "financeDesc": "Back-office server operations: equipment handling and confidential client data transfers. The physical layer of the cloud, seen from the inside.",
+    "detail": {
+      "meta": "2025 · Assistant IT Engineer, Server Tech · 8 weeks",
+      "body": "Part-time role in Alibaba Cloud's back office: handling server equipment and transferring confidential client data between servers. Short but eye-opening, a ground-level view of the background processes that keep the cloud functional and operable.",
+      "skills": ["Server operations", "Data handling", "Hardware", "Networking"],
+      "stats": { "Year": "2025", "Role": "Assistant IT Engineer", "Duration": "8 weeks" }
+    },
+    "tech": {
+      "file": "alibaba-dc.md",
+      "title": "Alibaba Cloud · SG Data Centres",
+      "badges": [["b-vi", "2025"], ["b-cy", "Assistant IT Engineer, Server Tech"], ["b-or", "8 weeks"]],
+      "bodyHtml": "Back-office role handling <b>server equipment</b> and transferring <b>confidential client data</b> between servers. Short but memorable: the background processes that keep servers functional and operable, seen from the inside.",
+      "highlights": []
+    }
+  },
+  {
+    "id": "saf",
+    "org": "SAF · Guards HQ",
+    "orgShort": "SAF · Guards HQ",
+    "role": "Team Manager, Media & Design · AI Task Force",
+    "when": "2025–now",
+    "location": "Singapore",
+    "vanillaTag": "Service",
+    "financeTag": "SOVEREIGN",
+    "vanillaDesc": "Leading a team of 8 across media and design for large-scale army exercises and events; managing Guards HQ social accounts; building an army chatbot interface for combatants on the AI Task Force.",
+    "financeMeta": "POSITION 2025–NOW · TEAM MANAGER, MEDIA & DESIGN · AI TASK FORCE",
+    "financeDesc": "Leading a team of 8 across media and design for army exercises and events; managing Guards HQ social accounts; building an army chatbot for combatants.",
+    "detail": {
+      "meta": "2025–now · Team Manager, Media & Design · AI Task Force",
+      "body": "Managing a team of 8 across media and design: large-scale projects for army exercises and events, plus the Guards HQ Facebook and Instagram accounts. On the AI Task Force, building an army chatbot interface for Guards combatants.",
+      "skills": ["Team management", "Photoshop", "Illustrator", "AI / Claude"],
+      "stats": { "Since": "2025", "Role": "Team Manager · AI Task Force", "Team": "8" },
+      "private": "Several projects (Ex COORES and others) are classified. Happy to speak to scope and scale in person."
+    },
+    "tech": {
+      "file": "saf-guards.md",
+      "title": "SAF · Guards HQ",
+      "badges": [["b-vi", "2025–now"], ["b-or", "National Service"], ["b-cy", "Team Manager · AI Task Force"]],
+      "bodyHtml": "<b>Team Manager, media & design</b>: leading a team of 8 across large-scale projects for army exercises and events, and managing Guards HQ social accounts. On the <b>AI Task Force</b>, building an army chatbot interface for Guards combatants.",
+      "highlights": ["Ex COORES working party (classified)", "Production work in Photoshop, Illustrator, Lightroom"]
+    }
+  }
+]

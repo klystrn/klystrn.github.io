@@ -1,0 +1,21 @@
+{
+  "about":        { "eyebrow": "01 · About",        "vanilla": "The short version.",              "vanillaSub": null },
+  "timeline":     { "eyebrow": "02 · Journey",      "vanilla": "A line that keeps trending up.",  "vanillaSub": "Scroll, and the spine draws itself." },
+  "experience":   { "eyebrow": "03 · Experience",   "vanilla": "Where the code went to work.",    "vanillaSub": null },
+  "projects":     { "eyebrow": "04 · Projects",     "vanilla": "Selected work.",                  "vanillaSub": "Full catalogue lives in Tech mode (repos) and Finance mode (tickers). These are the headliners." },
+  "skills":       { "eyebrow": "05 · Skills",       "vanilla": "One person, four clusters.",      "vanillaSub": null },
+  "awards":       { "eyebrow": "Awards & honours",  "certsEyebrow": "Certificates" },
+  "testimonials": { "eyebrow": "06 · Testimonials", "vanilla": "In others' words.",               "vanillaSub": null },
+  "contactHtml":  { "vanilla": "Let's build <em>something.</em>", "vanillaSub": "Open to opportunities in software engineering, fintech, and everything on the seam between them." },
+  "finance": {
+    "watchlist": "Watchlist · Projects",
+    "holdings": "Institutional Holdings · Experience",
+    "education": "Listing History · Education",
+    "ticket": "Trade Ticket",
+    "coverage": "Analyst Coverage · Testimonials",
+    "news": "News Wire · Recent",
+    "fundamentals": "Fundamentals · case study",
+    "sector": "Sector exposure · skills",
+    "keystats": "Key stats"
+  }
+}

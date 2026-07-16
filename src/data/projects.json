@@ -1,0 +1,194 @@
+[
+  {
+    "id": "atw", "sym": "ATW", "flag": true, "repo": "automated-trading-workflow",
+    "title": "Automated Trading Workflow", "sector": "MARKETS TOOLING",
+    "from": "2026", "to": "NOW", "year": "2026", "role": "Solo builder", "status": "active",
+    "desc": "A daily workflow running on Claude and MCP integrations that automates the research half of a swing-trading side hustle: scans, structured analysis, and trade-ready summaries before the open.",
+    "skills": ["Claude & MCP", "Prompt engineering", "Python", "Markets research"],
+    "stats": { "Status": "Active, in daily use", "Role": "Solo builder", "Domain": "FinTech / AI", "Started": "2026" },
+    "langs": [["Python", 55, "#3572A5"], ["Markdown", 30, "#56d4dd"], ["Shell", 15, "#7ee08a"]],
+    "curve": [4, 7, 10, 14, 13, 19, 25, 31, 30, 38, 46, 55],
+    "miles": [[2, "First MCP pipeline running"], [6, "Pre-market report automated"], [10, "Full workflow in daily use"]],
+    "card": {
+      "feat": true,
+      "yr": "2026 · active",
+      "blurb": "A daily workflow running on Claude and MCP integrations that automates the research half of a swing-trading side hustle: scans, structured analysis, and trade-ready summaries before the open.",
+      "tags": ["Claude & MCP", "Python", "Markets"]
+    }
+  },
+  {
+    "id": "tcs", "sym": "TCS", "flag": true, "repo": "trading-command-sheet",
+    "title": "Trading Command Sheet", "sector": "MARKETS TOOLING",
+    "from": "2026", "to": "NOW", "year": "2026", "role": "Solo builder", "status": "active",
+    "desc": "A personal command sheet for market analysis workflows: structured research, trade planning parameters, and repeatable analysis playbooks. Where the software engineering discipline meets the markets obsession.",
+    "skills": ["Markets research", "Technical analysis", "Risk management", "Automation"],
+    "stats": { "Status": "Active development", "Role": "Solo builder", "Domain": "Markets", "Started": "2026" },
+    "langs": [["Python", 62, "#3572A5"], ["Markdown", 22, "#56d4dd"], ["Shell", 16, "#7ee08a"]],
+    "curve": [5, 8, 12, 11, 16, 22, 20, 27, 34, 38, 45, 52],
+    "miles": [[2, "Playbook structure defined"], [6, "First full analysis run"], [10, "Adopted into daily trading"]],
+    "card": {
+      "yr": "2026",
+      "blurb": "A personal command sheet for market analysis workflows: structured research, trade planning parameters, repeatable playbooks.",
+      "tags": ["Markets", "Research"]
+    }
+  },
+  {
+    "id": "athn", "sym": "ATHN", "flag": true, "repo": "athena-cloud-migration",
+    "title": "Athena Cloud Migration", "sector": "ENTERPRISE · JPMC",
+    "from": "2024", "to": "2025", "year": "2024–2025", "role": "SWE Intern @ JPMC", "status": "shipped",
+    "desc": "Software engineering internship on the Athena platform: workload migration, data analytics, and tool development. Built a monitoring and visualisation tool now used globally by multiple lines of business to spot workload optimisation opportunities. Largely classified.",
+    "skills": ["Python", "Data analytics", "Cloud infrastructure", "Tool development"],
+    "stats": { "Status": "Shipped", "Role": "SWE Intern", "Scope": "Global, multi-LOB", "Years": "2024–2025" },
+    "langs": [["Python", 74, "#3572A5"], ["YAML", 15, "#b18aff"], ["Shell", 11, "#7ee08a"]],
+    "curve": [10, 14, 13, 20, 26, 25, 33, 40, 46, 55, 61, 70],
+    "miles": [[2, "Onboarded to the Athena codebase"], [6, "Monitoring tool prototype adopted"], [10, "Global rollout across LOBs"]],
+    "private": "The interesting parts of this one are JPMC-internal, so the case study stays high-level here. Happy to go deeper in an interview.",
+    "card": {
+      "yr": "2024–2025",
+      "blurb": "Workload migration, analytics and tooling at JPMC. Built a monitoring tool now used globally across lines of business.",
+      "tags": ["Python", "Cloud", "Analytics"]
+    }
+  },
+  {
+    "id": "frts", "sym": "FRTS", "flag": true, "repo": "frats-capstone",
+    "title": "FRATS · Facial Recognition Attendance", "sector": "CAPSTONE · NP × AIDC",
+    "from": "2024", "to": "2024", "year": "2024", "role": "Capstone team, NP", "status": "shipped",
+    "desc": "Facial Recognition Attendance Taking System, an NP capstone built for AIDC, a biometrics security company based in Indonesia. Python and its CV libraries end to end, supervised and mentored by an AIDC technical manager.",
+    "skills": ["Computer vision", "AI", "Python", "UX"],
+    "stats": { "Status": "Delivered", "Role": "Capstone team", "Client": "AIDC (Indonesia)", "Year": "2024" },
+    "langs": [["Python", 58, "#3572A5"], ["JavaScript", 28, "#f1e05a"], ["HTML/CSS", 14, "#ff7eb6"]],
+    "curve": [8, 12, 18, 16, 24, 30, 29, 38, 44, 43, 52, 58],
+    "miles": [[2, "CV pipeline prototype working"], [6, "AIDC requirements integrated"], [10, "Attendance interface delivered"]],
+    "card": {
+      "yr": "2024",
+      "title": "FRATS · capstone × AIDC",
+      "blurb": "Facial Recognition Attendance Taking System for AIDC, an Indonesian biometrics security firm. Python and CV libraries, end to end.",
+      "tags": ["Computer vision", "Python"]
+    }
+  },
+  {
+    "id": "pnlp", "sym": "PNLP", "flag": true, "repo": "panel-party",
+    "title": "Panel Party", "sector": "GAME · NP OPEN HOUSE",
+    "from": "2023", "to": "2023", "year": "2023", "role": "Team developer", "status": "shipped",
+    "desc": "A fun, interactive tile-capture game built by my team for NP ICT Open House 2023: capture as many tiles as possible by moving over them before the timer runs out, without letting opponents re-capture them. I built sprite movement and collision detection.",
+    "skills": ["JavaScript", "Game design", "Collision detection", "Sprites"],
+    "stats": { "Status": "Shipped", "Role": "Sprites & collision", "Venue": "NP ICT Open House", "Year": "2023" },
+    "langs": [["JavaScript", 64, "#f1e05a"], ["HTML/CSS", 36, "#ff7eb6"]],
+    "curve": [5, 9, 13, 12, 18, 24, 23, 30, 36, 42, 47, 50],
+    "miles": [[2, "Core loop playable"], [6, "Collision and sprites done"], [10, "Live at Open House"]],
+    "card": {
+      "yr": "2023",
+      "blurb": "Tile-capture arcade game built for NP ICT Open House 2023. I built sprite movement and collision detection.",
+      "tags": ["JavaScript", "Game dev"]
+    }
+  },
+  {
+    "id": "grds", "sym": "GRDS", "flag": false, "repo": "guards-chatbot",
+    "title": "AI Chatbot for Guards", "sector": "AI · SAF",
+    "from": "2026", "to": "NOW", "year": "2026", "role": "AI Task Force", "status": "in progress",
+    "desc": "An army chatbot interface for Guards combatants, built as part of the Guards HQ AI Task Force. In progress and largely classified.",
+    "skills": ["Claude & MCP", "Context design", "Prompt engineering"],
+    "stats": { "Status": "In progress", "Role": "AI Task Force", "Domain": "AI / defence", "Started": "2026" },
+    "langs": [["Python", 70, "#3572A5"], ["Other", 30, "#8792a4"]],
+    "curve": [3, 6, 9, 12, 11, 15, 19, 22, 26, 29, 33, 36],
+    "miles": [[2, "Scope defined"], [6, "Prototype interface"], [10, "Trials with combatants"]],
+    "private": "Largely classified. Happy to speak to scope and approach in person.",
+    "mini": { "blurb": "army chatbot interface for combatants, SAF AI Task Force (in progress, largely classified)", "tag": "AI · Claude" }
+  },
+  {
+    "id": "shpe", "sym": "SHPE", "flag": false, "repo": "shipee-prototype",
+    "title": "Shipee App Prototype", "sector": "UI/UX · PROTOTYPE",
+    "from": "2023", "to": "2023", "year": "2023", "role": "Solo designer", "status": "shipped",
+    "desc": "A mockup mobile and smartwatch prototype for Shipee, a personal rebrand of Aftership: user research, business analysis and market research through to hi-fi Figma screens with MapBox.",
+    "skills": ["Figma", "UI/UX", "User research", "MapBox"],
+    "stats": { "Status": "Prototype delivered", "Role": "Solo designer", "Tools": "Figma · MapBox", "Year": "2023" },
+    "langs": [["Figma", 78, "#b18aff"], ["MapBox", 22, "#56d4dd"]],
+    "curve": [4, 7, 11, 10, 15, 19, 18, 23, 27, 26, 30, 32],
+    "miles": [[2, "User research done"], [6, "Wireframes complete"], [10, "Hi-fi prototype delivered"]],
+    "mini": { "blurb": "shipment-tracking concept from user research to hi-fi prototype", "tag": "Figma · MapBox" }
+  },
+  {
+    "id": "ocs", "sym": "OCS", "flag": false, "repo": "online-courier-system",
+    "title": "Online Courier System", "sector": "WEB · ASP.NET",
+    "from": "2023", "to": "2023", "year": "2023", "role": "Solo builder", "status": "shipped",
+    "desc": "Full courier management platform (NinjaVan-style) in ASP.NET Core MVC: customer and staff roles, auth, and database-backed workflows. Pushed personal capabilities in C#, JavaScript, and databases.",
+    "skills": ["C#", "ASP.NET Core", "SQL", "JavaScript"],
+    "stats": { "Status": "Shipped", "Role": "Solo builder", "Domain": "Web platform", "Year": "2023" },
+    "langs": [["C#", 55, "#178600"], ["JavaScript", 25, "#f1e05a"], ["SQL", 20, "#ffab70"]],
+    "curve": [6, 9, 8, 13, 17, 16, 21, 25, 28, 27, 31, 34],
+    "miles": [[2, "Auth and roles complete"], [6, "Staff workflows shipped"], [10, "Full platform delivered"]],
+    "mini": { "blurb": "full ASP.NET Core MVC courier platform with customer and staff roles", "tag": "C# · SQL" }
+  },
+  {
+    "id": "tea", "sym": "TEA", "flag": false, "repo": "the-tea-shop",
+    "title": "The Tea Shop", "sector": "WEB · MOCK START-UP",
+    "from": "2022", "to": "2022", "year": "2022", "role": "Web dev & renders", "status": "shipped",
+    "desc": "A mock online tea business built with friends over a holiday: my first website from scratch, learning Bootstrap, plus product renders.",
+    "skills": ["HTML/CSS", "Bootstrap", "Product renders"],
+    "stats": { "Status": "Shipped", "Role": "Web dev & renders", "Domain": "Web", "Year": "2022" },
+    "langs": [["HTML/CSS", 60, "#ff7eb6"], ["JavaScript", 25, "#f1e05a"], ["Bootstrap", 15, "#7952B3"]],
+    "curve": [3, 5, 8, 7, 11, 14, 13, 17, 20, 19, 23, 25],
+    "miles": [[2, "First pages live"], [6, "Catalogue and renders in"], [10, "Site complete"]],
+    "mini": { "blurb": "mock online tea business, first website built from scratch", "tag": "Bootstrap" }
+  },
+  {
+    "id": "tdg", "sym": "TDG", "flag": false, "repo": "tower-defence",
+    "title": "Tower Defence Game", "sector": "GAME · PYTHON",
+    "from": "2022", "to": "2022", "year": "2022", "role": "Solo builder", "status": "shipped",
+    "desc": "A text-based unit-defence game in the spirit of Plants vs Zombies, built in Python: game design, logic, and PyGame experience.",
+    "skills": ["Python", "PyGame", "Game logic"],
+    "stats": { "Status": "Shipped", "Role": "Solo builder", "Domain": "Game", "Year": "2022" },
+    "langs": [["Python", 100, "#3572A5"]],
+    "curve": [3, 6, 8, 11, 10, 14, 17, 16, 20, 23, 22, 26],
+    "miles": [[2, "Core loop working"], [6, "Units and waves in"], [10, "Playable build"]],
+    "mini": { "blurb": "text-based Python defence game; game design and logic", "tag": "Python" }
+  },
+  {
+    "id": "c3", "sym": "C3", "flag": false, "repo": "c3-pitch",
+    "title": "C3", "sector": "PITCH · START-UP",
+    "from": "2021", "to": "2021", "year": "2021", "role": "Founder (mock)", "status": "shipped",
+    "desc": "A mock start-up pitched for an entrepreneurship competition: a product suite around code collaboration and AI. Received the highest grade band for the proposal.",
+    "skills": ["Pitching", "Business analysis"],
+    "stats": { "Status": "Pitched", "Result": "Highest grade band", "Domain": "Entrepreneurship", "Year": "2021" },
+    "langs": [["Deck", 100, "#8792a4"]],
+    "curve": [3, 5, 7, 10, 9, 13, 15, 14, 18, 21, 20, 24],
+    "miles": [[2, "Concept defined"], [6, "Deck complete"], [10, "Highest grade band"]],
+    "mini": { "blurb": "mock start-up pitch around code collaboration and AI; highest grade band", "tag": "Pitch" }
+  },
+  {
+    "id": "igp", "sym": "IGP", "flag": false, "repo": "interschool-games-planner",
+    "title": "Interschool Games Planner", "sector": "TOOLS · SST",
+    "from": "2021", "to": "2021", "year": "2021", "role": "Solo builder", "status": "shipped",
+    "desc": "A Python scheduler built for SST teachers to plan interschool games, replacing a slow manual process.",
+    "skills": ["Python", "Scheduling", "Algorithms"],
+    "stats": { "Status": "Shipped", "Role": "Solo builder", "Client": "SST teachers", "Year": "2021" },
+    "langs": [["Python", 100, "#3572A5"]],
+    "curve": [2, 4, 7, 6, 9, 12, 11, 14, 17, 16, 19, 22],
+    "miles": [[2, "Scheduling logic working"], [6, "Teacher inputs supported"], [10, "Adopted for games planning"]],
+    "mini": { "blurb": "Python scheduler built for SST teachers to plan interschool games", "tag": "Python" }
+  },
+  {
+    "id": "locx", "sym": "LOCX", "flag": false, "repo": "locationx",
+    "title": "locationX", "sector": "CAPSTONE · SST",
+    "from": "2021", "to": "2021", "year": "2021", "role": "Capstone team, SST", "status": "shipped",
+    "desc": "SST capstone: a scheduling app built for the National School Games (NSG).",
+    "skills": ["Scheduling", "Capstone"],
+    "stats": { "Status": "Delivered", "Role": "Capstone team", "Domain": "Scheduling", "Year": "2021" },
+    "langs": [["TBD", 100, "#8792a4"]],
+    "curve": [2, 4, 6, 9, 8, 11, 14, 13, 16, 19, 18, 21],
+    "miles": [[2, "Capstone scoped"], [6, "Scheduling flows built"], [10, "Capstone presented"]],
+    "mini": { "blurb": "SST capstone: scheduling app built for the National School Games (NSG)", "tag": "Capstone" }
+  },
+  {
+    "id": "srts", "sym": "SRTS", "flag": false, "repo": "sorts-ios",
+    "title": "Sorts (iOS)", "sector": "MOBILE · EDUTECH",
+    "from": "2019", "to": "2019", "year": "2019", "role": "Lead programmer", "status": "shipped",
+    "desc": "iOS app helping educators group students by strength levels and group-size constraints, built because grouping by hand took too long. Lead programmer on team Pollo, the first real product, shipped at 14.",
+    "skills": ["Swift", "iOS", "Algorithms"],
+    "stats": { "Status": "Shipped", "Role": "Lead programmer", "Domain": "EduTech", "Year": "2019" },
+    "langs": [["Swift", 92, "#F05138"], ["Other", 8, "#8792a4"]],
+    "curve": [4, 7, 10, 9, 14, 17, 16, 20, 23, 22, 26, 28],
+    "miles": [[2, "Core grouping algorithm done"], [6, "Educator UI complete"], [10, "Shipped with team Pollo"]],
+    "mini": { "blurb": "student-grouping app for educators; lead programmer, shipped at fourteen", "tag": "Swift" }
+  }
+]

@@ -1,57 +1,32 @@
-Hello! I'm Reginald and I made this website to apply my knowledge in HTML, CSS, and JavaScript. Look below for the full list of features and content in my website!
+# klystrn.github.io — Reginald Tan portfolio (v2)
 
-GENERAL:
-    - Dynamic & reactive components
-    - Hovering over buttons will change your cursor to a pointer
-    - Switch between light-mode & dark-mode
-    - Navigation header to move throughout the website
-    - Rounded and modified scroll bar
-    - Small arrow to go back to top in bottom right corner
+Personal portfolio: one canonical dataset, three renderers.
 
-HOME:
-    - Reactive components and text
-    - Link to Google Drive containing my certificates
-    - Link to download my CV as a pdf
-    - Links to my LinkedIn, Instagram, and Telegram
+- **Vanilla** (`/`) — light editorial scroll site
+- **Tech** (`/tech`) — dark IDE simulation with a working terminal
+- **Finance** (`/finance`) — dark brokerage terminal with watchlist + charts
+- **Life** (`/life`) — stub, deferred until Professional ships
 
-ABOUT:
-    - Reactive components and text
-    - Short elaborations on myself (Computing, ACE, Taekwondo)
-    - Quick stats on myself (Computing, ACE, Taekwondo)
+## Architecture
 
-SKILLS:
-    - Reactive drop down buttons
-    - Drop down lists of my skills, proficiencies and qualities
-    - Quick details on each aspect (Programming, Leadership, Taekwondo, Service-Learning)
+All content lives in `src/data/*.json` (identity, experience, education, projects, skills, awards,
+certs, testimonials, timeline, feed, headers). **Content parity rule:** add a fact once in data and
+it appears in all three modes; if a fact exists in only one mode, that's a bug. Components are
+furniture only — no hardcoded content strings outside `src/data/`.
 
-TIMELINES:
-    - Reactive tab buttons
-    - Timelines on each aspect (SST, Computing+, Programming, Taekwondo)
-    - Each event has the event name, details and month + year
+Reference docs: `docs/CONTENT-DOC-reginald-v4.md` (authoritative content source),
+`docs/CLAUDE-CODE-HANDOFF.md` (build spec), `docs/rtan-portfolio-v6.html` (visual/behavioral
+prototype). Outstanding items: `KNOWN-GAPS.md`.
 
-PROGRAMMING:
-    - Reactive navigation buttons
-    - Details on my programming projects
-    - Screenshots of the programming project
-    - Links to relevant resources
+## Develop
 
-ACE:
-    - Reactive buttons to activate modal-view
-    - List of ACE and Service-Learning projects I have led
-    - Descriptions on each project abd the roles I took in each project
-    - List of achievements in each project
+```
+npm install
+npm run dev        # local dev server
+npm run build      # production build to dist/
+```
 
-REFLECTIONS:
-    - Reactive drop down buttons
-    - Drop down text of my reflections
-    - See more button to view my full reflection as a PDF
+## Deploy
 
-C3:
-    - Description + Mission + Vision of C3
-    - Link to view business plan for C3 on Notion
-    - Reactive buttons to activate modal-view
-    - Modal views of C3 products
-
-TESTIMONIALS:
-    -  Teacher description, email, role and photos
-    - See more buttons to view full testimonials
+GitHub Pages via Actions (`.github/workflows/deploy.yml`) on push to `main`. This is a user-root
+Pages site, so `vite.config.js` keeps `base: '/'`. Cutover = merge `portfolio-v2` into `main`.

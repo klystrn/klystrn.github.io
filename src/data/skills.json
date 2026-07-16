@@ -1,0 +1,45 @@
+{
+  "root": { "x": 500, "y": 330, "label": "REGINALD", "caption": "<b>Reginald Tan</b>, one person, four clusters" },
+  "hubs": {
+    "tech": { "x": 240, "y": 250, "label": "TECH" },
+    "ai": { "x": 495, "y": 115, "label": "AI" },
+    "trade": { "x": 775, "y": 245, "label": "MARKETS" },
+    "design": { "x": 585, "y": 520, "label": "DESIGN" }
+  },
+  "leaves": [
+    { "name": "Python", "strength": 9, "x": 100, "y": 170, "cluster": "tech", "evidence": "Athena · FRATS · ATW", "connects_to": ["Computer Vision"] },
+    { "name": "Data Analytics", "strength": 8, "x": 352, "y": 338, "cluster": "tech", "evidence": "JPM tooling · PowerBI · Excel", "connects_to": ["Fundamental Analysis"] },
+    { "name": "C#", "strength": 7, "x": 85, "y": 295, "cluster": "tech", "evidence": "Courier System · ASP.NET", "connects_to": [] },
+    { "name": "JavaScript", "strength": 7, "x": 165, "y": 398, "cluster": "tech", "evidence": "Web · Vue.js", "connects_to": ["UI/UX · Figma"] },
+    { "name": "SQL", "strength": 7, "x": 292, "y": 428, "cluster": "tech", "evidence": "Courier · InfluxDB", "connects_to": [] },
+    { "name": "Cloud & AWS", "strength": 7, "x": 128, "y": 82, "cluster": "tech", "evidence": "EC2 · S3 · JPM CloudGrid", "connects_to": [] },
+    { "name": "ASP.NET Core", "strength": 6, "x": 255, "y": 100, "cluster": "tech", "evidence": "Courier System", "connects_to": [] },
+    { "name": "Vue.js", "strength": 6, "x": 352, "y": 112, "cluster": "tech", "evidence": "Overflow workshops", "connects_to": [] },
+    { "name": "Prompt Engineering", "strength": 8, "x": 340, "y": 58, "cluster": "ai", "evidence": "ATW · daily workflows", "connects_to": [] },
+    { "name": "Claude & MCP", "strength": 8, "x": 548, "y": 48, "cluster": "ai", "evidence": "ATW · Guards chatbot", "connects_to": ["Trade Automation"] },
+    { "name": "Context Design", "strength": 7, "x": 672, "y": 80, "cluster": "ai", "evidence": "Guards chatbot", "connects_to": [] },
+    { "name": "Computer Vision", "strength": 6, "x": 425, "y": 195, "cluster": "ai", "evidence": "FRATS", "connects_to": ["Python"] },
+    { "name": "Technical Analysis", "strength": 7, "x": 908, "y": 152, "cluster": "trade", "evidence": "TCS · swing trading", "connects_to": [] },
+    { "name": "Fundamental Analysis", "strength": 6, "x": 928, "y": 300, "cluster": "trade", "evidence": "TCS research", "connects_to": ["Data Analytics"] },
+    { "name": "Portfolio Management", "strength": 6, "x": 862, "y": 398, "cluster": "trade", "evidence": "Position sizing · R:R", "connects_to": [] },
+    { "name": "Trade Automation", "strength": 7, "x": 700, "y": 158, "cluster": "trade", "evidence": "ATW", "connects_to": ["Claude & MCP"] },
+    { "name": "Sentiment Analysis", "strength": 5, "x": 742, "y": 412, "cluster": "trade", "evidence": "Market context", "connects_to": [] },
+    { "name": "UI/UX · Figma", "strength": 7, "x": 425, "y": 585, "cluster": "design", "evidence": "Shipee · portfolio workshops", "connects_to": ["JavaScript"] },
+    { "name": "Photoshop", "strength": 6, "x": 565, "y": 612, "cluster": "design", "evidence": "Guards media", "connects_to": [] },
+    { "name": "Lightroom", "strength": 6, "x": 742, "y": 562, "cluster": "design", "evidence": "Photography", "connects_to": [] },
+    { "name": "Illustrator", "strength": 5, "x": 322, "y": 512, "cluster": "design", "evidence": "Guards media", "connects_to": [] },
+    { "name": "SketchUp", "strength": 5, "x": 832, "y": 498, "cluster": "design", "evidence": "Product renders · Enscape", "connects_to": [] }
+  ],
+  "context": [
+    { "name": "Guards HQ Media Team", "x": 690, "y": 468, "cluster": "design", "caption": "<b>Guards HQ Media Team</b>, where the design tools go to work" }
+  ],
+  "hubLinks": [["ai", "tech"], ["ai", "trade"], ["tech", "trade"], ["design", "tech"]],
+  "stack": {
+    "programming": ["Python", "C#", "C++", "JavaScript", "Swift", "SQL", "ASP.NET Core"],
+    "ai": ["prompt-engineering", "context-design", "claude-code", "mcp-integrations", "computer-vision"],
+    "markets": ["technical-analysis", "fundamental-analysis", "portfolio-management", "trade-automation"],
+    "cloud_and_data": ["AWS", "EC2/S3", "PowerBI", "InfluxDB", "Grafana"],
+    "design": ["figma", "photoshop", "illustrator", "lightroom", "sketchup", "adobe-xd", "davinci"],
+    "years_writing_code": 9
+  }
+}
