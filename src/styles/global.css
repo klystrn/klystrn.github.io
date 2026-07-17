@@ -1,7 +1,7 @@
 /* ================== SHARED CHROME ================== */
 :root{
-  --serif:'Fraunces',serif; --sans:'Archivo',sans-serif;
-  --plex:'IBM Plex Mono',monospace; --jb:'JetBrains Mono',monospace;
+  --serif:'Fraunces Variable','Fraunces',Georgia,serif; --sans:'Archivo Variable','Archivo',system-ui,sans-serif;
+  --plex:'IBM Plex Mono',ui-monospace,monospace; --jb:'JetBrains Mono Variable','JetBrains Mono',ui-monospace,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
