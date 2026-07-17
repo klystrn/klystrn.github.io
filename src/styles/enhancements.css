@@ -136,3 +136,22 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
   .mode-btn{padding:6px 6px;font-size:9px}
   .pill .brand{font-size:12px;padding:0 2px 0 7px}
 }
+
+/* ===== Accessibility ===== */
+/* Skip-to-content link: off-screen until focused. */
+.skip-link{position:fixed;top:10px;left:50%;transform:translate(-50%,-160%);z-index:300;
+  background:#15181c;color:#fff;font-family:var(--plex);font-size:13px;padding:10px 18px;
+  border-radius:100px;text-decoration:none;transition:transform .2s}
+.skip-link:focus{transform:translate(-50%,0);outline:2px solid #fff;outline-offset:2px}
+
+/* Visible keyboard focus, themed per mode. Mouse users never see it
+   (:focus-visible), keyboard users always do. */
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:3px}
+#main:focus{outline:none}
+body[data-mode="vanilla"] :focus-visible{outline-color:#d92b35}
+body[data-mode="tech"] :focus-visible{outline-color:#56d4dd}
+body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
+/* Nav pill lives on a dark ground in every mode — keep its focus ring light. */
+.pill :focus-visible{outline-color:#fff}
+/* SVG-only controls (section rail dots, carousel arrows) need an offset ring. */
+.mv-rail button:focus-visible,.ts-nav:focus-visible,.ts-dots button:focus-visible{outline-offset:4px}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://klystrn.github.io/sitemap.xml

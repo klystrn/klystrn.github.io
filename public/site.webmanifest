@@ -1,0 +1,12 @@
+{
+  "name": "Reginald Tan · Portfolio",
+  "short_name": "R. Tan",
+  "description": "Singapore software engineer × financial markets. One portfolio, three lenses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f3ef",
+  "theme_color": "#f4f3ef",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

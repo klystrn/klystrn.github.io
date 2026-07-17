@@ -202,7 +202,7 @@ export default function Finance() {
                         <span className="wl-sym">${p.sym}</span>
                         <span className="wl-name">{p.title}</span>
                         <span className="wl-chg u">{chgOf(p)}</span>
-                        <svg className="wl-spark" viewBox="0 0 100 22" preserveAspectRatio="none">
+                        <svg className="wl-spark" viewBox="0 0 100 22" preserveAspectRatio="none" aria-hidden="true">
                           <polyline points={spark(p.curve)} fill="none" stroke="#2fd17a" strokeWidth="1.4" />
                         </svg>
                       </div>
