@@ -4,24 +4,24 @@
     "org": "J.P. Morgan Chase · Corporate & Investment Bank",
     "orgShort": "J.P. Morgan Chase · CIB",
     "role": "Software Engineer Intern",
-    "when": "2024–2025",
+    "when": "2024 – 2025",
     "location": "Singapore",
     "vanillaTag": "FinTech",
     "financeTag": "BLUE CHIP",
-    "vanillaDesc": "Workload migration, data analytics and tool development on the Athena platform. Built a monitoring and visualisation tool used globally across lines of business; served as SME for cloud migration workload and data visualisation.",
-    "financeMeta": "POSITION 2024–2025 · SOFTWARE ENGINEER INTERN · SINGAPORE",
-    "financeDesc": "Workload migration, data analytics and tool development on Athena. Built a monitoring and visualisation tool used globally across lines of business; SME for cloud migration workload and data visualisation.",
+    "vanillaDesc": "Athena Developer for Currencies Emerging Markets (FX Cash & Options) in JPMC's Corporate & Investment Bank. I worked on migrating workloads to AWS, built a monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as SME for cloud migration workload and data visualisation.",
+    "financeMeta": "POSITION 2024 – 2025 · SOFTWARE ENGINEER INTERN · SINGAPORE",
+    "financeDesc": "Athena Developer for Currencies Emerging Markets (FX Cash & Options) in JPMC's Corporate & Investment Bank. I worked on migrating workloads to AWS, built a monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as SME for cloud migration workload and data visualisation.",
     "detail": {
-      "meta": "2024–2025 · Software Engineer Intern · Singapore",
-      "body": "Specialised in workload migration, data analytics, and tool development on the Athena platform. Created a tool used globally by various lines of business to monitor their workloads and visualise areas for optimisation. Served as SME for cloud migration workload and data visualisation.",
+      "meta": "2024 – 2025 · Software Engineer Intern · Singapore",
+      "body": "From April 2024 to March 2025, I worked at J.P. Morgan Chase as an Athena Developer for Currencies Emerging Markets (FX Cash & Options) in the Corporate & Investment Bank. During this time, I focused on extracting, optimising, & migrating trader reports and server worwadkloads from legacy systems to Amazon Web Services. I built a workload monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as subject-matter expert for the cloud migration workload and data visualisation.",
       "skills": ["Python", "Data analytics", "Cloud infrastructure", "Tool development"],
-      "stats": { "Years": "2024–2025", "Role": "SWE Intern", "Scope": "Global, multi-LOB" },
-      "private": "Specific internals are JPMC-internal, so the write-up stays high-level here. Happy to go deeper in an interview."
+      "stats": { "Years": "2024 – 2025", "Role": "SWE Intern", "Scope": "Global FX Cash & Options" },
+      "private": "Specific internals are JPMC-internal, but I'm more than happy to go deeper in an interview."
     },
     "tech": {
       "file": "jpmc-athena.md",
       "title": "J.P. Morgan Chase · CIB",
-      "badges": [["b-vi", "2024–2025"], ["b-cy", "Software Engineer Intern"], ["b-gr", "✓ shipped globally"]],
+      "badges": [["b-vi", "2024 – 2025"], ["b-cy", "Software Engineer Intern"], ["b-gr", "✓ shipped globally"]],
       "bodyHtml": "Specialised in <b>workload migration, data analytics, and tool development</b> on the Athena platform. Created a tool used globally by various lines of business to monitor workloads and visualise areas for optimisation. SME for cloud migration workload and data visualisation.",
       "highlights": ["Monitoring & visualisation tool adopted across LOBs worldwide", "Python at scale: Athena, parallel computing, in-memory databases", "Largely classified; happy to go deeper in an interview"]
     }
@@ -57,15 +57,15 @@
     "org": "SAF · Guards HQ",
     "orgShort": "SAF · Guards HQ",
     "role": "Team Manager, Media & Design · AI Task Force",
-    "when": "2025–now",
+    "when": "2025 – now",
     "location": "Singapore",
     "vanillaTag": "Service",
     "financeTag": "SOVEREIGN",
     "vanillaDesc": "Leading a team of 8 across media and design for large-scale army exercises and events; managing Guards HQ social accounts; building an army chatbot interface for combatants on the AI Task Force.",
-    "financeMeta": "POSITION 2025–NOW · TEAM MANAGER, MEDIA & DESIGN · AI TASK FORCE",
+    "financeMeta": "POSITION 2025 – NOW · TEAM MANAGER, MEDIA & DESIGN · AI TASK FORCE",
     "financeDesc": "Leading a team of 8 across media and design for army exercises and events; managing Guards HQ social accounts; building an army chatbot for combatants.",
     "detail": {
-      "meta": "2025–now · Team Manager, Media & Design · AI Task Force",
+      "meta": "2025 – now · Team Manager, Media & Design · AI Task Force",
       "body": "Managing a team of 8 across media and design: large-scale projects for army exercises and events, plus the Guards HQ Facebook and Instagram accounts. On the AI Task Force, building an army chatbot interface for Guards combatants.",
       "skills": ["Team management", "Photoshop", "Illustrator", "AI / Claude"],
       "stats": { "Since": "2025", "Role": "Team Manager · AI Task Force", "Team": "8" },
@@ -74,7 +74,7 @@
     "tech": {
       "file": "saf-guards.md",
       "title": "SAF · Guards HQ",
-      "badges": [["b-vi", "2025–now"], ["b-or", "National Service"], ["b-cy", "Team Manager · AI Task Force"]],
+      "badges": [["b-vi", "2025 – now"], ["b-or", "National Service"], ["b-cy", "Team Manager · AI Task Force"]],
       "bodyHtml": "<b>Team Manager, media & design</b>: leading a team of 8 across large-scale projects for army exercises and events, and managing Guards HQ social accounts. On the <b>AI Task Force</b>, building an army chatbot interface for Guards combatants.",
       "highlights": ["Ex COORES working party (classified)", "Production work in Photoshop, Illustrator, Lightroom"]
     }

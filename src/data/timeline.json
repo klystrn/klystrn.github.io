@@ -1,53 +1,53 @@
 {
   "phases": [
     {
-      "when": "2018–2021",
+      "when": "2018 – 2021",
       "phase": "School of Science & Technology",
-      "desc": "O-Levels with a Computing specialisation, where the building started.",
+      "desc": "O-Levels with a Computing specialisation, where my journey began",
       "tag": "education",
       "miles": [
-        { "b": "3M makeathon ", "text": "- portable water filter for third-world water shortage", "when": "2018" },
-        { "b": "Sorts ships on App Store ", "text": "- lead programmer for iOS app at 14", "when": "2019" },
-        { "b": "Chairperson, ACE board ", "text": "- provided 25% of Singapore Cancer Society's volunteers", "when": "2020" },
-        { "b": "DrCT International Olympiad ", "text": "- Bronze Award", "when": "2021" },
-        { "b": "Graduated ", "text": "- four distinctions", "when": "2021" }
+        { "b": "3M makeathon ", "text": "portable water filter for third-world water shortage", "when": "2018" },
+        { "b": "Sorts ships on App Store ", "text": "lead programmer for iOS app at 14", "when": "2019" },
+        { "b": "Chairperson, ACE board ", "text": "provided 25% of Singapore Cancer Society's volunteers", "when": "2020" },
+        { "b": "DrCT International Olympiad ", "text": "Bronze Award", "when": "2021" },
+        { "b": "Graduated ", "text": "4 distinctions", "when": "2021" }
       ]
     },
     {
-      "when": "2022–2025",
+      "when": "2022 – 2025",
       "phase": "Ngee Ann Polytechnic",
       "desc": "Diploma in IT, School of InfoComm Technology, on the Ngee Ann Scholarship.",
       "tag": "education",
       "miles": [
-        { "b": "Director's List ", "text": "- twice", "when": "2022 · 2023" },
-        { "b": "Head Secretary, Overflow ", "text": "- 16 workshops taught", "when": "2023" },
-        { "b": "Child mentor ", "text": "- Tutored children from underpriviliged backgrounds", "when": "2023" },
-        { "b": "FRATS capstone ", "text": "- with AIDC (Indonesia)", "when": "2024" },
-        { "b": "Server tech, Alibaba Cloud SG ", "text": "- 8-week back-office role", "when": "2025" }
+        { "b": "Director's List ", "text": "twice", "when": "2022 · 2023" },
+        { "b": "Head Secretary, Overflow ", "text": "16 workshops taught", "when": "2023" },
+        { "b": "Child mentor ", "text": "Tutored children from underpriviliged backgrounds", "when": "2023" },
+        { "b": "FRATS capstone ", "text": "with AIDC (Indonesia)", "when": "2024" },
+        { "b": "Server tech, Alibaba Cloud SG ", "text": "8-week back-office role", "when": "2025" }
       ]
     },
     {
-      "when": "2024–2025",
+      "when": "2024 – 2025",
       "phase": "J.P. Morgan Chase",
-      "desc": "Software Engineer Intern, Corporate & Investment Bank.",
+      "desc": "Software Engineer Intern, Currencies Emerging Markets (FX Cash & Options), Corporate & Investment Bank.",
       "tag": "experience",
       "miles": [
-        { "b": "Workload migration, analytics & tooling ", "text": "- on Athena, a proprietary investment banking platform", "when": "2024" },
-        { "b": "Monitoring tool adopted globally ", "text": "- across lines of business", "when": "2025" },
-        { "b": "Subject Matter Expert ", "text": "- cloud migration workload & data visualisation", "when": "2024–2025" }
+        { "b": "Workload migration, analytics & tooling ", "text": "on Athena, a proprietary investment banking platform", "when": "2024" },
+        { "b": "Monitoring tool adopted globally ", "text": "across lines of business", "when": "2025" },
+        { "b": "Subject Matter Expert ", "text": "cloud migration workload & data visualisation", "when": "2024–2025" }
       ]
     },
     {
-      "when": "2025–now",
+      "when": "2025 – now",
       "phase": "Guards HQ",
-      "desc": "National Service with the SAF.",
-      "tag": "service",
+      "desc": "Multiple roles within the Singapore Armed Forces.",
+      "tag": "national service",
       "miles": [
-        { "b": "Working party ", "text": "- Ex COORES", "when": "2025" },
-        { "b": "Team Manager ", "text": "- media & design, team of 8", "when": "2026" },
-        { "b": "Recruitment Board ", "text": "- spearhead recruitment initiatives for Guardsmen", "when": "2026" },
-        { "b": "AI Task Force ", "text": "- chatbot for combatants", "when": "2026" },
-        { "b": "Automated Trading Workflow ", "text": "- built after hours", "when": "2026" }
+        { "b": "Working party ", "text": "Ex COORES", "when": "2025" },
+        { "b": "Team manager ", "text": "media & design, team of 8", "when": "2026" },
+        { "b": "Recruitment Board ", "text": "spearhead recruitment initiatives for Guardsmen", "when": "2026" },
+        { "b": "AI Task Force ", "text": "chatbot for combatants", "when": "2026" },
+        { "b": "Automated Trading Workflow ", "text": "built after hours", "when": "2026" }
       ]
     }
   ],
@@ -61,7 +61,7 @@
     { "msg": "ship: FRATS capstone with AIDC", "tag": "np", "hash": "c2d881f", "when": "2024", "c": "#b18aff" },
     { "msg": "role: head secretary, Overflow · 16 workshops", "tag": "np", "hash": "4be7c09", "when": "2023", "c": "#b18aff" },
     { "msg": "xtra: child mentor @ Touch Young Arrows", "tag": "xtra", "hash": "e0b1c55", "when": "2023", "c": "#ff7eb6" },
-    { "msg": "chore: Ngee Ann Scholarship · Director's List ×2", "tag": "np", "hash": "e19d3a4", "when": "2022", "c": "#b18aff" },
+    { "msg": "feat: Ngee Ann Scholarship · Director's List ×2", "tag": "np", "hash": "e19d3a4", "when": "2022", "c": "#b18aff" },
     { "msg": "merge: graduated SST, O-Levels with Computing", "tag": "sst", "hash": "58f2b77", "when": "2021", "c": "#5aa2ff" },
     { "msg": "role: chairperson, ACE board (+250% sign-ups)", "tag": "sst", "hash": "b90e441", "when": "2020", "c": "#5aa2ff" },
     { "msg": "init: sorts-ios, first shipped product, age 14", "tag": "sst", "hash": "0000001", "when": "2019", "c": "#5aa2ff" },
