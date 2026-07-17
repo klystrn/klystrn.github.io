@@ -37,7 +37,35 @@
       "tag": "Reginald Tan · Singapore",
       "cta": "Back to the work",
       "route": "professional"
+    },
+    "work": {
+      "label": "The desk",
+      "hoverTitle": "Back to work",
+      "blurb": "Enough downtime. This is where the trading, the building, and the analysis happen — step back into the professional portfolio.",
+      "tag": "Engineering · Markets",
+      "cta": "Enter professional mode",
+      "route": "professional"
+    },
+    "trophy": {
+      "label": "Trophy cabinet",
+      "hoverTitle": "The pointy end",
+      "blurb": "Two sports, years of it. Taekwondo on the mat and diving in the water — the medals that stuck around.",
+      "tag": "Taekwondo · Diving",
+      "info": true
     }
+  },
+  "trophies": {
+    "taekwondo": [
+      { "year": "2019", "name": "3rd Dan Black Belt — Kukkiwon" },
+      { "year": "2017", "name": "Trained under Grandmaster Kang Shin Chul" },
+      { "year": "2016", "name": "National Championships — Sparring medallist" },
+      { "year": "2014", "name": "1st Dan Black Belt" }
+    ],
+    "diving": [
+      { "year": "2021", "name": "Inter-School Diving — Finalist" },
+      { "year": "2020", "name": "3m Springboard — Podium finish" },
+      { "year": "2019", "name": "PADI Advanced Open Water" }
+    ]
   },
   "photography": {
     "handle": "@reg.shoots",

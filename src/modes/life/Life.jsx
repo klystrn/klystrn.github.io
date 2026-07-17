@@ -37,7 +37,7 @@ function Fallback() {
       <h1>{life.intro.title}</h1>
       <p>{life.intro.sub}</p>
       <div className="room-fallback-links">
-        {Object.keys(PROPS).map((id) => (
+        {['camera', 'watch', 'cards', 'namecard'].map((id) => (
           <Link key={id} to={routeFor(id)} className="room-fallback-link">
             <b>{life.objects[id].label}</b>
             <span>{life.objects[id].cta} →</span>
@@ -80,9 +80,10 @@ export default function Life() {
           className="room-canvas"
           shadows
           orthographic
-          dpr={[1, 2]}
-          gl={{ antialias: true, alpha: true, preserveDrawingBuffer: false }}
-          camera={{ position: [13, 10.5, 13], zoom: 48, near: 0.1, far: 200 }}
+          frameloop="demand"
+          dpr={[1, 1.6]}
+          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance', preserveDrawingBuffer: false }}
+          camera={{ position: [13, 11, 13], zoom: 46, near: 0.1, far: 200 }}
         >
           <Suspense fallback={null}>
             <Scene

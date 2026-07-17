@@ -191,11 +191,11 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 /* ================== LIFE — 3D fintech room ================== */
 /* Life renders a WebGL isometric room (a fintech workspace); hovering a prop
    floats a tooltip, clicking dives the camera into it and routes to that page. */
-.room-scene{position:relative;min-height:100vh;height:100vh;overflow:hidden;background:radial-gradient(125% 105% at 50% 18%,#edeae4 0%,#d0d3d8 60%,#b8bcc4 100%)}
+.room-scene{position:relative;min-height:100vh;height:100vh;overflow:hidden;background:radial-gradient(130% 110% at 50% 12%,#24252c 0%,#191a20 55%,#101116 100%)}
 .room-canvas{position:absolute;inset:0;z-index:1}
 .room-head{position:absolute;top:104px;left:0;right:0;z-index:3;text-align:center;pointer-events:none;transition:opacity .45s ease}
-.room-head h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4vw,46px);letter-spacing:-.02em;color:#20242c;margin:8px 0 6px}
-.room-head p{font-family:var(--sans);font-size:14px;color:#5b616b}
+.room-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,46px);letter-spacing:-.02em;color:#f2ede4;margin:8px 0 6px}
+.room-head p{font-family:var(--sans);font-size:14px;color:#9aa0aa}
 .room-hint{position:absolute;bottom:26px;left:0;right:0;z-index:3;text-align:center;font-family:var(--plex);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7b818b;pointer-events:none;transition:opacity .45s ease}
 .room-head.gone,.room-hint.gone{opacity:0}
 .room-zoom-overlay{position:fixed;inset:0;z-index:300;pointer-events:none;transition:opacity .8s ease}
@@ -207,15 +207,21 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 .room-tip-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
 .room-tip-tag{font-family:var(--plex);font-size:9px;letter-spacing:.05em;color:#8b929c}
 .room-tip-cta{font-family:var(--plex);font-size:10px;color:#ff9a9d;white-space:nowrap}
+/* trophy cabinet award list */
+.room-tip-wide{width:340px}
+.room-awards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.room-awards-h{font-family:var(--plex);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#ff9a9d;margin-bottom:6px}
+.room-awards-row{display:flex;gap:7px;font-size:11px;line-height:1.4;color:#c7ccd4;margin-bottom:5px}
+.room-awards-row .yr{font-family:var(--plex);font-size:9.5px;color:#8b929c;flex:none;padding-top:1px}
 /* no-WebGL fallback */
 .room-fallback{max-width:640px;margin:0 auto;padding:130px 24px 60px;text-align:center}
-.room-fallback h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,5vw,44px);color:#20242c;margin:8px 0 6px}
-.room-fallback>p{color:#5b616b;margin-bottom:30px}
+.room-fallback h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,5vw,44px);color:#f2ede4;margin:8px 0 6px}
+.room-fallback>p{color:#9aa0aa;margin-bottom:30px}
 .room-fallback-links{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left}
-.room-fallback-link{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid rgba(21,24,28,.14);border-radius:14px;background:rgba(255,255,255,.6);text-decoration:none;transition:.2s}
-.room-fallback-link:hover{border-color:#d92b35;background:#fff}
-.room-fallback-link b{font-family:var(--serif);font-size:18px;color:#20242c}
-.room-fallback-link span{font-family:var(--plex);font-size:11px;color:#d92b35}
+.room-fallback-link{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.04);text-decoration:none;transition:.2s}
+.room-fallback-link:hover{border-color:#d92b35;background:rgba(255,255,255,.08)}
+.room-fallback-link b{font-family:var(--serif);font-size:18px;color:#f2ede4}
+.room-fallback-link span{font-family:var(--plex);font-size:11px;color:#ff9a9d}
 @media(max-width:600px){.room-fallback-links{grid-template-columns:1fr}.room-head{top:88px}}
 
 /* ================== LIFE (legacy flat table — unused, kept for reference) ================== */
