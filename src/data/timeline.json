@@ -7,10 +7,10 @@
       "tag": "education",
       "miles": [
         { "b": "3M makeathon ", "text": "- portable water filter for third-world water shortage", "when": "2018" },
-        { "b": "Sorts ships on App Store ", "text": ", lead programmer for iOS app at 14", "when": "2019" },
-        { "b": "Chairperson, ACE board ", "text": ", provided 25% of Singapore Cancer Society's volunteers", "when": "2020" },
-        { "b": "DrCT International Olympiad ", "text": ", Bronze Award", "when": "2021" },
-        { "b": "Graduated ", "text": ", four distinctions", "when": "2021" }
+        { "b": "Sorts ships on App Store ", "text": "- lead programmer for iOS app at 14", "when": "2019" },
+        { "b": "Chairperson, ACE board ", "text": "- provided 25% of Singapore Cancer Society's volunteers", "when": "2020" },
+        { "b": "DrCT International Olympiad ", "text": "- Bronze Award", "when": "2021" },
+        { "b": "Graduated ", "text": "- four distinctions", "when": "2021" }
       ]
     },
     {
@@ -19,11 +19,11 @@
       "desc": "Diploma in IT, School of InfoComm Technology, on the Ngee Ann Scholarship.",
       "tag": "education",
       "miles": [
-        { "b": "Director's List ", "text": ", twice", "when": "2022 · 2023" },
-        { "b": "Head Secretary, Overflow ", "text": ", 16 workshops taught", "when": "2023" },
-        { "b": "Child mentor ", "text": ", Tutored children from underpriviliged backgrounds", "when": "2023" },
-        { "b": "FRATS capstone ", "text": " with AIDC (Indonesia)", "when": "2024" },
-        { "b": "Server tech, Alibaba Cloud SG ", "text": ", 8-week back-office role", "when": "2025" }
+        { "b": "Director's List ", "text": "- twice", "when": "2022 · 2023" },
+        { "b": "Head Secretary, Overflow ", "text": "- 16 workshops taught", "when": "2023" },
+        { "b": "Child mentor ", "text": "- Tutored children from underpriviliged backgrounds", "when": "2023" },
+        { "b": "FRATS capstone ", "text": "- with AIDC (Indonesia)", "when": "2024" },
+        { "b": "Server tech, Alibaba Cloud SG ", "text": "- 8-week back-office role", "when": "2025" }
       ]
     },
     {
@@ -32,7 +32,7 @@
       "desc": "Software Engineer Intern, Corporate & Investment Bank.",
       "tag": "experience",
       "miles": [
-        { "b": "Workload migration, analytics & tooling ", "text": "- on Athena, a proprietary trading, risk management, and analytics platform", "when": "2024" },
+        { "b": "Workload migration, analytics & tooling ", "text": "- on Athena, a proprietary investment banking platform", "when": "2024" },
         { "b": "Monitoring tool adopted globally ", "text": "- across lines of business", "when": "2025" },
         { "b": "Subject Matter Expert ", "text": "- cloud migration workload & data visualisation", "when": "2024–2025" }
       ]
