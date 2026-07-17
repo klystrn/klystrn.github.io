@@ -158,14 +158,14 @@
   {
     "id": "locx", "sym": "LOCX", "flag": false, "repo": "locationx",
     "title": "locationX", "sector": "CAPSTONE · SST",
-    "from": "2021", "to": "2021", "year": "2021", "role": "Capstone team, SST", "status": "shipped",
-    "desc": "SST capstone: a scheduling app built for the National School Games (NSG).",
-    "skills": ["Scheduling", "Capstone"],
-    "stats": { "Status": "Delivered", "Role": "Capstone team", "Domain": "Scheduling", "Year": "2021" },
-    "langs": [["TBD", 100, "#8792a4"]],
+    "from": "2021", "to": "2021", "year": "2021", "role": "Solo builder, SST capstone", "status": "shipped",
+    "desc": "SST capstone: a Python scheduling app built for the National School Games (NSG), giving teachers a fast way to plan interschool games in place of a slow manual process.",
+    "skills": ["Python", "Scheduling", "Algorithms"],
+    "stats": { "Status": "Delivered", "Role": "Solo builder", "Client": "SST · NSG", "Year": "2021" },
+    "langs": [["Python", 100, "#3572A5"]],
     "curve": [2, 4, 6, 9, 8, 11, 14, 13, 16, 19, 18, 21],
-    "miles": [[2, "Capstone scoped"], [6, "Scheduling flows built"], [10, "Capstone presented"]],
-    "mini": { "blurb": "SST capstone: scheduling app built for the National School Games (NSG)", "tag": "Capstone" }
+    "miles": [[2, "Scheduling logic working"], [6, "Teacher inputs supported"], [10, "Capstone delivered for NSG"]],
+    "mini": { "blurb": "SST capstone: Python scheduling app for the National School Games (NSG)", "tag": "Python" }
   },
   {
     "id": "srts", "sym": "SRTS", "flag": false, "repo": "sorts-ios",

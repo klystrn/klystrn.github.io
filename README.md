@@ -14,9 +14,8 @@ certs, testimonials, timeline, feed, headers). **Content parity rule:** add a fa
 it appears in all three modes; if a fact exists in only one mode, that's a bug. Components are
 furniture only — no hardcoded content strings outside `src/data/`.
 
-Reference docs: `docs/CONTENT-DOC-reginald-v4.md` (authoritative content source),
-`docs/CLAUDE-CODE-HANDOFF.md` (build spec), `docs/rtan-portfolio-v6.html` (visual/behavioral
-prototype). Outstanding items: `KNOWN-GAPS.md`.
+Reference doc: `docs/CONTENT-DOC-reginald-v4.md` (authoritative content source, kept in sync with
+`src/data/`). Outstanding items: `KNOWN-GAPS.md`.
 
 ## Develop
 

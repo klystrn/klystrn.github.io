@@ -156,9 +156,8 @@
 | 2022 | The Tea Shop | Mock online tea business with friends; first website built from scratch; Bootstrap + product renders | Web |
 | 2022 | Tower Defence Game | Text-based Python unit-defence game (PvZ-style); game design & logic | Python · PyGame |
 | 2021 | C3 | Mock start-up pitch: code collaboration + AI product suite; highest grade band | Pitch |
-| 2021 | Interschool Games Planner | Python scheduler built for SST teachers to plan interschool games | Python |
+| 2021 | locationX | SST capstone: Python scheduling app for the National School Games (NSG); teachers plan interschool games in place of a slow manual process (MERGED: the former "Interschool Games Planner" was the same project) | Python |
 | 2019 | Sorts (iOS) | Student-grouping app for educators; lead programmer, team Pollo, shipped at 14 ($SRTS, `sorts-ios`) | Swift · iOS |
-| 2021 | locationX | SST capstone: scheduling app built for the National School Games (NSG) (CONFIRMED: include) | Capstone · [ADD STACK TAGS] |
 
 ### PROJECT IMAGES [PENDING]
 1–3 per flagship. Vanilla: card thumbnail + modal gallery. Tech: assets/ folder inside each repo.
@@ -234,14 +233,17 @@ Highest Grade, Entrepreneurship First Steps · 2021
 
 Vanilla shows top 7 + "…and 7 more". Tech certs.lock shows top 7 + comment. Full list in data.
 
-## 10 · TESTIMONIALS (→ testimonials.json)
+## 10 · TESTIMONIALS (→ testimonials.json — all quotes + Drive links RESOLVED 2026-07-17)
 
-| Name | Title | Quote |
-|---|---|---|
-| Rahul Varma | Executive Director, Global Head of Currencies & Emerging Markets Platform Technology, J.P. Morgan | [PENDING — provide quote] |
-| Dimuthu Makawita | Deputy Director (School Operations & Planning), ICT, Ngee Ann Polytechnic | [PENDING — provide quote] |
-| Jovita Tang | ML & NLP Specialist · Mathematics & Computing Teacher, SST | "…a promising individual who has both the knowledge and the heart to make significant contributions to the community in the future…" |
-| Keith Wee | Service-Learning In-Charge · Mathematics Teacher, SST | "…prioritises work quality and works well in a team through positive contribution…" |
+| Name | Title | Quote | Drive link |
+|---|---|---|---|
+| Rahul Varma | Executive Director, Global Head of Currencies & Emerging Markets Platform Technology, J.P. Morgan | "…a disciplined and high-performing individual who would be a tremendous addition to any world-class engineering team…" | ✓ |
+| Dimuthu Makawita | Deputy Director (School Operations & Planning), ICT, Ngee Ann Polytechnic | "…I have every expectation that he will continue to achieve excellence and contribute meaningfully to his chosen field…" | ✓ |
+| Jovita Tang | ML & NLP Specialist · Mathematics & Computing Teacher, SST | "…a promising individual who has both the knowledge and the heart to make significant contributions to the community in the future…" | ✓ |
+| Keith Wee | Service-Learning In-Charge · Mathematics Teacher, SST | "…prioritises work quality and works well in a team through positive contribution…" | ✓ |
+
+All four now link out to the full testimonial PDF/letter on Google Drive (`url` field), surfaced as a
+"Read in full ↗" link in Vanilla, Tech (APPROVALS.md), and Finance (Analyst Coverage).
 
 ## 11 · EXTRACURRICULAR (→ timeline.json sub-events, type=xtra)
 
@@ -272,7 +274,7 @@ Vanilla shows top 7 + "…and 7 more". Tech certs.lock shows top 7 + comment. Fu
 - Email: reginald.140105@gmail.com
 - LinkedIn: https://www.linkedin.com/in/reginald-tan/
 - GitHub: https://github.com/klystrn
-- CV: [PENDING — provide PDF filename]
+- CV: Google Drive link (RESOLVED 2026-07-17), set as `identity.json` → `contact.cvUrl`
 - Domain: reginaldtan.com (Route 53, Phase I of build guide) · hosting now: klystrn.github.io
 
 ## 14 · ASSET CHECKLIST
@@ -288,19 +290,19 @@ Vanilla shows top 7 + "…and 7 more". Tech certs.lock shows top 7 + comment. Fu
 - [x] Google Drive folder URL for certificates (powers the "view all" button): [https://drive.google.com/drive/folders/1ZERfpR6xgMSrJyxMapfdozw5U_tW2Xws?usp=sharing]
 > DECISION: no hand-drawn signature. The monogram stays the typographic red "R." across all modes.
 
-## 15 · SECTION HEADERS & SUBHEADERS (→ headers.json)
+## 15 · SECTION HEADERS & SUBHEADERS (→ headers.json — REVISED 2026-07-17, all rewrites resolved)
 
 | Section | VANILLA header | VANILLA sub | TECH | FINANCE |
 |---|---|---|---|---|
-| Hero | "Software engineering, with a market mind." | see §1 sub-line | titlebar: klystrn · ~/portfolio | $RTAN · Reginald Tan |
+| Hero | see §1 positioning lines (rotating) | see §1 sub-line | titlebar: klystrn · ~/portfolio | $RTAN · Reginald Tan |
 | About | "The short version." | — | README.md → "About me" | About the issuer |
-| Timeline | "A line that keeps trending up." ⚠ [rewrite] | "Scroll, and the spine draws itself." | timeline.git | Listing History · Education |
-| Experience | "Where the code went to work." ⚠ [rewrite] | — | experience/ | Institutional Holdings · Experience |
-| Projects | "Selected work." | "Full catalogue lives in Tech & Finance modes." | projects/ | Watchlist · Projects |
-| Skills | "One person, four clusters." | — | stack.json | Sector exposure · skills |
+| Timeline | "My life on a line." | "Scroll to time-travel with me." | timeline.git | Listing History · Education |
+| Experience | "Where my hours went." | — | experience/ | Institutional Holdings · Experience |
+| Projects | "The work curation." | "These are my flagship projects. My full project catalogue lives in Tech mode (repos) and Finance mode (tickers)." | projects/ | Watchlist · Projects |
+| Skills | "One person, multiple skillsets." | — | stack.json | Sector exposure · skills |
 | Awards & certs | "Awards & honours" / "Certificates" | — | certs.lock | folded into listing/licences |
-| Testimonials | "In others' words." | — | APPROVALS.md | Analyst Coverage · Testimonials |
-| Contact | "Let's build something." | "Open to opportunities in software engineering, fintech…" | CONTACT.me | Trade Ticket |
+| Testimonials | "Trust them, I'm not glazing myself." | — | APPROVALS.md | Analyst Coverage · Testimonials |
+| Contact | icon buttons only, no heading/prose (see §17) | — | CONTACT.me | Trade Ticket |
 
 ## 16 · MODE CURSORS (custom cursor per mode — REVISED 2026-07-16)
 
@@ -349,11 +351,24 @@ Locked in during the first post-launch edit batch; implemented in the React buil
 - **Constellation:** ASP.NET Core and Vue.js nodes nudged apart from Prompt Engineering so their
   labels no longer overlap in the top-left cluster.
 
----
-### Outstanding items summary (everything blocking JSON conversion)
-1. §1 positioning/sub-line/goal [CONFIRM] · 2. §10 two quotes [PENDING] · 3. §15 two header rewrites ⚠ ·
-4. §14 assets incl. Drive certificates URL (can trickle in; only CV + project images affect launch) ·
-5. §6 locationX stack tags [ADD STACK TAGS]
+### Batch 2 (2026-07-16/17)
 
-RESOLVED 2026-07-16: §2 "9 years code" (keep 9, counts from ~2017) · §7 XD vs DaVinci (both) ·
-§8 scholarship end-year (2022–2024) · §6 locationX (include).
+- **Finance cursor:** dropped the custom SVG for the native OS crosshair/pointer — poor contrast
+  against the dark terminal palette.
+- **Timeline:** "SST" → "School of Science & Technology" (full name), richer milestone copy, added
+  Recruitment Board milestone, "J.P. Morgan" → "J.P. Morgan Chase".
+- **Contact banner:** "Built by Reginald Tan" moved inside the dark contact box below the buttons;
+  the old separate light button row and standalone credit line are gone.
+- **locationX:** merged with the former "Interschool Games Planner" duplicate; real Python stack.
+- **Repo:** removed the historical prototype/handoff files from `docs/`; kept the content doc as the
+  living source.
+- **Content:** new hero sub-line, goal pull-quote, About paragraphs; AWS added to JPMC skills; SAF
+  role now covers the Recruitment Team and division-level exercise media; awards module prizes
+  split into two entries; real testimonial quotes + Drive links for Rahul Varma and Dimuthu
+  Makawita, wired as "Read in full ↗" links across all three modes; CV and certificates Drive URLs
+  set.
+
+---
+### Outstanding items summary
+Everything that was tracked here is resolved. Remaining open items are asset-only, tracked in
+`KNOWN-GAPS.md` (personal photos, flagship project images).

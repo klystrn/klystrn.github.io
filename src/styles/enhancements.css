@@ -7,11 +7,10 @@ body[data-mode="vanilla"] :is(a,button,[role="button"],input,select,textarea,lab
 /* Tech: smaller cyan chevron; block-caret (terminal selection) on interactives */
 body[data-mode="tech"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M4%202.5l7%205.5-7%205.5'%20fill='none'%20stroke='%2356d4dd'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E") 11 8, auto}
 body[data-mode="tech"] :is(a,button,[role="button"],input,.node,.etab,.flink,.kbar-it){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='18'%3E%3Crect%20x='3'%20y='2.5'%20width='9'%20height='13'%20rx='1.5'%20fill='rgba(86,212,221,.32)'%20stroke='%2356d4dd'%20stroke-width='1.4'/%3E%3C/svg%3E") 7 9, pointer}
-/* Finance: smaller blue crosshair + white dot (green/amber read as buy/sell
-   noise and were hard to see against the dark terminal palette); target-lock
-   ring on interactives */
-body[data-mode="finance"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%200v5M8%2011v5M0%208h5M11%208h5'%20stroke='%235aa2ff'%20stroke-width='2'/%3E%3Ccircle%20cx='8'%20cy='8'%20r='1.6'%20fill='white'/%3E%3C/svg%3E") 8 8, crosshair}
-body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl-tab){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='18'%20height='18'%3E%3Cpath%20d='M9%200v4M9%2014v4M0%209h4M14%209h4'%20stroke='%235aa2ff'%20stroke-width='2'/%3E%3Ccircle%20cx='9'%20cy='9'%20r='5'%20fill='none'%20stroke='%235aa2ff'%20stroke-width='1.4'/%3E%3Ccircle%20cx='9'%20cy='9'%20r='1.8'%20fill='white'/%3E%3C/svg%3E") 9 9, pointer}
+/* Finance: plain native crosshair (custom SVG designs read poorly against the
+   dark terminal palette); native pointer for click targets */
+body[data-mode="finance"]{cursor:crosshair}
+body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl-tab){cursor:pointer}
 
 /* --- "Built by" credit, themed per mode --- */
 .credit{text-align:center;font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:18px 0 26px;opacity:.6}
@@ -21,8 +20,10 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .mf .credit{color:var(--ffaint)}
 .life-panel .credit{color:inherit;opacity:.45;padding-top:26px}
 
-/* --- Vanilla: contact box hugs its buttons --- */
-.mv .contact{padding:46px 24px}
+/* --- Vanilla: contact box hugs its buttons + credit; minimal gap after --- */
+.mv .contact{padding:46px 24px 40px;margin-bottom:14px}
+.mv .contact-credit{color:rgba(233,235,230,.55);padding:22px 0 0;margin:0}
+.mv .contact-credit b{color:#ff9a9d}
 
 /* --- Vanilla: rotating hero positioning lines --- */
 .mv .hero-rot{display:grid}
@@ -59,6 +60,8 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .ts-nav.prev{left:0}
 .ts-nav.next{right:0}
 @media(max-width:600px){.ts-car{padding:0 48px}.ts-nav{width:36px;height:36px}}
+.ts-full{display:inline-block;margin-top:16px;font-family:var(--plex);font-size:11px;color:var(--ultra);text-decoration:none}
+.ts-full:hover{text-decoration:underline}
 .ts-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
 .ts-dots button{width:8px;height:8px;border-radius:50%;border:none;background:#dcdfd9;padding:0;transition:transform .2s,background .2s}
 .ts-dots button.on{background:#d92b35;transform:scale(1.25)}

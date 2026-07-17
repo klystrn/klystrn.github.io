@@ -325,7 +325,15 @@ export default function Finance() {
                 <div className="rate" key={t.slug}>
                   <div className="rate-tag">{t.financeTag}</div>
                   <p className="rate-q">{t.quote ? `"${t.quoteFinance || t.quote}"` : PENDING_NOTE}</p>
-                  <div className="rate-by">{t.titleFinance}</div>
+                  <div className="rate-by">
+                    {t.titleFinance}
+                    {t.url && (
+                      <>
+                        {' · '}
+                        <a href={t.url} target="_blank" rel="noopener noreferrer">FULL NOTE ↗</a>
+                      </>
+                    )}
+                  </div>
                 </div>
               ))}
             </section>

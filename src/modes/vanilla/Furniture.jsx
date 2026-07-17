@@ -138,6 +138,11 @@ export function TestimonialsCarousel() {
                   {t.name}
                   <span>{t.title}</span>
                 </div>
+                {t.url && (
+                  <a className="ts-full" href={t.url} target="_blank" rel="noopener noreferrer">
+                    Read in full ↗
+                  </a>
+                )}
               </div>
             </div>
           ))}
