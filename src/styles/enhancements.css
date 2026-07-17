@@ -7,11 +7,10 @@ body[data-mode="vanilla"] :is(a,button,[role="button"],input,select,textarea,lab
 /* Tech: smaller cyan chevron; block-caret (terminal selection) on interactives */
 body[data-mode="tech"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M4%202.5l7%205.5-7%205.5'%20fill='none'%20stroke='%2356d4dd'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E") 11 8, auto}
 body[data-mode="tech"] :is(a,button,[role="button"],input,.node,.etab,.flink,.kbar-it){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='18'%3E%3Crect%20x='3'%20y='2.5'%20width='9'%20height='13'%20rx='1.5'%20fill='rgba(86,212,221,.32)'%20stroke='%2356d4dd'%20stroke-width='1.4'/%3E%3C/svg%3E") 7 9, pointer}
-/* Finance: smaller blue crosshair + white dot (green/amber read as buy/sell
-   noise and were hard to see against the dark terminal palette); target-lock
-   ring on interactives */
-body[data-mode="finance"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%200v5M8%2011v5M0%208h5M11%208h5'%20stroke='%235aa2ff'%20stroke-width='2'/%3E%3Ccircle%20cx='8'%20cy='8'%20r='1.6'%20fill='white'/%3E%3C/svg%3E") 8 8, crosshair}
-body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl-tab){cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='18'%20height='18'%3E%3Cpath%20d='M9%200v4M9%2014v4M0%209h4M14%209h4'%20stroke='%235aa2ff'%20stroke-width='2'/%3E%3Ccircle%20cx='9'%20cy='9'%20r='5'%20fill='none'%20stroke='%235aa2ff'%20stroke-width='1.4'/%3E%3Ccircle%20cx='9'%20cy='9'%20r='1.8'%20fill='white'/%3E%3C/svg%3E") 9 9, pointer}
+/* Finance: plain native crosshair (custom SVG designs read poorly against the
+   dark terminal palette); native pointer for click targets */
+body[data-mode="finance"]{cursor:crosshair}
+body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl-tab){cursor:pointer}
 
 /* --- "Built by" credit, themed per mode --- */
 .credit{text-align:center;font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:18px 0 26px;opacity:.6}
@@ -21,8 +20,10 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .mf .credit{color:var(--ffaint)}
 .life-panel .credit{color:inherit;opacity:.45;padding-top:26px}
 
-/* --- Vanilla: contact box hugs its buttons --- */
-.mv .contact{padding:46px 24px}
+/* --- Vanilla: contact box hugs its buttons + credit; minimal gap after --- */
+.mv .contact{padding:46px 24px 40px;margin-bottom:14px}
+.mv .contact-credit{color:rgba(233,235,230,.55);padding:22px 0 0;margin:0}
+.mv .contact-credit b{color:#ff9a9d}
 
 /* --- Vanilla: rotating hero positioning lines --- */
 .mv .hero-rot{display:grid}
@@ -59,6 +60,8 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .ts-nav.prev{left:0}
 .ts-nav.next{right:0}
 @media(max-width:600px){.ts-car{padding:0 48px}.ts-nav{width:36px;height:36px}}
+.ts-full{display:inline-block;margin-top:16px;font-family:var(--plex);font-size:11px;color:var(--ultra);text-decoration:none}
+.ts-full:hover{text-decoration:underline}
 .ts-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
 .ts-dots button{width:8px;height:8px;border-radius:50%;border:none;background:#dcdfd9;padding:0;transition:transform .2s,background .2s}
 .ts-dots button.on{background:#d92b35;transform:scale(1.25)}
@@ -132,4 +135,53 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
   .tab-btn{padding:8px 8px;font-size:11px}
   .mode-btn{padding:6px 6px;font-size:9px}
   .pill .brand{font-size:12px;padding:0 2px 0 7px}
+}
+
+/* ===== Accessibility ===== */
+/* Skip-to-content link: off-screen until focused. */
+.skip-link{position:fixed;top:10px;left:50%;transform:translate(-50%,-160%);z-index:300;
+  background:#15181c;color:#fff;font-family:var(--plex);font-size:13px;padding:10px 18px;
+  border-radius:100px;text-decoration:none;transition:transform .2s}
+.skip-link:focus{transform:translate(-50%,0);outline:2px solid #fff;outline-offset:2px}
+
+/* Visible keyboard focus, themed per mode. Mouse users never see it
+   (:focus-visible), keyboard users always do. */
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:3px}
+#main:focus{outline:none}
+body[data-mode="vanilla"] :focus-visible{outline-color:#d92b35}
+body[data-mode="tech"] :focus-visible{outline-color:#56d4dd}
+body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
+/* Nav pill lives on a dark ground in every mode — keep its focus ring light. */
+.pill :focus-visible{outline-color:#fff}
+/* SVG-only controls (section rail dots, carousel arrows) need an offset ring. */
+.mv-rail button:focus-visible,.ts-nav:focus-visible,.ts-dots button:focus-visible{outline-offset:4px}
+
+/* ===== 404 view ===== */
+.nf{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;text-align:center}
+.nf-in{max-width:460px}
+.nf-code{font-family:var(--plex);font-size:13px;letter-spacing:.3em;color:#d92b35;font-weight:700}
+.nf h1{font-family:var(--serif);font-weight:700;font-size:clamp(34px,6vw,52px);letter-spacing:-.02em;margin:14px 0 12px;color:#15181c}
+.nf p{color:#4c545e;font-size:16px;margin-bottom:28px}
+.nf-btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:14px;padding:13px 24px;border-radius:100px;background:#15181c;color:#f3f4f1;text-decoration:none;transition:background .2s}
+.nf-btn:hover{background:#d92b35}
+
+/* ===== Print: make Vanilla print as a clean document ===== */
+@media print{
+  *{cursor:auto!important;-webkit-print-color-adjust:economy;print-color-adjust:economy}
+  .nav-wrap,.mv-rail,.mv-progress,.toast,.skip-link,.mv .cue,.try-modes,.nf-btn{display:none!important}
+  body{background:#fff!important;color:#111!important}
+  /* Vanilla: unwrap the dark editorial panels to white, keep type legible. */
+  .mv .tl-sec,.mv .contact{background:#fff!important;color:#111!important;border-radius:0!important;margin:0!important}
+  .mv .tl-phase,.mv .tl-title,.mv .contact .credit,.mv h2.sec,.mv h1{color:#111!important}
+  .mv .tl-desc,.mv .tl-mile,.mv .tl-when,.mv .tl-tag,.mv .sec-sub,.mv .lede{color:#333!important}
+  .mv .tl-mile b{color:#111!important}
+  .mv a,.ts-full{color:#111!important;text-decoration:underline}
+  .mv section{padding:22px 0!important;break-inside:avoid}
+  .mv .reveal{opacity:1!important;transform:none!important}
+  .mv .hero{min-height:auto!important;padding:20px 0!important}
+  .mv .sk-outer{height:auto!important}
+  .mv .sk-sticky{position:static!important;height:auto!important}
+  .mv .cn-node,.mv .cn-edge{opacity:1!important}
+  /* Tech/Finance are dark UIs — don't dump a full black page if printed. */
+  .mt,.mf{background:#fff!important;color:#111!important}
 }

@@ -202,7 +202,7 @@ export default function Finance() {
                         <span className="wl-sym">${p.sym}</span>
                         <span className="wl-name">{p.title}</span>
                         <span className="wl-chg u">{chgOf(p)}</span>
-                        <svg className="wl-spark" viewBox="0 0 100 22" preserveAspectRatio="none">
+                        <svg className="wl-spark" viewBox="0 0 100 22" preserveAspectRatio="none" aria-hidden="true">
                           <polyline points={spark(p.curve)} fill="none" stroke="#2fd17a" strokeWidth="1.4" />
                         </svg>
                       </div>
@@ -325,7 +325,15 @@ export default function Finance() {
                 <div className="rate" key={t.slug}>
                   <div className="rate-tag">{t.financeTag}</div>
                   <p className="rate-q">{t.quote ? `"${t.quoteFinance || t.quote}"` : PENDING_NOTE}</p>
-                  <div className="rate-by">{t.titleFinance}</div>
+                  <div className="rate-by">
+                    {t.titleFinance}
+                    {t.url && (
+                      <>
+                        {' · '}
+                        <a href={t.url} target="_blank" rel="noopener noreferrer">FULL NOTE ↗</a>
+                      </>
+                    )}
+                  </div>
                 </div>
               ))}
             </section>

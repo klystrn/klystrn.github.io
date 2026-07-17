@@ -311,9 +311,8 @@ export default function Vanilla() {
           <a className="ibtn" href={c.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><GitHubIcon /></a>
           <a className="btn line" href={c.cvUrl || '#'} onClick={cvClick}>Résumé</a>
         </div>
+        <div className="credit contact-credit">Built by <b>{identity.name}</b></div>
       </section>
-
-      <div className="credit">Built by <b>{identity.name}</b></div>
 
       <Modal data={modal} onClose={() => setModal(null)} />
     </div>

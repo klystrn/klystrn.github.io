@@ -167,7 +167,15 @@ function ApprovalsFile() {
             <span style={{ opacity: 0.5 }}>· {t.slug} reviewed</span>
           </div>
           <div className="review-b">{t.quote ? `"${t.quote}"` : PENDING_QUOTE}</div>
-          <div className="review-f">{t.title}</div>
+          <div className="review-f">
+            {t.title}
+            {t.url && (
+              <>
+                {' · '}
+                <a className="flink" href={t.url} target="_blank" rel="noopener noreferrer">read in full ↗</a>
+              </>
+            )}
+          </div>
         </div>
       ))}
       <p style={{ marginTop: 10 }}>LGTM ×{testimonials.length}. <code>merge when ready</code></p>

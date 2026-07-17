@@ -34,7 +34,7 @@ export default function Chart({ project }) {
   return (
     <>
       <div className="chart-box">
-        <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" onMouseLeave={() => setTip(null)}>
+        <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" role="img" aria-label={`${project.title} progression chart`} onMouseLeave={() => setTip(null)}>
           <defs>
             <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="#2fd17a" stopOpacity=".22" />
