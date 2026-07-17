@@ -1,0 +1,83 @@
+{
+  "intro": {
+    "eyebrow": "OFF THE CLOCK",
+    "title": "The things I reach for.",
+    "sub": "Hover an object to see the story. Click to step inside."
+  },
+  "objects": {
+    "camera": {
+      "label": "Photography",
+      "hoverTitle": "Behind the lens",
+      "blurb": "I shoot the moments most people scroll past — the quiet in-between frames at events, on the street, and around Singapore. What started as documenting friends became a genuine obsession with light, timing, and composition.",
+      "tag": "Events · Street · Portraits",
+      "photo": "/life/reg-camera.jpg",
+      "cta": "Open the portfolio",
+      "route": "photography"
+    },
+    "watch": {
+      "label": "Watches",
+      "hoverTitle": "Time, inherited",
+      "blurb": "Mechanical watches run in the family. I grew up around a small collection that got passed down and added to over three generations — each piece carrying a story about who wore it and why. I've been the one keeping the record.",
+      "tag": "Mechanical · Vintage · Family",
+      "cta": "Wind the collection",
+      "route": "watch"
+    },
+    "cards": {
+      "label": "Card throwing",
+      "hoverTitle": "The flick",
+      "blurb": "I found card throwing down a late-night rabbit hole and never climbed back out. It's equal parts physics and patience — grip, spin, release — and there's a strange calm in drilling the same throw a hundred times until it finally bites the target.",
+      "tag": "Precision · Focus · Absurdly niche",
+      "cta": "Take a throw",
+      "route": "cards"
+    },
+    "namecard": {
+      "label": "The professional side",
+      "hoverTitle": "Back to business",
+      "blurb": "The other side of the table. This card takes you back to the professional portfolio — the engineering, the markets, the work.",
+      "tag": "Reginald Tan · Singapore",
+      "cta": "Back to the work",
+      "route": "professional"
+    }
+  },
+  "photography": {
+    "handle": "@reg.shoots",
+    "name": "Reginald Tan",
+    "bio": "Singapore. Events, street, and the occasional portrait. Shot on whatever's in my bag.",
+    "avatar": "/life/reg-avatar.jpg",
+    "stats": { "posts": 12, "gear": "Sony · 35mm", "since": "2019" },
+    "tiles": [
+      { "id": "nsg", "title": "National School Games", "count": 24, "cover": "", "hue": 4 },
+      { "id": "street", "title": "Street · Singapore", "count": 38, "cover": "", "hue": 210 },
+      { "id": "saf", "title": "SAF Media & Design", "count": 16, "cover": "", "hue": 150 },
+      { "id": "portraits", "title": "Portraits", "count": 19, "cover": "", "hue": 28 },
+      { "id": "travel", "title": "Travel", "count": 41, "cover": "", "hue": 265 },
+      { "id": "events", "title": "Events & Weddings", "count": 30, "cover": "", "hue": 340 },
+      { "id": "nature", "title": "Golden hour", "count": 22, "cover": "", "hue": 45 },
+      { "id": "motorsport", "title": "Motorsport", "count": 17, "cover": "", "hue": 0 },
+      { "id": "night", "title": "After dark", "count": 26, "cover": "", "hue": 245 }
+    ]
+  },
+  "watchStory": {
+    "brand": "The Tan Collection",
+    "sub": "Three generations, one running record.",
+    "tickMs": 3600,
+    "entries": [
+      { "year": "1968", "line1": "Where it started", "line2": "My grandfather's first mechanical — a hand-wound dress watch bought with his first proper paycheck." },
+      { "year": "1974", "line1": "The daily beater", "line2": "A steel diver that survived the shipyard, the sea, and two decades of being worn every single day." },
+      { "year": "1991", "line1": "Passed down", "line2": "The dress watch moves to my father. He wears it to his own first job — and starts the habit of keeping notes on each piece." },
+      { "year": "2003", "line1": "A new chapter", "line2": "The first automatic joins the drawer. No more winding. The collection quietly doubles over the decade." },
+      { "year": "2016", "line1": "My turn", "line2": "I inherit the diver. Scratched, honest, still ticking — and I fall for the mechanics of the thing." },
+      { "year": "Today", "line1": "Keeper of the record", "line2": "I maintain them all now: service history, stories, who wore what. A small archive that keeps on running." }
+    ]
+  },
+  "cards": {
+    "title": "Card Toss",
+    "intro": "Drag back on the card, aim, and release to throw. Land it in the target rings — bullseye scores highest. Ten cards. See how sharp your flick is.",
+    "cardsPerRound": 10,
+    "rings": [
+      { "r": 32, "points": 100, "label": "Bull" },
+      { "r": 70, "points": 50, "label": "Inner" },
+      { "r": 116, "points": 20, "label": "Outer" }
+    ]
+  }
+}
