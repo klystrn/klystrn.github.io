@@ -14,7 +14,11 @@ const MODE_INTRO = {
 export function ModeProvider({ children }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const mode = PATH_TO_MODE[location.pathname] || 'vanilla';
+  // /life and its sub-pages (/life/photography, /life/watch, /life/cards) all
+  // resolve to the 'life' lens so the nav tab stays active and chrome consistent.
+  const mode = location.pathname.startsWith('/life')
+    ? 'life'
+    : PATH_TO_MODE[location.pathname] || 'vanilla';
 
   const [seenModes, setSeenModes] = useState(() => new Set(['vanilla']));
   const [toastMsg, setToastMsg] = useState('');

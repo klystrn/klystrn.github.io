@@ -6,6 +6,9 @@ import Vanilla from './modes/vanilla/Vanilla';
 import Tech from './modes/tech/Tech';
 import Finance from './modes/finance/Finance';
 import Life from './modes/life/Life';
+import Photography from './modes/life/Photography';
+import WatchStory from './modes/life/WatchStory';
+import CardGame from './modes/life/CardGame';
 import NotFound from './modes/NotFound';
 
 export default function App() {
@@ -19,6 +22,9 @@ export default function App() {
           <Route path="/tech" element={<Tech />} />
           <Route path="/finance" element={<Finance />} />
           <Route path="/life" element={<Life />} />
+          <Route path="/life/photography" element={<Photography />} />
+          <Route path="/life/watch" element={<WatchStory />} />
+          <Route path="/life/cards" element={<CardGame />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
