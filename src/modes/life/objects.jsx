@@ -83,7 +83,7 @@ export function CardsArt(props) {
       {/* top face-up card */}
       <g transform="rotate(13 100 150)">
         <rect x="70" y="34" width="60" height="86" rx="8" fill="#ffffff" stroke="#d92b35" strokeWidth="1.6" />
-        <text x="78" y="52" fontFamily="Fraunces Variable, Georgia, serif" fontWeight="700" fontSize="16" fill="#d92b35">A</text>
+        <text x="78" y="52" fontFamily="Newsreader Variable, Georgia, serif" fontWeight="700" fontSize="16" fill="#d92b35">A</text>
         <g transform="translate(100 74) scale(1.1)">{suit}</g>
         <g transform="translate(122 104) rotate(180) scale(1.1)">{suit}</g>
       </g>
@@ -97,7 +97,7 @@ export function NamecardArt(props) {
       <rect x="14" y="20" width="172" height="100" rx="10" fill="#15181c" />
       <rect x="14" y="20" width="172" height="100" rx="10" fill="none" stroke="#2b2f36" strokeWidth="1.5" />
       {/* monogram */}
-      <text x="30" y="58" fontFamily="Fraunces Variable, Georgia, serif" fontStyle="italic" fontWeight="700" fontSize="26" fill="#ff6b6e">R.</text>
+      <text x="30" y="58" fontFamily="Newsreader Variable, Georgia, serif" fontStyle="italic" fontWeight="700" fontSize="26" fill="#ff6b6e">R.</text>
       {/* name + title lines */}
       <rect x="30" y="74" width="86" height="7" rx="3.5" fill="#e9ebe6" />
       <rect x="30" y="88" width="60" height="5" rx="2.5" fill="#6d7683" />

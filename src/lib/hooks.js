@@ -3,12 +3,20 @@ import { useEffect, useRef, useState } from 'react';
 export const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* Adds 'in' once the element enters the viewport (Vanilla .reveal). */
+/* Adds 'in' once the element enters the viewport (Vanilla .reveal).
+   Each reveal gets a small stagger delay based on its order *within its own
+   section*, so a section's pieces cascade in rather than all snapping together
+   — the uniform, simultaneous fade-up is the templated/AI tell we're avoiding. */
 export function useReveal() {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Assign per-section stagger once up front.
+    el.querySelectorAll('section, .tl-sec, .contact').forEach((sec) => {
+      const items = sec.querySelectorAll('.reveal');
+      items.forEach((n, i) => n.style.setProperty('--rd', `${Math.min(i * 65, 260)}ms`));
+    });
     const io = new IntersectionObserver(
       (es) =>
         es.forEach((e) => {
@@ -41,10 +49,10 @@ export function useCountUp(end) {
             return;
           }
           const t0 = performance.now();
-          const dur = 1300;
+          const dur = 950;
           (function tick(t) {
             const p = Math.min((t - t0) / dur, 1);
-            el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+            el.textContent = Math.round(end * (1 - Math.pow(1 - p, 4)));
             if (p < 1) requestAnimationFrame(tick);
           })(t0);
         }),

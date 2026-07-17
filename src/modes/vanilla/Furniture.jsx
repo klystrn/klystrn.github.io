@@ -15,7 +15,7 @@ export function RotatingHero({ lines }) {
         setPrev(i);
         return (i + 1) % lines.length;
       });
-    }, 3800);
+    }, 4800);
     return () => clearInterval(iv);
   }, [lines.length]);
   return (
