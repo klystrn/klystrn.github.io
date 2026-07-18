@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import life from '../../data/life.json';
 import { prefersReducedMotion } from '../../lib/hooks';
@@ -22,80 +22,6 @@ const SPOTS = [
   { id: 'camera',   x: 19, y: 58, route: '/life/photography', theme: '#171a1f' },
   { id: 'work',     x: 40, y: 47, route: '/',                 theme: '#141821' },
 ];
-
-/* TV screen quad — the four corners of the panel as % of the render, measured
-   off room.jpg. The screen faces south-west: the left edge is tall/near and the
-   right edge is short/far, top sloping down-to-the-right — a true perspective
-   trapezium, not a parallelogram. The clock is mapped onto this quad with a
-   projective (matrix3d) transform so it sits flush inside the screen. Order:
-   top-left, top-right, bottom-right, bottom-left. */
-const TV_CORNERS = [
-  [70.6, 40.2],
-  [86.0, 44.2],
-  [86.2, 53.7],
-  [70.5, 51.4],
-];
-
-/* 3×3 helpers to build the rectangle→quad homography for CSS matrix3d. */
-const adj = (m) => [
-  m[4] * m[8] - m[5] * m[7], m[2] * m[7] - m[1] * m[8], m[1] * m[5] - m[2] * m[4],
-  m[5] * m[6] - m[3] * m[8], m[0] * m[8] - m[2] * m[6], m[2] * m[3] - m[0] * m[5],
-  m[3] * m[7] - m[4] * m[6], m[1] * m[6] - m[0] * m[7], m[0] * m[4] - m[1] * m[3],
-];
-const mul3 = (a, b) => {
-  const c = new Array(9).fill(0);
-  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) for (let k = 0; k < 3; k++) c[3 * i + j] += a[3 * i + k] * b[3 * k + j];
-  return c;
-};
-const mulV = (m, v) => [
-  m[0] * v[0] + m[1] * v[1] + m[2] * v[2],
-  m[3] * v[0] + m[4] * v[1] + m[5] * v[2],
-  m[6] * v[0] + m[7] * v[1] + m[8] * v[2],
-];
-const basis = (p) => {
-  const m = [p[0], p[2], p[4], p[1], p[3], p[5], 1, 1, 1];
-  const v = mulV(adj(m), [p[6], p[7], 1]);
-  return mul3(m, [v[0], 0, 0, 0, v[1], 0, 0, 0, v[2]]);
-};
-// H maps the source quad `s` onto the destination quad `d` (each flat: x0,y0…x3,y3).
-const homography = (s, d) => mul3(basis(d), adj(basis(s)));
-
-/* Given the stage's pixel size, map the clock's bounding-box rectangle onto the
-   TV quad and return {left,top,width,height} (% of stage) + the matrix3d string
-   (transform-origin 0 0). Recomputed on resize so it locks at every size. */
-function tvTransform(W, H) {
-  const px = TV_CORNERS.map(([x, y]) => [(x / 100) * W, (y / 100) * H]);
-  const xs = px.map((p) => p[0]);
-  const ys = px.map((p) => p[1]);
-  const minX = Math.min(...xs), minY = Math.min(...ys);
-  const w = Math.max(...xs) - minX, h = Math.max(...ys) - minY;
-  const dst = px.flatMap(([x, y]) => [x - minX, y - minY]);
-  const src = [0, 0, w, 0, w, h, 0, h];
-  const m = homography(src, dst);
-  const k = m[8] || 1;
-  const n = m.map((v) => v / k);
-  return {
-    left: (minX / W) * 100,
-    top: (minY / H) * 100,
-    width: (w / W) * 100,
-    height: (h / H) * 100,
-    transform: `matrix3d(${n[0]},${n[3]},0,${n[6]}, ${n[1]},${n[4]},0,${n[7]}, 0,0,1,0, ${n[2]},${n[5]},0,${n[8]})`,
-  };
-}
-
-function useClock() {
-  const [now, setNow] = useState(() => new Date());
-  useEffect(() => {
-    const t = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(t);
-  }, []);
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const mons = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return {
-    hhmm: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
-    date: `${days[now.getDay()]}, ${now.getDate()} ${mons[now.getMonth()]}`,
-  };
-}
 
 function AwardsTip({ d }) {
   const t = life.trophies;
@@ -151,23 +77,6 @@ export default function Life() {
   const [hot, setHot] = useState(null);       // hovered/focused spot id
   const [zoom, setZoom] = useState(null);     // spot being zoomed into
   const [missing, setMissing] = useState(false);
-  const clock = useClock();
-  const stageRef = useRef(null);
-  const [tv, setTv] = useState(null);         // {left,top,width,height,transform}
-
-  // Map the clock onto the TV quad; recompute whenever the stage resizes.
-  useLayoutEffect(() => {
-    const el = stageRef.current;
-    if (!el) return undefined;
-    const apply = () => {
-      const r = el.getBoundingClientRect();
-      if (r.width && r.height) setTv(tvTransform(r.width, r.height));
-    };
-    apply();
-    const ro = new ResizeObserver(apply);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
 
   const pick = useCallback(
     (spot) => {
@@ -199,7 +108,6 @@ export default function Life() {
 
       <div className="room-stage-wrap">
         <div
-          ref={stageRef}
           className={`room-stage ${zoom ? 'zooming' : ''}`}
           style={zoom ? { transformOrigin: `${zoom.x}% ${zoom.y}%` } : undefined}
         >
@@ -217,22 +125,6 @@ export default function Life() {
             style={hotSpot ? { '--sx': `${hotSpot.x}%`, '--sy': `${hotSpot.y}%` } : undefined}
             aria-hidden="true"
           />
-
-          {/* live clock mapped onto the TV screen quad (perspective trapezium) */}
-          {tv && (
-            <div
-              className="room-tv"
-              style={{
-                left: `${tv.left}%`, top: `${tv.top}%`,
-                width: `${tv.width}%`, height: `${tv.height}%`,
-                transform: tv.transform, transformOrigin: '0 0',
-              }}
-              aria-hidden="true"
-            >
-              <div className="room-tv-time">{clock.hhmm}</div>
-              <div className="room-tv-date">{clock.date}</div>
-            </div>
-          )}
 
           {/* hotspots */}
           {SPOTS.map((s) => (

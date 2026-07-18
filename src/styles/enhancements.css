@@ -215,10 +215,6 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 .room-spot.on .room-spot-dot,.room-spot:focus-visible .room-spot-dot{background:#ff9a7a;box-shadow:0 0 0 5px rgba(255,154,122,.3),0 2px 12px rgba(0,0,0,.6)}
 .room-spot:focus-visible{outline:none}
 @keyframes spotpulse{0%{transform:scale(.7);opacity:.9}70%{transform:scale(1.5);opacity:0}100%{transform:scale(1.5);opacity:0}}
-/* live clock on the TV */
-.room-tv{position:absolute;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2%;background:linear-gradient(#10141c,#0a0d13);border-radius:2px;pointer-events:none;box-shadow:0 0 24px rgba(120,150,220,.12)}
-.room-tv-time{font-family:var(--jb);font-weight:700;font-size:clamp(16px,3.4vh,42px);letter-spacing:.04em;color:#e8edf8;line-height:1;text-shadow:0 0 18px rgba(160,190,255,.45)}
-.room-tv-date{font-family:var(--plex);font-size:clamp(7px,1.1vh,12px);letter-spacing:.14em;text-transform:uppercase;color:#8b96ab}
 /* tooltip anchored to the hotspot */
 .room-stage .room-tip{position:absolute;z-index:40;transform:translate(-50%,calc(-100% - 18px));pointer-events:none}
 .room-stage .room-tip.flip{transform:translate(-88%,calc(-100% - 18px))}
