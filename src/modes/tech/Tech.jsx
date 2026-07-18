@@ -43,6 +43,36 @@ function buildBlame() {
   return blame;
 }
 
+/* Tree nodes live at module scope so their component identity is stable across
+   renders. When they were defined inside Tech(), every state change (including
+   setTip on each mouse-move) created a fresh component type, so React unmounted
+   and remounted the whole tree — and unmounting a hovered node never fires its
+   onMouseLeave, leaving the blame tooltip stuck on screen after a click. */
+function FileNode({ f, ico, label, lvl, activeF, openFile, showBlame, setTip }) {
+  return (
+    <div
+      className={`node ${lvl ? `lvl${lvl}` : ''} ${activeF === f ? 'on' : ''}`}
+      onClick={() => { setTip(null); openFile(f); }}
+      onMouseMove={(e) => showBlame(e, f)}
+      onMouseLeave={() => setTip(null)}
+    >
+      <span className="ico">{ico}</span>
+      {label}
+    </div>
+  );
+}
+function DirNode({ k, label, lvl, dirs, toggleDir, setTip }) {
+  return (
+    <div
+      className={`node dir ${lvl ? `lvl${lvl}` : ''} ${dirs[k] ? 'open' : ''}`}
+      onClick={() => { setTip(null); toggleDir(k); }}
+    >
+      <span className="ico tri">▸</span>
+      {label}
+    </div>
+  );
+}
+
 export default function Tech() {
   const { setMode, toast, pendingFinanceSym } = useMode();
   const FILES = useMemo(buildFiles, []);
@@ -132,23 +162,9 @@ export default function Tech() {
   };
   const ctx = { openFile, openDir: (k) => expandDirs([k]), gotoFinance, cvClick };
 
-  const FileNode = ({ f, ico, label, lvl }) => (
-    <div
-      className={`node ${lvl ? `lvl${lvl}` : ''} ${activeF === f ? 'on' : ''}`}
-      onClick={() => openFile(f)}
-      onMouseMove={(e) => showBlame(e, f)}
-      onMouseLeave={() => setTip(null)}
-    >
-      <span className="ico">{ico}</span>
-      {label}
-    </div>
-  );
-  const DirNode = ({ k, label, lvl }) => (
-    <div className={`node dir ${lvl ? `lvl${lvl}` : ''} ${dirs[k] ? 'open' : ''}`} onClick={() => toggleDir(k)}>
-      <span className="ico tri">▸</span>
-      {label}
-    </div>
-  );
+  // Shared props for the module-scope tree nodes (spread at each call site).
+  const fileProps = { activeF, openFile, showBlame, setTip };
+  const dirProps = { dirs, toggleDir, setTip };
 
   return (
     <div className="mt">
@@ -160,30 +176,30 @@ export default function Tech() {
         </div>
         <div className="ide">
           <aside className="tree"><div className="tree-h">Explorer · klystrn</div>
-            <FileNode f="readme" ico="▣" label="README.md" />
-            <FileNode f="timeline" ico="⎇" label="timeline.git" />
-            <DirNode k="exp" label="experience/" />
+            <FileNode f="readme" ico="▣" label="README.md" {...fileProps} />
+            <FileNode f="timeline" ico="⎇" label="timeline.git" {...fileProps} />
+            <DirNode k="exp" label="experience/" {...dirProps} />
             <div className={`group ${dirs.exp ? 'open' : ''}`}>
               {experience.map((x) => (
-                <FileNode key={x.id} f={x.id} ico="◆" label={x.tech.file} lvl={1} />
+                <FileNode key={x.id} f={x.id} ico="◆" label={x.tech.file} lvl={1} {...fileProps} />
               ))}
             </div>
-            <DirNode k="proj" label="projects/" />
+            <DirNode k="proj" label="projects/" {...dirProps} />
             <div className={`group ${dirs.proj ? 'open' : ''}`}>
               {FLAGSHIP.map((p) => (
-                <FileNode key={p.id} f={`p_${p.id}`} ico="◆" label={`${p.repo}/`} lvl={1} />
+                <FileNode key={p.id} f={`p_${p.id}`} ico="◆" label={`${p.repo}/`} lvl={1} {...fileProps} />
               ))}
-              <DirNode k="supp" label="supplementary/" lvl={1} />
+              <DirNode k="supp" label="supplementary/" lvl={1} {...dirProps} />
               <div className={`group ${dirs.supp ? 'open' : ''}`}>
                 {SUPPLEMENTARY.map((p) => (
-                  <FileNode key={p.id} f={`p_${p.id}`} ico="◆" label={`${p.repo}/`} lvl={2} />
+                  <FileNode key={p.id} f={`p_${p.id}`} ico="◆" label={`${p.repo}/`} lvl={2} {...fileProps} />
                 ))}
               </div>
             </div>
-            <FileNode f="approvals" ico="✓" label="APPROVALS.md" />
-            <FileNode f="stack" ico="{}" label="stack.json" />
-            <FileNode f="certs" ico="🔒" label="certs.lock" />
-            <FileNode f="contact" ico="@" label="CONTACT.me" />
+            <FileNode f="approvals" ico="✓" label="APPROVALS.md" {...fileProps} />
+            <FileNode f="stack" ico="{}" label="stack.json" {...fileProps} />
+            <FileNode f="certs" ico="🔒" label="certs.lock" {...fileProps} />
+            <FileNode f="contact" ico="@" label="CONTACT.me" {...fileProps} />
           </aside>
           <div className="editor">
             <div className="etabs">
