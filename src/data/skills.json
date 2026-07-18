@@ -1,455 +1,427 @@
 {
-  "root": {
-    "x": 500,
-    "y": 315,
-    "label": "REGINALD",
-    "caption": "<b>Reginald Tan</b>, one person, five clusters"
+ "root": {
+  "label": "REGINALD",
+  "caption": "<b>Reginald Tan</b> — one person, five clusters"
+ },
+ "hubs": [
+  {
+   "id": "tech",
+   "label": "TECH",
+   "angle": 182,
+   "span": 150
   },
-  "hubs": {
-    "tech": {
-      "x": 220,
-      "y": 322,
-      "label": "TECH"
-    },
-    "ai": {
-      "x": 500,
-      "y": 104,
-      "label": "AI"
-    },
-    "trade": {
-      "x": 800,
-      "y": 244,
-      "label": "MARKETS"
-    },
-    "media": {
-      "x": 682,
-      "y": 540,
-      "label": "MEDIA"
-    },
-    "pm": {
-      "x": 350,
-      "y": 548,
-      "label": "OPS"
-    }
+  {
+   "id": "ai",
+   "label": "AI",
+   "angle": 270,
+   "span": 74
   },
-  "leaves": [
-    {
-      "name": "Prompt Engineering",
-      "strength": 8,
-      "x": 242,
-      "y": 78,
-      "cluster": "ai",
-      "evidence": "ATW · daily workflows",
-      "connects_to": []
-    },
-    {
-      "name": "Claude",
-      "strength": 8,
-      "x": 345,
-      "y": 72,
-      "cluster": "ai",
-      "evidence": "ATW · Guards chatbot",
-      "connects_to": [
-        "Trade Automation",
-        "MCPs"
-      ]
-    },
-    {
-      "name": "MCPs",
-      "strength": 8,
-      "x": 448,
-      "y": 52,
-      "cluster": "ai",
-      "evidence": "ATW · Guards chatbot",
-      "connects_to": [
-        "Trade Automation",
-        "Claude"
-      ]
-    },
-    {
-      "name": "Context Design",
-      "strength": 7,
-      "x": 553,
-      "y": 53,
-      "cluster": "ai",
-      "evidence": "Guards chatbot",
-      "connects_to": []
-    },
-    {
-      "name": "Computer Vision",
-      "strength": 6,
-      "x": 658,
-      "y": 72,
-      "cluster": "ai",
-      "evidence": "FRATS",
-      "connects_to": [
-        "Python"
-      ]
-    },
-    {
-      "name": "Gemini",
-      "strength": 5,
-      "x": 765,
-      "y": 89,
-      "cluster": "ai",
-      "evidence": "XGS (SAF)",
-      "connects_to": []
-    },
-    {
-      "name": "Python",
-      "strength": 9,
-      "x": 259,
-      "y": 441,
-      "cluster": "tech",
-      "evidence": "JPMC · FRATS · ATW",
-      "connects_to": [
-        "Computer Vision",
-        "Data Analytics",
-        "Data Visualisation",
-        "Pandas"
-      ]
-    },
-    {
-      "name": "Data Analytics",
-      "strength": 8,
-      "x": 153,
-      "y": 440,
-      "cluster": "tech",
-      "evidence": "JPM tooling · Power BI · Excel",
-      "connects_to": [
-        "Fundamental Analysis",
-        "Pandas"
-      ]
-    },
-    {
-      "name": "Web Development",
-      "strength": 8,
-      "x": 157,
-      "y": 385,
-      "cluster": "tech",
-      "evidence": "klystrn.github.io · Tea Shop · Overflow",
-      "connects_to": [
-        "UI/UX · Figma",
-        "JavaScript",
-        "Vue.js"
-      ]
-    },
-    {
-      "name": "AWS",
-      "strength": 7,
-      "x": 100,
-      "y": 330,
-      "cluster": "tech",
-      "evidence": "EC2 · S3 · CloudGrid · CloudWatch",
-      "connects_to": []
-    },
-    {
-      "name": "SQL",
-      "strength": 7,
-      "x": 156,
-      "y": 269,
-      "cluster": "tech",
-      "evidence": "Courier · InfluxDB",
-      "connects_to": [
-        "InfluxDB"
-      ]
-    },
-    {
-      "name": "JavaScript",
-      "strength": 7,
-      "x": 137,
-      "y": 216,
-      "cluster": "tech",
-      "evidence": "Web · Vue.js",
-      "connects_to": [
-        "UI/UX · Figma",
-        "Web Development"
-      ]
-    },
-    {
-      "name": "Data Visualisation",
-      "strength": 7,
-      "x": 243,
-      "y": 202,
-      "cluster": "tech",
-      "evidence": "JPM tooling · Power BI · Excel",
-      "connects_to": [
-        "Fundamental Analysis",
-        "Pandas"
-      ]
-    },
-    {
-      "name": "Pandas",
-      "strength": 7,
-      "x": 282,
-      "y": 516,
-      "cluster": "tech",
-      "evidence": "JPM tooling · Power BI · Excel",
-      "connects_to": [
-        "Data Analytics",
-        "Data Visualisation",
-        "Python"
-      ]
-    },
-    {
-      "name": "C#",
-      "strength": 6,
-      "x": 119,
-      "y": 500,
-      "cluster": "tech",
-      "evidence": "Courier System · ASP.NET",
-      "connects_to": [
-        "ASP.NET Core"
-      ]
-    },
-    {
-      "name": "ASP.NET Core",
-      "strength": 6,
-      "x": 52,
-      "y": 403,
-      "cluster": "tech",
-      "evidence": "Courier System",
-      "connects_to": [
-        "C#"
-      ]
-    },
-    {
-      "name": "Vue.js",
-      "strength": 6,
-      "x": 52,
-      "y": 268,
-      "cluster": "tech",
-      "evidence": "Overflow workshops",
-      "connects_to": [
-        "Web Development"
-      ]
-    },
-    {
-      "name": "Power BI",
-      "strength": 6,
-      "x": 95,
-      "y": 156,
-      "cluster": "tech",
-      "evidence": "JPM tooling · dashboards",
-      "connects_to": []
-    },
-    {
-      "name": "InfluxDB",
-      "strength": 5,
-      "x": 217,
-      "y": 128,
-      "cluster": "tech",
-      "evidence": "Courier System",
-      "connects_to": [
-        "SQL"
-      ]
-    },
-    {
-      "name": "Technical Analysis",
-      "strength": 7,
-      "x": 811,
-      "y": 125,
-      "cluster": "trade",
-      "evidence": "TCS · swing trading",
-      "connects_to": []
-    },
-    {
-      "name": "Trade Automation",
-      "strength": 7,
-      "x": 920,
-      "y": 223,
-      "cluster": "trade",
-      "evidence": "ATW",
-      "connects_to": [
-        "Claude",
-        "MCPs"
-      ]
-    },
-    {
-      "name": "Fundamental Analysis",
-      "strength": 6,
-      "x": 852,
-      "y": 355,
-      "cluster": "trade",
-      "evidence": "TCS research",
-      "connects_to": [
-        "Data Analytics",
-        "Data Visualisation"
-      ]
-    },
-    {
-      "name": "Portfolio Management",
-      "strength": 6,
-      "x": 817,
-      "y": 52,
-      "cluster": "trade",
-      "evidence": "Position sizing · R:R",
-      "connects_to": []
-    },
-    {
-      "name": "Sentiment Analysis",
-      "strength": 5,
-      "x": 916,
-      "y": 422,
-      "cluster": "trade",
-      "evidence": "Market context",
-      "connects_to": []
-    },
-    {
-      "name": "UI/UX · Figma",
-      "strength": 7,
-      "x": 779,
-      "y": 473,
-      "cluster": "media",
-      "evidence": "Shipee · portfolio · workshops",
-      "connects_to": [
-        "JavaScript",
-        "Web Development"
-      ]
-    },
-    {
-      "name": "Photoshop",
-      "strength": 7,
-      "x": 774,
-      "y": 596,
-      "cluster": "media",
-      "evidence": "Guards media",
-      "connects_to": []
-    },
-    {
-      "name": "Lightroom",
-      "strength": 6,
-      "x": 637,
-      "y": 596,
-      "cluster": "media",
-      "evidence": "Photography",
-      "connects_to": []
-    },
-    {
-      "name": "Illustrator",
-      "strength": 6,
-      "x": 811,
-      "y": 426,
-      "cluster": "media",
-      "evidence": "Guards media",
-      "connects_to": []
-    },
-    {
-      "name": "SketchUp",
-      "strength": 5,
-      "x": 535,
-      "y": 596,
-      "cluster": "media",
-      "evidence": "Product renders · Enscape",
-      "connects_to": []
-    },
-    {
-      "name": "Jira",
-      "strength": 6,
-      "x": 406,
-      "y": 596,
-      "cluster": "pm",
-      "evidence": "JPMC",
-      "connects_to": [
-        "Agile"
-      ]
-    },
-    {
-      "name": "Agile",
-      "strength": 6,
-      "x": 276,
-      "y": 596,
-      "cluster": "pm",
-      "evidence": "Scrum Certification",
-      "connects_to": [
-        "Jira"
-      ]
-    },
-    {
-      "name": "Confluence",
-      "strength": 5,
-      "x": 179,
-      "y": 535,
-      "cluster": "pm",
-      "evidence": "SAF · JPMC",
-      "connects_to": []
-    }
-  ],
-  "context": [],
-  "hubLinks": [
-    [
-      "ai",
-      "tech"
-    ],
-    [
-      "tech",
-      "pm"
-    ],
-    [
-      "pm",
-      "media"
-    ],
-    [
-      "media",
-      "trade"
-    ],
-    [
-      "trade",
-      "ai"
-    ],
-    [
-      "tech",
-      "trade"
-    ]
-  ],
-  "stack": {
-    "programming": [
-      "Python",
-      "C#",
-      "JavaScript",
-      "ASP.NET Core",
-      "SQL",
-      "Vue.js",
-      "Web Development"
-    ],
-    "data": [
-      "Data Analytics",
-      "Data Visualisation",
-      "Pandas",
-      "Power BI"
-    ],
-    "infrastructure": [
-      "AWS",
-      "InfluxDB",
-      "SQL"
-    ],
-    "ai": [
-      "Prompt Engineering",
-      "Claude",
-      "Gemini",
-      "MCPs",
-      "Context Design",
-      "Computer Vision"
-    ],
-    "markets": [
-      "Technical Analysis",
-      "Fundamental Analysis",
-      "Portfolio Management",
-      "Trade Automation",
-      "Sentiment Analysis"
-    ],
-    "media_and_design": [
-      "UI/UX · Figma",
-      "Photoshop",
-      "Lightroom",
-      "Illustrator",
-      "SketchUp"
-    ],
-    "project_management": [
-      "Jira",
-      "Confluence",
-      "Agile"
-    ],
-    "years_writing_code": 9
+  {
+   "id": "trade",
+   "label": "MARKETS",
+   "angle": 332,
+   "span": 60
+  },
+  {
+   "id": "media",
+   "label": "MEDIA",
+   "angle": 44,
+   "span": 66
+  },
+  {
+   "id": "pm",
+   "label": "OPS",
+   "angle": 110,
+   "span": 42
   }
+ ],
+ "subhubs": [
+  {
+   "id": "programming",
+   "label": "Programming",
+   "hub": "tech"
+  },
+  {
+   "id": "data",
+   "label": "Data",
+   "hub": "tech"
+  },
+  {
+   "id": "infra",
+   "label": "Infrastructure",
+   "hub": "tech"
+  },
+  {
+   "id": "design",
+   "label": "Design",
+   "hub": "media"
+  }
+ ],
+ "leaves": [
+  {
+   "name": "Python",
+   "strength": 9,
+   "evidence": "JPMC · FRATS · ATW",
+   "parent": "programming",
+   "also": [],
+   "connects_to": [
+    "Computer Vision",
+    "Data Analytics",
+    "Data Visualisation",
+    "Pandas"
+   ]
+  },
+  {
+   "name": "C#",
+   "strength": 6,
+   "evidence": "Courier System · ASP.NET",
+   "parent": "programming",
+   "also": [],
+   "connects_to": [
+    "ASP.NET Core"
+   ]
+  },
+  {
+   "name": "JavaScript",
+   "strength": 7,
+   "evidence": "Web · Vue.js",
+   "parent": "programming",
+   "also": [],
+   "connects_to": [
+    "UI/UX · Figma",
+    "Web Development"
+   ]
+  },
+  {
+   "name": "ASP.NET Core",
+   "strength": 6,
+   "evidence": "Courier System",
+   "parent": "programming",
+   "also": [
+    "infra"
+   ],
+   "connects_to": [
+    "C#"
+   ]
+  },
+  {
+   "name": "SQL",
+   "strength": 7,
+   "evidence": "Courier · InfluxDB",
+   "parent": "programming",
+   "also": [
+    "infra"
+   ],
+   "connects_to": [
+    "InfluxDB"
+   ]
+  },
+  {
+   "name": "Vue.js",
+   "strength": 6,
+   "evidence": "Overflow workshops",
+   "parent": "programming",
+   "also": [],
+   "connects_to": [
+    "Web Development"
+   ]
+  },
+  {
+   "name": "Web Development",
+   "strength": 8,
+   "evidence": "klystrn.github.io · Tea Shop · Overflow",
+   "parent": "programming",
+   "also": [],
+   "connects_to": [
+    "UI/UX · Figma",
+    "JavaScript",
+    "Vue.js"
+   ]
+  },
+  {
+   "name": "Data Analytics",
+   "strength": 8,
+   "evidence": "JPM tooling · Power BI · Excel",
+   "parent": "data",
+   "also": [],
+   "connects_to": [
+    "Fundamental Analysis",
+    "Pandas"
+   ]
+  },
+  {
+   "name": "Data Visualisation",
+   "strength": 7,
+   "evidence": "JPM tooling · Power BI · Excel",
+   "parent": "data",
+   "also": [],
+   "connects_to": [
+    "Fundamental Analysis",
+    "Pandas"
+   ]
+  },
+  {
+   "name": "Pandas",
+   "strength": 7,
+   "evidence": "JPM tooling · Power BI · Excel",
+   "parent": "data",
+   "also": [],
+   "connects_to": [
+    "Data Analytics",
+    "Data Visualisation",
+    "Python"
+   ]
+  },
+  {
+   "name": "Power BI",
+   "strength": 6,
+   "evidence": "JPM tooling · dashboards",
+   "parent": "data",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "AWS",
+   "strength": 7,
+   "evidence": "EC2 · S3 · CloudGrid · CloudWatch",
+   "parent": "infra",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "InfluxDB",
+   "strength": 5,
+   "evidence": "Courier System",
+   "parent": "infra",
+   "also": [],
+   "connects_to": [
+    "SQL"
+   ]
+  },
+  {
+   "name": "Prompt Engineering",
+   "strength": 8,
+   "evidence": "ATW · daily workflows",
+   "parent": "ai",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Claude",
+   "strength": 8,
+   "evidence": "ATW · Guards chatbot",
+   "parent": "ai",
+   "also": [],
+   "connects_to": [
+    "Trade Automation",
+    "MCPs"
+   ]
+  },
+  {
+   "name": "MCPs",
+   "strength": 8,
+   "evidence": "ATW · Guards chatbot",
+   "parent": "ai",
+   "also": [],
+   "connects_to": [
+    "Trade Automation",
+    "Claude"
+   ]
+  },
+  {
+   "name": "Context Design",
+   "strength": 7,
+   "evidence": "Guards chatbot",
+   "parent": "ai",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Computer Vision",
+   "strength": 6,
+   "evidence": "FRATS",
+   "parent": "ai",
+   "also": [],
+   "connects_to": [
+    "Python"
+   ]
+  },
+  {
+   "name": "Gemini",
+   "strength": 5,
+   "evidence": "XGS (SAF)",
+   "parent": "ai",
+   "also": [],
+   "connects_to": [
+    "Design"
+   ]
+  },
+  {
+   "name": "Technical Analysis",
+   "strength": 7,
+   "evidence": "TCS · swing trading",
+   "parent": "trade",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Fundamental Analysis",
+   "strength": 6,
+   "evidence": "TCS research",
+   "parent": "trade",
+   "also": [],
+   "connects_to": [
+    "Data Analytics",
+    "Data Visualisation"
+   ]
+  },
+  {
+   "name": "Portfolio Management",
+   "strength": 6,
+   "evidence": "Position sizing · R:R",
+   "parent": "trade",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Trade Automation",
+   "strength": 7,
+   "evidence": "ATW",
+   "parent": "trade",
+   "also": [],
+   "connects_to": [
+    "Claude",
+    "MCPs"
+   ]
+  },
+  {
+   "name": "Sentiment Analysis",
+   "strength": 5,
+   "evidence": "Market context",
+   "parent": "trade",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Photoshop",
+   "strength": 7,
+   "evidence": "Guards media",
+   "parent": "media",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Lightroom",
+   "strength": 6,
+   "evidence": "Photography",
+   "parent": "media",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "UI/UX · Figma",
+   "strength": 7,
+   "evidence": "Shipee · portfolio · workshops",
+   "parent": "design",
+   "also": [],
+   "connects_to": [
+    "JavaScript",
+    "Web Development"
+   ]
+  },
+  {
+   "name": "Illustrator",
+   "strength": 6,
+   "evidence": "Guards media",
+   "parent": "design",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "SketchUp",
+   "strength": 5,
+   "evidence": "Product renders · Enscape",
+   "parent": "design",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Jira",
+   "strength": 6,
+   "evidence": "JPMC",
+   "parent": "pm",
+   "also": [],
+   "connects_to": [
+    "Agile"
+   ]
+  },
+  {
+   "name": "Confluence",
+   "strength": 5,
+   "evidence": "SAF · JPMC",
+   "parent": "pm",
+   "also": [],
+   "connects_to": []
+  },
+  {
+   "name": "Agile",
+   "strength": 6,
+   "evidence": "Scrum Certification",
+   "parent": "pm",
+   "also": [],
+   "connects_to": [
+    "Jira"
+   ]
+  }
+ ],
+ "stack": {
+  "programming": [
+   "Python",
+   "C#",
+   "JavaScript",
+   "ASP.NET Core",
+   "SQL",
+   "Vue.js",
+   "Web Development"
+  ],
+  "data": [
+   "Data Analytics",
+   "Data Visualisation",
+   "Pandas",
+   "Power BI"
+  ],
+  "infrastructure": [
+   "AWS",
+   "InfluxDB",
+   "SQL"
+  ],
+  "ai": [
+   "Prompt Engineering",
+   "Claude",
+   "Gemini",
+   "MCPs",
+   "Context Design",
+   "Computer Vision"
+  ],
+  "markets": [
+   "Technical Analysis",
+   "Fundamental Analysis",
+   "Portfolio Management",
+   "Trade Automation",
+   "Sentiment Analysis"
+  ],
+  "media_and_design": [
+   "UI/UX · Figma",
+   "Photoshop",
+   "Lightroom",
+   "Illustrator",
+   "SketchUp"
+  ],
+  "project_management": [
+   "Jira",
+   "Confluence",
+   "Agile"
+  ],
+  "years_writing_code": 9
+ }
 }

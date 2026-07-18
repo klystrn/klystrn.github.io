@@ -119,15 +119,20 @@ body[data-mode="finance"] .mode-btn.on{color:#f5b942;border-color:rgba(245,185,6
 .mv .cn-edge{stroke:#c6cbd8;stroke-width:1.2;opacity:0}
 .mv .cn-edge.x{stroke:#2b40d9;stroke-dasharray:4 5;stroke-width:1.4}
 .mv .cn-node circle{fill:#fff;stroke:#b9bfcc;stroke-width:1.5;transition:stroke .2s}
-.mv .cn-node text{font-family:var(--sans);font-weight:600;fill:#15181c;text-anchor:middle}
+.mv .cn-node text{font-family:var(--sans);font-weight:600;fill:#15181c}
 .mv .cn-node.hub circle{fill:#15181c;stroke:#15181c}
 .mv .cn-node.hub text{fill:#fff;font-family:var(--plex);font-weight:500;letter-spacing:.08em}
+.mv .cn-node.subhub circle{fill:#2b2f36;stroke:#2b2f36}
+.mv .cn-node.subhub text{fill:#2b2f36;font-family:var(--plex);font-weight:600;letter-spacing:.03em}
+/* light halo so faint connector lines never cut through label text */
+.mv .cn-node.leaf text,.mv .cn-node.subhub text{paint-order:stroke;stroke:#f3f4f1;stroke-width:3px;stroke-linejoin:round}
 .mv .cn-node.rootn circle{fill:#2b40d9;stroke:#2b40d9}
 .mv .cn-node.rootn text{fill:#fff;font-family:var(--serif);font-style:italic}
 .mv .cn-node.ctx circle{fill:#f0f2ff;stroke:#aeb9ff}
 .mv .cn-node.ctx text{fill:#4c545e;font-weight:500;font-size:10px;font-family:var(--plex)}
 .mv .cn-node{opacity:0;cursor:pointer}
 .mv .cn-node:hover circle{stroke:#2b40d9;stroke-width:2.5}
+.mv .cn-edge.hot{opacity:1!important;stroke-width:2.2}
 .mv svg.dimmed .cn-node:not(.hot){opacity:.18!important}
 .mv svg.dimmed .cn-edge:not(.hot){opacity:.06!important}
 .mv .certs-strip{max-width:760px;margin:0 auto}

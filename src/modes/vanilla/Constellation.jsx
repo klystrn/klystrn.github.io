@@ -2,45 +2,148 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import skills from '../../data/skills.json';
 import { prefersReducedMotion } from '../../lib/hooks';
 
-const { root: ROOT, hubs: HUBS, leaves: LEAVES, context: CTX, hubLinks } = skills;
+const { root: ROOT, hubs: HUBS, subhubs: SUBHUBS, leaves: LEAVES } = skills;
 
-/* Build the edge and node lists once — same layout maths as the prototype. */
+/* Canvas + ring radii for the radial tree. root → hub → sub-hub → leaf. */
+const VIEW = { w: 1300, h: 1000, cx: 650, cy: 480 };
+const RH = 155; // hub ring
+const RS = 300; // sub-hub ring / direct-leaf ring
+const RL = 415; // leaf-under-sub-hub ring
+const STAG = 44; // every other leaf pushed out a ring, so close labels never collide
+const D2R = Math.PI / 180;
+const at = (r, deg) => [VIEW.cx + r * Math.cos(deg * D2R), VIEW.cy + r * Math.sin(deg * D2R)];
+
+/* Compute node positions + edges from the hierarchy. Angular room for each
+   branch is proportional to its leaf count, so dense clusters (TECH) fan wide
+   and sparse ones (OPS) stay tight; labels are anchored outward at render time
+   so text radiates away from the centre and never lands on the graph. */
 function buildGraph() {
-  const edges = [];
-  const edge = (a, b, x, t, ia, ib) => edges.push({ x1: a.x, y1: a.y, x2: b.x, y2: b.y, x, t, a: ia, b: ib });
-  Object.entries(HUBS).forEach(([k, h], i) => edge(ROOT, h, false, 0.2 + i * 0.06, 'root', k));
-  LEAVES.forEach((l, i) => edge(HUBS[l.cluster], l, false, 0.45 + (i / LEAVES.length) * 0.4, l.cluster, l.name));
-  CTX.forEach((c) => {
-    edge(HUBS[c.cluster], c, false, 0.7, c.cluster, c.name);
-    edge(ROOT, c, true, 0.92, 'root', c.name);
-  });
-  hubLinks.forEach(([a, b]) => edge(HUBS[a], HUBS[b], true, 0.9, a, b));
-  const leafByName = Object.fromEntries(LEAVES.map((l) => [l.name, l]));
-  // Explicit skill↔skill links from the content doc's "Connects to" column.
-  const seen = new Set();
-  LEAVES.forEach((l) =>
-    (l.connects_to || []).forEach((other) => {
-      const key = [l.name, other].sort().join('|');
-      if (seen.has(key) || !leafByName[other]) return;
-      seen.add(key);
-      edge(leafByName[l.name], leafByName[other], true, 0.95, l.name, other);
-    })
-  );
+  const leafByParent = {};
+  LEAVES.forEach((l) => { (leafByParent[l.parent] ||= []).push(l); });
+  const subByHub = {};
+  SUBHUBS.forEach((s) => { (subByHub[s.hub] ||= []).push(s); });
+  const subWeight = (s) => (leafByParent[s.id] || []).length || 1;
 
-  const nodes = [
-    { id: 'root', kind: 'rootn', x: ROOT.x, y: ROOT.y, r: 44, label: ROOT.label, fs: 12, t: 0, cap: ROOT.caption },
-    ...Object.entries(HUBS).map(([k, h], i) => ({
-      id: k, kind: 'hub', x: h.x, y: h.y, r: 31, label: h.label, fs: 9, t: 0.22 + i * 0.06,
-      cap: `<b>${h.label}</b> cluster`,
-    })),
-    ...LEAVES.map((l, i) => ({
-      id: l.name, kind: '', x: l.x, y: l.y, r: 7 + l.strength * 1.5, label: l.name,
-      fs: 9 + l.strength * 0.9, t: 0.45 + (i / LEAVES.length) * 0.4,
-      cap: `<b>${l.name}</b> · ${l.strength}/10 · ${l.evidence}`,
-    })),
-    ...CTX.map((c) => ({ id: c.name, kind: 'ctx', x: c.x, y: c.y, r: 16, label: c.name, fs: 10, t: 0.74, cap: c.caption })),
-  ];
+  const nodes = [];
+  const edges = [];
+  const push = (n) => { nodes.push(n); return n; };
+  const link = (a, b, dashed, t, ta, tb) =>
+    edges.push({ x1: a.x, y1: a.y, x2: b.x, y2: b.y, x: dashed, t, a: ta, b: tb });
+
+  const rootN = push({ id: 'root', kind: 'rootn', x: VIEW.cx, y: VIEW.cy, r: 42, label: ROOT.label, fs: 12, ang: 0, t: 0, cap: ROOT.caption });
+
+  // Partition the full circle into non-overlapping sectors sized by each hub's
+  // leaf count, so a dense cluster (TECH) gets a wide wedge and a sparse one
+  // (OPS) a narrow one — and every descendant stays inside its hub's wedge, so
+  // clusters never bleed into each other. START is tuned so AI lands at the top.
+  const hubWeight = (h) =>
+    (subByHub[h.id] || []).reduce((a, s) => a + subWeight(s), 0) + (leafByParent[h.id] || []).length;
+  const hubById = Object.fromEntries(HUBS.map((h) => [h.id, h]));
+  const ordered = ['ai', 'trade', 'media', 'pm', 'tech'].map((id) => hubById[id]).filter(Boolean);
+  const totalHubW = ordered.reduce((a, h) => a + hubWeight(h), 0) || 1;
+  const START = 236.25;
+  const sector = {};
+  let sc = START;
+  ordered.forEach((h) => { const w = (360 * hubWeight(h)) / totalHubW; sector[h.id] = { start: sc, w }; sc += w; });
+
+  ordered.forEach((h, hi) => {
+    const sec = sector[h.id];
+    const center = sec.start + sec.w / 2;
+    const [hx, hy] = at(RH, center);
+    const hubN = push({ id: h.id, kind: 'hub', x: hx, y: hy, r: 30, label: h.label, fs: 9, ang: center, t: 0.2 + hi * 0.04, cap: `<b>${h.label}</b> cluster` });
+    link(rootN, hubN, false, 0.14 + hi * 0.03, 'root', h.id);
+
+    const subs = subByHub[h.id] || [];
+    const directLeaves = leafByParent[h.id] || [];
+    const span = sec.w * 0.92; // small gutter between adjacent hubs' outer leaves
+
+    // spread a set of leaves edge-to-edge across [a, a+w], with radius stagger
+    const fanLeaves = (list, a, w, ring, parent, pid) => {
+      const n = list.length;
+      const a0 = a + (w - (n > 1 ? w : 0)) / 2;
+      const step = n > 1 ? w / (n - 1) : 0;
+      list.forEach((l, i) => {
+        const lang = n > 1 ? a0 + step * i : a + w / 2;
+        const [lx, ly] = at(ring + (i % 2) * STAG, lang);
+        const leafN = push(leafNode(l, lx, ly, lang));
+        link(parent, leafN, false, 0.5, pid, l.name);
+      });
+    };
+
+    if (subs.length === 0) {
+      // Pure-leaf hub: fan its leaves across the whole sector for max spacing.
+      fanLeaves(directLeaves, center - span / 2, span, RS, hubN, h.id);
+    } else {
+      // Mixed hub: split the sector between sub-hubs and direct leaves by weight.
+      const kids = [
+        ...subs.map((s) => ({ type: 'sub', ref: s, w: subWeight(s) })),
+        ...directLeaves.map((l) => ({ type: 'leaf', ref: l, w: 1 })),
+      ];
+      const totalW = kids.reduce((acc, k) => acc + k.w, 0) || 1;
+      let cursor = center - span / 2;
+      let di = 0;
+      kids.forEach((k) => {
+        const slice = (span * k.w) / totalW;
+        const cAng = cursor + slice / 2;
+        if (k.type === 'sub') {
+          const s = k.ref;
+          const [sx, sy] = at(RS, cAng);
+          const subN = push({ id: s.id, kind: 'subhub', x: sx, y: sy, r: 16, label: s.label, fs: 9, ang: cAng, t: 0.38, cap: `<b>${s.label}</b> · ${h.label} sub-cluster` });
+          link(hubN, subN, false, 0.34, h.id, s.id);
+          fanLeaves(leafByParent[s.id] || [], cAng - (slice * 0.84) / 2, slice * 0.84, RL, subN, s.id);
+        } else {
+          const [lx, ly] = at(RS + (di % 2) * STAG, cAng);
+          di += 1;
+          const leafN = push(leafNode(k.ref, lx, ly, cAng));
+          link(hubN, leafN, false, 0.5, h.id, k.ref.name);
+        }
+        cursor += slice;
+      });
+    }
+  });
+
+  // Cross-cluster links: "also" memberships + explicit skill↔skill "connects_to".
+  const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
+  const subByLabel = Object.fromEntries(SUBHUBS.map((s) => [s.label, s.id]));
+  const resolve = (name) => byId[name] || byId[subByLabel[name]] || null;
+  const seen = new Set();
+  const xlink = (a, b) => {
+    if (!a || !b || a.id === b.id) return;
+    const key = [a.id, b.id].sort().join('|');
+    if (seen.has(key)) return;
+    seen.add(key);
+    link(a, b, true, 0.64, a.id, b.id);
+  };
+  LEAVES.forEach((l) => {
+    const self = byId[l.name];
+    (l.also || []).forEach((sid) => xlink(self, byId[sid]));
+    (l.connects_to || []).forEach((t) => xlink(self, resolve(t)));
+  });
+
   return { edges, nodes };
+}
+
+function leafNode(l, x, y, ang) {
+  return {
+    id: l.name, kind: 'leaf', x, y, r: 6 + l.strength, label: l.name,
+    fs: 9 + l.strength * 0.35, ang, t: 0.5,
+    cap: `<b>${l.name}</b> · ${l.strength}/10 · ${l.evidence}`,
+  };
+}
+
+/* Where a node's text sits: hubs/root centre their label; everything else
+   radiates outward (left/right when off to the side, above/below at top/bottom)
+   so labels lead away from the graph interior. */
+function labelPos(n) {
+  if (n.kind === 'rootn' || n.kind === 'hub') return { x: n.x, y: n.y + 4, anchor: 'middle' };
+  const c = Math.cos(n.ang * D2R);
+  const s = Math.sin(n.ang * D2R);
+  if (Math.abs(c) > 0.1) {
+    return c > 0
+      ? { x: n.x + n.r + 7, y: n.y + 4, anchor: 'start' }
+      : { x: n.x - n.r - 7, y: n.y + 4, anchor: 'end' };
+  }
+  return { x: n.x, y: s < 0 ? n.y - n.r - 9 : n.y + n.r + 16, anchor: 'middle' };
 }
 
 const IDLE_CAP = 'scroll to expand · hover a node · click to pin its connections';
@@ -92,10 +195,8 @@ export default function Constellation({ header }) {
   const scale = 3.1 - 2.1 * ease;
   const fade = (t) => (progress >= t ? Math.min((progress - t) / 0.12, 1) : 0);
 
-  // Nodes are still animating scale/opacity in until the scroll-driven zoom
-  // finishes; hover/click before then reads as random flicker (mid-transition
-  // nodes are oversized and only partially faded in), so gate interaction on
-  // the constellation being fully zoomed out.
+  // Gate interaction until the scroll-driven zoom finishes — mid-transition
+  // nodes are oversized and only partially faded in, so hovering then flickers.
   const settled = progress >= 1;
   useEffect(() => {
     if (!settled) {
@@ -123,40 +224,37 @@ export default function Constellation({ header }) {
         </div>
         <svg
           id="constel"
-          viewBox="0 0 1000 640"
+          viewBox={`0 0 ${VIEW.w} ${VIEW.h}`}
           role="img"
           aria-label="Skills constellation"
           className={hotId ? 'dimmed' : ''}
           onClick={() => { if (pinned) { setPinned(false); setHotId(null); } }}
         >
-          <g transform={`translate(${ROOT.x} ${ROOT.y}) scale(${scale}) translate(${-ROOT.x} ${-ROOT.y})`}>
+          <g transform={`translate(${VIEW.cx} ${VIEW.cy}) scale(${scale}) translate(${-VIEW.cx} ${-VIEW.cy})`}>
             {edges.map((e, i) => (
               <line
                 key={i}
                 className={`cn-edge ${e.x ? 'x' : ''} ${hot && hot.edges.has(i) ? 'hot' : ''}`}
                 x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2}
-                style={{ opacity: fade(e.t) }}
+                style={{ opacity: fade(e.t) * (e.x ? 0.4 : 1) }}
               />
             ))}
-            {nodes.map((n) => (
-              <g
-                key={n.id}
-                className={`cn-node ${n.kind} ${hot && hot.nodes.has(n.id) ? 'hot' : ''}`}
-                style={{ opacity: fade(n.t), pointerEvents: settled ? 'auto' : 'none' }}
-                onMouseEnter={() => enter(n.id)}
-                onMouseLeave={leave}
-                onClick={(e) => click(e, n.id)}
-              >
-                <circle cx={n.x} cy={n.y} r={n.r} />
-                <text
-                  x={n.x}
-                  y={n.kind === 'rootn' || n.kind === 'hub' ? n.y + 4 : n.kind === 'ctx' ? n.y - 30 : n.y - n.r - 12}
-                  fontSize={n.fs}
+            {nodes.map((n) => {
+              const lp = labelPos(n);
+              return (
+                <g
+                  key={n.id}
+                  className={`cn-node ${n.kind} ${hot && hot.nodes.has(n.id) ? 'hot' : ''}`}
+                  style={{ opacity: fade(n.t), pointerEvents: settled ? 'auto' : 'none' }}
+                  onMouseEnter={() => enter(n.id)}
+                  onMouseLeave={leave}
+                  onClick={(e) => click(e, n.id)}
                 >
-                  {n.label}
-                </text>
-              </g>
-            ))}
+                  <circle cx={n.x} cy={n.y} r={n.r} />
+                  <text x={lp.x} y={lp.y} fontSize={n.fs} textAnchor={lp.anchor}>{n.label}</text>
+                </g>
+              );
+            })}
           </g>
         </svg>
         <div className="sk-caption" dangerouslySetInnerHTML={{ __html: capHtml }} />
