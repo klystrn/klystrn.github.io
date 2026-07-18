@@ -34,7 +34,7 @@ function fundamentals() {
 }
 
 /* Cluster strengths from skills.json → portfolio-style sector allocation. */
-const ALLOC_COLORS = { tech: '#5aa2ff', ai: '#b18aff', trade: '#2fd17a', design: '#f5b942' };
+const ALLOC_COLORS = { tech: '#5aa2ff', ai: '#b18aff', trade: '#2fd17a', media: '#f5b942', pm: '#ff7eb6' };
 function allocation() {
   const sums = {};
   skills.leaves.forEach((l) => { sums[l.cluster] = (sums[l.cluster] || 0) + l.strength; });
