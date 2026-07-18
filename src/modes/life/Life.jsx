@@ -12,18 +12,21 @@ import { prefersReducedMotion } from '../../lib/hooks';
  */
 const IMG = '/life/room.jpg';
 
-/* Hotspot positions as % of the render (tuned against the actual image). */
+/* Hotspot positions as % of the render (measured against the actual image,
+   1280×960, via a percent-grid overlay). Watch + namecard are intentionally
+   omitted for now — the render has no literal props for them, so they'll be
+   added once the scene carries matching objects. */
 const SPOTS = [
-  { id: 'trophy',   x: 17,   y: 22,   route: null,                theme: '#241a12' },
-  { id: 'cards',    x: 17,   y: 38,   route: '/life/cards',       theme: '#7d1620' },
-  { id: 'camera',   x: 16,   y: 55,   route: '/life/photography', theme: '#171a1f' },
-  { id: 'work',     x: 42,   y: 47,   route: '/',                 theme: '#141821' },
-  { id: 'watch',    x: 72,   y: 62,   route: '/life/watch',       theme: '#3a2c14' },
-  { id: 'namecard', x: 79,   y: 64.5, route: '/',                 theme: '#0f1114' },
+  { id: 'trophy',   x: 19, y: 24, route: null,                theme: '#241a12' },
+  { id: 'cards',    x: 19, y: 43, route: '/life/cards',       theme: '#7d1620' },
+  { id: 'camera',   x: 19, y: 58, route: '/life/photography', theme: '#171a1f' },
+  { id: 'work',     x: 40, y: 47, route: '/',                 theme: '#141821' },
 ];
 
-/* TV screen quad (percent box + skew to sit in the render's perspective). */
-const TV = { left: 70.6, top: 40.2, width: 16.2, height: 15.6, skew: 9 };
+/* TV screen quad (percent box + skew to sit in the render's perspective).
+   The TV is on the right wall, which recedes to the right — its horizontal
+   edges slope down-to-the-right, so the clock overlay skews positively. */
+const TV = { left: 70.5, top: 38, width: 15, height: 15, skew: 7 };
 
 function useClock() {
   const [now, setNow] = useState(() => new Date());
@@ -77,7 +80,7 @@ function Fallback() {
       <h1>{life.intro.title}</h1>
       <p>{life.intro.sub}</p>
       <div className="room-fallback-links">
-        {['camera', 'watch', 'cards', 'namecard'].map((id) => (
+        {['camera', 'cards'].map((id) => (
           <Link key={id} to={SPOTS.find((s) => s.id === id)?.route || '/'} className="room-fallback-link">
             <b>{life.objects[id].label}</b>
             <span>{life.objects[id].cta} →</span>
