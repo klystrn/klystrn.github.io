@@ -340,23 +340,32 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 .ig-lb-note{font-size:12px;color:#8b929c;margin-top:14px}
 
 /* ---- Watch story ---- */
-.ws{min-height:100vh;background:linear-gradient(#f6f1e8,#e7dcc9)}
+.ws{min-height:100vh;background:radial-gradient(120% 90% at 50% 32%,#1a1c20 0%,#0c0d10 55%,#040405 100%)}
 .ws-inner{max-width:640px;margin:0 auto;padding:110px 20px 70px;text-align:center}
-.ws-brand .ws-eyebrow{font-family:var(--plex);font-size:11px;letter-spacing:.26em;color:#b08d57;font-weight:600}
-.ws-brand h1{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4vw,40px);color:#2a211a;margin:8px 0 6px}
-.ws-brand p{font-size:14px;color:#8a745a}
-.ws-watch-wrap{display:flex;justify-content:center;margin:26px 0 8px}
-.ws-watch{width:min(340px,82vw);height:auto}
-.ws-year{font-family:var(--serif);font-weight:700;font-size:30px;fill:#1c1a17}
-.ws-line1{font-family:var(--plex);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;fill:#8a6c3e}
-.ws-story{margin-top:14px}
-.ws-caption{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2.4vw,20px);line-height:1.6;color:#3a2f24;max-width:520px;margin:0 auto;min-height:64px}
+.ws-brand .ws-eyebrow{font-family:var(--plex);font-size:11px;letter-spacing:.26em;color:#c9ccce;font-weight:600}
+.ws-brand h1{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4vw,40px);color:#f2f3f4;margin:8px 0 6px}
+.ws-brand p{font-size:14px;color:#9aa0a6}
+.ws-watch-wrap{display:flex;justify-content:center;margin:22px 0 8px}
+.ws-watch{width:min(360px,86vw);height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.65))}
+/* dial lettering */
+.ws-tachy-word{font-family:var(--plex);font-size:9px;letter-spacing:.34em;fill:#dcddd8;font-weight:600}
+.ws-tachy-num{font-family:var(--plex);font-size:6px;fill:#c9cac4}
+.ws-sub-num{font-family:var(--plex);font-size:5.6px;fill:#3a3833;font-weight:600}
+.ws-omega-sym{font-family:var(--serif);font-size:15px;fill:#f0efe8;font-weight:700}
+.ws-omega-word{font-family:var(--plex);font-size:9px;letter-spacing:.42em;fill:#f0efe8;font-weight:700}
+.ws-speed{font-family:var(--serif);font-style:italic;font-size:11px;fill:#eceae2}
+.ws-prof{font-family:var(--plex);font-size:6px;letter-spacing:.34em;fill:#d7d5cd}
+/* story */
+.ws-story{margin-top:18px}
+.ws-year-big{font-family:var(--serif);font-weight:700;font-size:clamp(30px,5vw,44px);color:#f2f3f4;line-height:1}
+.ws-line1{font-family:var(--plex);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#9aa0a6;margin-top:6px}
+.ws-caption{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2.4vw,20px);line-height:1.6;color:#cdd0d3;max-width:520px;margin:12px auto 0;min-height:82px}
 .ws-dots{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:24px 0 16px}
-.ws-dot{background:none;border:1px solid rgba(90,70,42,.3);border-radius:100px;padding:6px 12px;cursor:pointer;font-family:var(--plex);font-size:10.5px;color:#8a745a;transition:.2s}
-.ws-dot:hover{border-color:#b08d57;color:#5a4632}
-.ws-dot.on{background:#c0392b;border-color:#c0392b;color:#fff}
-.ws-pause{background:none;border:none;cursor:pointer;font-family:var(--plex);font-size:11px;color:#a08a6c;text-decoration:underline;padding:6px}
-.ws-pause:hover{color:#5a4632}
+.ws-dot{background:none;border:1px solid rgba(200,205,210,.22);border-radius:100px;padding:6px 12px;cursor:pointer;font-family:var(--plex);font-size:10.5px;color:#9aa0a6;transition:.2s}
+.ws-dot:hover{border-color:rgba(200,205,210,.55);color:#e2e4e6}
+.ws-dot.on{background:#e2e4e6;border-color:#e2e4e6;color:#111}
+.ws-pause{background:none;border:none;cursor:pointer;font-family:var(--plex);font-size:11px;color:#7f858b;text-decoration:underline;padding:6px}
+.ws-pause:hover{color:#c9ccce}
 
 /* ---- Card game ---- */
 .cg{min-height:100vh;background:radial-gradient(120% 90% at 50% 0%,#1a1f28,#0c0f15);color:#dfe6f2}

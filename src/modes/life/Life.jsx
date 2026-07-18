@@ -15,14 +15,15 @@ const IMG = '/life/room.png';
 /* Hotspot positions as % of the render (measured against the actual image,
    1280×1090, via a percent-grid overlay). The render was expanded downward to
    reveal the full marble floor, so y-values are shorter than the earlier 960px
-   crop. Watch + namecard are intentionally omitted for now — the render has no
-   literal props for them, so they'll be added once the scene carries matching
-   objects. */
+   crop. The Omega Speedmaster now sits on the TV console's top shelf (measured
+   at 78.7%, 50.5% off the render), so the watch hotspot is live. Namecard is
+   still omitted — the render carries no literal prop for it yet. */
 const SPOTS = [
   { id: 'trophy',   x: 19, y: 21, route: null,                theme: '#241a12' },
   { id: 'cards',    x: 19, y: 38, route: '/life/cards',       theme: '#7d1620' },
   { id: 'camera',   x: 19, y: 51, route: '/life/photography', theme: '#171a1f' },
   { id: 'work',     x: 40, y: 41, route: '/',                 theme: '#141821' },
+  { id: 'watch',    x: 79, y: 50, route: '/life/watch',       theme: '#0c0d10' },
 ];
 
 function AwardsTip({ d }) {
