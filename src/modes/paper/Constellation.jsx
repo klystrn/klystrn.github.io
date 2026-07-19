@@ -9,7 +9,7 @@ const VIEW = { w: 1300, h: 1000, cx: 650, cy: 480 };
 const RH = 155; // hub ring
 const RS = 300; // sub-hub ring / direct-leaf ring
 const RL = 415; // leaf-under-sub-hub ring
-const STAG = 44; // every other leaf pushed out a ring, so close labels never collide
+const STAG = 130; // every other leaf pushed out a ring, so close labels never collide
 const D2R = Math.PI / 180;
 const at = (r, deg) => [VIEW.cx + r * Math.cos(deg * D2R), VIEW.cy + r * Math.sin(deg * D2R)];
 
@@ -90,7 +90,7 @@ function buildGraph() {
           const [sx, sy] = at(RS, cAng);
           const subN = push({ id: s.id, kind: 'subhub', x: sx, y: sy, r: 16, label: s.label, fs: 9, ang: cAng, t: 0.38, cap: `<b>${s.label}</b> · ${h.label} sub-cluster` });
           link(hubN, subN, false, 0.34, h.id, s.id);
-          fanLeaves(leafByParent[s.id] || [], cAng - (slice * 0.84) / 2, slice * 0.84, RL, subN, s.id);
+          fanLeaves(leafByParent[s.id] || [], cAng - (slice * 0.7) / 2, slice * 0.7, RL, subN, s.id);
         } else {
           const [lx, ly] = at(RS + (di % 2) * STAG, cAng);
           di += 1;
@@ -136,14 +136,17 @@ function leafNode(l, x, y, ang) {
    so labels lead away from the graph interior. */
 function labelPos(n) {
   if (n.kind === 'rootn' || n.kind === 'hub') return { x: n.x, y: n.y + 4, anchor: 'middle' };
+  // Sub-hubs sit at a fixed, fairly large radius with several lines converging
+  // on them, so they need more breathing room than a small leaf dot does.
+  const pad = n.kind === 'subhub' ? 15 : 8;
   const c = Math.cos(n.ang * D2R);
   const s = Math.sin(n.ang * D2R);
   if (Math.abs(c) > 0.1) {
     return c > 0
-      ? { x: n.x + n.r + 7, y: n.y + 4, anchor: 'start' }
-      : { x: n.x - n.r - 7, y: n.y + 4, anchor: 'end' };
+      ? { x: n.x + n.r + pad, y: n.y + 4, anchor: 'start' }
+      : { x: n.x - n.r - pad, y: n.y + 4, anchor: 'end' };
   }
-  return { x: n.x, y: s < 0 ? n.y - n.r - 9 : n.y + n.r + 16, anchor: 'middle' };
+  return { x: n.x, y: s < 0 ? n.y - n.r - pad - 2 : n.y + n.r + pad + 7, anchor: 'middle' };
 }
 
 const IDLE_CAP = 'scroll to expand · hover a node · click to pin its connections';
