@@ -386,6 +386,11 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 .cg-board svg{display:block;overflow:visible}
 .cg-ring-pts{font-family:var(--plex);font-size:9px;fill:#8b96ab;letter-spacing:.04em}
 .cg-mark{position:absolute;width:14px;height:20px;border-radius:2px;background:#fbfaf7;border:1px solid #d92b35;transform:translate(-50%,-50%) rotate(18deg);box-shadow:0 3px 8px rgba(0,0,0,.4);z-index:4}
+.cg-burst{position:absolute;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;border:2.5px solid #2fd17a;box-shadow:0 0 0 5px rgba(47,209,122,.18);pointer-events:none;z-index:7}
+.cg-burst.big{border-color:#f5b942;box-shadow:0 0 0 5px rgba(245,185,66,.22)}
+@keyframes cg-punch{0%,100%{transform:none}35%{transform:translate(2px,-1px)}70%{transform:translate(-2px,1px)}}
+.cg-arena.punch{animation:cg-punch .22s ease}
+@media(prefers-reduced-motion:reduce){.cg-arena.punch{animation:none}}
 .cg-guide{position:absolute;left:0;top:0;pointer-events:none;z-index:5}
 .cg-card{position:absolute;width:64px;z-index:6;transform:translate(-50%,-50%)}
 .cg-card.live{cursor:grab}

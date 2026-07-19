@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import life from '../../data/life.json';
 import { CardsArt } from './objects';
+import { prefersReducedMotion } from '../../lib/hooks';
 
 const C = life.cards;
 const RINGS = [...C.rings].sort((a, b) => a.r - b.r); // ascending radius
@@ -23,6 +24,8 @@ export default function CardGame() {
   const [flight, setFlight] = useState(null); // { to:{x,y}, scale }
   const [marks, setMarks] = useState([]); // landed hits {x,y,pts,id}
   const [pop, setPop] = useState(null); // last-throw score popup
+  const [burst, setBurst] = useState(null); // impact ring at the landing point
+  const [shake, setShake] = useState(false); // brief arena punch on a scoring hit
   const [dim, setDim] = useState(null); // measured arena {w,h} — drives layout
 
   // Measure the arena so board/card positions are pixel-accurate (and stay so
@@ -54,7 +57,7 @@ export default function CardGame() {
   const onDown = (e) => {
     if (phase !== 'aim') return;
     e.currentTarget.setPointerCapture?.(e.pointerId);
-    drag.current = { startX: e.clientX, startY: e.clientY };
+    drag.current = { startX: e.clientX, startY: e.clientY, startT: performance.now() };
     setPos({ dx: 0, dy: 0 });
   };
 
@@ -71,6 +74,7 @@ export default function CardGame() {
     if (!drag.current) return;
     const dx = e.clientX - drag.current.startX;
     const dy = e.clientY - drag.current.startY;
+    const elapsed = Math.max(performance.now() - drag.current.startT, 60);
     drag.current = null;
 
     // Not a real upward flick — reset the card, no throw spent.
@@ -84,11 +88,24 @@ export default function CardGame() {
     const dist = Math.hypot(p.x - p.boardX, p.y - p.boardY);
     const ring = RINGS.find((rg) => dist <= rg.r);
     const pts = ring ? ring.points : 0;
+    const reduced = prefersReducedMotion();
+
+    // Flick speed (px/ms of the pull) drives how snappy the throw reads: a
+    // fast short flick gets a quick, hard-spinning throw; a slow drag lobs.
+    // Score is still purely a function of where you aimed — speed is feel only.
+    const pull = Math.hypot(dx, dy);
+    const speed = pull / elapsed;
+    const travel = Math.hypot(p.x - homePx.x, p.y - homePx.y);
+    const duration = reduced ? 0.001 : Math.min(Math.max(0.42 - speed * 0.12, 0.2), 0.42);
+    const spin = 300 + Math.min(speed * 260, 420) * (dx < 0 ? -1 : 1);
+    const lift = Math.min(Math.max(travel * 0.16, 22), 70);
+    const curve = Math.max(Math.min(dx * 0.14, 45), -45);
+    const mid = { x: (homePx.x + p.x) / 2 + curve, y: (homePx.y + p.y) / 2 - lift };
 
     setPos(null);
     setAim(null);
     setPhase('flying');
-    setFlight({ to: { x: p.x, y: p.y }, scale: 0.45 });
+    setFlight({ to: { x: p.x, y: p.y }, mid, scale: 0.45, duration, spin });
 
     // Resolve after the flight animation.
     window.setTimeout(() => {
@@ -96,12 +113,18 @@ export default function CardGame() {
       if (pts > 0) setMarks((m) => [...m.slice(-6), { x: p.x, y: p.y, pts, id }]);
       setScore((s) => s + pts);
       setPop({ pts, id, miss: pts === 0 });
+      setBurst({ x: p.x, y: p.y, id, big: ring === RINGS[0] });
       setFlight(null);
+      if (!reduced && pts > 0) {
+        setShake(true);
+        window.setTimeout(() => setShake(false), 220);
+      }
       const remaining = left - 1;
       setLeft(remaining);
       setPhase(remaining > 0 ? 'aim' : 'over');
       window.setTimeout(() => setPop((cur) => (cur && cur.id === id ? null : cur)), 900);
-    }, 620);
+      window.setTimeout(() => setBurst((cur) => (cur && cur.id === id ? null : cur)), 500);
+    }, duration * 1000);
   };
 
   const reset = () => {
@@ -137,7 +160,7 @@ export default function CardGame() {
       </div>
 
       <div
-        className="cg-arena"
+        className={`cg-arena ${shake ? 'punch' : ''}`}
         ref={arenaRef}
         onPointerMove={onMove}
         onPointerUp={onUp}
@@ -184,17 +207,43 @@ export default function CardGame() {
           </svg>
         )}
 
-        {/* flying card */}
+        {/* flying card — arcs through a lifted midpoint (real toss, not a
+            straight slide), with a quick windup pop and a small undershoot-then-
+            settle bounce on arrival so it reads as a snappy, weighted throw. */}
         <AnimatePresence>
           {flight && (
             <motion.div
               className="cg-card flying"
               initial={{ x: homePx.x, y: homePx.y, scale: 1, rotate: 0 }}
-              animate={{ x: flight.to.x, y: flight.to.y, scale: flight.scale, rotate: 380 }}
-              transition={{ duration: 0.6, ease: [0.3, 0.7, 0.4, 1] }}
+              animate={{
+                x: [homePx.x, flight.mid.x, flight.to.x],
+                y: [homePx.y, flight.mid.y, flight.to.y],
+                scale: [1, 1.14, flight.scale * 0.86, flight.scale],
+                rotate: flight.spin,
+              }}
+              transition={{
+                x: { duration: flight.duration, ease: [0.3, 0.1, 0.7, 1] },
+                y: { duration: flight.duration, ease: [0.3, 0.1, 0.7, 1] },
+                scale: { duration: flight.duration, times: [0, 0.16, 0.82, 1], ease: 'easeOut' },
+                rotate: { duration: flight.duration, ease: 'easeIn' },
+              }}
             >
               <CardsArt className="cg-card-art" />
             </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* impact burst — a quick expanding ring where the card lands */}
+        <AnimatePresence>
+          {burst && (
+            <motion.div
+              key={burst.id}
+              className={`cg-burst ${burst.big ? 'big' : ''}`}
+              style={{ left: burst.x, top: burst.y }}
+              initial={{ opacity: 0.9, scale: 0.3 }}
+              animate={{ opacity: 0, scale: burst.big ? 2.4 : 1.7 }}
+              transition={{ duration: 0.46, ease: 'easeOut' }}
+            />
           )}
         </AnimatePresence>
 
