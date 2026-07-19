@@ -22,7 +22,9 @@ export function ModeProvider({ children }) {
 
   const [seenModes, setSeenModes] = useState(() => new Set(['paper']));
   const [toastMsg, setToastMsg] = useState('');
+  const [flashedMode, setFlashedMode] = useState(null);
   const toastTimer = useRef();
+  const flashTimer = useRef();
   // Cross-mode handoff: Tech's "$SYM in Finance mode →" link pre-selects a ticker.
   const pendingFinanceSym = useRef(null);
 
@@ -30,6 +32,15 @@ export function ModeProvider({ children }) {
     setToastMsg(m);
     clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToastMsg(''), 2600);
+  };
+
+  // Briefly pulse a nav tab — used when a mode switch is triggered indirectly
+  // (e.g. the Tech terminal's `mode <name>`) so the destination tab visibly
+  // acknowledges the command instead of just silently becoming active.
+  const flashTab = (m) => {
+    setFlashedMode(m);
+    clearTimeout(flashTimer.current);
+    flashTimer.current = setTimeout(() => setFlashedMode(null), 850);
   };
 
   useEffect(() => {
@@ -50,9 +61,11 @@ export function ModeProvider({ children }) {
       setMode: (m) => navigate(MODE_TO_PATH[m] || '/'),
       toast,
       toastMsg,
+      flashedMode,
+      flashTab,
       pendingFinanceSym,
     }),
-    [mode, seenModes, toastMsg] // eslint-disable-line react-hooks/exhaustive-deps
+    [mode, seenModes, toastMsg, flashedMode] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return <ModeContext.Provider value={value}>{children}</ModeContext.Provider>;

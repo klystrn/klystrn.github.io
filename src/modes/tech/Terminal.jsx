@@ -18,14 +18,18 @@ const FS = {
 const DIRMAP = { '~/experience': ['exp'], '~/projects': ['proj'], '~/projects/supplementary': ['proj', 'supp'] };
 const NAMES = openNames();
 
-/* Terminal boots by running `help` (v6 behaviour), typed out char-by-char. */
+/* Terminal boots by running `help` (v6 behaviour), typed out char-by-char.
+   The tip line surfaces the two least-discoverable interactions in this mode —
+   the git-blame hover tooltip on the file tree, and ⌘K / Ctrl-K quick-open. */
+const TIP = 'tip · hover a file in the tree for its last commit · ⌘K to quick-open';
 const INITIAL = [
   { kind: 'cmd', cwd: '~', text: 'help' },
   { kind: 'out', text: HELP },
+  { kind: 'tip', text: TIP },
 ];
 
 export default function Terminal({ openFile, expandDirs }) {
-  const { setMode, toast } = useMode();
+  const { setMode, toast, flashTab } = useMode();
   const [lines, setLines] = useState(() => (prefersReducedMotion() ? INITIAL : []));
   const [booting, setBooting] = useState(() => (prefersReducedMotion() ? null : ''));
 
@@ -87,6 +91,7 @@ export default function Terminal({ openFile, expandDirs }) {
       mode: () => {
         const m = (args[0] || '').toLowerCase();
         if (['paper', 'tech', 'finance'].includes(m)) {
+          flashTab(m);
           setTimeout(() => setMode(m), 300);
           return `switching to ${m} mode…`;
         }

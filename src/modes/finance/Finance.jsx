@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import identity from '../../data/identity.json';
 import experience from '../../data/experience.json';
 import education from '../../data/education.json';
@@ -33,17 +33,24 @@ function fundamentals() {
   ];
 }
 
-/* Cluster strengths from skills.json → portfolio-style sector allocation. */
+/* Cluster strengths from skills.json → portfolio-style sector allocation.
+   Leaves attach to a hub OR a sub-hub (Programming/Data/Infra under TECH,
+   Design under MEDIA), so roll each leaf up to its top-level hub before summing. */
 const ALLOC_COLORS = { tech: '#5aa2ff', ai: '#b18aff', trade: '#2fd17a', media: '#f5b942', pm: '#ff7eb6' };
 function allocation() {
+  const subToHub = Object.fromEntries((skills.subhubs || []).map((s) => [s.id, s.hub]));
+  const hubOf = (parent) => subToHub[parent] || parent;
   const sums = {};
-  skills.leaves.forEach((l) => { sums[l.cluster] = (sums[l.cluster] || 0) + l.strength; });
-  const total = Object.values(sums).reduce((a, b) => a + b, 0);
-  return Object.entries(skills.hubs).map(([k, h]) => ({
-    key: k,
+  skills.leaves.forEach((l) => {
+    const h = hubOf(l.parent);
+    sums[h] = (sums[h] || 0) + l.strength;
+  });
+  const total = Object.values(sums).reduce((a, b) => a + b, 0) || 1;
+  return skills.hubs.map((h) => ({
+    key: h.id,
     label: h.label,
-    pct: Math.round((sums[k] / total) * 100),
-    color: ALLOC_COLORS[k],
+    pct: Math.round((sums[h.id] || 0) / total * 100),
+    color: ALLOC_COLORS[h.id],
   }));
 }
 
@@ -53,14 +60,14 @@ function spark(c) {
   return c.map((v, i) => `${(i / (c.length - 1)) * 100},${20 - ((v - min) / (max - min)) * 18}`).join(' ');
 }
 
-function Tape() {
+function Tape({ onPick }) {
   const trackRef = useMarquee();
   const items = [
     <>$RTAN <b className="u">▲</b></>,
     ...PROJECTS.map((p) => (
-      <>
+      <button type="button" className="tape-sym" tabIndex={-1} onClick={() => onPick(p.sym)}>
         ${p.sym} <b className="u">{p.chg}</b>
-      </>
+      </button>
     )),
     ...awards
       .filter((a) => a.tape)
@@ -89,11 +96,69 @@ function Tape() {
   );
 }
 
+/* Trade ticket that actually "fills": a simulated market order animates a fill
+   bar and lands on a confirmation, then nudges toward the real contact CTA —
+   so the panel reads transactional instead of decorative. */
+function TradeTicket({ ticket, sym, email, linkedin, cvUrl, onCv }) {
+  const [phase, setPhase] = useState('idle'); // idle | filling | filled
+  const [pct, setPct] = useState(0);
+  const raf = useRef(0);
+
+  useEffect(() => () => cancelAnimationFrame(raf.current), []);
+
+  const fill = () => {
+    if (phase === 'filling') return;
+    setPhase('filling');
+    setPct(0);
+    if (prefersReducedMotion()) { setPct(100); setPhase('filled'); return; }
+    const start = performance.now();
+    const tick = () => {
+      const t = Math.min((performance.now() - start) / 900, 1);
+      setPct(Math.round((1 - Math.pow(1 - t, 3)) * 100)); // ease-out
+      if (t < 1) raf.current = requestAnimationFrame(tick);
+      else setPhase('filled');
+    };
+    raf.current = requestAnimationFrame(tick);
+  };
+
+  return (
+    <div className="ticket">
+      <p>{ticket}</p>
+      <div className={`tk-order ${phase}`}>
+        <div className="tk-order-head">
+          <span>MARKET ORDER</span>
+          <span className="tk-order-sym">BUY 1 ${sym} @ MKT</span>
+        </div>
+        {phase !== 'idle' && (
+          <div className="tk-fillbar"><i style={{ width: `${pct}%` }} /></div>
+        )}
+        {phase === 'filled' ? (
+          <div className="tk-filled">✓ FILLED @ MKT · settles in an interview →</div>
+        ) : (
+          <button type="button" className="tk-sim" onClick={fill}>
+            {phase === 'filling' ? `FILLING… ${pct}%` : '▸ SIMULATE FILL'}
+          </button>
+        )}
+      </div>
+      <div className="t-row">
+        <a className={`btn buy ${phase === 'filled' ? 'pulse' : ''}`} href={`mailto:${email}`}>BUY · CONTACT</a>
+        <a className="btn line" href={linkedin} target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      </div>
+      <a className="prospectus" href={cvUrl || '#'} onClick={onCv}>
+        <span>⬇ DOWNLOAD PROSPECTUS</span>
+        <span>CV.PDF</span>
+      </a>
+    </div>
+  );
+}
+
 export default function Finance() {
   const { toast, pendingFinanceSym } = useMode();
   const [tab, setTab] = useState('flag');
   const [sym, setSym] = useState('ATW');
   const [flick, setFlick] = useState(null);
+  const [allocHot, setAllocHot] = useState(null);
+  const alloc = allocation();
   const fin = identity.finance;
   const c = identity.contact;
 
@@ -146,6 +211,19 @@ export default function Finance() {
     if (first) setSym(first.sym);
   };
 
+  // Clicking a symbol on the ticker tape jumps to it in the watchlist: switch to
+  // the right tab, select it, scroll the panel into view, and flash the row.
+  const [picked, setPicked] = useState(null);
+  const pickFromTape = (s) => {
+    const p = bySym(s);
+    if (!p) return;
+    setTab(p.flag ? 'flag' : 'supp');
+    setSym(s);
+    document.getElementById('fin-watchlist')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setPicked(s);
+    setTimeout(() => setPicked((cur) => (cur === s ? null : cur)), 1200);
+  };
+
   const cvClick = (e) => {
     e.preventDefault();
     if (c.cvUrl) window.open(c.cvUrl, '_blank');
@@ -154,7 +232,7 @@ export default function Finance() {
 
   return (
     <div className="mf">
-      <Tape />
+      <Tape onPick={pickFromTape} />
       <main className="shell">
         <header className="term-head">
           <div className="th-sym">
@@ -177,7 +255,7 @@ export default function Finance() {
         </div>
         <div className="grid">
           <div className="col">
-            <section className="panel">
+            <section className="panel" id="fin-watchlist">
               <div className="p-head">
                 <span className="p-title">{headers.finance.watchlist}</span>
                 <span className="p-hint">click to inspect</span>
@@ -192,7 +270,7 @@ export default function Finance() {
                     <div className="wl-sect">{sec}</div>
                     {arr.map((p) => (
                       <div
-                        className={`wl-row ${p.sym === sel.sym ? 'on' : ''}`}
+                        className={`wl-row ${p.sym === sel.sym ? 'on' : ''} ${p.sym === picked ? 'flash' : ''}`}
                         key={p.sym}
                         tabIndex={0}
                         role="button"
@@ -283,32 +361,40 @@ export default function Finance() {
               <div className="p-head">
                 <span className="p-title">{headers.finance.ticket}</span>
               </div>
-              <div className="ticket">
-                <p>{fin.ticket}</p>
-                <div className="t-row">
-                  <a className="btn buy" href={`mailto:${c.email}`}>BUY · CONTACT</a>
-                  <a className="btn line" href={c.linkedin} target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-                </div>
-                <a className="prospectus" href={c.cvUrl || '#'} onClick={cvClick}>
-                  <span>⬇ DOWNLOAD PROSPECTUS</span>
-                  <span>CV.PDF</span>
-                </a>
-              </div>
+              <TradeTicket
+                ticket={fin.ticket}
+                sym={fin.sym}
+                email={c.email}
+                linkedin={c.linkedin}
+                cvUrl={c.cvUrl}
+                onCv={cvClick}
+              />
             </section>
             <section className="panel">
               <div className="p-head">
                 <span className="p-title">Sector Exposure · Allocation</span>
                 <span className="p-hint">by skill strength</span>
               </div>
-              <div className="alloc">
+              <div className={`alloc ${allocHot ? 'has-hot' : ''}`}>
                 <div className="alloc-bar">
-                  {allocation().map((a) => (
-                    <i key={a.key} style={{ width: `${a.pct}%`, background: a.color }} />
+                  {alloc.map((a) => (
+                    <i
+                      key={a.key}
+                      className={allocHot === a.key ? 'hot' : ''}
+                      style={{ width: `${a.pct}%`, background: a.color }}
+                      onMouseEnter={() => setAllocHot(a.key)}
+                      onMouseLeave={() => setAllocHot((h) => (h === a.key ? null : h))}
+                    />
                   ))}
                 </div>
                 <div className="alloc-key">
-                  {allocation().map((a) => (
-                    <div className="alloc-row" key={a.key}>
+                  {alloc.map((a) => (
+                    <div
+                      className={`alloc-row ${allocHot === a.key ? 'hot' : ''}`}
+                      key={a.key}
+                      onMouseEnter={() => setAllocHot(a.key)}
+                      onMouseLeave={() => setAllocHot((h) => (h === a.key ? null : h))}
+                    >
                       <b style={{ background: a.color }} />
                       {a.label}
                       <span className="pct">{a.pct}%</span>

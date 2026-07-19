@@ -157,6 +157,8 @@ export default function Constellation({ header }) {
   const [progress, setProgress] = useState(0);
   const [hotId, setHotId] = useState(null);
   const [pinned, setPinned] = useState(false);
+  const [hint, setHint] = useState(false); // one-shot "it's interactive" nudge
+  const hintShown = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -208,7 +210,21 @@ export default function Constellation({ header }) {
     }
   }, [settled]);
 
-  const enter = (id) => { if (settled && !pinned) setHotId(id); };
+  // Once the zoom-in settles, the graph becomes interactive — but that's not
+  // obvious, so flash a one-time nudge that auto-clears (or clears the moment
+  // the user actually touches a node).
+  useEffect(() => {
+    if (settled && !hintShown.current) {
+      hintShown.current = true;
+      setHint(true);
+      const t = setTimeout(() => setHint(false), 3200);
+      return () => clearTimeout(t);
+    }
+    return undefined;
+  }, [settled]);
+  const dismissHint = () => { if (hint) setHint(false); };
+
+  const enter = (id) => { dismissHint(); if (settled && !pinned) setHotId(id); };
   const leave = () => { if (!pinned) setHotId(null); };
   const click = (e, id) => {
     e.stopPropagation();
@@ -231,7 +247,7 @@ export default function Constellation({ header }) {
           role="img"
           aria-label="Skills constellation"
           className={hotId ? 'dimmed' : ''}
-          onClick={() => { if (pinned) { setPinned(false); setHotId(null); } }}
+          onClick={() => { dismissHint(); if (pinned) { setPinned(false); setHotId(null); } }}
         >
           <g transform={`translate(${VIEW.cx} ${VIEW.cy}) scale(${scale}) translate(${-VIEW.cx} ${-VIEW.cy})`}>
             {edges.map((e, i) => (
@@ -260,6 +276,7 @@ export default function Constellation({ header }) {
             })}
           </g>
         </svg>
+        <div className={`sk-nudge ${hint ? 'show' : ''}`} aria-hidden="true">hover a node to explore</div>
         <div className="sk-caption" dangerouslySetInnerHTML={{ __html: capHtml }} />
       </div>
     </section>

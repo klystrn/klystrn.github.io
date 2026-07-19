@@ -47,7 +47,16 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .mv-rail button:hover{border-color:#d92b35}
 .mv-rail .lbl{position:absolute;right:22px;top:50%;transform:translateY(-50%);font-family:var(--plex);font-size:10px;color:#4c545e;background:#fff;border:1px solid #dcdfd9;border-radius:5px;padding:3px 9px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
 .mv-rail button:hover .lbl{opacity:1}
-@media(max-width:1100px){.mv-rail{display:none}}
+/* Mobile: no room for a right-edge rail, so dock it as a compact horizontal
+   dot strip at the bottom-centre. The active section's label floats above its
+   dot (hover labels are useless on touch), giving jump nav + a "where am I". */
+@media(max-width:1100px){
+  .mv-rail{right:auto;left:50%;top:auto;bottom:16px;transform:translateX(-50%);flex-direction:row;gap:11px;background:rgba(243,244,241,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--vline);border-radius:100px;padding:11px 15px;box-shadow:0 8px 26px rgba(0,0,0,.14)}
+  .mv-rail button.on{transform:scale(1.5)}
+  .mv-rail .lbl{right:auto;left:50%;top:auto;bottom:calc(100% + 9px);transform:translateX(-50%);opacity:0}
+  .mv-rail button.on .lbl{opacity:1}
+}
+@media(max-width:1100px) and (prefers-reduced-motion:reduce){.mv-rail .lbl{transition:none}}
 
 /* --- Paper: testimonials carousel (one card at a time) --- */
 .ts-car{position:relative;padding:0 64px}
@@ -98,11 +107,35 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 /* --- Finance: sector allocation --- */
 .mf .alloc{padding:14px}
 .mf .alloc-bar{display:flex;height:12px;border-radius:6px;overflow:hidden;border:1px solid var(--fls)}
-.mf .alloc-bar i{display:block;height:100%}
+.mf .alloc-bar i{display:block;height:100%;cursor:pointer;transition:opacity .18s,filter .18s}
+.mf .alloc.has-hot .alloc-bar i{opacity:.32}
+.mf .alloc.has-hot .alloc-bar i.hot{opacity:1;filter:brightness(1.15)}
 .mf .alloc-key{margin-top:12px;display:flex;flex-direction:column;gap:7px}
-.mf .alloc-row{display:flex;align-items:center;gap:9px;font-family:var(--plex);font-size:11px;color:var(--fdim)}
+.mf .alloc-row{display:flex;align-items:center;gap:9px;font-family:var(--plex);font-size:11px;color:var(--fdim);cursor:pointer;border-radius:4px;padding:2px 4px;margin:-2px -4px;transition:background .18s,color .18s}
+.mf .alloc.has-hot .alloc-row{opacity:.5}
+.mf .alloc.has-hot .alloc-row.hot{opacity:1;background:rgba(255,255,255,.05);color:var(--ftxt)}
 .mf .alloc-row b{width:9px;height:9px;border-radius:2px;display:inline-block;flex:none}
 .mf .alloc-row .pct{margin-left:auto;color:var(--ftxt)}
+
+/* --- Finance: ticker-tape symbols are clickable → jump to watchlist --- */
+.mf .tape-sym{background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;transition:color .15s}
+.mf .tape-sym:hover{color:var(--amber)}
+.mf .tape-sym:hover b{filter:brightness(1.25)}
+@keyframes wl-flash{0%,100%{background:var(--fpanel2)}30%{background:rgba(245,185,66,.24)}}
+.mf .wl-row.flash{animation:wl-flash 1.1s ease}
+
+/* --- Finance: trade ticket "fills" (simulated market order) --- */
+.mf .tk-order{border:1px solid var(--fls);border-radius:8px;padding:10px 12px;background:var(--fpanel2);display:flex;flex-direction:column;gap:8px}
+.mf .tk-order-head{display:flex;justify-content:space-between;font-family:var(--plex);font-size:10px;letter-spacing:.1em;color:var(--fdim)}
+.mf .tk-order-sym{color:var(--ftxt)}
+.mf .tk-fillbar{height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.mf .tk-fillbar i{display:block;height:100%;background:var(--up)}
+.mf .tk-sim{background:none;border:1px solid rgba(47,209,122,.4);color:var(--up);font-family:var(--plex);font-size:11px;font-weight:700;letter-spacing:.05em;padding:8px;border-radius:6px;cursor:pointer;transition:.18s}
+.mf .tk-sim:hover{background:rgba(47,209,122,.08)}
+.mf .tk-filled{font-family:var(--plex);font-size:11px;font-weight:700;color:var(--up);text-align:center;padding:6px}
+@keyframes btn-pulse{0%,100%{box-shadow:0 0 0 0 rgba(47,209,122,0)}45%{box-shadow:0 0 0 4px rgba(47,209,122,.32)}}
+.mf .btn.buy.pulse{animation:btn-pulse 1.2s ease 2}
+@media(prefers-reduced-motion:reduce){.mf .btn.buy.pulse,.mf .wl-row.flash{animation:none}}
 
 /* --- Finance: live pulse on status dot --- */
 .mf .dot{animation:fpulse 1.6s ease-in-out infinite}

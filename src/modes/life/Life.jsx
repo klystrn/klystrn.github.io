@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import life from '../../data/life.json';
 import { prefersReducedMotion } from '../../lib/hooks';
@@ -80,6 +80,7 @@ export default function Life() {
   const [hot, setHot] = useState(null);       // hovered/focused spot id
   const [zoom, setZoom] = useState(null);     // spot being zoomed into
   const [missing, setMissing] = useState(false);
+  const spotRefs = useRef([]);                // hotspot buttons, for number-key jump
 
   const pick = useCallback(
     (spot) => {
@@ -96,6 +97,22 @@ export default function Life() {
     const t = setTimeout(() => navigate(zoom.route), 780);
     return () => clearTimeout(t);
   }, [zoom, navigate]);
+
+  // Number keys 1–N jump straight to the matching object: focus its hotspot
+  // (which surfaces the tooltip via onFocus), so keyboard users get the same
+  // reach as a mouse without hunting through the tab order.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (zoom || e.metaKey || e.ctrlKey || e.altKey) return;
+      const i = e.key.charCodeAt(0) - 49; // '1' -> 0
+      if (i >= 0 && i < SPOTS.length && e.key >= '1' && e.key <= '9') {
+        spotRefs.current[i]?.focus();
+        e.preventDefault();
+      }
+    };
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
+  }, [zoom]);
 
   if (missing) return <div className="room-scene"><Fallback /></div>;
 
@@ -130,12 +147,13 @@ export default function Life() {
           />
 
           {/* hotspots */}
-          {SPOTS.map((s) => (
+          {SPOTS.map((s, i) => (
             <button
               key={s.id}
+              ref={(el) => { spotRefs.current[i] = el; }}
               className={`room-spot ${hot === s.id ? 'on' : ''} ${s.route ? '' : 'info'}`}
               style={{ left: `${s.x}%`, top: `${s.y}%` }}
-              aria-label={`${life.objects[s.id].label}${s.route ? ` — ${life.objects[s.id].cta}` : ''}`}
+              aria-label={`${i + 1}: ${life.objects[s.id].label}${s.route ? ` — ${life.objects[s.id].cta}` : ''}`}
               onMouseEnter={() => setHot(s.id)}
               onMouseLeave={() => setHot((h) => (h === s.id ? null : h))}
               onFocus={() => setHot(s.id)}
@@ -166,7 +184,7 @@ export default function Life() {
         style={{ background: zoom ? zoom.theme : 'transparent', opacity: zoom ? 1 : 0 }}
       />
 
-      <div className={`room-hint ${zoom ? 'gone' : ''}`}>Hover an object · click to step inside</div>
+      <div className={`room-hint ${zoom ? 'gone' : ''}`}>Hover an object · click to step inside · press 1–{SPOTS.length} to jump</div>
     </div>
   );
 }

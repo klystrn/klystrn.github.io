@@ -1,7 +1,7 @@
 import { useMode } from './ModeContext';
 
 export default function PillNav() {
-  const { mode, setMode } = useMode();
+  const { mode, setMode, flashedMode } = useMode();
   const life = mode === 'life';
   const proMode = life ? null : mode;
 
@@ -16,7 +16,7 @@ export default function PillNav() {
           {['paper', 'tech', 'finance'].map((m) => (
             <button
               key={m}
-              className={`mode-btn ${proMode === m ? 'on' : ''}`}
+              className={`mode-btn ${proMode === m ? 'on' : ''} ${flashedMode === m ? 'flash' : ''}`}
               onClick={() => setMode(m)}
             >
               {m[0].toUpperCase() + m.slice(1)}
