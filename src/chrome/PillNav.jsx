@@ -9,11 +9,11 @@ export default function PillNav() {
     <nav className="nav-wrap" aria-label="Primary">
       <div className="pill">
         <span className="brand" title="Reginald">R.</span>
-        <button className={`tab-btn ${life ? '' : 'on'}`} onClick={() => setMode('vanilla')}>
+        <button className={`tab-btn ${life ? '' : 'on'}`} onClick={() => setMode('paper')}>
           Professional
         </button>
         <div className={`modes ${life ? 'hidden' : ''}`}>
-          {['vanilla', 'tech', 'finance'].map((m) => (
+          {['paper', 'tech', 'finance'].map((m) => (
             <button
               key={m}
               className={`mode-btn ${proMode === m ? 'on' : ''}`}

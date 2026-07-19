@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ModeProvider } from './chrome/ModeContext';
 import PillNav from './chrome/PillNav';
 import Toast from './chrome/Toast';
-import Vanilla from './modes/vanilla/Vanilla';
+import Paper from './modes/paper/Paper';
 import Tech from './modes/tech/Tech';
 import Finance from './modes/finance/Finance';
 import NotFound from './modes/NotFound';
@@ -23,7 +23,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         <Suspense fallback={<div className="route-loading" aria-live="polite">Loading…</div>}>
           <Routes>
-            <Route path="/" element={<Vanilla />} />
+            <Route path="/" element={<Paper />} />
             <Route path="/tech" element={<Tech />} />
             <Route path="/finance" element={<Finance />} />
             <Route path="/life" element={<Life />} />

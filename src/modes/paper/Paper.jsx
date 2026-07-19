@@ -32,7 +32,7 @@ const GitHubIcon = () => (
   <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" /></svg>
 );
 
-export default function Vanilla() {
+export default function Paper() {
   const { setMode, seenModes, toast } = useMode();
   const rootRef = useReveal();
   const [modal, setModal] = useState(null);
@@ -133,7 +133,7 @@ export default function Vanilla() {
       <section id="about">
         <div className="wrap">
           <div className="eyebrow reveal">{headers.about.eyebrow}</div>
-          <h2 className="sec reveal">{headers.about.vanilla}</h2>
+          <h2 className="sec reveal">{headers.about.paper}</h2>
           <div className="about-grid">
             <div className="about-copy reveal">
               {identity.aboutHtml.map((p, i) => (
@@ -153,8 +153,8 @@ export default function Vanilla() {
       <section className="tl-sec" id="journey">
         <div className="wrap">
           <div className="eyebrow reveal">{headers.timeline.eyebrow}</div>
-          <h2 className="sec reveal">{headers.timeline.vanilla}</h2>
-          <p className="sec-sub reveal">{headers.timeline.vanillaSub}</p>
+          <h2 className="sec reveal">{headers.timeline.paper}</h2>
+          <p className="sec-sub reveal">{headers.timeline.paperSub}</p>
           <div className="tl-body" ref={tlRef}>
             <div className="spine" />
             <div className="spine-fill" ref={fillRef} />
@@ -182,7 +182,7 @@ export default function Vanilla() {
       <section id="experience">
         <div className="wrap">
           <div className="eyebrow reveal">{headers.experience.eyebrow}</div>
-          <h2 className="sec reveal">{headers.experience.vanilla}</h2>
+          <h2 className="sec reveal">{headers.experience.paper}</h2>
           <div className="xp">
             {experience.map((x) => (
               <div className="xp-card reveal" key={x.id} onClick={() => openXp(x)}>
@@ -190,10 +190,10 @@ export default function Vanilla() {
                 <div>
                   <div className="xp-role">{x.role}</div>
                   <div className="xp-org">{x.org}</div>
-                  <p className="xp-desc">{x.vanillaDesc}</p>
+                  <p className="xp-desc">{x.paperDesc}</p>
                   <div className="xp-hint">details →</div>
                 </div>
-                <span className="xp-tag">{x.vanillaTag}</span>
+                <span className="xp-tag">{x.paperTag}</span>
               </div>
             ))}
           </div>
@@ -203,8 +203,8 @@ export default function Vanilla() {
       <section id="projects">
         <div className="wrap">
           <div className="eyebrow reveal">{headers.projects.eyebrow}</div>
-          <h2 className="sec reveal">{headers.projects.vanilla}</h2>
-          <p className="sec-sub reveal">{headers.projects.vanillaSub}</p>
+          <h2 className="sec reveal">{headers.projects.paper}</h2>
+          <p className="sec-sub reveal">{headers.projects.paperSub}</p>
           <div className="pj-grid">
             {FLAGSHIP.map((p) => (
               <div
@@ -283,7 +283,7 @@ export default function Vanilla() {
       <section id="testimonials">
         <div className="wrap">
           <div className="eyebrow reveal">{headers.testimonials.eyebrow}</div>
-          <h2 className="sec reveal">{headers.testimonials.vanilla}</h2>
+          <h2 className="sec reveal">{headers.testimonials.paper}</h2>
           <TestimonialsCarousel />
         </div>
       </section>

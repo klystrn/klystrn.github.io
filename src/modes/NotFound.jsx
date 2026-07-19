@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 /* Unknown routes: a real editorial 404 instead of silently rendering home.
-   Renders under the default (vanilla/light) chrome since the path isn't a mode. */
+   Renders under the default (paper/light) chrome since the path isn't a mode. */
 export default function NotFound() {
   return (
     <div className="mv">

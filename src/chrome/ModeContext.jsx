@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const ModeContext = createContext(null);
 
-const PATH_TO_MODE = { '/': 'vanilla', '/tech': 'tech', '/finance': 'finance', '/life': 'life' };
-const MODE_TO_PATH = { vanilla: '/', tech: '/tech', finance: '/finance', life: '/life' };
+const PATH_TO_MODE = { '/': 'paper', '/tech': 'tech', '/finance': 'finance', '/life': 'life' };
+const MODE_TO_PATH = { paper: '/', tech: '/tech', finance: '/finance', life: '/life' };
 
 const MODE_INTRO = {
-  tech: 'Tech lens: same story as Vanilla, rendered as a repo. Click files in the tree, or type help in the terminal.',
+  tech: 'Tech lens: same story as Paper, rendered as a repo. Click files in the tree, or type help in the terminal.',
   finance: 'Finance lens: same story as a brokerage. Click a ticker in the watchlist to inspect it.',
 };
 
@@ -18,9 +18,9 @@ export function ModeProvider({ children }) {
   // resolve to the 'life' lens so the nav tab stays active and chrome consistent.
   const mode = location.pathname.startsWith('/life')
     ? 'life'
-    : PATH_TO_MODE[location.pathname] || 'vanilla';
+    : PATH_TO_MODE[location.pathname] || 'paper';
 
-  const [seenModes, setSeenModes] = useState(() => new Set(['vanilla']));
+  const [seenModes, setSeenModes] = useState(() => new Set(['paper']));
   const [toastMsg, setToastMsg] = useState('');
   const toastTimer = useRef();
   // Cross-mode handoff: Tech's "$SYM in Finance mode →" link pre-selects a ticker.
@@ -33,8 +33,8 @@ export function ModeProvider({ children }) {
   };
 
   useEffect(() => {
-    // Life keeps the vanilla (light) chrome, as in the prototype.
-    document.body.dataset.mode = mode === 'life' ? 'vanilla' : mode;
+    // Life keeps the paper (light) chrome, as in the prototype.
+    document.body.dataset.mode = mode === 'life' ? 'paper' : mode;
     scrollTo(0, 0);
     if (mode !== 'life' && !seenModes.has(mode)) {
       setSeenModes((s) => new Set(s).add(mode));

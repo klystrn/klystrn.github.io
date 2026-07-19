@@ -86,11 +86,11 @@ export default function Terminal({ openFile, expandDirs }) {
       history: () => (hist.length ? hist.join('  ·  ') : '(empty)'),
       mode: () => {
         const m = (args[0] || '').toLowerCase();
-        if (['vanilla', 'tech', 'finance'].includes(m)) {
+        if (['paper', 'tech', 'finance'].includes(m)) {
           setTimeout(() => setMode(m), 300);
           return `switching to ${m} mode…`;
         }
-        return 'usage: mode vanilla|tech|finance';
+        return 'usage: mode paper|tech|finance';
       },
       sudo: () => (args.join(' ') === 'hire-me' ? 'request escalated ✓ drafting offer letter…' : 'permission denied (hint: sudo hire-me)'),
       whoami: () => 'SWE × markets. Now: Guards HQ (media team manager · AI task force). Prev: JPMC CIB, Alibaba Cloud.',

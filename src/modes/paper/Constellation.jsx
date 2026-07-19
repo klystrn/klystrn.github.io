@@ -220,7 +220,7 @@ export default function Constellation({ header }) {
       <div className="sk-sticky">
         <div className="sk-head">
           <div className="eyebrow">{header.eyebrow}</div>
-          <h2 className="sec">{header.vanilla}</h2>
+          <h2 className="sec">{header.paper}</h2>
         </div>
         <svg
           id="constel"

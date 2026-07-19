@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 export const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* Adds 'in' once the element enters the viewport (Vanilla .reveal).
+/* Adds 'in' once the element enters the viewport (Paper .reveal).
    Each reveal gets a small stagger delay based on its order *within its own
    section*, so a section's pieces cascade in rather than all snapping together
    — the uniform, simultaneous fade-up is the templated/AI tell we're avoiding. */
