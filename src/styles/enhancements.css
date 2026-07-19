@@ -191,7 +191,9 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 /* ================== LIFE — 3D fintech room ================== */
 /* Life renders a WebGL isometric room (a fintech workspace); hovering a prop
    floats a tooltip, clicking dives the camera into it and routes to that page. */
-.room-scene{position:relative;height:100vh;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(130% 110% at 50% 18%,#17181b 0%,#0a0a0c 50%,#000 100%)}
+/* Solid black — the render's own backdrop (its corners) is pure #000, so this
+   is an exact match with no seam at the image edge, at any viewport size. */
+.room-scene{position:relative;height:100vh;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;background:#000}
 .room-head{position:relative;z-index:3;text-align:center;padding:96px 20px 4px;pointer-events:none;transition:opacity .45s ease}
 .room-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,46px);letter-spacing:-.02em;color:#f2ede4;margin:8px 0 6px}
 .room-head p{font-family:var(--sans);font-size:14px;color:#9aa0aa}
