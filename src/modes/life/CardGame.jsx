@@ -144,7 +144,6 @@ export default function CardGame() {
 
       <div className="cg-hud">
         <div className="cg-brand">
-          <div className="cg-eyebrow">{C.title.toUpperCase()}</div>
           <h1>{C.title}</h1>
         </div>
         <div className="cg-score">

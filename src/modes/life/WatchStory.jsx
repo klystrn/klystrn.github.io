@@ -109,7 +109,6 @@ export default function WatchStory() {
 
       <div className="ws-inner">
         <div className="ws-brand">
-          <div className="ws-eyebrow">THE COLLECTION</div>
           <h1>{W.brand}</h1>
           <p>{W.sub}</p>
         </div>

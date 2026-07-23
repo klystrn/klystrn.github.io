@@ -144,6 +144,7 @@ body[data-mode="finance"] .mode-btn.on{color:#f5b942;border-color:rgba(245,185,6
 .mv svg.dimmed .cn-node:not(.hot){opacity:.18!important}
 .mv svg.dimmed .cn-edge:not(.hot){opacity:.06!important}
 .mv .certs-strip{max-width:760px;margin:0 auto}
+.mv .aw-h{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--ink);margin-bottom:10px}
 .mv .cert{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px dashed var(--vline);font-size:13.5px}
 .mv .cert .cy{font-family:var(--plex);font-size:11px;color:var(--vfaint)}
 .mv .ts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}

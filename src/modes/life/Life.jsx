@@ -60,7 +60,6 @@ function BlurbTip({ d }) {
 function Fallback() {
   return (
     <div className="room-fallback">
-      <div className="life-eyebrow">{life.intro.eyebrow}</div>
       <h1>{life.intro.title}</h1>
       <p>{life.intro.sub}</p>
       <div className="room-fallback-links">
@@ -121,8 +120,7 @@ export default function Life() {
   return (
     <div className="room-scene">
       <header className={`room-head ${zoom ? 'gone' : ''}`}>
-        <div className="life-eyebrow">{life.intro.eyebrow}</div>
-        <h1>{life.intro.title}</h1>
+          <h1>{life.intro.title}</h1>
         <p>{life.intro.sub}</p>
       </header>
 

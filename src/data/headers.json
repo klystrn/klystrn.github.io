@@ -1,11 +1,11 @@
 {
-  "about":        { "eyebrow": "01 · About",        "paper": "The short version.",                    "paperSub": null },
-  "timeline":     { "eyebrow": "02 · Journey",      "paper": "My life on a line.",                    "paperSub": "Scroll to time-travel with me." },
-  "experience":   { "eyebrow": "03 · Experience",   "paper": "Where my hours went.",                   "paperSub": null },
-  "projects":     { "eyebrow": "04 · Projects",     "paper": "The work curation.",                    "paperSub": "These are my flagship projects. My full project catalogue lives in Tech mode (repos) and Finance mode (tickers)." },
-  "skills":       { "eyebrow": "05 · Skills",       "paper": "One person, multiple skillsets.",       "paperSub": null },
+  "about":        { "paper": "The short version.",                    "paperSub": null },
+  "timeline":     { "paper": "My life on a line.",                    "paperSub": "Scroll to time-travel with me." },
+  "experience":   { "paper": "Where my hours went.",                   "paperSub": null },
+  "projects":     { "paper": "The work curation.",                    "paperSub": "These are my flagship projects. My full project catalogue lives in Tech mode (repos) and Finance mode (tickers)." },
+  "skills":       { "paper": "One person, multiple skillsets.",       "paperSub": null },
   "awards":       { "eyebrow": "Awards & honours",  "certsEyebrow": "Certificates" },
-  "testimonials": { "eyebrow": "06 · Testimonials", "paper": "Trust them, I'm not glazing myself.",   "paperSub": null },
+  "testimonials": { "paper": "Trust them, I'm not glazing myself.",   "paperSub": null },
   "finance": {
     "watchlist": "Watchlist · Projects",
     "holdings": "Institutional Holdings · Experience",

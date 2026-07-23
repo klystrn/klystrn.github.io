@@ -238,7 +238,6 @@ export default function Constellation({ header }) {
     <section className="sk-outer" id="skills" ref={outerRef}>
       <div className="sk-sticky">
         <div className="sk-head">
-          <div className="eyebrow">{header.eyebrow}</div>
           <h2 className="sec">{header.paper}</h2>
         </div>
         <svg
