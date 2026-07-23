@@ -1,13 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import allTestimonials from '../../data/testimonials.json';
 import { prefersReducedMotion } from '../../lib/hooks';
 
 const testimonials = allTestimonials.filter((t) => t.quote);
 
-/* Hero positioning line: vertical carousel over the intro sentences. */
+/* Hero positioning line: vertical carousel over the intro sentences.
+   The three lines are different lengths, so a single fixed font-size makes the
+   short one underfill and the long one wrap to an extra row. Instead, fit each
+   line to the column: measure its actual rendered rows (each row is its own
+   element with width:max-content, so its box is its true text width) and scale
+   the line's font-size so the widest row exactly spans the column. Every
+   headline then fills the same width, whichever is showing. */
 export function RotatingHero({ lines }) {
   const [idx, setIdx] = useState(0);
   const [prev, setPrev] = useState(null);
+  const rotRef = useRef(null);
+
   useEffect(() => {
     if (prefersReducedMotion() || lines.length < 2) return undefined;
     const iv = setInterval(() => {
@@ -18,14 +26,38 @@ export function RotatingHero({ lines }) {
     }, 4800);
     return () => clearInterval(iv);
   }, [lines.length]);
+
+  useLayoutEffect(() => {
+    const h1 = rotRef.current;
+    if (!h1) return undefined;
+    const CAP = 132; // ceiling so a very short line can't blow up
+    const fit = () => {
+      const cw = h1.clientWidth;
+      if (!cw) return;
+      h1.querySelectorAll('.hero-line').forEach((el) => {
+        const cur = parseFloat(getComputedStyle(el).fontSize) || 100;
+        let maxRow = 0;
+        el.querySelectorAll('.hero-row').forEach((r) => {
+          maxRow = Math.max(maxRow, r.getBoundingClientRect().width);
+        });
+        if (maxRow > 0) el.style.fontSize = `${Math.min((cur * cw) / maxRow, CAP)}px`;
+      });
+    };
+    fit();
+    addEventListener('resize', fit);
+    // Web fonts change glyph widths, so refit once they're ready.
+    if (document.fonts?.ready) document.fonts.ready.then(fit);
+    return () => removeEventListener('resize', fit);
+  }, [lines]);
+
   return (
-    <h1 className="hero-rot">
+    <h1 className="hero-rot" ref={rotRef}>
       {lines.map((l, k) => (
-        <span
-          key={k}
-          className={`hero-line ${k === idx ? 'on' : k === prev ? 'out' : ''}`}
-          dangerouslySetInnerHTML={{ __html: l }}
-        />
+        <span key={k} className={`hero-line ${k === idx ? 'on' : k === prev ? 'out' : ''}`}>
+          {l.split(/<br\s*\/?>/i).map((row, ri) => (
+            <span key={ri} className="hero-row" dangerouslySetInnerHTML={{ __html: row }} />
+          ))}
+        </span>
       ))}
     </h1>
   );

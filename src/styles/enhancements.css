@@ -28,6 +28,11 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 /* --- Paper: rotating hero positioning lines --- */
 .mv .hero-rot{display:grid}
 .mv .hero-rot .hero-line{grid-area:1/1;opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.16,1,.3,1);pointer-events:none}
+/* each row is its own box sized to its text (max-content = true text width, no
+   wrapping), so the fit-to-width measurement in RotatingHero reads the real row
+   width and scales the line to fill the column. Any pre-fit overflow is clipped
+   by .hero's overflow:hidden and corrected before paint (useLayoutEffect). */
+.mv .hero-row{display:block;width:max-content}
 .mv .hero-rot .hero-line.on{opacity:1;transform:none;pointer-events:auto}
 .mv .hero-rot .hero-line.out{opacity:0;transform:translateY(-16px)}
 @media(prefers-reduced-motion:reduce){.mv .hero-rot .hero-line{transition:none;transform:none}}
