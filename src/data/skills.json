@@ -214,7 +214,8 @@
    "also": [],
    "connects_to": [
     "Trade Automation",
-    "MCPs"
+    "MCPs",
+    "Context Design"
    ]
   },
   {
@@ -234,7 +235,9 @@
    "evidence": "Guards chatbot",
    "parent": "ai",
    "also": [],
-   "connects_to": []
+   "connects_to": [
+    "Claude"
+   ]
   },
   {
    "name": "Computer Vision",

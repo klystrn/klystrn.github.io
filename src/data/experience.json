@@ -14,7 +14,7 @@
     "detail": {
       "meta": "2024 – 2025 · Software Engineer Intern · Singapore",
       "body": "From April 2024 to March 2025, I worked at J.P. Morgan Chase as an Athena Developer for Currencies Emerging Markets (FX Cash & Options) in the Corporate & Investment Bank. During this time, I focused on extracting, optimising, & migrating trader reports and server worwadkloads from legacy systems to Amazon Web Services. I built a workload monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as subject-matter expert for the cloud migration workload and data visualisation.",
-      "skills": ["Python", "Data analytics", "Cloud infrastructure", "Tool development"],
+      "skills": ["Python", "Data analytics", "Data Visualisation", "Excel", "AWS", "Jira", "Confluence", "Agile", "SQL", "Pandas", "Influx DB", "Parallel Computing"],
       "stats": { "Years": "2024 – 2025", "Role": "SWE Intern", "Scope": "Global FX Cash & Options" },
       "private": "Specific internals are JPMC-internal, but I'm more than happy to go deeper in an interview."
     },
@@ -30,17 +30,17 @@
     "id": "ali",
     "org": "Alibaba Cloud · SG Data Centres",
     "orgShort": "Alibaba Cloud · SG Data Centres",
-    "role": "Assistant IT Engineer · Server Tech",
+    "role": "Assistant IT Engineer",
     "when": "2025",
     "location": "Singapore",
     "paperTag": "Infrastructure",
     "financeTag": "INFRASTRUCTURE",
-    "paperDesc": "8-week part-time role in the back office: server equipment, confidential client data transfers between servers, and a ground-level view of what keeps the cloud physically running.",
+    "paperDesc": "An 8-week attachment to Alibaba Cloud's data centres, handling server equipment & migrating confidential client data across servers. This was an eye-opening, on-the-grounds experience into what keeps the cloud physically running",
     "financeMeta": "POSITION 2025 · ASSISTANT IT ENGINEER, SERVER TECH · 8 WEEKS",
     "financeDesc": "Back-office server operations: equipment handling and confidential client data transfers. The physical layer of the cloud, seen from the inside.",
     "detail": {
       "meta": "2025 · Assistant IT Engineer, Server Tech · 8 weeks",
-      "body": "Part-time role in Alibaba Cloud's back office: handling server equipment and transferring confidential client data between servers. Short but eye-opening, a ground-level view of the background processes that keep the cloud functional and operable.",
+      "body": "Full-time role in Alibaba Cloud's Singapore data centres operations centre. Over 8 weeks, I handled server & networking equipment and migrated confidential client data between servers. This was an eye-opening, on-the-grounds experience into what keeps the cloud physically running",
       "skills": ["Server operations", "Data handling", "Hardware", "Networking"],
       "stats": { "Year": "2025", "Role": "Assistant IT Engineer", "Duration": "8 weeks" }
     },
@@ -66,8 +66,8 @@
     "financeDesc": "Leading a team of 8 across media and design for army exercises and events; managing Guards HQ social accounts; building an army chatbot for combatants.",
     "detail": {
       "meta": "2025 – now · Team Manager, Media & Design · AI Task Force",
-      "body": "Managing a team of 8 across media and design: large-scale projects for army exercises and events, plus the Guards HQ Facebook and Instagram accounts. On the AI Task Force, building an army chatbot interface for Guards combatants.",
-      "skills": ["Team management", "Photoshop", "Illustrator", "AI / Claude"],
+      "body": "Managing a team of 8 across media and design. I operationalise media & design initiatives for large-scale projects like army exercises and events. In addition, I manage the social media accounts for Guards HQ on Facebook and Instagram accounts. I also sit on the Guards AI Task Force, overseeing AI implementation initiatives and building a chatbot for Guards combatants.",
+      "skills": ["Team management", "Project Management", "Operations", "Claude", "Gemini", "Photoshop", "Lightroom", "Illustrator"],
       "stats": { "Since": "2025", "Role": "Team Manager · AI Task Force", "Team": "8" },
       "private": "Several projects (Ex COORES and others) are classified. Happy to speak to scope and scale in person."
     },
