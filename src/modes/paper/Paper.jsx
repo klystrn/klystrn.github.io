@@ -93,7 +93,7 @@ export default function Paper() {
     setModal({
       title: 'Certificates',
       meta: `${certs.length} verified · name and year`,
-      body: 'The full set. This view becomes a Google Drive link once provided (content doc §14).',
+      body: 'Every certificate and licence I hold, with the year each was completed.',
       skills: [],
       stats,
     });
@@ -119,7 +119,6 @@ export default function Paper() {
       <header className="hero" id="home">
         <div className="hero-grid" aria-hidden="true" />
         <div className="wrap hero-in">
-          <div className="eyebrow">{identity.eyebrow}</div>
           <RotatingHero lines={identity.positioningLinesHtml} />
           <p className="lede">{identity.lede}</p>
           <div className="cta">
@@ -132,7 +131,6 @@ export default function Paper() {
 
       <section id="about">
         <div className="wrap">
-          <div className="eyebrow reveal">{headers.about.eyebrow}</div>
           <h2 className="sec reveal">{headers.about.paper}</h2>
           <div className="about-grid">
             <div className="about-copy reveal">
@@ -152,7 +150,6 @@ export default function Paper() {
 
       <section className="tl-sec" id="journey">
         <div className="wrap">
-          <div className="eyebrow reveal">{headers.timeline.eyebrow}</div>
           <h2 className="sec reveal">{headers.timeline.paper}</h2>
           <p className="sec-sub reveal">{headers.timeline.paperSub}</p>
           <div className="tl-body" ref={tlRef}>
@@ -181,7 +178,6 @@ export default function Paper() {
 
       <section id="experience">
         <div className="wrap">
-          <div className="eyebrow reveal">{headers.experience.eyebrow}</div>
           <h2 className="sec reveal">{headers.experience.paper}</h2>
           <div className="xp">
             {experience.map((x) => (
@@ -202,7 +198,6 @@ export default function Paper() {
 
       <section id="projects">
         <div className="wrap">
-          <div className="eyebrow reveal">{headers.projects.eyebrow}</div>
           <h2 className="sec reveal">{headers.projects.paper}</h2>
           <p className="sec-sub reveal">{headers.projects.paperSub}</p>
           <div className="pj-grid">
@@ -225,8 +220,7 @@ export default function Paper() {
               </div>
             ))}
           </div>
-          <div className="eyebrow reveal" style={{ marginTop: 48 }}>Supplementary</div>
-          <div className="pj-minis reveal">
+          <div className="pj-minis reveal" style={{ marginTop: 40 }}>
             {SUPPLEMENTARY.map((p) => (
               <div
                 className="pj-mini"
@@ -253,7 +247,7 @@ export default function Paper() {
         <div className="wrap">
           <div className="aw-grid">
             <div className="reveal">
-              <div className="eyebrow">{headers.awards.eyebrow}</div>
+              <h3 className="aw-h">{headers.awards.eyebrow}</h3>
               {curatedAwards.map((a) => (
                 <div className="cert" key={a.name}>
                   <span>{a.name}</span>
@@ -262,7 +256,7 @@ export default function Paper() {
               ))}
             </div>
             <div className="reveal">
-              <div className="eyebrow">{headers.awards.certsEyebrow}</div>
+              <h3 className="aw-h">{headers.awards.certsEyebrow}</h3>
               {curatedCerts.map((x) => (
                 <div className="cert" key={x.slug}>
                   <span>{x.short}</span>
@@ -282,7 +276,6 @@ export default function Paper() {
 
       <section id="testimonials">
         <div className="wrap">
-          <div className="eyebrow reveal">{headers.testimonials.eyebrow}</div>
           <h2 className="sec reveal">{headers.testimonials.paper}</h2>
           <TestimonialsCarousel />
         </div>

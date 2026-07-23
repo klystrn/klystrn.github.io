@@ -1,6 +1,5 @@
 {
   "intro": {
-    "eyebrow": "OFF THE CLOCK",
     "title": "The things I reach for.",
     "sub": "Hover an object to see the story. Click to step inside."
   },
@@ -8,8 +7,8 @@
     "camera": {
       "label": "Photography",
       "hoverTitle": "Behind the lens",
-      "blurb": "I shoot the moments most people scroll past — the quiet in-between frames at events, on the street, and around Singapore. What started as documenting friends became a genuine obsession with light, timing, and composition.",
-      "tag": "Events · Street · Portraits",
+      "blurb": "I shoot the moments most people scroll past: the quiet in-between frames at events, on the street, and around Singapore. What started as documenting friends turned into a real obsession with light, timing and composition.",
+      "tag": "Events, street, the odd portrait",
       "photo": "/life/reg-camera.jpg",
       "cta": "Open the portfolio",
       "route": "photography"
@@ -17,40 +16,40 @@
     "watch": {
       "label": "Watches",
       "hoverTitle": "Time, inherited",
-      "blurb": "Mechanical watches run in the family. I grew up around a small collection that got passed down and added to over three generations — each piece carrying a story about who wore it and why. I've been the one keeping the record.",
-      "tag": "Mechanical · Vintage · Family",
+      "blurb": "Mechanical watches run in the family. I grew up around a small collection that got passed down and added to over three generations, each piece carrying a story about who wore it and why. Somewhere along the way I became the one keeping the record.",
+      "tag": "Mechanical, mostly vintage, all family",
       "cta": "Wind the collection",
       "route": "watch"
     },
     "cards": {
       "label": "Card throwing",
       "hoverTitle": "The flick",
-      "blurb": "I found card throwing down a late-night rabbit hole and never climbed back out. It's equal parts physics and patience — grip, spin, release — and there's a strange calm in drilling the same throw a hundred times until it finally bites the target.",
-      "tag": "Precision · Focus · Absurdly niche",
+      "blurb": "I found card throwing down a late-night rabbit hole and never climbed back out. It's equal parts physics and patience (grip, spin, release), and there's a strange calm in drilling the same throw a hundred times until it finally bites the target.",
+      "tag": "Precise, patient, gloriously niche",
       "cta": "Take a throw",
       "route": "cards"
     },
     "namecard": {
       "label": "The professional side",
       "hoverTitle": "Back to business",
-      "blurb": "The other side of the table. This card takes you back to the professional portfolio — the engineering, the markets, the work.",
-      "tag": "Reginald Tan · Singapore",
+      "blurb": "The other side of the table. This card takes you back to the professional portfolio: the engineering, the markets, the work.",
+      "tag": "Reginald Tan, Singapore",
       "cta": "Back to the work",
       "route": "professional"
     },
     "work": {
       "label": "The desk",
       "hoverTitle": "Back to work",
-      "blurb": "Enough downtime. This is where the trading, the building, and the analysis happen — step back into the professional portfolio.",
-      "tag": "Engineering · Markets",
+      "blurb": "Enough downtime. This is where the trading, building and analysis happen. Step back into the professional portfolio.",
+      "tag": "Engineering and markets",
       "cta": "Enter professional mode",
       "route": "professional"
     },
     "trophy": {
       "label": "Trophy cabinet",
       "hoverTitle": "The pointy end",
-      "blurb": "Two sports, years of it. Taekwondo on the mat and diving in the water — the medals that stuck around.",
-      "tag": "Taekwondo · Diving",
+      "blurb": "Two sports, years of each. Taekwondo on the mat, diving off the board, and the medals that stuck around.",
+      "tag": "Taekwondo and diving",
       "info": true
     }
   },
