@@ -93,7 +93,7 @@ export default function Paper() {
     setModal({
       title: 'Certificates',
       meta: `${certs.length} verified · name and year`,
-      body: 'The full set. This view becomes a Google Drive link once provided (content doc §14).',
+      body: 'Every certificate and licence I hold, with the year each was completed.',
       skills: [],
       stats,
     });

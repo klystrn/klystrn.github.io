@@ -4,18 +4,34 @@ export const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Adds 'in' once the element enters the viewport (Paper .reveal).
-   Each reveal gets a small stagger delay based on its order *within its own
-   section*, so a section's pieces cascade in rather than all snapping together
-   — the uniform, simultaneous fade-up is the templated/AI tell we're avoiding. */
+   Each reveal gets a small stagger delay based on its order within its own
+   section, plus an entrance that varies by content role — headings rise a
+   little further, running prose just fades, and tiles/grids settle in with a
+   faint scale. A single uniform 10px fade-up on every element is the templated
+   tell; differentiating by role reads as deliberate motion design instead. */
+const revealMotion = (el) => {
+  const c = el.classList;
+  if (c.contains('sec')) return { ry: '22px', rs: '1' };                 // section headline
+  if (c.contains('sec-sub') || c.contains('about-copy')) return { ry: '0px', rs: '1' }; // prose: fade only
+  if (c.contains('stats') || c.contains('pj') || c.contains('pj-minis')
+      || c.contains('xp-card') || c.contains('ts-car')) return { ry: '6px', rs: '.985' }; // tiles settle
+  return { ry: '12px', rs: '1' };                                        // default
+};
+
 export function useReveal() {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Assign per-section stagger once up front.
+    // Assign per-section stagger + a role-based entrance once up front.
     el.querySelectorAll('section, .tl-sec, .contact').forEach((sec) => {
       const items = sec.querySelectorAll('.reveal');
-      items.forEach((n, i) => n.style.setProperty('--rd', `${Math.min(i * 65, 260)}ms`));
+      items.forEach((n, i) => {
+        n.style.setProperty('--rd', `${Math.min(i * 65, 260)}ms`);
+        const m = revealMotion(n);
+        n.style.setProperty('--ry', m.ry);
+        n.style.setProperty('--rs', m.rs);
+      });
     });
     const io = new IntersectionObserver(
       (es) =>
@@ -65,12 +81,12 @@ export function useCountUp(end) {
 }
 
 /*
- * Seamless rAF marquee, ported exactly from the v6 prototype (see handoff §3):
- * two identical content copies inside the track, measured pixel width of the
- * first copy, translated together in a continuous loop. Width is re-measured
- * after web fonts load, on resize, and defensively right after mount (the
- * prototype's bug was measuring while display:none — mounting on route entry
- * plus the <10px guard below covers the same case).
+ * Seamless rAF marquee: two identical content copies inside the track,
+ * translated together in a continuous loop and reset by exactly the measured
+ * pixel width of one copy so the seam never shows. Width is re-measured after
+ * web fonts load, on resize, and defensively right after mount (measuring while
+ * display:none returns 0 — mounting on route entry plus the <10px guard below
+ * covers that case).
  */
 export function useMarquee() {
   const trackRef = useRef(null);

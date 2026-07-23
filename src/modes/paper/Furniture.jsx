@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import testimonials from '../../data/testimonials.json';
+import allTestimonials from '../../data/testimonials.json';
 import { prefersReducedMotion } from '../../lib/hooks';
 
-const PENDING_QUOTE = '[Quote pending, content doc §10]';
+const testimonials = allTestimonials.filter((t) => t.quote);
 
-/* Hero positioning line: vertical carousel over the three §1 sentences. */
+/* Hero positioning line: vertical carousel over the intro sentences. */
 export function RotatingHero({ lines }) {
   const [idx, setIdx] = useState(0);
   const [prev, setPrev] = useState(null);
@@ -133,7 +133,7 @@ export function TestimonialsCarousel() {
           {testimonials.map((t) => (
             <div className="ts-slide" key={t.slug}>
               <div className="ts">
-                <q>{t.quote || PENDING_QUOTE}</q>
+                <q>{t.quote}</q>
                 <div className="by">
                   {t.name}
                   <span>{t.title}</span>

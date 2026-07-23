@@ -14,8 +14,6 @@ import { useMode } from '../../chrome/ModeContext';
 import { useMarquee, prefersReducedMotion } from '../../lib/hooks';
 import Chart from './Chart';
 
-const PENDING_NOTE = '[Note pending, content doc §10]';
-
 /* Derived career fundamentals — computed from data at render, never hand-typed. */
 function fundamentals() {
   const firstYear = Number(timeline.phases[0].when.split('–')[0]);
@@ -407,10 +405,10 @@ export default function Finance() {
               <div className="p-head">
                 <span className="p-title">{headers.finance.coverage}</span>
               </div>
-              {testimonials.map((t) => (
+              {testimonials.filter((t) => t.quote).map((t) => (
                 <div className="rate" key={t.slug}>
                   <div className="rate-tag">{t.financeTag}</div>
-                  <p className="rate-q">{t.quote ? `"${t.quoteFinance || t.quote}"` : PENDING_NOTE}</p>
+                  <p className="rate-q">{`"${t.quoteFinance || t.quote}"`}</p>
                   <div className="rate-by">
                     {t.titleFinance}
                     {t.url && (

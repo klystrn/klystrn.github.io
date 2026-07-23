@@ -6,8 +6,6 @@ import testimonials from '../../data/testimonials.json';
 import skills from '../../data/skills.json';
 import { PROJECTS } from '../../lib/projects';
 
-const PENDING_QUOTE = '[Quote pending, content doc §10]';
-
 /*
  * Editor views. `ctx` = { openFile, openDir, gotoFinance, toast, cvClick }.
  * Every fact rendered here comes from src/data — components are furniture only.
@@ -160,13 +158,13 @@ function ApprovalsFile() {
   return (
     <div className="md">
       <h1>Code review · approvals</h1>
-      {testimonials.map((t) => (
+      {testimonials.filter((t) => t.quote).map((t) => (
         <div className="review" key={t.slug}>
           <div className="review-h">
             <span className="ok">✓ Approved</span>
             <span style={{ opacity: 0.5 }}>· {t.slug} reviewed</span>
           </div>
-          <div className="review-b">{t.quote ? `"${t.quote}"` : PENDING_QUOTE}</div>
+          <div className="review-b">{`"${t.quote}"`}</div>
           <div className="review-f">
             {t.title}
             {t.url && (
