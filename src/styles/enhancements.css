@@ -54,15 +54,20 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .mv-rail .lbl b{color:var(--ultra);font-weight:600}
 .mv-rail button:hover .lbl,.mv-rail button.flash .lbl{opacity:1;transform:translateY(-50%) translateX(0)}
 @media(prefers-reduced-motion:reduce){.mv-rail .lbl{transition:opacity .2s ease}}
+/* single current-section pill (mobile only; hidden on desktop where per-dot labels are used) */
+.mv-rail-cur{display:none}
 /* Mobile: no room for a right-edge rail, so dock it as a compact horizontal
    dot strip at the bottom-centre. The active section's label floats above its
    dot (hover labels are useless on touch), giving jump nav + a "where am I". */
 @media(max-width:1100px){
   .mv-rail{right:auto;left:50%;top:auto;bottom:16px;transform:translateX(-50%);flex-direction:row;gap:11px;background:rgba(243,244,241,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--vline);border-radius:100px;padding:11px 15px;box-shadow:0 8px 26px rgba(0,0,0,.14)}
   .mv-rail button.on{transform:scale(1.5)}
-  .mv-rail .lbl{right:auto;left:50%;top:auto;bottom:calc(100% + 9px);transform:translateX(-50%);opacity:0}
-  /* override the desktop show-state transform so the label stays centred above its dot */
-  .mv-rail button.on .lbl,.mv-rail button:hover .lbl,.mv-rail button.flash .lbl{opacity:1;transform:translateX(-50%)}
+  /* per-dot labels off on mobile; a single fixed pill shows the current section
+     so fast scrolling never slides labels past each other between dots */
+  .mv-rail .lbl{display:none}
+  .mv-rail-cur{display:block;position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4c545e;background:#fff;border:1px solid var(--vline);border-radius:6px;padding:5px 12px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.12);opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .mv-rail-cur b{color:var(--ultra);font-weight:600}
+  .mv-rail.flashing .mv-rail-cur{opacity:1}
 }
 @media(max-width:1100px) and (prefers-reduced-motion:reduce){.mv-rail .lbl{transition:none}}
 

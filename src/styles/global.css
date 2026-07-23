@@ -57,7 +57,10 @@ body[data-mode="finance"] .mode-btn.on{color:#f5b942;border-color:rgba(245,185,6
 .mv .sec-sub{color:var(--sub);max-width:520px;margin-bottom:44px}
 .mv .hero{min-height:92vh;display:flex;align-items:center;padding:120px 0 60px;position:relative;overflow:hidden}
 .mv .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--vline) 1px,transparent 1px),linear-gradient(90deg,var(--vline) 1px,transparent 1px);background-size:64px 64px;opacity:.35;mask-image:radial-gradient(80% 70% at 50% 40%,#000 30%,transparent 100%)}
-.mv .hero-in{position:relative}
+/* min-width:0 lets this flex item shrink to the viewport instead of being held
+   open by the hero headline's max-content rows (which would inflate the fit
+   measurement and push the text off narrow screens). */
+.mv .hero-in{position:relative;min-width:0}
 .mv .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(46px,8.2vw,100px);line-height:1;letter-spacing:-.025em}
 .mv .hero h1 em{font-style:italic;font-weight:600;color:var(--ultra)}
 .mv .lede{font-size:clamp(16px,2vw,19px);color:var(--sub);max-width:560px;margin-top:26px}

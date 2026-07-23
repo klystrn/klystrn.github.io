@@ -87,7 +87,7 @@ export function ProgressBar() {
 /* [id, number, name] — the numbers double as the section eyebrows ("01 · About")
    that used to sit above each heading, now surfaced only on the rail. */
 const RAIL = [
-  ['home', '', 'Top'],
+  ['home', '', 'Start here'],
   ['about', '01', 'About'],
   ['journey', '02', 'Journey'],
   ['experience', '03', 'Experience'],
@@ -129,8 +129,10 @@ export function SectionRail() {
     return () => clearTimeout(t);
   }, [active]);
 
+  const cur = RAIL.find((r) => r[0] === active) || RAIL[0];
+
   return (
-    <nav className="mv-rail" aria-label="Sections">
+    <nav className={`mv-rail ${flash ? 'flashing' : ''}`} aria-label="Sections">
       {RAIL.map(([id, num, name]) => (
         <button
           key={id}
@@ -141,6 +143,11 @@ export function SectionRail() {
           <span className="lbl">{num && <b>{num}</b>}{num ? ' · ' : ''}{name}</span>
         </button>
       ))}
+      {/* Mobile-only single label: one fixed pill whose text updates, so fast
+          scrolling never shows per-dot labels sliding past each other. */}
+      <div className="mv-rail-cur" aria-hidden="true">
+        {cur[1] && <b>{cur[1]}</b>}{cur[1] ? ' · ' : ''}{cur[2]}
+      </div>
     </nav>
   );
 }
