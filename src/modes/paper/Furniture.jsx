@@ -84,21 +84,29 @@ export function ProgressBar() {
   return <div className="mv-progress" ref={ref} aria-hidden="true" />;
 }
 
+/* [id, number, name] — the numbers double as the section eyebrows ("01 · About")
+   that used to sit above each heading, now surfaced only on the rail. */
 const RAIL = [
-  ['home', 'Top'],
-  ['about', 'About'],
-  ['journey', 'Journey'],
-  ['experience', 'Experience'],
-  ['projects', 'Projects'],
-  ['skills', 'Skills'],
-  ['certs', 'Awards'],
-  ['testimonials', 'Words'],
-  ['contact', 'Contact'],
+  ['home', '', 'Top'],
+  ['about', '01', 'About'],
+  ['journey', '02', 'Journey'],
+  ['experience', '03', 'Experience'],
+  ['projects', '04', 'Projects'],
+  ['skills', '05', 'Skills'],
+  ['certs', '', 'Awards & honours'],
+  ['testimonials', '06', 'Testimonials'],
+  ['contact', '', 'Contact'],
 ];
 
-/* Editorial dot-rail: highlights the current section, click to jump. */
+/* Editorial dot-rail: highlights the current section, click to jump. The active
+   section's eyebrow label flashes in for a few seconds each time you scroll into
+   a new section, and shows on hover — a quiet "you are here" without the label
+   living permanently above every heading. */
 export function SectionRail() {
   const [active, setActive] = useState('home');
+  const [flash, setFlash] = useState(false);
+  const first = useRef(true);
+
   useEffect(() => {
     const onScroll = () => {
       let cur = RAIL[0][0];
@@ -112,16 +120,25 @@ export function SectionRail() {
     addEventListener('scroll', onScroll, { passive: true });
     return () => removeEventListener('scroll', onScroll);
   }, []);
+
+  // Flash the active label on every section change (but not the initial mount).
+  useEffect(() => {
+    if (first.current) { first.current = false; return undefined; }
+    setFlash(true);
+    const t = setTimeout(() => setFlash(false), 2600);
+    return () => clearTimeout(t);
+  }, [active]);
+
   return (
     <nav className="mv-rail" aria-label="Sections">
-      {RAIL.map(([id, label]) => (
+      {RAIL.map(([id, num, name]) => (
         <button
           key={id}
-          className={active === id ? 'on' : ''}
-          aria-label={label}
+          className={`${active === id ? 'on' : ''} ${active === id && flash ? 'flash' : ''}`}
+          aria-label={num ? `${num} · ${name}` : name}
           onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
         >
-          <span className="lbl">{label}</span>
+          <span className="lbl">{num && <b>{num}</b>}{num ? ' · ' : ''}{name}</span>
         </button>
       ))}
     </nav>

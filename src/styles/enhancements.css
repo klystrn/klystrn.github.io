@@ -50,8 +50,10 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .mv-rail button{width:10px;height:10px;border-radius:50%;border:1.5px solid #b9bfcc;background:transparent;padding:0;position:relative;transition:transform .2s,background .2s,border-color .2s}
 .mv-rail button.on{background:#d92b35;border-color:#d92b35;transform:scale(1.3)}
 .mv-rail button:hover{border-color:#d92b35}
-.mv-rail .lbl{position:absolute;right:22px;top:50%;transform:translateY(-50%);font-family:var(--plex);font-size:10px;color:#4c545e;background:#fff;border:1px solid #dcdfd9;border-radius:5px;padding:3px 9px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
-.mv-rail button:hover .lbl{opacity:1}
+.mv-rail .lbl{position:absolute;right:20px;top:50%;transform:translateY(-50%) translateX(6px);font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4c545e;background:#fff;border:1px solid #dcdfd9;border-radius:6px;padding:5px 11px;white-space:nowrap;opacity:0;pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:opacity .3s ease,transform .3s cubic-bezier(.16,1,.3,1)}
+.mv-rail .lbl b{color:var(--ultra);font-weight:600}
+.mv-rail button:hover .lbl,.mv-rail button.flash .lbl{opacity:1;transform:translateY(-50%) translateX(0)}
+@media(prefers-reduced-motion:reduce){.mv-rail .lbl{transition:opacity .2s ease}}
 /* Mobile: no room for a right-edge rail, so dock it as a compact horizontal
    dot strip at the bottom-centre. The active section's label floats above its
    dot (hover labels are useless on touch), giving jump nav + a "where am I". */
@@ -59,7 +61,8 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
   .mv-rail{right:auto;left:50%;top:auto;bottom:16px;transform:translateX(-50%);flex-direction:row;gap:11px;background:rgba(243,244,241,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--vline);border-radius:100px;padding:11px 15px;box-shadow:0 8px 26px rgba(0,0,0,.14)}
   .mv-rail button.on{transform:scale(1.5)}
   .mv-rail .lbl{right:auto;left:50%;top:auto;bottom:calc(100% + 9px);transform:translateX(-50%);opacity:0}
-  .mv-rail button.on .lbl{opacity:1}
+  /* override the desktop show-state transform so the label stays centred above its dot */
+  .mv-rail button.on .lbl,.mv-rail button:hover .lbl,.mv-rail button.flash .lbl{opacity:1;transform:translateX(-50%)}
 }
 @media(max-width:1100px) and (prefers-reduced-motion:reduce){.mv-rail .lbl{transition:none}}
 
