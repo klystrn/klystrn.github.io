@@ -247,7 +247,7 @@ export default function Paper() {
         <div className="wrap">
           <div className="aw-grid">
             <div className="reveal">
-              <h3 className="aw-h">{headers.awards.eyebrow}</h3>
+              <h3 className="aw-h">{headers.awards.eyebrow.replace(/^\d+\s*·\s*/, '')}</h3>
               {curatedAwards.map((a) => (
                 <div className="cert" key={a.name}>
                   <span>{a.name}</span>
@@ -256,7 +256,7 @@ export default function Paper() {
               ))}
             </div>
             <div className="reveal">
-              <h3 className="aw-h">{headers.awards.certsEyebrow}</h3>
+              <h3 className="aw-h">{headers.awards.certsEyebrow.replace(/^\d+\s*·\s*/, '')}</h3>
               {curatedCerts.map((x) => (
                 <div className="cert" key={x.slug}>
                   <span>{x.short}</span>
