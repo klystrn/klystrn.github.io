@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import life from '../../data/life.json';
@@ -13,14 +13,24 @@ function tileBg(hue, i = 0) {
 }
 
 function Lightbox({ tile, onClose }) {
+  const closeRef = useRef(null);
+  const lastFocused = useRef(null);
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose();
     addEventListener('keydown', onKey);
-    return () => removeEventListener('keydown', onKey);
+    lastFocused.current = document.activeElement;
+    closeRef.current?.focus();
+    return () => {
+      removeEventListener('keydown', onKey);
+      lastFocused.current?.focus?.();
+    };
   }, [onClose]);
   return (
     <motion.div
       className="ig-lb"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${tile.title} — photo set`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -33,7 +43,7 @@ function Lightbox({ tile, onClose }) {
         exit={{ scale: 0.96, y: 8 }}
         transition={{ duration: 0.24, ease: [0.2, 0.8, 0.2, 1] }}
       >
-        <button className="ig-lb-x" aria-label="Close" onClick={onClose}>✕</button>
+        <button className="ig-lb-x" aria-label="Close" ref={closeRef} onClick={onClose}>✕</button>
         <div className="ig-lb-head">
           <h3>{tile.title}</h3>
           <span>{tile.count} photos</span>

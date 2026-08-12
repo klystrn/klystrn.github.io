@@ -11,6 +11,22 @@ import { PROJECTS } from '../../lib/projects';
  * Every fact rendered here comes from src/data — components are furniture only.
  */
 
+/* Inline "code link" — reads like a filename in prose but jumps to another
+   file/dir. Not a real <a>, so it needs a keyboard path in manually. */
+function FLink({ as: Tag = 'code', onClick, children }) {
+  return (
+    <Tag
+      className="flink"
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
 function Readme({ ctx }) {
   const t = identity.tech;
   const kv = identity.stats;
@@ -39,11 +55,11 @@ function Readme({ ctx }) {
       </div>
       <h2>Navigate</h2>
       <ul>
-        <li>Career history: <code className="flink" onClick={() => ctx.openFile('timeline')}>timeline.git</code></li>
-        <li>References: <code className="flink" onClick={() => ctx.openFile('approvals')}>APPROVALS.md</code></li>
+        <li>Career history: <FLink onClick={() => ctx.openFile('timeline')}>timeline.git</FLink></li>
+        <li>References: <FLink onClick={() => ctx.openFile('approvals')}>APPROVALS.md</FLink></li>
         <li>
-          Repos in <code className="flink" onClick={() => ctx.openDir('proj')}>projects/</code> · Reach me:{' '}
-          <code className="flink" onClick={() => ctx.openFile('contact')}>CONTACT.me</code>
+          Repos in <FLink onClick={() => ctx.openDir('proj')}>projects/</FLink> · Reach me:{' '}
+          <FLink onClick={() => ctx.openFile('contact')}>CONTACT.me</FLink>
         </li>
       </ul>
     </div>
@@ -226,9 +242,9 @@ function RepoFile({ p, ctx }) {
       </div>
       <div className="repo-meta">
         <span>⎇ <b>main</b></span>
-        <span className="flink" onClick={() => ctx.gotoFinance(p.sym)}>
+        <FLink as="span" onClick={() => ctx.gotoFinance(p.sym)}>
           also listed as <b>${p.sym}</b> in Finance mode →
-        </span>
+        </FLink>
       </div>
     </div>
   );

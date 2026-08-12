@@ -17,6 +17,23 @@ const at = (r, deg) => [VIEW.cx + r * Math.cos(deg * D2R), VIEW.cy + r * Math.si
    branch is proportional to its leaf count, so dense clusters (TECH) fan wide
    and sparse ones (OPS) stay tight; labels are anchored outward at render time
    so text radiates away from the centre and never lands on the graph. */
+
+/* Text equivalent of the graph for assistive tech: the SVG is hover/click-
+   driven and marked role="img" (a single opaque graphic to a screen reader),
+   so without this the skill list itself would be unreachable non-visually. */
+function buildSummary() {
+  const hubById = Object.fromEntries(HUBS.map((h) => [h.id, h]));
+  const subhubById = Object.fromEntries(SUBHUBS.map((s) => [s.id, s]));
+  const hubOf = (parent) => hubById[parent]?.id || subhubById[parent]?.hub;
+  const byHub = {};
+  LEAVES.forEach((l) => {
+    const hid = hubOf(l.parent);
+    if (!hid) return;
+    (byHub[hid] ||= []).push(l.name);
+  });
+  return HUBS.map((h) => ({ label: h.label, skills: byHub[h.id] || [] })).filter((g) => g.skills.length);
+}
+
 function buildGraph() {
   const leafByParent = {};
   LEAVES.forEach((l) => { (leafByParent[l.parent] ||= []).push(l); });
@@ -153,6 +170,7 @@ const IDLE_CAP = 'scroll to expand · hover a node · click to pin its connectio
 
 export default function Constellation({ header }) {
   const { edges, nodes } = useMemo(buildGraph, []);
+  const summary = useMemo(buildSummary, []);
   const outerRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [hotId, setHotId] = useState(null);
@@ -239,6 +257,11 @@ export default function Constellation({ header }) {
       <div className="sk-sticky">
         <div className="sk-head">
           <h2 className="sec">{header.paper}</h2>
+        </div>
+        <div className="sr-only">
+          {summary.map((g) => (
+            <p key={g.label}>{g.label}: {g.skills.join(', ')}.</p>
+          ))}
         </div>
         <svg
           id="constel"

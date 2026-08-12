@@ -25,6 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Optional: set a GA4 Measurement ID as a repo secret (Settings ->
+          # Secrets and variables -> Actions -> VITE_GA_ID) to turn on
+          # analytics. Left unset, src/lib/analytics.js stays a no-op.
+          VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

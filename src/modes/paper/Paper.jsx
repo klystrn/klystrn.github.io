@@ -8,6 +8,7 @@ import headers from '../../data/headers.json';
 import { FLAGSHIP, SUPPLEMENTARY } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { useReveal, useCountUp } from '../../lib/hooks';
+import { trackEvent } from '../../lib/analytics';
 import Constellation from './Constellation';
 import Modal from './Modal';
 import { ProgressBar, SectionRail, TestimonialsCarousel, RotatingHero } from './Furniture';
@@ -60,11 +61,13 @@ export default function Paper() {
 
   const cvClick = (e) => {
     e.preventDefault();
+    trackEvent('resume_download', { mode: 'paper' });
     if (c.cvUrl) window.open(c.cvUrl, '_blank');
     else toast('Wire to CV PDF');
   };
 
-  const openProject = (p) =>
+  const openProject = (p) => {
+    trackEvent('project_view', { project: p.sym || p.title });
     setModal({
       title: p.title,
       meta: `${p.year} · ${p.role} · ${p.status}`,
@@ -73,8 +76,10 @@ export default function Paper() {
       stats: p.stats,
       private: p.private,
     });
+  };
 
-  const openXp = (x) =>
+  const openXp = (x) => {
+    trackEvent('experience_view', { org: x.orgShort });
     setModal({
       title: x.orgShort,
       meta: x.detail.meta,
@@ -83,6 +88,7 @@ export default function Paper() {
       stats: x.detail.stats,
       private: x.detail.private,
     });
+  };
 
   const openCerts = () => {
     if (c.driveUrl) {
@@ -181,7 +187,16 @@ export default function Paper() {
           <h2 className="sec reveal">{headers.experience.paper}</h2>
           <div className="xp">
             {experience.map((x) => (
-              <div className="xp-card reveal" key={x.id} onClick={() => openXp(x)}>
+              <div
+                className="xp-card reveal"
+                key={x.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => openXp(x)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openXp(x); }
+                }}
+              >
                 <div className="xp-when">{x.when}</div>
                 <div>
                   <div className="xp-role">{x.role}</div>
@@ -206,7 +221,12 @@ export default function Paper() {
                 className={`pj reveal ${p.card?.feat ? 'feat' : ''}`}
                 key={p.sym}
                 data-sym={p.sym}
+                role="button"
+                tabIndex={0}
                 onClick={() => openProject(p)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(p); }
+                }}
               >
                 <span className="yr">{p.card?.yr || p.year}</span>
                 <h3>{p.card?.title || p.title}</h3>
@@ -228,7 +248,9 @@ export default function Paper() {
                 role="button"
                 tabIndex={0}
                 onClick={() => openProject(p)}
-                onKeyDown={(e) => e.key === 'Enter' && openProject(p)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(p); }
+                }}
               >
                 <span className="yr">{p.year}</span>
                 <span>
@@ -299,9 +321,9 @@ export default function Paper() {
 
       <section className="contact" id="contact">
         <div className="icon-btns">
-          <a className="ibtn" href={`mailto:${c.email}`} aria-label="Email Reginald" title="Email"><MailIcon /></a>
-          <a className="ibtn" href={c.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn"><LinkedInIcon /></a>
-          <a className="ibtn" href={c.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><GitHubIcon /></a>
+          <a className="ibtn" href={`mailto:${c.email}`} aria-label="Email Reginald" title="Email" onClick={() => trackEvent('contact_click', { channel: 'email' })}><MailIcon /></a>
+          <a className="ibtn" href={c.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn" onClick={() => trackEvent('contact_click', { channel: 'linkedin' })}><LinkedInIcon /></a>
+          <a className="ibtn" href={c.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub" onClick={() => trackEvent('contact_click', { channel: 'github' })}><GitHubIcon /></a>
           <a className="btn line" href={c.cvUrl || '#'} onClick={cvClick}>Résumé</a>
         </div>
         <div className="credit contact-credit">Built by <b>{identity.name}</b></div>

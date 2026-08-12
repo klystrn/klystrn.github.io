@@ -47,10 +47,10 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 
 /* --- Paper: floating section rail --- */
 .mv-rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:90}
-.mv-rail button{width:10px;height:10px;border-radius:50%;border:1.5px solid #b9bfcc;background:transparent;padding:0;position:relative;transition:transform .2s,background .2s,border-color .2s}
+.mv-rail button{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--vline,#b9bfcc);background:transparent;padding:0;position:relative;transition:transform .2s,background .2s,border-color .2s}
 .mv-rail button.on{background:#d92b35;border-color:#d92b35;transform:scale(1.3)}
 .mv-rail button:hover{border-color:#d92b35}
-.mv-rail .lbl{position:absolute;right:20px;top:50%;transform:translateY(-50%) translateX(6px);font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4c545e;background:#fff;border:1px solid #dcdfd9;border-radius:6px;padding:5px 11px;white-space:nowrap;opacity:0;pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:opacity .3s ease,transform .3s cubic-bezier(.16,1,.3,1)}
+.mv-rail .lbl{position:absolute;right:20px;top:50%;transform:translateY(-50%) translateX(6px);font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub,#4c545e);background:var(--card,#fff);border:1px solid var(--vline,#dcdfd9);border-radius:6px;padding:5px 11px;white-space:nowrap;opacity:0;pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:opacity .3s ease,transform .3s cubic-bezier(.16,1,.3,1)}
 .mv-rail .lbl b{color:var(--ultra);font-weight:600}
 .mv-rail button:hover .lbl,.mv-rail button.flash .lbl{opacity:1;transform:translateY(-50%) translateX(0)}
 @media(prefers-reduced-motion:reduce){.mv-rail .lbl{transition:opacity .2s ease}}
@@ -65,7 +65,7 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
   /* per-dot labels off on mobile; a single fixed pill shows the current section
      so fast scrolling never slides labels past each other between dots */
   .mv-rail .lbl{display:none}
-  .mv-rail-cur{display:block;position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4c545e;background:#fff;border:1px solid var(--vline);border-radius:6px;padding:5px 12px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.12);opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .mv-rail-cur{display:block;position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);font-family:var(--plex);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub,#4c545e);background:var(--card,#fff);border:1px solid var(--vline);border-radius:6px;padding:5px 12px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.12);opacity:0;transition:opacity .3s ease;pointer-events:none}
   .mv-rail-cur b{color:var(--ultra);font-weight:600}
   .mv-rail.flashing .mv-rail-cur{opacity:1}
 }
@@ -77,7 +77,7 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 .ts-track{display:flex;transform:translateX(calc(var(--k,0)*-100%));transition:transform .5s cubic-bezier(.3,.8,.3,1)}
 .ts-slide{flex:0 0 100%;box-sizing:border-box}
 .ts-slide .ts{width:100%;box-sizing:border-box}
-.ts-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--vline);background:var(--card);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s;padding:0;z-index:2}
+.ts-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--vline);background:var(--card);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s;padding:0;z-index:2}
 .ts-nav:hover{border-color:var(--ultra);color:var(--ultra)}
 .ts-nav.prev{left:0}
 .ts-nav.next{right:0}
@@ -184,6 +184,11 @@ body[data-mode="finance"] :is(a,button,[role="button"],input,.wl-row,.mstone,.wl
 }
 
 /* ===== Accessibility ===== */
+/* Visually hidden but still reachable by screen readers — for text
+   alternatives to graphics that are otherwise mouse/hover-only. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
 /* Skip-to-content link: off-screen until focused. */
 .skip-link{position:fixed;top:10px;left:50%;transform:translate(-50%,-160%);z-index:300;
   background:#15181c;color:#fff;font-family:var(--plex);font-size:13px;padding:10px 18px;
@@ -469,4 +474,12 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 @media(prefers-reduced-motion:reduce){
  .life-obj{animation:none}
  .ws-watch g{transition:none!important}
+}
+
+/* ---- dark mode (Paper) ---- */
+@media(prefers-color-scheme:dark){
+  .ts-dots button{background:var(--vline,#dcdfd9)}
+  @media(max-width:1100px){
+    .mv-rail{background:rgba(28,30,34,.92)}
+  }
 }

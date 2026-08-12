@@ -1,17 +1,44 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 /*
  * Shared detail modal (projects, experience, certificates).
  * `data`: { title, meta, body, skills, stats, private } or null when closed.
  */
 export default function Modal({ data, onClose }) {
+  const boxRef = useRef(null);
+  const closeRef = useRef(null);
+  const lastFocused = useRef(null);
+
+  // Move focus into the dialog on open, and give it back to whatever
+  // triggered it (a project/experience card) on close — a dialog that eats
+  // focus without returning it strands keyboard users past the trigger.
+  useEffect(() => {
+    if (data) {
+      lastFocused.current = document.activeElement;
+      closeRef.current?.focus();
+    } else {
+      lastFocused.current?.focus?.();
+    }
+  }, [data]);
+
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (!data) return;
+      if (e.key === 'Escape') { onClose(); return; }
+      // Trap Tab inside the dialog's focusable elements so keyboard users
+      // can't tab out into the page hiding behind the modal overlay.
+      if (e.key === 'Tab' && boxRef.current) {
+        const items = boxRef.current.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        if (!items.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     };
     addEventListener('keydown', onKey);
     return () => removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, [data, onClose]);
 
   return (
     <div
@@ -24,8 +51,8 @@ export default function Modal({ data, onClose }) {
       }}
     >
       {data && (
-        <div className="box">
-          <button className="close" aria-label="Close" onClick={onClose}>✕</button>
+        <div className="box" ref={boxRef}>
+          <button className="close" aria-label="Close" ref={closeRef} onClick={onClose}>✕</button>
           <h3>{data.title}</h3>
           <div className="meta">{data.meta}</div>
           <p className="body">{data.body}</p>

@@ -11,6 +11,9 @@ import { prefersReducedMotion } from '../../lib/hooks';
  * No WebGL — this replaced the three.js room, which was heavy on low-end GPUs.
  */
 const IMG = '/life/room.png';
+const IMG_WEBP = '/life/room.webp';
+const IMG_W = 1280;
+const IMG_H = 1090;
 
 /* Hotspot positions as % of the render (measured against the actual image,
    1280×1090, via a percent-grid overlay). The render was expanded downward to
@@ -129,13 +132,18 @@ export default function Life() {
           className={`room-stage ${zoom ? 'zooming' : ''}`}
           style={zoom ? { transformOrigin: `${zoom.x}% ${zoom.y}%` } : undefined}
         >
-          <img
-            className="room-img"
-            src={IMG}
-            alt="Isometric render of Reginald's room: a shelf of trophies, plushies and cameras, a trading desk with curved monitors, a TV console, and a leather sofa."
-            onError={() => setMissing(true)}
-            draggable={false}
-          />
+          <picture>
+            <source srcSet={IMG_WEBP} type="image/webp" />
+            <img
+              className="room-img"
+              src={IMG}
+              width={IMG_W}
+              height={IMG_H}
+              alt="Isometric render of Reginald's room: a shelf of trophies, plushies and cameras, a trading desk with curved monitors, a TV console, and a leather sofa."
+              onError={() => setMissing(true)}
+              draggable={false}
+            />
+          </picture>
 
           {/* soft spotlight on the hovered object, dimming the rest */}
           <div

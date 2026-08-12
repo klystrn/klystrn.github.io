@@ -11,6 +11,7 @@ import feed from '../../data/feed.json';
 import headers from '../../data/headers.json';
 import { PROJECTS, FLAGSHIP, SUPPLEMENTARY, bySym } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
+import { trackEvent } from '../../lib/analytics';
 import { useMarquee, prefersReducedMotion } from '../../lib/hooks';
 import Chart from './Chart';
 
@@ -106,6 +107,7 @@ function TradeTicket({ ticket, sym, email, linkedin, cvUrl, onCv }) {
 
   const fill = () => {
     if (phase === 'filling') return;
+    trackEvent('trade_ticket_fill', { sym });
     setPhase('filling');
     setPct(0);
     if (prefersReducedMotion()) { setPct(100); setPhase('filled'); return; }
@@ -224,6 +226,7 @@ export default function Finance() {
 
   const cvClick = (e) => {
     e.preventDefault();
+    trackEvent('resume_download', { mode: 'finance' });
     if (c.cvUrl) window.open(c.cvUrl, '_blank');
     else toast('Wire up to your CV PDF');
   };
@@ -273,7 +276,9 @@ export default function Finance() {
                         tabIndex={0}
                         role="button"
                         onClick={() => setSym(p.sym)}
-                        onKeyDown={(e) => e.key === 'Enter' && setSym(p.sym)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSym(p.sym); }
+                        }}
                       >
                         <span className="wl-sym">${p.sym}</span>
                         <span className="wl-name">{p.title}</span>

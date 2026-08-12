@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { trackEvent } from '../lib/analytics';
 
 const ModeContext = createContext(null);
 
@@ -47,6 +48,7 @@ export function ModeProvider({ children }) {
     // Life keeps the paper (light) chrome, as in the prototype.
     document.body.dataset.mode = mode === 'life' ? 'paper' : mode;
     scrollTo(0, 0);
+    trackEvent('mode_switch', { mode });
     if (mode !== 'life' && !seenModes.has(mode)) {
       setSeenModes((s) => new Set(s).add(mode));
       if (MODE_INTRO[mode]) setTimeout(() => toast(MODE_INTRO[mode]), 400);

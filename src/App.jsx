@@ -1,23 +1,36 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { ModeProvider } from './chrome/ModeContext';
 import PillNav from './chrome/PillNav';
 import Toast from './chrome/Toast';
 import Paper from './modes/paper/Paper';
-import Tech from './modes/tech/Tech';
-import Finance from './modes/finance/Finance';
 import NotFound from './modes/NotFound';
+import { initAnalytics, trackPageview } from './lib/analytics';
 
-// Life is a WebGL scene (three.js) — lazy-load so the other three modes don't
-// ship the ~400KB 3D bundle. Its sub-pages ride the same split.
+// Paper ('/') is the default landing route and stays eager. The other three
+// lenses are route-split so a first-time visit only ships the editorial
+// bundle; Tech/Finance/Life (and Life's sub-pages) load on demand when the
+// visitor actually switches lenses.
+const Tech = lazy(() => import('./modes/tech/Tech'));
+const Finance = lazy(() => import('./modes/finance/Finance'));
 const Life = lazy(() => import('./modes/life/Life'));
 const Photography = lazy(() => import('./modes/life/Photography'));
 const WatchStory = lazy(() => import('./modes/life/WatchStory'));
 const CardGame = lazy(() => import('./modes/life/CardGame'));
 
+function Analytics() {
+  const location = useLocation();
+  useEffect(() => { initAnalytics(); }, []);
+  useEffect(() => {
+    trackPageview(location.pathname, document.title);
+  }, [location.pathname]);
+  return null;
+}
+
 export default function App() {
   return (
     <ModeProvider>
+      <Analytics />
       <a className="skip-link" href="#main">Skip to content</a>
       <PillNav />
       <main id="main" tabIndex={-1}>

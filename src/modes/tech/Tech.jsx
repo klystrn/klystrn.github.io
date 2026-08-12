@@ -4,6 +4,7 @@ import experience from '../../data/experience.json';
 import timeline from '../../data/timeline.json';
 import { PROJECTS, FLAGSHIP, SUPPLEMENTARY } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
+import { trackEvent } from '../../lib/analytics';
 import { buildFiles } from './files.jsx';
 import Terminal from './Terminal';
 import Palette from './Palette';
@@ -49,10 +50,15 @@ function buildBlame() {
    and remounted the whole tree — and unmounting a hovered node never fires its
    onMouseLeave, leaving the blame tooltip stuck on screen after a click. */
 function FileNode({ f, ico, label, lvl, activeF, openFile, showBlame, setTip }) {
+  const open = () => { setTip(null); openFile(f); };
   return (
     <div
       className={`node ${lvl ? `lvl${lvl}` : ''} ${activeF === f ? 'on' : ''}`}
-      onClick={() => { setTip(null); openFile(f); }}
+      role="button"
+      tabIndex={0}
+      aria-current={activeF === f ? 'true' : undefined}
+      onClick={open}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } }}
       onMouseMove={(e) => showBlame(e, f)}
       onMouseLeave={() => setTip(null)}
     >
@@ -62,10 +68,15 @@ function FileNode({ f, ico, label, lvl, activeF, openFile, showBlame, setTip }) 
   );
 }
 function DirNode({ k, label, lvl, dirs, toggleDir, setTip }) {
+  const toggle = () => { setTip(null); toggleDir(k); };
   return (
     <div
       className={`node dir ${lvl ? `lvl${lvl}` : ''} ${dirs[k] ? 'open' : ''}`}
-      onClick={() => { setTip(null); toggleDir(k); }}
+      role="button"
+      tabIndex={0}
+      aria-expanded={!!dirs[k]}
+      onClick={toggle}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } }}
     >
       <span className="ico tri">▸</span>
       {label}
@@ -155,6 +166,7 @@ export default function Tech() {
     setMode('finance');
   };
   const cvClick = (e) => {
+    trackEvent('resume_download', { mode: 'tech' });
     if (!identity.contact.cvUrl) {
       e.preventDefault();
       toast('Wire to CV PDF');
@@ -204,17 +216,27 @@ export default function Tech() {
           <div className="editor">
             <div className="etabs">
               {openTabs.map((f) => (
-                <div className={`etab ${f === activeF ? 'on' : ''}`} key={f} onClick={() => setActiveF(f)}>
+                <div
+                  className={`etab ${f === activeF ? 'on' : ''}`}
+                  key={f}
+                  role="button"
+                  tabIndex={0}
+                  aria-current={f === activeF ? 'true' : undefined}
+                  onClick={() => setActiveF(f)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActiveF(f); } }}
+                >
                   {FILES[f].label}
-                  <span
+                  <button
+                    type="button"
                     className="x"
+                    aria-label={`Close ${FILES[f].label}`}
                     onClick={(e) => {
                       e.stopPropagation();
                       closeTab(f);
                     }}
                   >
                     ✕
-                  </span>
+                  </button>
                 </div>
               ))}
             </div>
