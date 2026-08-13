@@ -158,6 +158,16 @@ body[data-mode="finance"] .mode-btn.on{color:#f5b942;border-color:rgba(245,185,6
 .mv .cn-edge.hot{opacity:1!important;stroke-width:2.2}
 .mv svg.dimmed .cn-node:not(.hot){opacity:.18!important}
 .mv svg.dimmed .cn-edge:not(.hot){opacity:.06!important}
+/* 31 leaf skills at full brightness at once is what reads as "too many to
+   see" — hubs/sub-hubs (9 labels) stay the map's always-visible legend, and
+   individual leaf labels sit at reduced opacity by default, popping to full
+   brightness on hover/pin (including the whole branch when a hub or sub-hub
+   is hot — see the cascading highlight in Constellation.jsx). Every skill
+   stays on the map and in the DOM the whole time — nothing is removed, just
+   visually quieter until you look at it. Leaf *dots* are untouched: they're
+   already a thin, quiet outline by design, so the clutter was the text. */
+.mv .cn-node.leaf text{opacity:.4;transition:opacity .18s ease}
+.mv .cn-node.leaf.hot text{opacity:1}
 .mv .certs-strip{max-width:760px;margin:0 auto}
 .mv .aw-h{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--fg);margin-bottom:10px}
 .mv .cert{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px dashed var(--vline);font-size:13.5px}

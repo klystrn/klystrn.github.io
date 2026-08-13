@@ -34,6 +34,26 @@ function buildSummary() {
   return HUBS.map((h) => ({ label: h.label, skills: byHub[h.id] || [] })).filter((g) => g.skills.length);
 }
 
+// All descendants of `id` reachable via hierarchy links only (root→hub→
+// sub-hub→leaf) — not the cross-cluster "connects_to"/"also" links, which
+// stay a same-level, single-hop highlight. Lets hovering a hub cascade all
+// the way down through its sub-hubs to their leaves.
+function computeDescendants(childrenOf) {
+  const result = {};
+  const dfs = (id) => {
+    if (result[id]) return result[id];
+    const set = new Set();
+    result[id] = set; // placeholder before recursing — this is a tree, so no cycles, but keeps re-entrancy safe
+    (childrenOf[id] || []).forEach((cid) => {
+      set.add(cid);
+      dfs(cid).forEach((d) => set.add(d));
+    });
+    return set;
+  };
+  Object.keys(childrenOf).forEach(dfs);
+  return result;
+}
+
 function buildGraph() {
   const leafByParent = {};
   LEAVES.forEach((l) => { (leafByParent[l.parent] ||= []).push(l); });
@@ -43,9 +63,12 @@ function buildGraph() {
 
   const nodes = [];
   const edges = [];
+  const childrenOf = {};
   const push = (n) => { nodes.push(n); return n; };
-  const link = (a, b, dashed, t, ta, tb) =>
+  const link = (a, b, dashed, t, ta, tb) => {
     edges.push({ x1: a.x, y1: a.y, x2: b.x, y2: b.y, x: dashed, t, a: ta, b: tb });
+    if (!dashed) (childrenOf[ta] ||= []).push(tb);
+  };
 
   const rootN = push({ id: 'root', kind: 'rootn', x: VIEW.cx, y: VIEW.cy, r: 42, label: ROOT.label, fs: 12, ang: 0, t: 0, cap: ROOT.caption });
 
@@ -137,7 +160,7 @@ function buildGraph() {
     (l.connects_to || []).forEach((t) => xlink(self, resolve(t)));
   });
 
-  return { edges, nodes };
+  return { edges, nodes, descendants: computeDescendants(childrenOf) };
 }
 
 function leafNode(l, x, y, ang) {
@@ -169,7 +192,7 @@ function labelPos(n) {
 const IDLE_CAP = 'scroll to expand · hover a node · click to pin its connections';
 
 export default function Constellation({ header }) {
-  const { edges, nodes } = useMemo(buildGraph, []);
+  const { edges, nodes, descendants } = useMemo(buildGraph, []);
   const summary = useMemo(buildSummary, []);
   const outerRef = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -199,15 +222,20 @@ export default function Constellation({ header }) {
   const hot = useMemo(() => {
     if (!hotId) return null;
     const hotNodes = new Set([hotId]);
+    // Hovering a hub or sub-hub cascades to every leaf underneath it (not
+    // just one hop down), so e.g. hovering TECH reveals Python, SQL, AWS...
+    // all the way through its Programming/Data/Infrastructure sub-hubs.
+    (descendants[hotId] || []).forEach((id) => hotNodes.add(id));
     const hotEdges = new Set();
     edges.forEach((e, i) => {
       if (e.a === hotId || e.b === hotId) {
         hotEdges.add(i);
         hotNodes.add(e.a === hotId ? e.b : e.a);
       }
+      if (!e.x && hotNodes.has(e.a) && hotNodes.has(e.b)) hotEdges.add(i);
     });
     return { nodes: hotNodes, edges: hotEdges };
-  }, [hotId, edges]);
+  }, [hotId, edges, descendants]);
 
   const capNode = hotId ? nodes.find((n) => n.id === hotId) : null;
   const capHtml = capNode
