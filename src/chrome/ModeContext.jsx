@@ -7,6 +7,20 @@ const ModeContext = createContext(null);
 const PATH_TO_MODE = { '/': 'paper', '/tech': 'tech', '/finance': 'finance', '/life': 'life' };
 const MODE_TO_PATH = { paper: '/', tech: '/tech', finance: '/finance', life: '/life' };
 
+const THEME_KEY = 'theme';
+
+// Only 'light'/'dark' count as an explicit user choice — anything else means
+// "follow the OS", which is also what a corrupted/foreign localStorage value
+// should fall back to.
+function getStoredTheme() {
+  try {
+    const t = localStorage.getItem(THEME_KEY);
+    return t === 'light' || t === 'dark' ? t : null;
+  } catch {
+    return null;
+  }
+}
+
 const MODE_INTRO = {
   tech: 'Tech lens: same story as Paper, rendered as a repo. Click files in the tree, or type help in the terminal.',
   finance: 'Finance lens: same story as a brokerage. Click a ticker in the watchlist to inspect it.',
@@ -24,6 +38,12 @@ export function ModeProvider({ children }) {
   const [seenModes, setSeenModes] = useState(() => new Set(['paper']));
   const [toastMsg, setToastMsg] = useState('');
   const [flashedMode, setFlashedMode] = useState(null);
+  // The head script in index.html already set this attribute before mount
+  // (avoiding a flash of the wrong theme), so read it back as the initial
+  // state instead of re-deriving it from localStorage/matchMedia here.
+  const [theme, setTheme] = useState(
+    () => document.documentElement.getAttribute('data-theme') || 'light'
+  );
   const toastTimer = useRef();
   const flashTimer = useRef();
   // Cross-mode handoff: Tech's "$SYM in Finance mode →" link pre-selects a ticker.
@@ -43,6 +63,34 @@ export function ModeProvider({ children }) {
     clearTimeout(flashTimer.current);
     flashTimer.current = setTimeout(() => setFlashedMode(null), 850);
   };
+
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try {
+        localStorage.setItem(THEME_KEY, next);
+      } catch {
+        /* private browsing / storage disabled — theme still applies for this tab */
+      }
+      trackEvent('theme_toggle', { theme: next });
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    // As long as the visitor hasn't made an explicit choice, keep following
+    // the OS setting live (e.g. their system switches to dark at sunset).
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onSystemChange = (e) => {
+      if (getStoredTheme()) return;
+      const next = e.matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      setTheme(next);
+    };
+    mq.addEventListener('change', onSystemChange);
+    return () => mq.removeEventListener('change', onSystemChange);
+  }, []);
 
   useEffect(() => {
     // Life keeps the paper (light) chrome, as in the prototype.
@@ -66,8 +114,10 @@ export function ModeProvider({ children }) {
       flashedMode,
       flashTab,
       pendingFinanceSym,
+      theme,
+      toggleTheme,
     }),
-    [mode, seenModes, toastMsg, flashedMode] // eslint-disable-line react-hooks/exhaustive-deps
+    [mode, seenModes, toastMsg, flashedMode, theme] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return <ModeContext.Provider value={value}>{children}</ModeContext.Provider>;

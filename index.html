@@ -11,6 +11,21 @@
     <meta name="theme-color" content="#07090d" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://klystrn.github.io/" />
     <script type="text/javascript">
+      // Set the light/dark theme attribute before first paint so a stored
+      // preference (or the system default) never flashes the wrong theme.
+      // ModeContext reads this same attribute back on mount as its initial
+      // state, and re-writes it whenever the toggle fires.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+    <script type="text/javascript">
       // Counterpart to public/404.html's redirect: decode the real path back
       // out of the query string and restore it via history.replaceState
       // before React Router mounts, so a refresh on /tech lands on /tech.
