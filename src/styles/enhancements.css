@@ -439,6 +439,7 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 .cg-mark{position:absolute;width:14px;height:20px;border-radius:2px;background:#fbfaf7;border:1px solid #d92b35;transform:translate(-50%,-50%) rotate(18deg);box-shadow:0 3px 8px rgba(0,0,0,.4);z-index:4}
 .cg-burst{position:absolute;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;border:2.5px solid #2fd17a;box-shadow:0 0 0 5px rgba(47,209,122,.18);pointer-events:none;z-index:7}
 .cg-burst.big{border-color:#f5b942;box-shadow:0 0 0 5px rgba(245,185,66,.22)}
+.cg-burst.curve{border-color:#f5b942;box-shadow:0 0 0 5px rgba(245,185,66,.22)}
 @keyframes cg-punch{0%,100%{transform:none}35%{transform:translate(2px,-1px)}70%{transform:translate(-2px,1px)}}
 .cg-arena.punch{animation:cg-punch .22s ease}
 @media(prefers-reduced-motion:reduce){.cg-arena.punch{animation:none}}
@@ -448,8 +449,16 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 .cg-card.live:active{cursor:grabbing}
 .cg-card.flying{pointer-events:none;left:0;top:0;transform-origin:center}
 .cg-card-art{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
-.cg-pop{position:absolute;transform:translate(-50%,-50%);z-index:8;font-family:var(--plex);font-weight:700;font-size:30px;color:#2fd17a;text-shadow:0 2px 10px rgba(0,0,0,.5);pointer-events:none}
+/* Idle bob on the resting card — reads as "held and ready", stops the
+   instant it's actually being dragged (a bob mid-drag would fight the
+   pointer-tracked transform and feel jittery). */
+.cg-card.live:not(.dragging) .cg-card-art{animation:cg-bob 2.2s ease-in-out infinite}
+@keyframes cg-bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){.cg-card.live .cg-card-art{animation:none}}
+.cg-pop{position:absolute;transform:translate(-50%,-50%);z-index:8;font-family:var(--plex);font-weight:700;font-size:30px;color:#2fd17a;text-shadow:0 2px 10px rgba(0,0,0,.5);pointer-events:none;text-align:center}
 .cg-pop.miss{color:#8b96ab;font-size:20px}
+.cg-pop.curve{color:#f5b942}
+.cg-pop-curve{display:block;font-size:10px;letter-spacing:.2em;margin-top:2px;color:#f5b942}
 .cg-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:min(420px,86%);text-align:center;font-family:var(--plex);font-size:11px;line-height:1.6;color:#8b96ab;pointer-events:none}
 .cg-over{position:absolute;inset:0;z-index:12;display:flex;align-items:center;justify-content:center;background:rgba(8,11,16,.8);backdrop-filter:blur(6px)}
 .cg-over-box{text-align:center;padding:34px 40px}

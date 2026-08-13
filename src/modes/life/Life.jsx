@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import life from '../../data/life.json';
-import { prefersReducedMotion } from '../../lib/hooks';
+import { prefersReducedMotion, noHover } from '../../lib/hooks';
 
 /*
  * Life mode: the photorealistic room render IS the scene. The image sits in a
@@ -79,10 +79,18 @@ function Fallback() {
 
 export default function Life() {
   const navigate = useNavigate();
-  const [hot, setHot] = useState(null);       // hovered/focused spot id
+  const [hot, setHot] = useState(null);       // hovered/focused spot id (mouse/keyboard)
+  const [pinned, setPinned] = useState(null); // tap-toggled info spot id (touch)
   const [zoom, setZoom] = useState(null);     // spot being zoomed into
   const [missing, setMissing] = useState(false);
   const spotRefs = useRef([]);                // hotspot buttons, for number-key jump
+  // Touch has no hover surface, so the one info-only hotspot (trophy — it has
+  // no route, so a tap otherwise does nothing) needs tap-to-toggle instead,
+  // and the hint text needs to stop telling touch visitors to "hover". This
+  // is kept as a separate `pinned` state rather than reusing `hot`: tapping a
+  // button also fires a native focus event, which would race the click's
+  // toggle against onFocus's own setHot and could close what focus just
+  // opened (or leave it stuck open, depending on event order per browser).
 
   const pick = useCallback(
     (spot) => {
@@ -118,7 +126,8 @@ export default function Life() {
 
   if (missing) return <div className="room-scene"><Fallback /></div>;
 
-  const hotSpot = SPOTS.find((s) => s.id === hot);
+  const touchOnly = noHover();
+  const hotSpot = SPOTS.find((s) => s.id === (touchOnly ? pinned : hot));
 
   return (
     <div className="room-scene">
@@ -157,14 +166,20 @@ export default function Life() {
             <button
               key={s.id}
               ref={(el) => { spotRefs.current[i] = el; }}
-              className={`room-spot ${hot === s.id ? 'on' : ''} ${s.route ? '' : 'info'}`}
+              className={`room-spot ${(touchOnly ? pinned : hot) === s.id ? 'on' : ''} ${s.route ? '' : 'info'}`}
               style={{ left: `${s.x}%`, top: `${s.y}%` }}
               aria-label={`${i + 1}: ${life.objects[s.id].label}${s.route ? ` — ${life.objects[s.id].cta}` : ''}`}
               onMouseEnter={() => setHot(s.id)}
               onMouseLeave={() => setHot((h) => (h === s.id ? null : h))}
               onFocus={() => setHot(s.id)}
               onBlur={() => setHot((h) => (h === s.id ? null : h))}
-              onClick={() => pick(s)}
+              onClick={() => {
+                if (!s.route) {
+                  if (touchOnly) setPinned((p) => (p === s.id ? null : s.id));
+                  return;
+                }
+                pick(s);
+              }}
             >
               <span className="room-spot-dot" />
             </button>
@@ -190,7 +205,9 @@ export default function Life() {
         style={{ background: zoom ? zoom.theme : 'transparent', opacity: zoom ? 1 : 0 }}
       />
 
-      <div className={`room-hint ${zoom ? 'gone' : ''}`}>Hover an object · click to step inside · press 1–{SPOTS.length} to jump</div>
+      <div className={`room-hint ${zoom ? 'gone' : ''}`}>
+        {touchOnly ? 'Tap an object to step inside.' : `Hover an object · click to step inside · press 1–${SPOTS.length} to jump`}
+      </div>
     </div>
   );
 }
