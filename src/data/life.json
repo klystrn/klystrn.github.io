@@ -99,8 +99,9 @@
   },
   "cards": {
     "title": "Card Toss",
-    "intro": "Drag back on the card, aim, and release to throw. Land it in the target rings — bullseye scores highest. Ten cards. See how sharp your flick is.",
+    "intro": "Drag back on the card, aim, and release to throw. Land it in the target rings — bullseye scores highest. Swirl the card before you release for a curveball bonus. Ten cards. See how sharp your flick is.",
     "cardsPerRound": 10,
+    "curveBonus": 10,
     "rings": [
       { "r": 32, "points": 100, "label": "Bull" },
       { "r": 70, "points": 50, "label": "Inner" },

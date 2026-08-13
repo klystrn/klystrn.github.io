@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 export const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Touch/stylus-primary devices have no hover surface, so anything gated on
+// hover (a tooltip, a "hover an object" hint) needs a tap-driven equivalent.
+export const noHover = () => window.matchMedia('(hover: none)').matches;
+
 /* Adds 'in' once the element enters the viewport (Paper .reveal).
    Each reveal gets a small stagger delay based on its order within its own
    section, plus an entrance that varies by content role — headings rise a

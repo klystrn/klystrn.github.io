@@ -7,20 +7,17 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#f4f3ef" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#07090d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f3ef" />
     <link rel="canonical" href="https://klystrn.github.io/" />
     <script type="text/javascript">
       // Set the light/dark theme attribute before first paint so a stored
-      // preference (or the system default) never flashes the wrong theme.
-      // ModeContext reads this same attribute back on mount as its initial
-      // state, and re-writes it whenever the toggle fires.
+      // preference never flashes the wrong theme. Light is the default
+      // regardless of OS setting — only an explicit toggle click switches to
+      // dark. ModeContext reads this same attribute back on mount as its
+      // initial state, and re-writes it whenever the toggle fires.
       (function () {
         try {
-          var stored = localStorage.getItem('theme');
-          var theme = stored === 'light' || stored === 'dark'
-            ? stored
-            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          var theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
       })();

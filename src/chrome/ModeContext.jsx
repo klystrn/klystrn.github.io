@@ -9,18 +9,6 @@ const MODE_TO_PATH = { paper: '/', tech: '/tech', finance: '/finance', life: '/l
 
 const THEME_KEY = 'theme';
 
-// Only 'light'/'dark' count as an explicit user choice — anything else means
-// "follow the OS", which is also what a corrupted/foreign localStorage value
-// should fall back to.
-function getStoredTheme() {
-  try {
-    const t = localStorage.getItem(THEME_KEY);
-    return t === 'light' || t === 'dark' ? t : null;
-  } catch {
-    return null;
-  }
-}
-
 const MODE_INTRO = {
   tech: 'Tech lens: same story as Paper, rendered as a repo. Click files in the tree, or type help in the terminal.',
   finance: 'Finance lens: same story as a brokerage. Click a ticker in the watchlist to inspect it.',
@@ -77,20 +65,6 @@ export function ModeProvider({ children }) {
       return next;
     });
   };
-
-  useEffect(() => {
-    // As long as the visitor hasn't made an explicit choice, keep following
-    // the OS setting live (e.g. their system switches to dark at sunset).
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const onSystemChange = (e) => {
-      if (getStoredTheme()) return;
-      const next = e.matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      setTheme(next);
-    };
-    mq.addEventListener('change', onSystemChange);
-    return () => mq.removeEventListener('change', onSystemChange);
-  }, []);
 
   useEffect(() => {
     // Life keeps the paper (light) chrome, as in the prototype.

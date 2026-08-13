@@ -1,7 +1,9 @@
 import { useMode } from './ModeContext';
 
-// Tech and Finance are permanently dark by design (see global.css), so the
-// toggle only has a visible effect — and is only shown — in Paper/Life.
+// Tech and Finance are permanently dark by design, and Life paints its own
+// fixed-dark stage (literal colours matching the photorealistic render, not
+// gated by the dark-mode CSS) — so the toggle only has a visible effect,
+// and is only shown, in Paper.
 function ThemeToggle({ theme, toggleTheme }) {
   const dark = theme === 'dark';
   return (
@@ -30,7 +32,7 @@ export default function PillNav() {
   const { mode, setMode, flashedMode, theme, toggleTheme } = useMode();
   const life = mode === 'life';
   const proMode = life ? null : mode;
-  const showThemeToggle = mode === 'paper' || life;
+  const showThemeToggle = mode === 'paper';
 
   return (
     <nav className="nav-wrap" aria-label="Primary">
