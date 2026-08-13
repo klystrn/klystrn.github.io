@@ -15,7 +15,7 @@ body[data-mode="paper"] #root-paper{display:block}
 body[data-mode="tech"] #root-tech{display:block}
 body[data-mode="finance"] #root-finance{display:block}
 
-.nav-wrap{position:fixed;top:14px;left:0;right:0;z-index:100;display:flex;justify-content:center;pointer-events:none}
+.nav-wrap{position:fixed;top:14px;left:0;right:0;z-index:100;display:flex;justify-content:center;align-items:center;gap:8px;pointer-events:none}
 .pill{pointer-events:auto;display:flex;align-items:center;gap:4px;background:rgba(18,21,26,.78);backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:5px;box-shadow:0 8px 32px rgba(0,0,0,.35)}
 .tabs{position:relative;display:flex;gap:2px}
 .tab-ind{position:absolute;top:0;bottom:0;border-radius:100px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);transition:left .35s cubic-bezier(.3,1.2,.3,1),width .35s cubic-bezier(.3,1.2,.3,1)}
@@ -496,26 +496,34 @@ body[data-mode="finance"]{cursor:url("data:image/svg+xml,%3Csvg%20xmlns='http://
 /* ===== dark mode (Paper) =====
    Tech and Finance are already dark UIs — this only covers the light Paper
    chrome (and Life, which inherits body[data-mode="paper"] but paints its
-   own opaque black stage, so it needs nothing further here). Placed last so
-   it wins over the unconditional literal colours added throughout the file
+   own opaque black stage, so it needs nothing further here). Keyed off the
+   data-theme attribute (set by the inline head script + the PillNav toggle
+   in ModeContext, not a prefers-color-scheme media query) so a manual
+   light/dark choice always wins over the OS default. Placed last so it
+   wins over the unconditional literal colours added throughout the file
    above (the "v2/v3/v5" passes) regardless of source order elsewhere. */
-@media(prefers-color-scheme:dark){
-  body[data-mode="paper"]{background:#121316;color:#e7e6e2}
-  .mv{--paper:#121316;--card:#1c1e22;--fg:#e7e6e2;--sub:#a9adb3;--vfaint:#6c7178;--vline:#2b2e33}
-  /* .tl-sec/.contact keep their fixed --ink background (by design, see the
-     --ink/--fg split above) — against a dark page that reads as only a
-     subtle elevation, same as Tech/Finance's own panel-on-page contrast, so
-     a hairline border keeps the island edge legible. */
-  .mv .tl-sec,.mv .contact{border:1px solid rgba(255,255,255,.08)}
-  .mv .pj.feat{background:linear-gradient(135deg,#1c1e22,#241a1c)}
-  .mv .cn-node.ctx circle{fill:#241a1c;stroke:#5c2c30}
-  .mv .stat .l{color:var(--sub)}
-  .pj-modal .box{background:var(--card);color:var(--fg);box-shadow:0 30px 80px rgba(0,0,0,.6)}
-  .pj-modal .close{color:var(--vfaint)}
-  .pj-modal .meta{color:var(--vfaint)}
-  .pj-modal p{color:var(--sub)}
-  .pj-modal .kvs{border-top-color:var(--vline)}
-  .pj-modal .kv2{color:var(--sub)}
-  .pj-modal .kv2 b{color:var(--fg)}
-  .pj-modal .private{border-color:var(--vline);color:var(--vfaint)}
-}
+:root[data-theme="dark"] body[data-mode="paper"]{background:#121316;color:#e7e6e2}
+:root[data-theme="dark"] .mv{--paper:#121316;--card:#1c1e22;--fg:#e7e6e2;--sub:#a9adb3;--vfaint:#6c7178;--vline:#2b2e33}
+/* .tl-sec/.contact keep their fixed --ink background (by design, see the
+   --ink/--fg split above) — against a dark page that reads as only a
+   subtle elevation, same as Tech/Finance's own panel-on-page contrast, so
+   a hairline border keeps the island edge legible. */
+:root[data-theme="dark"] .mv .tl-sec,:root[data-theme="dark"] .mv .contact{border:1px solid rgba(255,255,255,.08)}
+:root[data-theme="dark"] .mv .pj.feat{background:linear-gradient(135deg,#1c1e22,#241a1c)}
+:root[data-theme="dark"] .mv .cn-node.ctx circle{fill:#241a1c;stroke:#5c2c30}
+:root[data-theme="dark"] .mv .stat .l{color:var(--sub)}
+:root[data-theme="dark"] .pj-modal .box{background:var(--card);color:var(--fg);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+:root[data-theme="dark"] .pj-modal .close{color:var(--vfaint)}
+:root[data-theme="dark"] .pj-modal .meta{color:var(--vfaint)}
+:root[data-theme="dark"] .pj-modal p{color:var(--sub)}
+:root[data-theme="dark"] .pj-modal .kvs{border-top-color:var(--vline)}
+:root[data-theme="dark"] .pj-modal .kv2{color:var(--sub)}
+:root[data-theme="dark"] .pj-modal .kv2 b{color:var(--fg)}
+:root[data-theme="dark"] .pj-modal .private{border-color:var(--vline);color:var(--vfaint)}
+
+/* ===== theme toggle button ===== */
+.theme-toggle{pointer-events:auto;flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(18,21,26,.78);backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.35);color:#9aa2ae;cursor:pointer;transition:color .2s}
+.theme-toggle:hover{color:#fff}
+.theme-toggle:focus-visible{outline:2px solid #ff9a9d;outline-offset:3px}
+.theme-toggle svg{width:16px;height:16px}
+@media(max-width:600px){.theme-toggle{width:32px;height:32px}.theme-toggle svg{width:14px;height:14px}}

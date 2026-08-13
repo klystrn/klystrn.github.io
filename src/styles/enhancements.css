@@ -476,10 +476,10 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
  .ws-watch g{transition:none!important}
 }
 
-/* ---- dark mode (Paper) ---- */
-@media(prefers-color-scheme:dark){
-  .ts-dots button{background:var(--vline,#dcdfd9)}
-  @media(max-width:1100px){
-    .mv-rail{background:rgba(28,30,34,.92)}
-  }
+/* ---- dark mode (Paper) ----
+   Keyed off data-theme (see global.css), not prefers-color-scheme, so the
+   PillNav toggle overrides the OS default. */
+:root[data-theme="dark"] .ts-dots button{background:var(--vline,#dcdfd9)}
+@media(max-width:1100px){
+  :root[data-theme="dark"] .mv-rail{background:rgba(28,30,34,.92)}
 }
