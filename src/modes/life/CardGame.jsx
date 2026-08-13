@@ -12,9 +12,44 @@ const RINGS = [...C.rings].sort((a, b) => a.r - b.r); // ascending radius
 const BOARD = { x: 0.5, y: 0.34 }; // fractions of the arena
 const HOME = { x: 0.5, y: 0.84 };
 
+const MAX_PULL = 170;
+// Diminishing returns past MAX_PULL, so an over-eager drag can't fling the
+// card off-screen — reads as a physical "full draw" limit, not a hard stop.
+function softClamp(v, max) {
+  const abs = Math.abs(v);
+  if (abs <= max) return v;
+  const over = abs - max;
+  return Math.sign(v) * (max + over / (1 + over / max));
+}
+
+// How far back (ms) the release-velocity window looks. Short on purpose: a
+// throw should read the final flick, not the whole careful-aim-then-release
+// gesture, or a slow drag capped by a fast flick would score as slow.
+const VELOCITY_WINDOW_MS = 90;
+
+// Curveball: swirl the card around its resting point before releasing (the
+// same "spin the ball" gesture Pokémon GO rewards), rather than just dragging
+// straight to the target. Needs a deliberate ~110°+ sweep to trigger, so
+// ordinary slightly-wobbly aiming never false-positives — signed accumulation
+// means a wobble that cancels itself out (back-and-forth jitter) never adds up
+// to a real curve the way a consistent one-direction swirl does.
+const CURVE_THRESHOLD_RAD = (110 * Math.PI) / 180;
+const CURVE_FULL_STRENGTH_RAD = (190 * Math.PI) / 180;
+
+// Shortest signed angle from a to b, in radians, wrapped to (-PI, PI] — plain
+// subtraction breaks across the ±180° seam a full swirl inevitably crosses.
+function angleDelta(a, b) {
+  let d = b - a;
+  while (d > Math.PI) d -= 2 * Math.PI;
+  while (d < -Math.PI) d += 2 * Math.PI;
+  return d;
+}
+
 export default function CardGame() {
   const arenaRef = useRef(null);
-  const drag = useRef(null); // { startX, startY }
+  const drag = useRef(null); // { startX, startY, lastAngle }
+  const samples = useRef([]); // recent {x,y,t} pointer samples, for release velocity
+  const curl = useRef(0); // signed radians swept around the start point this drag — curveball intent
 
   const [left, setLeft] = useState(C.cardsPerRound);
   const [score, setScore] = useState(0);
@@ -57,14 +92,32 @@ export default function CardGame() {
   const onDown = (e) => {
     if (phase !== 'aim') return;
     e.currentTarget.setPointerCapture?.(e.pointerId);
-    drag.current = { startX: e.clientX, startY: e.clientY, startT: performance.now() };
+    drag.current = { startX: e.clientX, startY: e.clientY, lastAngle: null };
+    samples.current = [{ x: e.clientX, y: e.clientY, t: performance.now() }];
+    curl.current = 0;
     setPos({ dx: 0, dy: 0 });
   };
 
   const onMove = (e) => {
     if (!drag.current) return;
-    const dx = e.clientX - drag.current.startX;
-    const dy = e.clientY - drag.current.startY;
+    const now = performance.now();
+    samples.current.push({ x: e.clientX, y: e.clientY, t: now });
+    const cutoff = now - VELOCITY_WINDOW_MS;
+    while (samples.current.length > 2 && samples.current[0].t < cutoff) samples.current.shift();
+
+    const rawDx = e.clientX - drag.current.startX;
+    const rawDy = e.clientY - drag.current.startY;
+    // Track how far the pointer has swirled around its own start point (not
+    // just its last position), over the whole drag — a deliberate curveball
+    // wind-up happens throughout the aim, not just in the final flick.
+    if (Math.hypot(rawDx, rawDy) > 12) {
+      const ang = Math.atan2(rawDy, rawDx);
+      if (drag.current.lastAngle != null) curl.current += angleDelta(drag.current.lastAngle, ang);
+      drag.current.lastAngle = ang;
+    }
+
+    const dx = softClamp(rawDx, MAX_PULL);
+    const dy = softClamp(rawDy, MAX_PULL);
     setPos({ dx, dy });
     if (-dy > 20) setAim(predict(dx, dy));
     else setAim(null);
@@ -72,13 +125,13 @@ export default function CardGame() {
 
   const onUp = (e) => {
     if (!drag.current) return;
-    const dx = e.clientX - drag.current.startX;
-    const dy = e.clientY - drag.current.startY;
-    const elapsed = Math.max(performance.now() - drag.current.startT, 60);
+    const rawDy = e.clientY - drag.current.startY;
+    const dx = softClamp(e.clientX - drag.current.startX, MAX_PULL);
+    const dy = softClamp(rawDy, MAX_PULL);
     drag.current = null;
 
     // Not a real upward flick — reset the card, no throw spent.
-    if (-dy < 40) {
+    if (-rawDy < 40) {
       setPos(null);
       setAim(null);
       return;
@@ -90,30 +143,53 @@ export default function CardGame() {
     const pts = ring ? ring.points : 0;
     const reduced = prefersReducedMotion();
 
-    // Flick speed (px/ms of the pull) drives how snappy the throw reads: a
-    // fast short flick gets a quick, hard-spinning throw; a slow drag lobs.
+    // Release velocity from only the last ~90ms of movement (not the whole
+    // press-to-release gesture) — a real flick right at the end reads as
+    // fast even after a slow, careful aim, and a gentle push stays a lob.
     // Score is still purely a function of where you aimed — speed is feel only.
-    const pull = Math.hypot(dx, dy);
-    const speed = pull / elapsed;
+    const first = samples.current[0];
+    const last = samples.current[samples.current.length - 1];
+    const dt = Math.max(last.t - first.t, 16);
+    const speed = Math.hypot(last.x - first.x, last.y - first.y) / dt; // px/ms
+
+    // Curveball: a deliberate swirl (not just a diagonal drag) around the
+    // start point, measured over the whole gesture — unlike release speed,
+    // a curve wind-up is naturally slow and sustained, so it needs the full
+    // drag's accumulated sweep rather than the short velocity window.
+    const sweep = curl.current;
+    const isCurve = Math.abs(sweep) >= CURVE_THRESHOLD_RAD;
+    const curveMag = isCurve
+      ? Math.min((Math.abs(sweep) - CURVE_THRESHOLD_RAD) / (CURVE_FULL_STRENGTH_RAD - CURVE_THRESHOLD_RAD), 1)
+      : 0;
+    const curveSign = sweep < 0 ? -1 : 1;
+    const curveBonus = isCurve && pts > 0 ? C.curveBonus || 0 : 0;
+
     const travel = Math.hypot(p.x - homePx.x, p.y - homePx.y);
-    const duration = reduced ? 0.001 : Math.min(Math.max(0.42 - speed * 0.12, 0.2), 0.42);
-    const spin = 300 + Math.min(speed * 260, 420) * (dx < 0 ? -1 : 1);
-    const lift = Math.min(Math.max(travel * 0.16, 22), 70);
-    const curve = Math.max(Math.min(dx * 0.14, 45), -45);
-    const mid = { x: (homePx.x + p.x) / 2 + curve, y: (homePx.y + p.y) / 2 - lift };
+    const duration = reduced ? 0.001 : Math.min(Math.max(0.5 - speed * 0.16, 0.16), 0.5);
+    const spin = (220 + Math.min(speed * 260, 520) * (dx < 0 ? -1 : 1)) * (isCurve ? 1.5 : 1);
+    const lift = Math.min(Math.max(travel * 0.16 + speed * 10, 22), 90);
+    // A curveball's bow is driven by the swirl direction/strength, not the
+    // drag's raw horizontal offset — otherwise a straight-up flick with a
+    // swirl mixed in wouldn't visibly curve.
+    const straightCurve = Math.max(Math.min(dx * 0.14, 45), -45);
+    const curveOffset = isCurve ? curveSign * (44 + curveMag * 70) : straightCurve;
+    const mid = { x: (homePx.x + p.x) / 2 + curveOffset, y: (homePx.y + p.y) / 2 - lift };
+    // A harder flick pops the card bigger on release — more visible "snap".
+    const popScale = 1.08 + Math.min(speed * 0.12, 0.34);
 
     setPos(null);
     setAim(null);
     setPhase('flying');
-    setFlight({ to: { x: p.x, y: p.y }, mid, scale: 0.45, duration, spin });
+    setFlight({ to: { x: p.x, y: p.y }, mid, scale: 0.45, duration, spin, pop: popScale });
 
     // Resolve after the flight animation.
     window.setTimeout(() => {
       const id = Date.now();
-      if (pts > 0) setMarks((m) => [...m.slice(-6), { x: p.x, y: p.y, pts, id }]);
-      setScore((s) => s + pts);
-      setPop({ pts, id, miss: pts === 0 });
-      setBurst({ x: p.x, y: p.y, id, big: ring === RINGS[0] });
+      const total = pts + curveBonus;
+      if (pts > 0) setMarks((m) => [...m.slice(-6), { x: p.x, y: p.y, pts: total, id }]);
+      setScore((s) => s + total);
+      setPop({ pts: total, id, miss: pts === 0, curve: curveBonus > 0 });
+      setBurst({ x: p.x, y: p.y, id, big: ring === RINGS[0], curve: curveBonus > 0 });
       setFlight(null);
       if (!reduced && pts > 0) {
         setShake(true);
@@ -217,7 +293,7 @@ export default function CardGame() {
               animate={{
                 x: [homePx.x, flight.mid.x, flight.to.x],
                 y: [homePx.y, flight.mid.y, flight.to.y],
-                scale: [1, 1.14, flight.scale * 0.86, flight.scale],
+                scale: [1, flight.pop, flight.scale * 0.86, flight.scale],
                 rotate: flight.spin,
               }}
               transition={{
@@ -237,7 +313,7 @@ export default function CardGame() {
           {burst && (
             <motion.div
               key={burst.id}
-              className={`cg-burst ${burst.big ? 'big' : ''}`}
+              className={`cg-burst ${burst.big ? 'big' : ''} ${burst.curve ? 'curve' : ''}`}
               style={{ left: burst.x, top: burst.y }}
               initial={{ opacity: 0.9, scale: 0.3 }}
               animate={{ opacity: 0, scale: burst.big ? 2.4 : 1.7 }}
@@ -249,7 +325,7 @@ export default function CardGame() {
         {/* draggable card at home */}
         {phase === 'aim' && (
           <div
-            className="cg-card live"
+            className={`cg-card live ${pos ? 'dragging' : ''}`}
             onPointerDown={onDown}
             style={{
               left: homePx.x,
@@ -265,13 +341,14 @@ export default function CardGame() {
         <AnimatePresence>
           {pop && (
             <motion.div
-              className={`cg-pop ${pop.miss ? 'miss' : ''}`}
+              className={`cg-pop ${pop.miss ? 'miss' : ''} ${pop.curve ? 'curve' : ''}`}
               initial={{ opacity: 0, y: 0, scale: 0.7 }}
               animate={{ opacity: 1, y: -30, scale: 1 }}
               exit={{ opacity: 0, y: -50 }}
               style={{ left: boardPx.x, top: boardPx.y }}
             >
               {pop.miss ? 'miss' : `+${pop.pts}`}
+              {pop.curve && <span className="cg-pop-curve">CURVEBALL</span>}
             </motion.div>
           )}
         </AnimatePresence>
