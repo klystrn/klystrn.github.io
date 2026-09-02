@@ -4,6 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import life from '../../data/life.json';
 import { prefersReducedMotion } from '../../lib/hooks';
 
+/* A swipe needs to travel further horizontally than vertically, and further
+   than this floor — otherwise an ordinary tap-to-pause reads as a swipe. */
+const SWIPE_PX = 40;
+
 const W = life.watchStory;
 
 /* Dial geometry, all in the 340×360 viewBox. Centre of the watch head. */
@@ -83,6 +87,7 @@ export default function WatchStory() {
   const remainingRef = useRef(0);
   const startedAtRef = useRef(0);
   const frozenRef = useRef(false);
+  const touchRef = useRef({ x: 0, y: 0 });
 
   const entry = W.entries[idx];
   const duration = readDuration(entry.line2);
@@ -133,6 +138,24 @@ export default function WatchStory() {
     addEventListener('keydown', onKey);
     return () => removeEventListener('keydown', onKey);
   }, []);
+
+  // Touch has no hover: a press freezes the countdown (mirroring hover-to-
+  // pause), and a horizontal swipe on release jumps to the next/previous
+  // entry directly, the way a story or carousel is expected to behave.
+  const onTouchStart = (e) => {
+    const t = e.touches[0];
+    touchRef.current = { x: t.clientX, y: t.clientY };
+    setHovering(true);
+  };
+  const onTouchEnd = (e) => {
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchRef.current.x;
+    const dy = t.clientY - touchRef.current.y;
+    setHovering(false);
+    if (Math.abs(dx) > SWIPE_PX && Math.abs(dx) > Math.abs(dy)) {
+      setIdx((i) => (i + (dx < 0 ? 1 : -1) + W.entries.length) % W.entries.length);
+    }
+  };
 
   const sec = now.getSeconds();
   const min = now.getMinutes();
@@ -289,20 +312,29 @@ export default function WatchStory() {
           </svg>
         </div>
 
-        <div className="ws-story" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="ws-year-big">{entry.year}</div>
-              <div className="ws-line1">{entry.line1}</div>
-              <p className="ws-caption">{entry.line2}</p>
-            </motion.div>
-          </AnimatePresence>
+        <div
+          className="ws-story"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          onTouchCancel={() => setHovering(false)}
+        >
+          <div aria-live="polite" aria-atomic="true">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="ws-year-big">{entry.year}</div>
+                <div className="ws-line1">{entry.line1}</div>
+                <p className="ws-caption">{entry.line2}</p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           <div className="ws-progress-track" aria-hidden="true">
             <div

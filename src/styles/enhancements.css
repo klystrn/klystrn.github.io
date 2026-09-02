@@ -486,6 +486,9 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
  .life-pop-arrow{display:none}
  .ig-head{flex-direction:column;text-align:center;gap:18px}
  .ig-stats{justify-content:center}
+ /* Tighten so all 6 watch-story dots fit one row instead of orphaning the last */
+ .ws-dots{gap:5px}
+ .ws-dot{padding:5px 8px;font-size:9.5px}
 }
 @media(prefers-reduced-motion:reduce){
  .life-obj{animation:none}
