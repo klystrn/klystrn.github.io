@@ -45,6 +45,21 @@ function angleDelta(a, b) {
   return d;
 }
 
+// Keyboard aim: arrow keys nudge the card in fixed steps (there's no pointer
+// to drag), and a throw needs a stand-in for release speed since there's no
+// gesture to read one from — pick the middle of the pointer-driven range.
+const KB_STEP = 16;
+const KB_SPEED = 0.42;
+
+const BEST_KEY = 'cg-best';
+const loadBest = () => {
+  try {
+    return Number(localStorage.getItem(BEST_KEY)) || 0;
+  } catch {
+    return 0;
+  }
+};
+
 export default function CardGame() {
   const arenaRef = useRef(null);
   const drag = useRef(null); // { startX, startY, lastAngle }
@@ -53,15 +68,20 @@ export default function CardGame() {
 
   const [left, setLeft] = useState(C.cardsPerRound);
   const [score, setScore] = useState(0);
+  const [best, setBest] = useState(loadBest);
+  const [newBest, setNewBest] = useState(false);
   const [phase, setPhase] = useState('aim'); // aim | flying | over
   const [pos, setPos] = useState(null); // live card offset while dragging {dx,dy}
-  const [aim, setAim] = useState(null); // predicted landing {x,y} in px
+  const [aim, setAim] = useState(null); // predicted landing {x,y,ring} in px
   const [flight, setFlight] = useState(null); // { to:{x,y}, scale }
   const [marks, setMarks] = useState([]); // landed hits {x,y,pts,id}
   const [pop, setPop] = useState(null); // last-throw score popup
   const [burst, setBurst] = useState(null); // impact ring at the landing point
   const [shake, setShake] = useState(false); // brief arena punch on a scoring hit
   const [dim, setDim] = useState(null); // measured arena {w,h} — drives layout
+  const [status, setStatus] = useState(''); // last-throw result, announced to screen readers
+  const roundScore = useRef(0); // this round's running total, read synchronously at round-end
+  const bestRef = useRef(best); // mirrors `best` for synchronous read/write in the resolve callback
 
   // Measure the arena so board/card positions are pixel-accurate (and stay so
   // on resize). Render-time getBoundingClientRect is null on first paint.
@@ -88,6 +108,14 @@ export default function CardGame() {
     const landY = boardY + (idealUp - up);
     return { x: landX, y: landY, boardX, boardY };
   }, []);
+
+  // Which ring a predicted landing point falls in, if any — shared by the
+  // live aim preview (so you see what a throw is worth before you commit)
+  // and the actual scoring on release.
+  const ringFor = (p) => {
+    const dist = Math.hypot(p.x - p.boardX, p.y - p.boardY);
+    return RINGS.find((rg) => dist <= rg.r) || null;
+  };
 
   const onDown = (e) => {
     if (phase !== 'aim') return;
@@ -119,8 +147,19 @@ export default function CardGame() {
     const dx = softClamp(rawDx, MAX_PULL);
     const dy = softClamp(rawDy, MAX_PULL);
     setPos({ dx, dy });
-    if (-dy > 20) setAim(predict(dx, dy));
-    else setAim(null);
+    aimAt(dx, dy);
+  };
+
+  // Shared by pointer drag and keyboard nudging: shows the predicted landing
+  // point plus what it's currently worth, live, instead of only revealing
+  // the score after the card lands.
+  const aimAt = (dx, dy) => {
+    if (-dy <= 20) {
+      setAim(null);
+      return;
+    }
+    const p = predict(dx, dy);
+    setAim({ ...p, ring: ringFor(p) });
   };
 
   const onUp = (e) => {
@@ -137,12 +176,6 @@ export default function CardGame() {
       return;
     }
 
-    const p = predict(dx, dy);
-    const dist = Math.hypot(p.x - p.boardX, p.y - p.boardY);
-    const ring = RINGS.find((rg) => dist <= rg.r);
-    const pts = ring ? ring.points : 0;
-    const reduced = prefersReducedMotion();
-
     // Release velocity from only the last ~90ms of movement (not the whole
     // press-to-release gesture) — a real flick right at the end reads as
     // fast even after a slow, careful aim, and a gentle push stays a lob.
@@ -152,11 +185,43 @@ export default function CardGame() {
     const dt = Math.max(last.t - first.t, 16);
     const speed = Math.hypot(last.x - first.x, last.y - first.y) / dt; // px/ms
 
+    throwCard(dx, dy, speed, curl.current);
+  };
+
+  // Keyboard equivalent of drag-and-release: arrow keys nudge the aim (same
+  // softClamp, same live aim preview via aimAt), Enter/Space throws at
+  // whatever's currently aimed, Escape cancels. No gesture to read a release
+  // speed from, so a throw uses a fixed KB_SPEED stand-in, and no swirl
+  // gesture exists either, so keyboard throws never curve.
+  const onCardKeyDown = (e) => {
+    if (phase !== 'aim') return;
+    const { key } = e;
+    if (key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight') {
+      e.preventDefault();
+      const cur = pos || { dx: 0, dy: 0 };
+      const dx = softClamp(cur.dx + (key === 'ArrowLeft' ? -KB_STEP : key === 'ArrowRight' ? KB_STEP : 0), MAX_PULL);
+      const dy = softClamp(cur.dy + (key === 'ArrowUp' ? -KB_STEP : key === 'ArrowDown' ? KB_STEP : 0), MAX_PULL);
+      setPos({ dx, dy });
+      aimAt(dx, dy);
+    } else if (key === 'Enter' || key === ' ') {
+      e.preventDefault();
+      if (pos && -pos.dy > 20) throwCard(pos.dx, pos.dy, KB_SPEED, 0);
+    } else if (key === 'Escape') {
+      setPos(null);
+      setAim(null);
+    }
+  };
+
+  const throwCard = (dx, dy, speed, sweep) => {
+    const p = predict(dx, dy);
+    const ring = ringFor(p);
+    const pts = ring ? ring.points : 0;
+    const reduced = prefersReducedMotion();
+
     // Curveball: a deliberate swirl (not just a diagonal drag) around the
     // start point, measured over the whole gesture — unlike release speed,
     // a curve wind-up is naturally slow and sustained, so it needs the full
     // drag's accumulated sweep rather than the short velocity window.
-    const sweep = curl.current;
     const isCurve = Math.abs(sweep) >= CURVE_THRESHOLD_RAD;
     const curveMag = isCurve
       ? Math.min((Math.abs(sweep) - CURVE_THRESHOLD_RAD) / (CURVE_FULL_STRENGTH_RAD - CURVE_THRESHOLD_RAD), 1)
@@ -186,10 +251,12 @@ export default function CardGame() {
     window.setTimeout(() => {
       const id = Date.now();
       const total = pts + curveBonus;
+      roundScore.current += total;
       if (pts > 0) setMarks((m) => [...m.slice(-6), { x: p.x, y: p.y, pts: total, id }]);
-      setScore((s) => s + total);
+      setScore(roundScore.current);
       setPop({ pts: total, id, miss: pts === 0, curve: curveBonus > 0 });
       setBurst({ x: p.x, y: p.y, id, big: ring === RINGS[0], curve: curveBonus > 0 });
+      setStatus(pts === 0 ? 'Miss.' : `${ring.label}, ${total} points${curveBonus > 0 ? ', curveball bonus' : ''}.`);
       setFlight(null);
       if (!reduced && pts > 0) {
         setShake(true);
@@ -198,6 +265,20 @@ export default function CardGame() {
       const remaining = left - 1;
       setLeft(remaining);
       setPhase(remaining > 0 ? 'aim' : 'over');
+      if (remaining <= 0) {
+        if (roundScore.current > bestRef.current) {
+          bestRef.current = roundScore.current;
+          setBest(roundScore.current);
+          setNewBest(true);
+          try {
+            localStorage.setItem(BEST_KEY, String(roundScore.current));
+          } catch {
+            // Storage unavailable (private mode, quota) — best just won't persist.
+          }
+        } else {
+          setNewBest(false);
+        }
+      }
       window.setTimeout(() => setPop((cur) => (cur && cur.id === id ? null : cur)), 900);
       window.setTimeout(() => setBurst((cur) => (cur && cur.id === id ? null : cur)), 500);
     }, duration * 1000);
@@ -205,9 +286,11 @@ export default function CardGame() {
 
   const reset = () => {
     setLeft(C.cardsPerRound);
+    roundScore.current = 0;
     setScore(0);
     setMarks([]);
     setPop(null);
+    setNewBest(false);
     setPhase('aim');
   };
 
@@ -226,6 +309,11 @@ export default function CardGame() {
           <div className="cg-score-n">{score}</div>
           <div className="cg-score-l">POINTS</div>
         </div>
+        <div className="cg-best">
+          <div className="cg-best-n">{best}</div>
+          <div className="cg-best-l">BEST</div>
+        </div>
+        <div className="sr-only" aria-live="polite">{status}</div>
         <div className="cg-cards-left">
           {Array.from({ length: C.cardsPerRound }).map((_, i) => (
             <span key={i} className={`cg-pip ${i < left ? 'live' : ''}`} />
@@ -249,11 +337,16 @@ export default function CardGame() {
                 key={rg.r}
                 r={rg.r}
                 fill={i % 2 === 0 ? '#1b1e24' : '#242830'}
-                stroke="#3a4150"
-                strokeWidth="1.5"
+                stroke={aim?.ring === rg ? '#ffd23f' : '#3a4150'}
+                strokeWidth={aim?.ring === rg ? 3 : 1.5}
               />
             ))}
-            <circle r={RINGS[0].r} fill="#d92b35" />
+            <circle
+              r={RINGS[0].r}
+              fill="#d92b35"
+              stroke={aim?.ring === RINGS[0] ? '#ffd23f' : 'none'}
+              strokeWidth={aim?.ring === RINGS[0] ? 3 : 0}
+            />
             <circle r={RINGS[0].r * 0.4} fill="#fff2f2" />
             {RINGS.map((rg) => (
               <text key={rg.r} x="0" y={-rg.r + 13} textAnchor="middle" className="cg-ring-pts">{rg.points}</text>
@@ -266,7 +359,9 @@ export default function CardGame() {
           <div key={m.id} className="cg-mark" style={{ left: m.x, top: m.y }} />
         ))}
 
-        {/* aim guide */}
+        {/* aim guide — reticle colour and the live point value both reflect
+            what the throw is currently worth, so scoring feedback starts
+            during the aim instead of only after the card lands. */}
         {aim && dim && (
           <svg className="cg-guide" width={dim.w} height={dim.h}>
             <line
@@ -274,11 +369,14 @@ export default function CardGame() {
               y1={homePx.y + (pos?.dy || 0)}
               x2={aim.x}
               y2={aim.y}
-              stroke="rgba(217,43,53,.5)"
+              stroke={aim.ring ? 'rgba(255,210,63,.6)' : 'rgba(217,43,53,.5)'}
               strokeWidth="2"
               strokeDasharray="4 6"
             />
-            <circle cx={aim.x} cy={aim.y} r="8" fill="none" stroke="#d92b35" strokeWidth="2" />
+            <circle cx={aim.x} cy={aim.y} r="8" fill="none" stroke={aim.ring ? '#ffd23f' : '#d92b35'} strokeWidth="2" />
+            <text x={aim.x} y={aim.y - 18} textAnchor="middle" className={`cg-aim-preview ${aim.ring ? '' : 'miss'}`}>
+              {aim.ring ? `+${aim.ring.points}` : 'miss'}
+            </text>
           </svg>
         )}
 
@@ -322,11 +420,16 @@ export default function CardGame() {
           )}
         </AnimatePresence>
 
-        {/* draggable card at home */}
+        {/* draggable card at home — also keyboard-operable: focus it, use
+            the arrow keys to aim, Enter/Space to throw. */}
         {phase === 'aim' && (
           <div
             className={`cg-card live ${pos ? 'dragging' : ''}`}
             onPointerDown={onDown}
+            onKeyDown={onCardKeyDown}
+            role="button"
+            tabIndex={0}
+            aria-label={`Card, ${left} left to throw. Drag, or use the arrow keys to aim and Enter to throw.`}
             style={{
               left: homePx.x,
               top: homePx.y,
@@ -358,9 +461,9 @@ export default function CardGame() {
           {phase === 'over' && (
             <motion.div className="cg-over" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <motion.div className="cg-over-box" initial={{ scale: 0.9, y: 14 }} animate={{ scale: 1, y: 0 }}>
-                <div className="cg-over-eyebrow">ROUND COMPLETE</div>
+                <div className="cg-over-eyebrow">{newBest ? 'NEW BEST' : 'ROUND COMPLETE'}</div>
                 <div className="cg-over-score">{score}</div>
-                <div className="cg-over-l">points from {C.cardsPerRound} cards</div>
+                <div className="cg-over-l">points from {C.cardsPerRound} cards{!newBest && best > 0 ? ` · best ${best}` : ''}</div>
                 <button className="cg-over-btn" onClick={reset}>Throw again</button>
                 <Link className="cg-over-back" to="/life">back to the table</Link>
               </motion.div>
