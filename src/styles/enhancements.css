@@ -420,6 +420,13 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 .ws-pause{background:none;border:none;cursor:pointer;font-family:var(--plex);font-size:11px;color:#7f858b;text-decoration:underline;padding:6px}
 .ws-pause:hover{color:#c9ccce}
 
+/* Reading-time progress: fills over the entry's auto-advance window and
+   freezes in place (not resets) while paused or hovered, via animation-
+   play-state — restarts only when the entry itself (the `key`) changes. */
+.ws-progress-track{width:100%;max-width:220px;height:2px;margin:22px auto 0;background:rgba(200,205,210,.16);border-radius:2px;overflow:hidden}
+.ws-progress-fill{height:100%;width:0%;background:#9aa0a6;animation-name:ws-fill;animation-timing-function:linear;animation-fill-mode:forwards}
+@keyframes ws-fill{from{width:0%}to{width:100%}}
+
 /* ---- Card game ---- */
 .cg{min-height:100vh;background:radial-gradient(120% 90% at 50% 0%,#1a1f28,#0c0f15);color:#dfe6f2}
 .cg-hud{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:660px;margin:0 auto;padding:100px 20px 14px;flex-wrap:wrap}
@@ -483,6 +490,7 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 @media(prefers-reduced-motion:reduce){
  .life-obj{animation:none}
  .ws-watch g{transition:none!important}
+ .ws-progress-fill{animation:none;width:100%}
 }
 
 /* ---- dark mode (Paper) ----

@@ -34,6 +34,13 @@ const SUB = {
   hours:   { c: [170, 220], nums: [[0, '12'], [90, '3'], [180, '6'], [270, '9']] }, // 6 o'clock, 12-hr recorder
 };
 
+/* Auto-advance pacing: give each entry enough time to actually be read
+   (roughly 340ms/word on top of a baseline) instead of a flat interval that
+   cuts long captions off before you're done reading them. */
+const READ_BASE_MS = 3200;
+const READ_MS_PER_WORD = 340;
+const readDuration = (text) => READ_BASE_MS + text.trim().split(/\s+/).length * READ_MS_PER_WORD;
+
 /* Small graduation ticks around a sub-dial. */
 function SubTicks({ c, r }) {
   return Array.from({ length: 60 }).map((_, i) => {
@@ -71,8 +78,15 @@ export default function WatchStory() {
   const [now, setNow] = useState(() => new Date());
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
-  const pausedRef = useRef(false);
-  pausedRef.current = paused;
+  const [hovering, setHovering] = useState(false);
+  const timeoutRef = useRef(null);
+  const remainingRef = useRef(0);
+  const startedAtRef = useRef(0);
+  const frozenRef = useRef(false);
+
+  const entry = W.entries[idx];
+  const duration = readDuration(entry.line2);
+  const advance = () => setIdx((i) => (i + 1) % W.entries.length);
 
   // Mechanical seconds: step the whole movement once a second so the running
   // seconds sub-dial "ticks" rather than sweeps.
@@ -82,12 +96,42 @@ export default function WatchStory() {
     return () => clearInterval(t);
   }, []);
 
-  // Advance the generational narrative on a regular multiple of ticks.
+  // A fresh entry gets its own full reading time.
   useEffect(() => {
-    const t = setInterval(() => {
-      if (!pausedRef.current) setIdx((i) => (i + 1) % W.entries.length);
-    }, W.tickMs);
-    return () => clearInterval(t);
+    remainingRef.current = duration;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idx]);
+
+  // Advance the generational narrative, but freeze the clock — instead of
+  // just skipping a tick — while paused or hovered, and resume from exactly
+  // where it left off rather than restarting the whole reading window.
+  useEffect(() => {
+    const frozen = paused || hovering;
+    if (frozen) {
+      clearTimeout(timeoutRef.current);
+      if (!frozenRef.current) {
+        remainingRef.current = Math.max(0, remainingRef.current - (Date.now() - startedAtRef.current));
+        frozenRef.current = true;
+      }
+      return;
+    }
+    frozenRef.current = false;
+    startedAtRef.current = Date.now();
+    timeoutRef.current = setTimeout(advance, remainingRef.current);
+    return () => clearTimeout(timeoutRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paused, hovering, idx]);
+
+  // Arrow-key navigation, mirroring the dots.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight') setIdx((i) => (i + 1) % W.entries.length);
+      else if (e.key === 'ArrowLeft') setIdx((i) => (i - 1 + W.entries.length) % W.entries.length);
+      else return;
+      e.preventDefault();
+    };
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
   }, []);
 
   const sec = now.getSeconds();
@@ -96,7 +140,6 @@ export default function WatchStory() {
   const secAng = sec * 6;
   const minAng = min * 6 + sec * 0.1;
   const hrAng = hr * 30 + min * 0.5;
-  const entry = W.entries[idx];
 
   return (
     <motion.div
@@ -246,7 +289,7 @@ export default function WatchStory() {
           </svg>
         </div>
 
-        <div className="ws-story">
+        <div className="ws-story" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
           <AnimatePresence mode="wait">
             <motion.div
               key={idx}
@@ -260,6 +303,14 @@ export default function WatchStory() {
               <p className="ws-caption">{entry.line2}</p>
             </motion.div>
           </AnimatePresence>
+
+          <div className="ws-progress-track" aria-hidden="true">
+            <div
+              key={idx}
+              className="ws-progress-fill"
+              style={{ animationDuration: `${duration}ms`, animationPlayState: paused || hovering ? 'paused' : 'running' }}
+            />
+          </div>
 
           <div className="ws-dots">
             {W.entries.map((e, i) => (

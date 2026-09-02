@@ -87,7 +87,6 @@
   "watchStory": {
     "brand": "The Tan Collection",
     "sub": "Three generations, one running record.",
-    "tickMs": 3600,
     "entries": [
       { "year": "1968", "line1": "Where it started", "line2": "My grandfather's first mechanical — a hand-wound dress watch bought with his first proper paycheck." },
       { "year": "1974", "line1": "The daily beater", "line2": "A steel diver that survived the shipyard, the sea, and two decades of being worn every single day." },
