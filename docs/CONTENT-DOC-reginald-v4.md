@@ -271,7 +271,7 @@ All four now link out to the full testimonial PDF/letter on Google Drive (`url` 
 
 ## 13 · CONTACT & LINKS (→ identity.json)
 
-- Email: reginald.140105@gmail.com
+- Email: reginald.h.tan@gmail.com
 - LinkedIn: https://www.linkedin.com/in/reginald-tan/
 - GitHub: https://github.com/klystrn
 - CV: Google Drive link (RESOLVED 2026-07-17), set as `identity.json` → `contact.cvUrl`
