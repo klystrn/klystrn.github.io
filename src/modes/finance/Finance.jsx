@@ -12,6 +12,7 @@ import feed from '../../data/feed.json';
 import headers from '../../data/headers.json';
 import { PROJECTS, FLAGSHIP, SUPPLEMENTARY, bySym } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
+import { useGithubFeed } from '../../lib/githubFeed';
 import { trackEvent } from '../../lib/analytics';
 import { useMarquee, prefersReducedMotion } from '../../lib/hooks';
 import Chart from './Chart';
@@ -167,6 +168,15 @@ export default function Finance() {
   const alloc = allocation();
   const fin = identity.finance;
   const c = identity.contact;
+
+  // Live GitHub activity replaces the static 'gh' feed.json entries once it
+  // resolves (null while loading falls back to the static entries too, so
+  // there's no empty flash — just a swap once the live fetch lands).
+  // LinkedIn has no equivalent public API, so those entries stay static.
+  const ghUsername = c.github.split('/').filter(Boolean).pop();
+  const liveGh = useGithubFeed(ghUsername, 3);
+  const staticLi = feed.filter((f) => f.src === 'li');
+  const feedItems = liveGh && liveGh.length ? [...liveGh, ...staticLi] : feed;
 
   // Live-terminal boot flicker: quotes jitter briefly, then settle on the
   // derived values. Purely cosmetic; skipped for prefers-reduced-motion.
@@ -451,13 +461,15 @@ export default function Finance() {
                 <span className="p-hint">GitHub · LinkedIn</span>
               </div>
               <div>
-                {feed.map((f, i) => (
-                  <div className="feed-item" key={i}>
+                {feedItems.map((f, i) => (
+                  <div className="feed-item" key={`${f.src}-${i}`}>
                     <span className="feed-t">{f.t}</span>
                     <span className="feed-x">
                       <span className={`feed-src ${f.src}`}>{f.src === 'gh' ? 'GITHUB' : 'LINKEDIN'}</span>
                       <span dangerouslySetInnerHTML={{ __html: f.xHtml }} />{' '}
-                      <a href={f.link}>view ↗</a>
+                      {f.link && f.link !== '#' && (
+                        <a href={f.link} target="_blank" rel="noopener noreferrer">view ↗</a>
+                      )}
                     </span>
                   </div>
                 ))}
