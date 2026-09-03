@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import identity from '../../data/identity.json';
-import experience from '../../data/experience.json';
-import timeline from '../../data/timeline.json';
+import { identity, experience, timeline } from '../../lib/data';
 import { PROJECTS, FLAGSHIP, SUPPLEMENTARY } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { trackEvent } from '../../lib/analytics';

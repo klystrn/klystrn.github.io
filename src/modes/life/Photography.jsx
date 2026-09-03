@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import life from '../../data/life.json';
+import { life } from '../../lib/lifeData';
 
 const P = life.photography;
 

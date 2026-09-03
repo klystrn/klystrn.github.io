@@ -1,4 +1,7 @@
-import raw from '../data/projects.json';
+import projectsJson from '../data/projects.json';
+
+/** @type {import('../data/types').Project[]} */
+const raw = projectsJson;
 
 // Growth is derived from the curve at load — never hand-typed — so it can't
 // drift out of sync with the chart (content parity rule).

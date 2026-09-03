@@ -1,15 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import identity from '../../data/identity.json';
-import experience from '../../data/experience.json';
-import education from '../../data/education.json';
-import testimonials from '../../data/testimonials.json';
-import awards from '../../data/awards.json';
-import certs from '../../data/certs.json';
-import skills from '../../data/skills.json';
-import timeline from '../../data/timeline.json';
-import feed from '../../data/feed.json';
-import headers from '../../data/headers.json';
+import { identity, experience, testimonials, awards, certs, skills, timeline, headers } from '../../lib/data';
+import { education, feed } from '../../lib/financeData';
 import { PROJECTS, FLAGSHIP, SUPPLEMENTARY, bySym } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { useGithubFeed } from '../../lib/githubFeed';

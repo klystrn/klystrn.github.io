@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import identity from '../../data/identity.json';
-import experience from '../../data/experience.json';
-import timeline from '../../data/timeline.json';
-import awards from '../../data/awards.json';
-import certs from '../../data/certs.json';
-import headers from '../../data/headers.json';
+import { identity, experience, timeline, awards, certs, headers } from '../../lib/data';
 import { FLAGSHIP, SUPPLEMENTARY, bySym } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { useReveal, useCountUp } from '../../lib/hooks';

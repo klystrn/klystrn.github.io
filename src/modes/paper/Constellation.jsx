@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import skills from '../../data/skills.json';
+import { skills } from '../../lib/data';
 import { prefersReducedMotion } from '../../lib/hooks';
 
 const { root: ROOT, hubs: HUBS, subhubs: SUBHUBS, leaves: LEAVES } = skills;

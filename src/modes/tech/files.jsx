@@ -1,9 +1,4 @@
-import identity from '../../data/identity.json';
-import experience from '../../data/experience.json';
-import timeline from '../../data/timeline.json';
-import certs from '../../data/certs.json';
-import testimonials from '../../data/testimonials.json';
-import skills from '../../data/skills.json';
+import { identity, experience, timeline, certs, testimonials, skills } from '../../lib/data';
 import { PROJECTS } from '../../lib/projects';
 
 /*

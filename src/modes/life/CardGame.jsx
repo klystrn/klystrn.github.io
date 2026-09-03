@@ -1,7 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import life from '../../data/life.json';
+import { life } from '../../lib/lifeData';
 import { CardsArt } from './objects';
 import { prefersReducedMotion } from '../../lib/hooks';
 

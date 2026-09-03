@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import allTestimonials from '../../data/testimonials.json';
+import { testimonials as allTestimonials } from '../../lib/data';
 import { prefersReducedMotion } from '../../lib/hooks';
 
 const testimonials = allTestimonials.filter((t) => t.quote);

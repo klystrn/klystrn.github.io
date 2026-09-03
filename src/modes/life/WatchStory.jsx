@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import life from '../../data/life.json';
+import { life } from '../../lib/lifeData';
 import { prefersReducedMotion } from '../../lib/hooks';
 
 /* A swipe needs to travel further horizontally than vertically, and further

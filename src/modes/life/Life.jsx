@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import life from '../../data/life.json';
+import { life } from '../../lib/lifeData';
 import { prefersReducedMotion, noHover } from '../../lib/hooks';
 
 /*

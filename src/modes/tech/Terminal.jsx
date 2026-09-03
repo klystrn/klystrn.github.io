@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import identity from '../../data/identity.json';
-import experience from '../../data/experience.json';
+import { identity, experience } from '../../lib/data';
 import { PROJECTS } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { prefersReducedMotion } from '../../lib/hooks';
