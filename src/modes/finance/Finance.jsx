@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import identity from '../../data/identity.json';
 import experience from '../../data/experience.json';
 import education from '../../data/education.json';
@@ -154,8 +155,13 @@ function TradeTicket({ ticket, sym, email, linkedin, cvUrl, onCv }) {
 
 export default function Finance() {
   const { toast, pendingFinanceSym } = useMode();
-  const [tab, setTab] = useState('flag');
-  const [sym, setSym] = useState('ATW');
+  const [searchParams, setSearchParams] = useSearchParams();
+  // A ?sym= in the URL (a shared link, or a reload) picks the initial stock,
+  // same as the Tech-mode handoff below — both just need a valid symbol.
+  const urlSym = searchParams.get('sym');
+  const initialSym = urlSym && bySym(urlSym) ? urlSym : 'ATW';
+  const [tab, setTab] = useState(bySym(initialSym).flag ? 'flag' : 'supp');
+  const [sym, setSym] = useState(initialSym);
   const [flick, setFlick] = useState(null);
   const [allocHot, setAllocHot] = useState(null);
   const alloc = allocation();
@@ -186,13 +192,25 @@ export default function Finance() {
       ? `+${(p.curve[p.curve.length - 1] - p.curve[0] + flick[p.sym]).toFixed(1)} pts`
       : p.chg;
 
-  // Consume a ticker handed over from Tech mode ("$SYM in Finance mode →").
+  // Single path for picking a stock: sets the tab to match, and keeps the
+  // URL in sync (replacing, not pushing, so clicking through the watchlist
+  // doesn't fill up the back button) — so wherever you land is a link you
+  // can copy and share, and it's always in sync with what's on screen.
+  const selectSym = (newSym) => {
+    const p = bySym(newSym);
+    if (!p) return;
+    setTab(p.flag ? 'flag' : 'supp');
+    setSym(newSym);
+    setSearchParams({ sym: newSym }, { replace: true });
+  };
+
+  // Consume a ticker handed over from Tech mode ("$SYM in Finance mode →") —
+  // takes priority over whatever the URL says, since it's a fresher pick.
   useEffect(() => {
     const pending = pendingFinanceSym.current;
     if (pending && bySym(pending)) {
       pendingFinanceSym.current = null;
-      setTab(bySym(pending).flag ? 'flag' : 'supp');
-      setSym(pending);
+      selectSym(pending);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -206,19 +224,17 @@ export default function Finance() {
   const sel = bySym(sym) || list[0];
 
   const switchTab = (k) => {
-    setTab(k);
     const first = (k === 'flag' ? FLAGSHIP : SUPPLEMENTARY)[0];
-    if (first) setSym(first.sym);
+    if (first) selectSym(first.sym);
+    else setTab(k);
   };
 
   // Clicking a symbol on the ticker tape jumps to it in the watchlist: switch to
   // the right tab, select it, scroll the panel into view, and flash the row.
   const [picked, setPicked] = useState(null);
   const pickFromTape = (s) => {
-    const p = bySym(s);
-    if (!p) return;
-    setTab(p.flag ? 'flag' : 'supp');
-    setSym(s);
+    if (!bySym(s)) return;
+    selectSym(s);
     document.getElementById('fin-watchlist')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     setPicked(s);
     setTimeout(() => setPicked((cur) => (cur === s ? null : cur)), 1200);
@@ -275,9 +291,9 @@ export default function Finance() {
                         key={p.sym}
                         tabIndex={0}
                         role="button"
-                        onClick={() => setSym(p.sym)}
+                        onClick={() => selectSym(p.sym)}
                         onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSym(p.sym); }
+                          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectSym(p.sym); }
                         }}
                       >
                         <span className="wl-sym">${p.sym}</span>
@@ -395,8 +411,11 @@ export default function Finance() {
                     <div
                       className={`alloc-row ${allocHot === a.key ? 'hot' : ''}`}
                       key={a.key}
+                      tabIndex={0}
                       onMouseEnter={() => setAllocHot(a.key)}
                       onMouseLeave={() => setAllocHot((h) => (h === a.key ? null : h))}
+                      onFocus={() => setAllocHot(a.key)}
+                      onBlur={() => setAllocHot((h) => (h === a.key ? null : h))}
                     >
                       <b style={{ background: a.color }} />
                       {a.label}

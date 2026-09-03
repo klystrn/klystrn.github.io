@@ -2,8 +2,9 @@ import { useMode } from './ModeContext';
 
 // Short, hover/focus-revealed explanations of what each mode actually is —
 // the labels alone ("Tech", "Finance") don't say it's the same career told
-// three different ways until you've already clicked in.
-const PROFESSIONAL_TIP = 'One career, three formats — pick how you want to read it.';
+// three different ways until you've already clicked in. "Professional"
+// itself is just the umbrella tab (same destination as "Paper"), so it gets
+// no tip of its own — only the four actual modes underneath it do.
 const MODE_TIPS = {
   paper: 'The classic view — résumé, timeline, projects.',
   tech: 'The same career as a terminal — cd into it.',
@@ -57,9 +58,8 @@ export default function PillNav() {
     <nav className="nav-wrap" aria-label="Primary">
       <div className="pill">
         <span className="brand" title="Reginald">R.</span>
-        <button className={`tab-btn ${life ? '' : 'on'}`} onClick={() => setMode('paper')} aria-describedby="nav-tip-professional">
+        <button className={`tab-btn ${life ? '' : 'on'}`} onClick={() => setMode('paper')}>
           Professional
-          <NavTip id="nav-tip-professional">{PROFESSIONAL_TIP}</NavTip>
         </button>
         <div className={`modes ${life ? 'hidden' : ''}`}>
           {['paper', 'tech', 'finance'].map((m) => (

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import identity from '../../data/identity.json';
 import experience from '../../data/experience.json';
 import timeline from '../../data/timeline.json';
 import awards from '../../data/awards.json';
 import certs from '../../data/certs.json';
 import headers from '../../data/headers.json';
-import { FLAGSHIP, SUPPLEMENTARY } from '../../lib/projects';
+import { FLAGSHIP, SUPPLEMENTARY, bySym } from '../../lib/projects';
 import { useMode } from '../../chrome/ModeContext';
 import { useReveal, useCountUp } from '../../lib/hooks';
 import { trackEvent } from '../../lib/analytics';
@@ -37,6 +38,7 @@ export default function Paper() {
   const { setMode, seenModes, toast } = useMode();
   const rootRef = useReveal();
   const [modal, setModal] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const tlRef = useRef(null);
   const fillRef = useRef(null);
   const c = identity.contact;
@@ -66,6 +68,11 @@ export default function Paper() {
     else toast('Wire to CV PDF');
   };
 
+  // Project/experience openers also write a URL query param (replacing, not
+  // pushing, so browsing through cards doesn't fill up the back button) — so
+  // whatever's open is a link you can copy and share, landing straight on
+  // that detail instead of the top of the page. The mount effect below
+  // reverses this: reading the param back out to auto-open on load/share.
   const openProject = (p) => {
     trackEvent('project_view', { project: p.sym || p.title });
     setModal({
@@ -76,6 +83,7 @@ export default function Paper() {
       stats: p.stats,
       private: p.private,
     });
+    if (p.sym) setSearchParams({ project: p.sym }, { replace: true });
   };
 
   const openXp = (x) => {
@@ -88,8 +96,12 @@ export default function Paper() {
       stats: x.detail.stats,
       private: x.detail.private,
     });
+    setSearchParams({ xp: x.id }, { replace: true });
   };
 
+  // Certs has no deep-link param: whenever driveUrl is set (as it is here),
+  // "view all" just opens Drive in a new tab and the in-page modal below
+  // never actually renders, so there'd be nothing for a link to point to.
   const openCerts = () => {
     if (c.driveUrl) {
       window.open(c.driveUrl, '_blank');
@@ -104,6 +116,27 @@ export default function Paper() {
       stats,
     });
   };
+
+  const closeModal = () => {
+    setModal(null);
+    setSearchParams({}, { replace: true });
+  };
+
+  // Deep link: ?project=<sym> or ?xp=<id> auto-opens the matching card's
+  // modal on load, so a shared/reloaded link lands on the right detail
+  // instead of the top of the page.
+  useEffect(() => {
+    const projectSym = searchParams.get('project');
+    const xpId = searchParams.get('xp');
+    if (projectSym) {
+      const p = bySym(projectSym);
+      if (p) openProject(p);
+    } else if (xpId) {
+      const x = experience.find((e) => e.id === xpId);
+      if (x) openXp(x);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const curatedAwards = awards.filter((a) => a.curated);
   const curatedCerts = certs.filter((x) => x.curated);
@@ -329,7 +362,7 @@ export default function Paper() {
         <div className="credit contact-credit">Built by <b>{identity.name}</b></div>
       </section>
 
-      <Modal data={modal} onClose={() => setModal(null)} />
+      <Modal data={modal} onClose={closeModal} />
     </div>
   );
 }

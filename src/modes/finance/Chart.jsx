@@ -58,12 +58,20 @@ export default function Chart({ project }) {
             <circle
               key={idx}
               className="mstone"
+              tabIndex={0}
+              role="img"
+              aria-label={label}
               cx={px(idx)}
               cy={py(c[idx])}
               r="5"
               fill="#f5b942"
               onMouseMove={(e) => setTip({ label, x: e.clientX, y: e.clientY })}
               onMouseLeave={() => setTip(null)}
+              onFocus={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                setTip({ label, x: r.left + r.width / 2, y: r.top });
+              }}
+              onBlur={() => setTip(null)}
             />
           ))}
         </svg>

@@ -198,6 +198,7 @@ export default function Constellation({ header }) {
   const [progress, setProgress] = useState(0);
   const [hotId, setHotId] = useState(null);
   const [pinned, setPinned] = useState(false);
+  const [cursor, setCursor] = useState(null); // index into `nodes` — keyboard equivalent of hover
   const [hint, setHint] = useState(false); // one-shot "it's interactive" nudge
   const hintShown = useRef(false);
 
@@ -280,6 +281,27 @@ export default function Constellation({ header }) {
     setHotId(id);
   };
 
+  // Keyboard equivalent of hovering: rather than making all ~40 nodes
+  // individual Tab stops (a real cost for anyone just trying to get past
+  // this section), the graph is a single Tab stop and arrow keys move a
+  // cursor through it — same highlight/caption the mouse gets, Enter/Space
+  // pins exactly like a click.
+  const moveCursor = (i) => {
+    const n = nodes.length;
+    const next = ((i % n) + n) % n;
+    setCursor(next);
+    enter(nodes[next].id);
+  };
+  const onSvgFocus = () => { if (cursor == null) moveCursor(0); };
+  const onSvgBlur = () => { setCursor(null); leave(); };
+  const onSvgKeyDown = (e) => {
+    if (!settled) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); moveCursor((cursor ?? -1) + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); moveCursor((cursor ?? 1) - 1); }
+    else if ((e.key === 'Enter' || e.key === ' ') && cursor != null) { e.preventDefault(); click(e, nodes[cursor].id); }
+    else if (e.key === 'Escape') { setCursor(null); setPinned(false); setHotId(null); }
+  };
+
   return (
     <section className="sk-outer" id="skills" ref={outerRef}>
       <div className="sk-sticky">
@@ -297,7 +319,11 @@ export default function Constellation({ header }) {
           role="img"
           aria-label="Skills constellation"
           className={hotId ? 'dimmed' : ''}
+          tabIndex={settled ? 0 : -1}
           onClick={() => { dismissHint(); if (pinned) { setPinned(false); setHotId(null); } }}
+          onFocus={onSvgFocus}
+          onBlur={onSvgBlur}
+          onKeyDown={onSvgKeyDown}
         >
           <g transform={`translate(${VIEW.cx} ${VIEW.cy}) scale(${scale}) translate(${-VIEW.cx} ${-VIEW.cy})`}>
             {edges.map((e, i) => (
