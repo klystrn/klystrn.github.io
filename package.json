@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "playwright test"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.2.8",
@@ -23,8 +24,8 @@
     "react-router-dom": "^7.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "playwright-core": "^1.61.1",
     "vite": "^6.0.0"
   }
 }

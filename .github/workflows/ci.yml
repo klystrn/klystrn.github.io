@@ -1,0 +1,36 @@
+name: CI
+
+# Separate from deploy.yml on purpose: deploy.yml only ever runs on a push
+# to main (after the fact), so nothing verified a build or the test suite
+# before that point — a PR, or a push to any other branch, got no signal
+# at all. This gives every push and PR its own build+test check.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # npm test builds the site itself (via playwright.config.js's
+      # webServer step) before running against it, so this alone covers
+      # both "does it build" and "do the smoke tests pass".
+      - run: npm test
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7

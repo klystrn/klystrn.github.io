@@ -3,3 +3,6 @@ dist
 .DS_Store
 .idea
 *.local
+test-results
+playwright-report
+blob-report
