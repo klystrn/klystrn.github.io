@@ -12,6 +12,19 @@ function tileBg(hue, i = 0) {
   return `linear-gradient(150deg, hsl(${h} 42% 32%), hsl(${(h + 30) % 360} 38% 18%))`;
 }
 
+/* A real photo that 404s (a path typo, a file that hasn't landed yet) falls
+   back to the same gradient swatch the placeholder cells use, cell by cell,
+   rather than showing a broken-image icon or losing the grid's shape. */
+function PhotoCell({ src, hue, i, title }) {
+  const [broken, setBroken] = useState(false);
+  if (!src || broken) return <div className="ig-lb-cell" style={{ background: tileBg(hue, i + 1) }} />;
+  return (
+    <div className="ig-lb-cell">
+      <img src={src} alt={`${title} — photo ${i + 1}`} loading="lazy" onError={() => setBroken(true)} />
+    </div>
+  );
+}
+
 function Lightbox({ tile, onClose }) {
   const closeRef = useRef(null);
   const lastFocused = useRef(null);
@@ -25,6 +38,14 @@ function Lightbox({ tile, onClose }) {
       lastFocused.current?.focus?.();
     };
   }, [onClose]);
+
+  // Real photos, once added to a tile's `photos` array, replace the gradient
+  // placeholders automatically — no other flag to flip. Until then this set
+  // still shows the placeholder grid + a note that the real thing is coming.
+  const photos = tile.photos || [];
+  const hasPhotos = photos.length > 0;
+  const count = hasPhotos ? photos.length : tile.count;
+
   return (
     <motion.div
       className="ig-lb"
@@ -46,16 +67,42 @@ function Lightbox({ tile, onClose }) {
         <button className="ig-lb-x" aria-label="Close" ref={closeRef} onClick={onClose}>✕</button>
         <div className="ig-lb-head">
           <h3>{tile.title}</h3>
-          <span>{tile.count} photos</span>
+          <span>{count} photos</span>
         </div>
         <div className="ig-lb-grid">
-          {Array.from({ length: Math.min(tile.count, 12) }).map((_, i) => (
-            <div key={i} className="ig-lb-cell" style={{ background: tileBg(tile.hue, i + 1) }} />
-          ))}
+          {hasPhotos
+            ? photos.map((src, i) => <PhotoCell key={src} src={src} hue={tile.hue} i={i} title={tile.title} />)
+            : Array.from({ length: Math.min(tile.count, 12) }).map((_, i) => (
+                <div key={i} className="ig-lb-cell" style={{ background: tileBg(tile.hue, i + 1) }} />
+              ))}
         </div>
-        <p className="ig-lb-note">A selection from this set. Full galleries coming as I digitise the archive.</p>
+        {!hasPhotos && (
+          <p className="ig-lb-note">A selection from this set. Full galleries coming as I digitise the archive.</p>
+        )}
       </motion.div>
     </motion.div>
+  );
+}
+
+/* Grid tile: an explicit `cover` wins, otherwise the set's first real photo
+   stands in for it once one exists — one place to add real photos (`photos`)
+   rather than keeping a separate `cover` in sync by hand. Falls back to the
+   gradient swatch if that image 404s, same as a lightbox cell would. */
+function Tile({ t, onOpen }) {
+  const [broken, setBroken] = useState(false);
+  const src = t.cover || t.photos?.[0] || '';
+  const count = t.photos?.length || t.count;
+  const showImg = src && !broken;
+  return (
+    <button
+      className="ig-tile"
+      style={showImg ? undefined : { background: tileBg(t.hue) }}
+      onClick={() => onOpen(t)}
+    >
+      {showImg && <img src={src} alt={t.title} loading="lazy" onError={() => setBroken(true)} />}
+      <span className="ig-tile-count">▦ {count}</span>
+      <span className="ig-tile-title">{t.title}</span>
+    </button>
   );
 }
 
@@ -95,16 +142,7 @@ export default function Photography() {
 
       <div className="ig-grid">
         {P.tiles.map((t) => (
-          <button
-            key={t.id}
-            className="ig-tile"
-            style={t.cover ? undefined : { background: tileBg(t.hue) }}
-            onClick={() => setOpen(t)}
-          >
-            {t.cover && <img src={t.cover} alt={t.title} loading="lazy" />}
-            <span className="ig-tile-count">▦ {t.count}</span>
-            <span className="ig-tile-title">{t.title}</span>
-          </button>
+          <Tile key={t.id} t={t} onOpen={setOpen} />
         ))}
       </div>
 
