@@ -1,5 +1,16 @@
 import { useMode } from './ModeContext';
 
+// Short, hover/focus-revealed explanations of what each mode actually is —
+// the labels alone ("Tech", "Finance") don't say it's the same career told
+// three different ways until you've already clicked in.
+const PROFESSIONAL_TIP = 'One career, three formats — pick how you want to read it.';
+const MODE_TIPS = {
+  paper: 'The classic view — résumé, timeline, projects.',
+  tech: 'The same career as a terminal — cd into it.',
+  finance: 'The same career as a stock ticket — $RTAN.',
+};
+const LIFE_TIP = 'Off the clock — an interactive room, a watch, two games.';
+
 // Tech and Finance are permanently dark by design, and Life paints its own
 // fixed-dark stage (literal colours matching the photorealistic render, not
 // gated by the dark-mode CSS) — so the toggle only has a visible effect,
@@ -28,6 +39,14 @@ function ThemeToggle({ theme, toggleTheme }) {
   );
 }
 
+function NavTip({ id, children }) {
+  return (
+    <span className="nav-tip" id={id} role="tooltip">
+      {children}
+    </span>
+  );
+}
+
 export default function PillNav() {
   const { mode, setMode, flashedMode, theme, toggleTheme } = useMode();
   const life = mode === 'life';
@@ -38,8 +57,9 @@ export default function PillNav() {
     <nav className="nav-wrap" aria-label="Primary">
       <div className="pill">
         <span className="brand" title="Reginald">R.</span>
-        <button className={`tab-btn ${life ? '' : 'on'}`} onClick={() => setMode('paper')}>
+        <button className={`tab-btn ${life ? '' : 'on'}`} onClick={() => setMode('paper')} aria-describedby="nav-tip-professional">
           Professional
+          <NavTip id="nav-tip-professional">{PROFESSIONAL_TIP}</NavTip>
         </button>
         <div className={`modes ${life ? 'hidden' : ''}`}>
           {['paper', 'tech', 'finance'].map((m) => (
@@ -47,14 +67,17 @@ export default function PillNav() {
               key={m}
               className={`mode-btn ${proMode === m ? 'on' : ''} ${flashedMode === m ? 'flash' : ''}`}
               onClick={() => setMode(m)}
+              aria-describedby={`nav-tip-${m}`}
             >
               {m[0].toUpperCase() + m.slice(1)}
+              <NavTip id={`nav-tip-${m}`}>{MODE_TIPS[m]}</NavTip>
             </button>
           ))}
         </div>
         <div className="pill-div" style={{ opacity: life ? 0 : 1 }} />
-        <button className={`tab-btn ${life ? 'on' : ''}`} onClick={() => setMode('life')}>
+        <button className={`tab-btn ${life ? 'on' : ''}`} onClick={() => setMode('life')} aria-describedby="nav-tip-life">
           Life
+          <NavTip id="nav-tip-life">{LIFE_TIP}</NavTip>
         </button>
       </div>
       {showThemeToggle && <ThemeToggle theme={theme} toggleTheme={toggleTheme} />}

@@ -35,6 +35,18 @@ body[data-mode="finance"] .mode-btn.on{color:#f5b942;border-color:rgba(245,185,6
 .mode-btn.flash{animation:tab-flash .8s ease}
 @media(prefers-reduced-motion:reduce){.mode-btn.flash{animation:none}}
 
+/* Nav hover/focus explanations — the pill is a fixed dark glass surface in
+   every mode (unlike the page behind it), so one dark tooltip style works
+   everywhere without a light-mode variant. Anchored to the button itself
+   (tab-btn already has position:relative; mode-btn needs it added here) so
+   no extra wrapper element is needed. */
+.tab-btn,.mode-btn{position:relative}
+.nav-tip{position:absolute;top:calc(100% + 13px);left:50%;transform:translateX(-50%) translateY(-4px);width:190px;background:#15181c;color:#e9ebe6;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;font-family:var(--plex);font-weight:400;font-size:11px;line-height:1.55;text-align:left;letter-spacing:normal;text-transform:none;white-space:normal;box-shadow:0 20px 44px rgba(0,0,0,.45);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s ease,transform .15s ease;z-index:200}
+.nav-tip::after{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);width:11px;height:11px;background:#15181c;border-left:1px solid rgba(255,255,255,.1);border-top:1px solid rgba(255,255,255,.1)}
+.tab-btn:hover .nav-tip,.tab-btn:focus-visible .nav-tip,
+.mode-btn:hover .nav-tip,.mode-btn:focus-visible .nav-tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+@media(hover:none){.nav-tip{display:none}}
+
 .mode-fade{animation:modefade .45s ease}
 @keyframes modefade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,12px);background:#15181c;color:#e9ebe6;border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:10px 16px;font-family:var(--plex);font-size:12px;opacity:0;transition:.3s;pointer-events:none;z-index:200}
