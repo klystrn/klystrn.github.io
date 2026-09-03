@@ -1,4 +1,59 @@
+import { useRef, useState } from 'react';
 import { useMode } from './ModeContext';
+
+// Touch has no hover, so the CSS-only reveal above never fires there. A
+// long-press peeks at the tip without navigating (mirroring the press-to-
+// pause pattern on the watch page); a normal tap still navigates immediately,
+// same as it always has. Auto-hides after a few seconds like a one-shot hint.
+const LONG_PRESS_MS = 450;
+const MOVE_CANCEL_PX = 10;
+const AUTO_HIDE_MS = 3000;
+
+function useTouchTip() {
+  const [shownId, setShownId] = useState(null);
+  const pressTimer = useRef(null);
+  const hideTimer = useRef(null);
+  const startPos = useRef({ x: 0, y: 0 });
+  const suppressClick = useRef(false);
+
+  const touchHandlers = (id) => ({
+    onTouchStart: (e) => {
+      const t = e.touches[0];
+      startPos.current = { x: t.clientX, y: t.clientY };
+      clearTimeout(pressTimer.current);
+      pressTimer.current = setTimeout(() => {
+        setShownId(id);
+        suppressClick.current = true;
+        clearTimeout(hideTimer.current);
+        hideTimer.current = setTimeout(() => setShownId(null), AUTO_HIDE_MS);
+      }, LONG_PRESS_MS);
+    },
+    onTouchMove: (e) => {
+      const t = e.touches[0];
+      if (Math.hypot(t.clientX - startPos.current.x, t.clientY - startPos.current.y) > MOVE_CANCEL_PX) {
+        clearTimeout(pressTimer.current);
+      }
+    },
+    onTouchEnd: () => clearTimeout(pressTimer.current),
+    onTouchCancel: () => clearTimeout(pressTimer.current),
+  });
+
+  // Wrap a button's real onClick: a click completing a long-press is
+  // swallowed (that's what just showed the tip) — any other click, tap, or
+  // keypress navigates exactly as it always did.
+  const guardClick = (fn) => (e) => {
+    if (suppressClick.current) {
+      suppressClick.current = false;
+      e.preventDefault();
+      return;
+    }
+    setShownId(null);
+    clearTimeout(hideTimer.current);
+    fn(e);
+  };
+
+  return { shownId, touchHandlers, guardClick };
+}
 
 // Short, hover/focus-revealed explanations of what each mode actually is —
 // the labels alone ("Tech", "Finance") don't say it's the same career told
@@ -40,9 +95,9 @@ function ThemeToggle({ theme, toggleTheme }) {
   );
 }
 
-function NavTip({ id, children }) {
+function NavTip({ id, show, children }) {
   return (
-    <span className="nav-tip" id={id} role="tooltip">
+    <span className={`nav-tip ${show ? 'show' : ''}`} id={id} role="tooltip">
       {children}
     </span>
   );
@@ -50,6 +105,7 @@ function NavTip({ id, children }) {
 
 export default function PillNav() {
   const { mode, setMode, flashedMode, theme, toggleTheme } = useMode();
+  const { shownId, touchHandlers, guardClick } = useTouchTip();
   const life = mode === 'life';
   const proMode = life ? null : mode;
   const showThemeToggle = mode === 'paper';
@@ -66,18 +122,24 @@ export default function PillNav() {
             <button
               key={m}
               className={`mode-btn ${proMode === m ? 'on' : ''} ${flashedMode === m ? 'flash' : ''}`}
-              onClick={() => setMode(m)}
+              onClick={guardClick(() => setMode(m))}
               aria-describedby={`nav-tip-${m}`}
+              {...touchHandlers(m)}
             >
               {m[0].toUpperCase() + m.slice(1)}
-              <NavTip id={`nav-tip-${m}`}>{MODE_TIPS[m]}</NavTip>
+              <NavTip id={`nav-tip-${m}`} show={shownId === m}>{MODE_TIPS[m]}</NavTip>
             </button>
           ))}
         </div>
         <div className="pill-div" style={{ opacity: life ? 0 : 1 }} />
-        <button className={`tab-btn ${life ? 'on' : ''}`} onClick={() => setMode('life')} aria-describedby="nav-tip-life">
+        <button
+          className={`tab-btn ${life ? 'on' : ''}`}
+          onClick={guardClick(() => setMode('life'))}
+          aria-describedby="nav-tip-life"
+          {...touchHandlers('life')}
+        >
           Life
-          <NavTip id="nav-tip-life">{LIFE_TIP}</NavTip>
+          <NavTip id="nav-tip-life" show={shownId === 'life'}>{LIFE_TIP}</NavTip>
         </button>
       </div>
       {showThemeToggle && <ThemeToggle theme={theme} toggleTheme={toggleTheme} />}
