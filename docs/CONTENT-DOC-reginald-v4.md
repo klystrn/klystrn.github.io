@@ -14,7 +14,7 @@
   1. "Business analytics, with a *market* mind."
   2. "Financial technology, with an *analytical* mind."
   3. "Software engineering, with a *business* mind."
-- Sub-line (hero lede): "Nine years of coding, two years of equity trading. Built tools for a cloud 
+- Sub-line (hero lede): "{CodingSpan} of coding, {tradingSpan} of equity trading. Built tools for a cloud 
   migration in J.P. Morgan, developed facial recognition software for a biometrics firm, & taught workshops
   at Overflow. Currently leading a media & design team in the Singapore Armed Forces and automating a trading
   workflow in after-hours."
@@ -29,7 +29,7 @@
      building a cloud-workload monitoring tool now used globally, with a stint running server operations 
      at Alibaba Cloud's Singapore data centres along the way."
   2. "Beyond my background in data analytics & software engineering lies a second obsession: financial markets. I've been 
-      trading equities for two years, building workflows and tooling to further my passion, from a portfolio tracker to a 
+      trading equities for {tradingSpan}, building workflows and tooling to further my passion, from a portfolio tracker to a 
       Claude-powered automated trading workflow."
 
 ## 2 · QUICK STATS (→ identity.json, animated counters)
@@ -40,8 +40,8 @@
 | 2 | 11 | IT projects |
 | 3 | 16 | workshops led |
 | 4 | 2 | director's lists |
-| 5 | 9 | years writing code (CONFIRMED: counts from first code written ~2017, not from Sorts shipping in 2019) |
-| 6 | 2 | years trading |
+| 5 | derived | years writing code: counted from `since: 2018` in identity.json stats (derived at load by lib/data.js, so it ticks up on its own; previously hand-typed "9" from ~2017, changed 2026-10) |
+| 6 | derived | years trading: counted from `since: 2024` in identity.json stats (derived at load) |
 
 ## 3 · EXPERIENCE (→ experience.json)
 

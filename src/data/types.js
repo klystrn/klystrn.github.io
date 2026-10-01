@@ -139,7 +139,7 @@
  * @property {SkillHub[]} hubs
  * @property {SkillSubhub[]} subhubs
  * @property {SkillLeaf[]} leaves
- * @property {Record<string, string[] | number>} stack  - Tech mode's stack.json view
+ * @property {Record<string, string[] | number>} stack  - Tech mode's stack.json view (years_writing_code is derived in lib/data.js, not stored)
  */
 
 /**
@@ -228,7 +228,7 @@
  * @property {string} status
  * @property {string} goal
  * @property {string[]} aboutHtml
- * @property {{n: number, label: string, key: string}[]} stats
+ * @property {{n?: number, since?: number, label: string, key: string}[]} stats  - `since` (a start year) is turned into `n` by lib/data.js; use it for anything that grows with time
  * @property {IdentityContact} contact
  * @property {Record<string, string>} finance   - $RTAN ticket copy
  * @property {Record<string, string>} tech      - README/terminal copy

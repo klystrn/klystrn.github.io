@@ -7,17 +7,17 @@
     "Financial technology,<br>with an <em>analytical</em> mind.",
     "Software engineering,<br>with a <em>business</em> mind."
   ],
-  "lede": "Nine years of coding, two years of equity trading. Built tools for a cloud migration in J.P. Morgan, developed facial recognition software for a biometrics firm, & taught workshops at Overflow. Currently leading a media & design team in the Singapore Armed Forces and automating a trading workflow in after-hours.",
+  "lede": "{CodingSpan} of coding, {tradingSpan} of equity trading. Built tools for a cloud migration in J.P. Morgan, developed facial recognition software for a biometrics firm, & taught workshops at Overflow. Currently leading a media & design team in the Singapore Armed Forces and automating a trading workflow in after-hours.",
   "status": "NS @ SAF Guards HQ - Team Manager (Media & Design) · AI Task Force",
   "goal": "The goal: make the decisions that enable corporations to make & move money strategically.",
   "aboutHtml": [
     "At fourteen, I shipped my first real product, <b>Sorts</b>, an iOS app for educators. Since then, I've completed an O-Level Computing specialisation at <b>SST</b>, a Diploma in IT at <b>Ngee Ann Polytechnic</b> on the Ngee Ann Scholarship (Director's List, twice), and a year at <b>J.P. Morgan</b> migrating investment banking processes and building a cloud-workload monitoring tool now used globally, with a stint running server operations at <b>Alibaba Cloud's</b> Singapore data centres along the way.",
-    "Beyond my background in data analytics & software engineering lies a second obsession: <b>financial markets</b>. I've been trading equities for two years, building workflows and tooling to further my passion, from a portfolio tracker to a Claude-powered automated trading workflow."
+    "Beyond my background in data analytics & software engineering lies a second obsession: <b>financial markets</b>. I've been trading equities for {tradingSpan}, building workflows and tooling to further my passion, from a portfolio tracker to a Claude-powered automated trading workflow."
   ],
   "stats": [
     { "n": 2, "label": "director's lists", "key": "directors_lists" },
-    { "n": 9, "label": "years writing code", "key": "years_writing_code" },
-    { "n": 2, "label": "years trading", "key": "years_trading" },
+    { "since": 2018, "label": "years writing code", "key": "years_writing_code" },
+    { "since": 2024, "label": "years trading", "key": "years_trading" },
     { "n": 7, "label": "IT competitions", "key": "it_competitions" },
     { "n": 11, "label": "IT projects", "key": "it_projects" },
     { "n": 16, "label": "workshops led", "key": "workshops_led" }
@@ -44,7 +44,7 @@
     "titlebar": "klystrn · ~/portfolio · zsh",
     "readmeTagline": "# software engineering × financial markets",
     "readmeBadges": ["📍 Singapore", "● open to opportunities", "FinTech", "now: Guards HQ, media team manager · AI task force"],
-    "readmeAboutHtml": "Builder since <code>sorts-ios</code> (2019, shipped at 14). Diploma in IT @ NP on the Ngee Ann Scholarship, Director's List ×2. Interned at J.P. Morgan on the Athena platform and built a workload-monitoring tool now used globally; ran server ops at Alibaba Cloud's SG data centres. Two years in the markets, now automating the workflow with Claude and MCP.",
+    "readmeAboutHtml": "Builder since <code>sorts-ios</code> (2019, shipped at 14). Diploma in IT @ NP on the Ngee Ann Scholarship, Director's List ×2. Interned at J.P. Morgan on the Athena platform and built a workload-monitoring tool now used globally; ran server ops at Alibaba Cloud's SG data centres. {TradingSpan} in the markets, now automating the workflow with Claude and MCP.",
     "readmeStatus": "\"SAF Guards HQ, ORD loading\""
   }
 }

@@ -28,8 +28,35 @@ import skillsJson from '../data/skills.json';
 import testimonialsJson from '../data/testimonials.json';
 import headersJson from '../data/headers.json';
 
+// "Years of X" figures are derived from a start year (identity.json stats'
+// `since`) at load, not hand-typed — so they tick up on their own instead of
+// needing someone to remember to bump them every January, and the prose that
+// repeats them ({CodingSpan} / {tradingSpan} tokens) can't disagree with the
+// stat tiles. Same principle as lib/projects.js deriving `chg` from the curve.
+const NUM_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+  'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+const span = (n) => `${NUM_WORDS[n] ?? n} ${n === 1 ? 'year' : 'years'}`;
+const cap = (str) => str[0].toUpperCase() + str.slice(1);
+const yearsSince = (y) => Math.max(new Date().getFullYear() - y, 0);
+
+const sinceOf = (key) => identityJson.stats.find((s) => s.key === key)?.since;
+const codingYears = yearsSince(sinceOf('years_writing_code'));
+const tradingYears = yearsSince(sinceOf('years_trading'));
+const fill = (text) =>
+  text
+    .replaceAll('{CodingSpan}', cap(span(codingYears)))
+    .replaceAll('{codingSpan}', span(codingYears))
+    .replaceAll('{TradingSpan}', cap(span(tradingYears)))
+    .replaceAll('{tradingSpan}', span(tradingYears));
+
 /** @type {import('../data/types').Identity} */
-export const identity = identityJson;
+export const identity = {
+  ...identityJson,
+  lede: fill(identityJson.lede),
+  aboutHtml: identityJson.aboutHtml.map(fill),
+  stats: identityJson.stats.map((s) => ({ ...s, n: s.since != null ? yearsSince(s.since) : s.n })),
+  tech: { ...identityJson.tech, readmeAboutHtml: fill(identityJson.tech.readmeAboutHtml) },
+};
 
 /** @type {import('../data/types').Experience[]} */
 export const experience = experienceJson;
@@ -44,7 +71,10 @@ export const awards = awardsJson;
 export const certs = certsJson;
 
 /** @type {import('../data/types').SkillsData} */
-export const skills = skillsJson;
+export const skills = {
+  ...skillsJson,
+  stack: { ...skillsJson.stack, years_writing_code: codingYears },
+};
 
 /** @type {import('../data/types').Testimonial[]} */
 export const testimonials = testimonialsJson;
