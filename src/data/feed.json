@@ -1,7 +1,5 @@
 [
-  { "t": "2d", "src": "gh", "xHtml": "pushed 6 commits to <b>automated-trading-workflow</b>", "link": "#" },
-  { "t": "2026", "src": "li", "xHtml": "joined the Guards HQ <b>AI Task Force</b>, building a chatbot for combatants.", "link": "#" },
-  { "t": "2026", "src": "li", "xHtml": "appointed <b>Team Manager</b>, media & design (team of 8), Guards HQ.", "link": "#" },
-  { "t": "1mo", "src": "gh", "xHtml": "published playbook update to <b>trading-command-sheet</b>.", "link": "#" },
-  { "t": "2025", "src": "li", "xHtml": "<b>Position closed:</b> JPMC internship, monitoring tool live globally.", "link": "#" }
+  {"t": "2026", "src": "gh", "xHtml": "pushed commits to <b>automated-trading-workflow</b>", "link": "https://github.com/klystrn"},
+  {"t": "2026", "src": "gh", "xHtml": "published a playbook update to <b>trading-command-sheet</b>", "link": "https://github.com/klystrn"},
+  {"t": "2026", "src": "gh", "xHtml": "shipping <b>klystrn.github.io</b>, this portfolio", "link": "https://github.com/klystrn/klystrn.github.io"}
 ]

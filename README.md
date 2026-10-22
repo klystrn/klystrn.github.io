@@ -15,6 +15,15 @@ certs, testimonials, timeline, feed, headers). **Content parity rule:** add a fa
 it appears in all three modes; if a fact exists in only one mode, that's a bug. Components are
 furniture only — no hardcoded content strings outside `src/data/`.
 
+Styles: `src/styles/global.css` + `enhancements.css` hold the shared chrome and Paper (eager);
+`tech.css`, `finance.css` and `life.css` are imported by their mode's lazy route chunk, so a first
+visit to Paper doesn't download the other lenses' CSS. Fonts are latin-only (`fonts.css`;
+JetBrains Mono loads with Tech via `fonts-tech.css`).
+
+Deep links: Paper `?project=<SYM>` / `?xp=<id>`, Tech `?file=<id>`, Finance `?sym=<SYM>`.
+Life sub-pages flagged in `life.json` → `wip` show a work-in-progress card; add `?preview` to
+see the real page.
+
 Reference doc: `docs/CONTENT-DOC-reginald-v4.md` (authoritative content source, kept in sync with
 `src/data/`). Outstanding items: `KNOWN-GAPS.md`.
 

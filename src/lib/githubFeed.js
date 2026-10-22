@@ -5,11 +5,9 @@ import { useEffect, useState } from 'react';
  * (no auth needed, CORS-open, generous enough rate limit for a personal
  * site since each visitor's browser only ever makes one request an hour).
  *
- * LinkedIn has no equivalent: there's no unauthenticated, browser-callable
- * API for a personal profile's activity, and getting one requires partner
- * API access individuals can't get for read-only personal use. Scraping it
- * client-side would also violate LinkedIn's terms and can't work anyway —
- * CORS blocks it. Those entries in feed.json stay hand-maintained.
+ * GitHub only, by choice: there are no LinkedIn posts to show yet (and no
+ * unauthenticated LinkedIn API to pull them from anyway). feed.json holds a
+ * few static GitHub entries as the fallback when the API is unavailable.
  */
 
 const CACHE_KEY = 'gh-feed-cache-v1';
@@ -89,13 +87,17 @@ function parseEvents(events, max) {
  * Returns:
  *   null      — still loading (first mount, before the cache/fetch resolves)
  *   []        — fetch failed, was empty, or nothing formattable — caller
- *               should fall back to feed.json's static 'gh' entries
+ *               should fall back to feed.json's static entries
  *   [...]     — live items, ready to render
  */
-export function useGithubFeed(username, max = 3) {
+export function useGithubFeed(username, max = 3, enabled = true) {
   const [items, setItems] = useState(null);
 
   useEffect(() => {
+    // Deferred until the caller says so (Finance waits for the News panel to
+    // scroll near the viewport), so a visit that never gets there never hits
+    // the API.
+    if (!enabled) return undefined;
     let cancelled = false;
 
     const settle = (value, cacheable) => {
@@ -126,7 +128,7 @@ export function useGithubFeed(username, max = 3) {
       .catch(() => settle([], false)); // rate-limited, offline, blocked — fall back silently
 
     return () => { cancelled = true; };
-  }, [username, max]);
+  }, [username, max, enabled]);
 
   return items;
 }

@@ -73,6 +73,9 @@
  * @property {string} role
  * @property {string} when
  * @property {string} location
+ * @property {string|null} logo   - org mark under public/logos/, or null for the monogram
+ * @property {string} monogram    - short text mark shown when there's no logo file
+ * @property {string[]} impact    - "did X → result Y" lines on cards and in the modal
  * @property {string} paperTag
  * @property {string} financeTag
  * @property {string} paperDesc
@@ -173,6 +176,7 @@
  * @property {string} msg
  * @property {string} tag
  * @property {string} hash
+ * @property {string} [body]  - commit body: the context behind the one-line msg
  * @property {string} when
  * @property {string} c   - hex colour
  */
@@ -203,11 +207,31 @@
  * @property {HeaderGroup} experience
  * @property {HeaderGroup} projects
  * @property {HeaderGroup} skills
- * @property {{eyebrow: string, certsEyebrow: string}} awards
+ * @property {{eyebrow: string, certsEyebrow: string, paper: string, paperSub: string}} awards
+ * @property {Record<string, {title: string, description: string}>} meta  - per-route <title>/description, keyed by path
  * @property {HeaderGroup} testimonials
  * @property {Record<string, string>} finance   - panel titles keyed by name
  */
 
+/**
+ * @typedef {Object} TrackRecord   - Finance "Track Record" panel; omitted while null
+ * @property {string} strategy      - one-paragraph description of the approach
+ * @property {string[]} process     - the steps of a trade, in order
+ * @property {string[]} rules       - risk rules (position sizing, stops, …)
+ * @property {[string, string][]} [stats]  - optional [label, value] pairs (no P&L needed)
+ */
+/**
+ * @typedef {Object} IdentityFinance
+ * @property {string} sym
+ * @property {string} exch
+ * @property {string} name
+ * @property {string} quoteHtml
+ * @property {string} market        - market name shown beside the live SGX session status
+ * @property {string} ticket
+ * @property {{label: string, dim: string}[]} tape  - extra ticker-tape items after projects/awards
+ * @property {TrackRecord|null} trackRecord
+ * @property {string} disclaimer
+ */
 /**
  * @typedef {Object} IdentityContact
  * @property {string} email
@@ -230,7 +254,7 @@
  * @property {string[]} aboutHtml
  * @property {{n?: number, since?: number, label: string, key: string}[]} stats  - `since` (a start year) is turned into `n` by lib/data.js; use it for anything that grows with time
  * @property {IdentityContact} contact
- * @property {Record<string, string>} finance   - $RTAN ticket copy
+ * @property {IdentityFinance} finance   - $RTAN ticket copy
  * @property {Record<string, string>} tech      - README/terminal copy
  */
 
@@ -261,7 +285,8 @@
  * @property {number} count        - overridden by photos.length once photos exist
  * @property {string} cover        - explicit override; else photos[0], else a gradient
  * @property {number} hue
- * @property {string[]} photos     - real image paths; empty = still a placeholder set
+ * @property {(string|{src: string, caption?: string, exif?: string})[]} photos
+ *           - real images (a path, or with a caption/EXIF line); empty = still a placeholder set
  */
 /**
  * @typedef {Object} PhotographyData
@@ -269,12 +294,15 @@
  * @property {string} name
  * @property {string} bio
  * @property {string} avatar
- * @property {{posts: number, gear: string, since: string}} stats
+ * @property {{gear: string, since: string}} stats   - set count is derived from tiles.length
  * @property {PhotoTile[]} tiles
  */
 /**
  * @typedef {Object} LifeData
- * @property {Object} objects        - room hotspot content, keyed by spot id
+ * @property {{photography: boolean, watch: boolean, title: string, body: string, tag: string}} wip
+ *           - true hides that sub-page behind a work-in-progress notice (?preview bypasses)
+ * @property {string} caption        - one-line caption bar under the room render
+ * @property {Object} objects        - room hotspot content, keyed by spot id (each may carry a `trait`)
  * @property {{id: string}[]} spots  - room hotspot positions (see Life.jsx SPOTS)
  * @property {{name: string, year: string}[]} trophies
  * @property {CardGameConfig} cards

@@ -7,7 +7,7 @@ import { useReveal, useCountUp } from '../../lib/hooks';
 import { trackEvent } from '../../lib/analytics';
 import Constellation from './Constellation';
 import Modal from './Modal';
-import { ProgressBar, SectionRail, TestimonialsCarousel, RotatingHero } from './Furniture';
+import { ProgressBar, SectionRail, TestimonialsCarousel, RotatingHero, OrgMark, PrintSheet } from './Furniture';
 
 function Stat({ n, label }) {
   const ref = useCountUp(n);
@@ -39,21 +39,26 @@ export default function Paper() {
   const c = identity.contact;
 
   // Timeline spine: fill height + lit nodes track scroll (prototype behaviour).
+  // Coalesced to one layout read per frame — scroll can fire several times a
+  // frame, and each pass measures every milestone node.
   useEffect(() => {
-    const onScroll = () => {
-      const body = tlRef.current;
+    const body = tlRef.current;
+    if (!body) return undefined;
+    const items = [...body.querySelectorAll('.tl-item')];
+    let raf = 0;
+    const update = () => {
+      raf = 0;
       const fill = fillRef.current;
-      if (!body || !fill) return;
+      if (!fill) return;
       const r = body.getBoundingClientRect();
       const vh = innerHeight;
       fill.style.height = `${Math.min(Math.max((vh * 0.75 - r.top) / r.height, 0), 1) * 100}%`;
-      body.querySelectorAll('.tl-item').forEach((it) => {
-        it.classList.toggle('lit', it.getBoundingClientRect().top < vh * 0.75);
-      });
+      items.forEach((it) => it.classList.toggle('lit', it.getBoundingClientRect().top < vh * 0.75));
     };
-    onScroll();
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
     addEventListener('scroll', onScroll, { passive: true });
-    return () => removeEventListener('scroll', onScroll);
+    return () => { removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
   }, []);
 
   const cvClick = (e) => {
@@ -68,8 +73,14 @@ export default function Paper() {
   // whatever's open is a link you can copy and share, landing straight on
   // that detail instead of the top of the page. The mount effect below
   // reverses this: reading the param back out to auto-open on load/share.
+  //
+  // Each opener also records which list the item came from (all experience,
+  // or all projects), so the modal's ‹ › arrows page through its siblings
+  // without closing and reopening.
+  const ALL_PROJECTS = [...FLAGSHIP, ...SUPPLEMENTARY];
   const openProject = (p) => {
     trackEvent('project_view', { project: p.sym || p.title });
+    const i = ALL_PROJECTS.findIndex((x) => x.sym === p.sym);
     setModal({
       title: p.title,
       meta: `${p.year} · ${p.role} · ${p.status}`,
@@ -77,21 +88,33 @@ export default function Paper() {
       skills: p.skills,
       stats: p.stats,
       private: p.private,
+      nav: { list: 'project', i, n: ALL_PROJECTS.length },
     });
     if (p.sym) setSearchParams({ project: p.sym }, { replace: true });
   };
 
   const openXp = (x) => {
     trackEvent('experience_view', { org: x.orgShort });
+    const i = experience.findIndex((e) => e.id === x.id);
     setModal({
       title: x.orgShort,
       meta: x.detail.meta,
       body: x.detail.body,
+      impact: x.impact,
       skills: x.detail.skills,
       stats: x.detail.stats,
       private: x.detail.private,
+      nav: { list: 'xp', i, n: experience.length },
     });
     setSearchParams({ xp: x.id }, { replace: true });
+  };
+
+  const stepModal = (d) => {
+    const nav = modal?.nav;
+    if (!nav) return;
+    const j = (nav.i + d + nav.n) % nav.n;
+    if (nav.list === 'xp') openXp(experience[j]);
+    else openProject(ALL_PROJECTS[j]);
   };
 
   // Certs has no deep-link param: whenever driveUrl is set (as it is here),
@@ -133,18 +156,47 @@ export default function Paper() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Not every visitor has a mail client wired to mailto:, so the address is
+  // one click from the clipboard too. Falls back to a toast showing it.
+  const copyEmail = async () => {
+    trackEvent('contact_click', { channel: 'email_copy' });
+    try {
+      await navigator.clipboard.writeText(c.email);
+      toast(`Copied ${c.email}`);
+    } catch {
+      toast(c.email);
+    }
+  };
+
+  // One-page summary: flags <body> so the print stylesheet swaps the long
+  // editorial scroll for the compact PrintSheet, prints, then restores.
+  const printSummary = () => {
+    trackEvent('print_summary');
+    document.body.classList.add('print-sheet-mode');
+    const done = () => {
+      document.body.classList.remove('print-sheet-mode');
+      removeEventListener('afterprint', done);
+    };
+    addEventListener('afterprint', done);
+    window.print();
+  };
+
   const curatedAwards = awards.filter((a) => a.curated);
   const curatedCerts = certs.filter((x) => x.curated);
   const moreCount = certs.length - curatedCerts.length;
-  const seenTech = seenModes.has('tech');
-  const seenFin = seenModes.has('finance');
-  const tryMsg = seenTech && seenFin
-    ? <>You&rsquo;ve seen every <span>lens</span>. Completionist. Respect.</>
-    : seenTech
-      ? <>One <span>lens</span> left: the brokerage view awaits.</>
-      : seenFin
-        ? <>One <span>lens</span> left: the repo view awaits.</>
-        : <>Same story, two more <span>lenses</span>. You haven&rsquo;t tried them yet.</>;
+  // The "other lenses" nudge: Tech, Finance, and the off-the-clock Life room.
+  const LENSES = [
+    ['tech', '⌘ open Tech mode', 'the repo view'],
+    ['finance', '▲ open Finance mode', 'the brokerage view'],
+    ['life', '◐ step into Life', 'the room'],
+  ];
+  const unseen = LENSES.filter(([m]) => !seenModes.has(m));
+  const allSeen = unseen.length === 0;
+  const tryMsg = unseen.length === LENSES.length
+    ? <>Same story, three more <span>lenses</span>. You haven&rsquo;t tried them yet.</>
+    : unseen.length === 1
+      ? <>One <span>lens</span> left: {unseen[0][2]} awaits.</>
+      : <>{unseen.length} <span>lenses</span> left: {unseen.map((l) => l[2]).join(' and ')}.</>;
 
   return (
     <div className="mv" ref={rootRef}>
@@ -198,8 +250,8 @@ export default function Paper() {
                 <div className="tl-miles">
                   {ph.miles.map((m, i) => (
                     <div className="tl-mile" key={i}>
-                      <b>{m.b}</b>{m.text}
-                      <span>{m.when}</span>
+                      <span className="tl-mile-when">{m.when}</span>
+                      <span className="tl-mile-txt"><b>{m.b}</b>{m.text}</span>
                     </div>
                   ))}
                 </div>
@@ -215,25 +267,24 @@ export default function Paper() {
           <h2 className="sec reveal">{headers.experience.paper}</h2>
           <div className="xp">
             {experience.map((x) => (
-              <div
-                className="xp-card reveal"
-                key={x.id}
-                role="button"
-                tabIndex={0}
-                onClick={() => openXp(x)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openXp(x); }
-                }}
-              >
-                <div className="xp-when">{x.when}</div>
+              <button type="button" className="xp-card reveal" key={x.id} onClick={() => openXp(x)}>
+                <div className="xp-when">
+                  <OrgMark logo={x.logo} monogram={x.monogram} name={x.orgShort} />
+                  {x.when}
+                </div>
                 <div>
                   <div className="xp-role">{x.role}</div>
                   <div className="xp-org">{x.org}</div>
                   <p className="xp-desc">{x.paperDesc}</p>
+                  {x.impact?.length > 0 && (
+                    <ul className="xp-impact">
+                      {x.impact.slice(0, 2).map((line) => <li key={line}>{line}</li>)}
+                    </ul>
+                  )}
                   <div className="xp-hint">details →</div>
                 </div>
                 <span className="xp-tag">{x.paperTag}</span>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -245,16 +296,12 @@ export default function Paper() {
           <p className="sec-sub reveal">{headers.projects.paperSub}</p>
           <div className="pj-grid">
             {FLAGSHIP.map((p) => (
-              <div
+              <button
+                type="button"
                 className={`pj reveal ${p.card?.feat ? 'feat' : ''}`}
                 key={p.sym}
                 data-sym={p.sym}
-                role="button"
-                tabIndex={0}
                 onClick={() => openProject(p)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(p); }
-                }}
               >
                 <span className="yr">{p.card?.yr || p.year}</span>
                 <h3>{p.card?.title || p.title}</h3>
@@ -265,27 +312,18 @@ export default function Paper() {
                   ))}
                 </div>
                 <div className="more">details →</div>
-              </div>
+              </button>
             ))}
           </div>
           <div className="pj-minis reveal" style={{ marginTop: 40 }}>
             {SUPPLEMENTARY.map((p) => (
-              <div
-                className="pj-mini"
-                key={p.sym}
-                role="button"
-                tabIndex={0}
-                onClick={() => openProject(p)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(p); }
-                }}
-              >
+              <button type="button" className="pj-mini" key={p.sym} onClick={() => openProject(p)}>
                 <span className="yr">{p.year}</span>
                 <span>
                   <b>{p.title}</b> <span className="d">· {p.mini?.blurb || p.desc}</span>
                 </span>
                 <span className="tg">{p.mini?.tag}</span>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -293,11 +331,16 @@ export default function Paper() {
 
       <Constellation header={headers.skills} />
 
-      <section id="certs" style={{ paddingTop: 20 }}>
+      <section id="certs">
         <div className="wrap">
+          <h2 className="sec reveal">{headers.awards.paper}</h2>
+          <p className="sec-sub reveal">{headers.awards.paperSub}</p>
           <div className="aw-grid">
-            <div className="reveal">
-              <h3 className="aw-h">{headers.awards.eyebrow.replace(/^\d+\s*·\s*/, '')}</h3>
+            <div className="aw-panel reveal">
+              <h3 className="aw-h">
+                {headers.awards.eyebrow.replace(/^\d+\s*·\s*/, '')}
+                <span className="aw-n">{curatedAwards.length}</span>
+              </h3>
               {curatedAwards.map((a) => (
                 <div className="cert" key={a.name}>
                   <span>{a.name}</span>
@@ -305,8 +348,11 @@ export default function Paper() {
                 </div>
               ))}
             </div>
-            <div className="reveal">
-              <h3 className="aw-h">{headers.awards.certsEyebrow.replace(/^\d+\s*·\s*/, '')}</h3>
+            <div className="aw-panel reveal">
+              <h3 className="aw-h">
+                {headers.awards.certsEyebrow.replace(/^\d+\s*·\s*/, '')}
+                <span className="aw-n">{certs.length}</span>
+              </h3>
               {curatedCerts.map((x) => (
                 <div className="cert" key={x.slug}>
                   <span>{x.short}</span>
@@ -331,17 +377,16 @@ export default function Paper() {
         </div>
       </section>
 
-      {!(seenTech && seenFin) && (
+      {!allSeen && (
         <section className="try-modes">
           <div className="try-box reveal">
             <div className="t">{tryMsg}</div>
             <div className="try-btns">
-              <button className={`try-btn ${seenTech ? 'done' : ''}`} onClick={() => setMode('tech')}>
-                ⌘ open Tech mode
-              </button>
-              <button className={`try-btn ${seenFin ? 'done' : ''}`} onClick={() => setMode('finance')}>
-                ▲ open Finance mode
-              </button>
+              {LENSES.map(([m, label]) => (
+                <button key={m} className={`try-btn ${seenModes.has(m) ? 'done' : ''}`} onClick={() => setMode(m)}>
+                  {label}
+                </button>
+              ))}
             </div>
           </div>
         </section>
@@ -354,10 +399,19 @@ export default function Paper() {
           <a className="ibtn" href={c.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub" onClick={() => trackEvent('contact_click', { channel: 'github' })}><GitHubIcon /></a>
           <a className="btn line" href={c.cvUrl || '#'} onClick={cvClick}>Résumé</a>
         </div>
+        <div className="contact-extra">
+          <button type="button" className="contact-copy" onClick={copyEmail}>
+            {c.email} <span>· copy</span>
+          </button>
+          <button type="button" className="contact-copy" onClick={printSummary}>
+            Print a one-page summary
+          </button>
+        </div>
         <div className="credit contact-credit">Built by <b>{identity.name}</b></div>
       </section>
 
-      <Modal data={modal} onClose={closeModal} />
+      <PrintSheet />
+      <Modal data={modal} onClose={closeModal} onStep={stepModal} />
     </div>
   );
 }

@@ -128,7 +128,7 @@
 - $ATHN · `athena-cloud-migration` · ENTERPRISE · JPMC · Python 74 / YAML 15 / Shell 11
 - Detail: Workload migration, data analytics, and tool development. Built a monitoring and visualisation
   tool now used globally by multiple lines of business to spot workload optimisation opportunities.
-  Largely classified.
+  (Privacy note carries the "largely classified" caveat.)
 - Skills: Python, Data analytics, Cloud infrastructure, Tool development
 - Milestones: [2] Onboarded to Athena codebase · 30 → [6] Monitoring tool prototype adopted · 60 → [10] Global rollout across LOBs · 95
 
@@ -259,15 +259,16 @@ All four now link out to the full testimonial PDF/letter on Google Drive (`url` 
 | 2025 | Microsoft Copilot for Organisations Workshop | Participant |
 | 2025 | Ex COORES | Working party, Guards HQ (classified) |
 
-## 12 · NEWS FEED (→ feed.json — curated, GitHub + LinkedIn mix; replace # with real URLs)
+## 12 · NEWS FEED (→ feed.json — GitHub only, REVISED 2026-10-22)
+
+No LinkedIn posts yet, so the feed is GitHub-only: live activity from the GitHub API, with these
+static entries as the fallback when the API is unavailable.
 
 | When | Source | Item |
 |---|---|---|
-| recent | GitHub | pushed commits to automated-trading-workflow |
-| recent | LinkedIn | joined the Guards HQ AI Task Force, building a chatbot for combatants |
-| recent | LinkedIn | appointed Team Manager, media & design (team of 8), Guards HQ |
-| recent | GitHub | published playbook update to trading-command-sheet |
-| 2025 | LinkedIn | Position closed: JPMC internship, monitoring tool live globally |
+| 2026 | GitHub | pushed commits to automated-trading-workflow |
+| 2026 | GitHub | published a playbook update to trading-command-sheet |
+| 2026 | GitHub | shipping klystrn.github.io, this portfolio |
 
 ## 13 · CONTACT & LINKS (→ identity.json)
 
@@ -275,7 +276,7 @@ All four now link out to the full testimonial PDF/letter on Google Drive (`url` 
 - LinkedIn: https://www.linkedin.com/in/reginald-tan/
 - GitHub: https://github.com/klystrn
 - CV: Google Drive link (RESOLVED 2026-07-17), set as `identity.json` → `contact.cvUrl`
-- Domain: reginaldtan.com (Route 53, Phase I of build guide) · hosting now: klystrn.github.io
+- Domain: reginaldtan.com (Route 53, Phase I of build guide) · canonical/OG/sitemap URLs use it; GitHub Pages serves it via `public/CNAME`
 
 ## 14 · ASSET CHECKLIST
 
@@ -372,3 +373,21 @@ Locked in during the first post-launch edit batch; implemented in the React buil
 ### Outstanding items summary
 Everything that was tracked here is resolved. Remaining open items are asset-only, tracked in
 `KNOWN-GAPS.md` (personal photos, flagship project images).
+
+## 18 · BATCH 2 DATA ADDITIONS (2026-10-22)
+
+New fields added to `src/data/` (see `KNOWN-GAPS.md` for what still needs Reginald's input):
+
+- `experience.json` → `logo`, `monogram`, `impact[]` ("did X → result Y" lines on Paper cards,
+  the modal, and the print summary); Tech `highlights` rewritten in the same form.
+- `timeline.json` → `commits[].body` (commit body under each line in Tech's timeline.git).
+- `identity.json` → `tech.whoami`; `finance.market`, `finance.tape[]`, `finance.trackRecord`
+  (null until filled; the Finance panel stays hidden).
+- `testimonials.json` → distinct `financeTag` rating per reference; Rahul Varma's Paper quote
+  joins both of his excerpts.
+- `headers.json` → `awards.paper` / `awards.paperSub`, `finance.track`, `meta` (per-route
+  title + description).
+- `life.json` → `wip` (photography and watch pages switched off for now), `caption`,
+  `objects.monitors` (desk screens → Finance), `objects.*.trait`; namecard removed;
+  photography `stats.posts` removed (set count is derived from the tiles).
+

@@ -92,7 +92,7 @@ export function useCountUp(end) {
  * display:none returns 0 — mounting on route entry plus the <10px guard below
  * covers that case).
  */
-export function useMarquee() {
+export function useMarquee(pausedRef) {
   const trackRef = useRef(null);
   useEffect(() => {
     const track = trackRef.current;
@@ -100,7 +100,8 @@ export function useMarquee() {
     let w = 0;
     let x = 0;
     let last = performance.now();
-    let raf;
+    let raf = 0;
+    let visible = true;
     const measure = () => {
       const first = track.firstElementChild;
       w = first ? first.getBoundingClientRect().width : 0;
@@ -113,18 +114,53 @@ export function useMarquee() {
       const dt = Math.min(now - last, 100);
       last = now;
       if (w < 10) measure();
-      if (w > 0 && !prefersReducedMotion()) {
+      if (w > 0 && !prefersReducedMotion() && !pausedRef?.current) {
         x = (x + dt * 0.04) % w;
         track.style.transform = `translate3d(${-x}px,0,0)`;
       }
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
+    // Only animate while the tape is on screen and the tab is visible — no
+    // point burning frames scrolling text nobody can see.
+    const start = () => {
+      if (raf || !visible || document.hidden) return;
+      last = performance.now();
+      raf = requestAnimationFrame(loop);
+    };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible) start(); else stop();
+    });
+    io.observe(track);
+    const onVis = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', onVis);
+    start();
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      io.disconnect();
       clearTimeout(t);
       removeEventListener('resize', measure);
+      document.removeEventListener('visibilitychange', onVis);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return trackRef;
+}
+
+/* Fires once when the element first scrolls within `margin` of the
+   viewport — used to defer work (a network fetch) until it's needed. */
+export function useInView(margin = '200px') {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || inView) return undefined;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setInView(true); io.disconnect(); }
+    }, { rootMargin: margin });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [inView, margin]);
+  return [ref, inView];
 }

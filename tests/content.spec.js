@@ -23,8 +23,6 @@ test.describe('content derivation', () => {
 
   test('Tech stack.json shows the same derived coding figure', async ({ page }) => {
     await page.goto('/tech');
-    await page.waitForTimeout(1200); // clear the auto-opening command palette
-    await page.keyboard.press('Escape');
     const input = page.locator('input[aria-label="terminal input"]');
     await input.click();
     await input.fill('stack');
@@ -35,7 +33,7 @@ test.describe('content derivation', () => {
 
 test('static feed entries never carry a decaying relative label', async () => {
   const feed = (await import('../src/data/feed.json', { with: { type: 'json' } })).default;
-  for (const f of feed.filter((x) => x.src === 'li')) {
+  for (const f of feed) {
     // "1w"/"3w"/"2mo" are only honest if computed from a timestamp (the live
     // GitHub items are); hand-typed ones go stale the day after they're written.
     expect(f.t, `static entry "${f.xHtml.slice(0, 40)}…"`).toMatch(/^\d{4}$/);

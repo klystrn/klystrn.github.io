@@ -1,11 +1,40 @@
 {
-  "about":        { "eyebrow": "01 · About",        "paper": "The short version.",                    "paperSub": null },
-  "timeline":     { "eyebrow": "02 · Journey",      "paper": "My life on a line.",                    "paperSub": "Scroll to time-travel with me." },
-  "experience":   { "eyebrow": "03 · Experience",   "paper": "Where I've worked.",                   "paperSub": null },
-  "projects":     { "eyebrow": "04 · Projects",     "paper": "The projects I've built.",                    "paperSub": "These are my flagship projects. My full project catalogue lives in Tech mode (repos) and Finance mode (tickers)." },
-  "skills":       { "eyebrow": "05 · Skills",       "paper": "My skills mapped out.",       "paperSub": null },
-  "awards":       { "eyebrow": "06 · Awards",  "certsEyebrow": "Certificates" },
-  "testimonials": { "eyebrow": "07 · Testimonials", "paper": "Take their word for it.",   "paperSub": null },
+  "about": {
+    "eyebrow": "01 · About",
+    "paper": "The short version.",
+    "paperSub": null
+  },
+  "timeline": {
+    "eyebrow": "02 · Journey",
+    "paper": "My life on a line.",
+    "paperSub": "Scroll to time-travel with me."
+  },
+  "experience": {
+    "eyebrow": "03 · Experience",
+    "paper": "Where I've worked.",
+    "paperSub": null
+  },
+  "projects": {
+    "eyebrow": "04 · Projects",
+    "paper": "The projects I've built.",
+    "paperSub": "These are my flagship projects. My full project catalogue lives in Tech mode (repos) and Finance mode (tickers)."
+  },
+  "skills": {
+    "eyebrow": "05 · Skills",
+    "paper": "My skills mapped out.",
+    "paperSub": null
+  },
+  "awards": {
+    "eyebrow": "06 · Awards",
+    "certsEyebrow": "Certificates",
+    "paper": "Awards & certificates.",
+    "paperSub": "The ones worth a line. Every certificate is on file and one click away."
+  },
+  "testimonials": {
+    "eyebrow": "07 · Testimonials",
+    "paper": "Take their word for it.",
+    "paperSub": null
+  },
   "finance": {
     "watchlist": "Watchlist · Projects",
     "holdings": "Institutional Holdings · Experience",
@@ -15,6 +44,37 @@
     "news": "News Wire · Recent",
     "fundamentals": "Fundamentals · Case study",
     "sector": "Sector exposure · Skills",
-    "keystats": "Key stats"
+    "keystats": "Key stats",
+    "track": "Track Record · Process"
+  },
+  "meta": {
+    "/": {
+      "title": "Reginald Tan · Portfolio",
+      "description": "Reginald Tan — Singapore software engineer × financial markets. One portfolio, three lenses: an editorial site, an IDE, and a brokerage terminal. Open to finance, tech, and fintech roles."
+    },
+    "/tech": {
+      "title": "Reginald Tan · Tech mode",
+      "description": "Reginald Tan's career as a repo: browse experience and projects as files in an IDE, or type help in a working terminal."
+    },
+    "/finance": {
+      "title": "Reginald Tan · $RTAN",
+      "description": "Reginald Tan's career as a brokerage terminal: projects as tickers, experience as holdings, references as analyst coverage."
+    },
+    "/life": {
+      "title": "Reginald Tan · Life",
+      "description": "Off the clock: an interactive room with Reginald Tan's trophies, cameras, watches and a card-throwing game."
+    },
+    "/life/cards": {
+      "title": "Card Toss · Reginald Tan",
+      "description": "Ten cards, one target. A card-throwing minigame from Reginald Tan's portfolio."
+    },
+    "/life/photography": {
+      "title": "Photography · Reginald Tan",
+      "description": "Reginald Tan's photography: events, street, and the occasional portrait."
+    },
+    "/life/watch": {
+      "title": "The Tan Collection · Reginald Tan",
+      "description": "Three generations of mechanical watches, one running record."
+    }
   }
 }

@@ -21,7 +21,7 @@
       "miles": [
         { "b": "Director's List ", "text": "twice", "when": "2022 · 2023" },
         { "b": "Head Secretary, Overflow ", "text": "16 workshops taught", "when": "2023" },
-        { "b": "Child mentor ", "text": "Tutored children from underpriviliged backgrounds", "when": "2023" },
+        { "b": "Child mentor ", "text": "Tutored children from underprivileged backgrounds", "when": "2023" },
         { "b": "FRATS capstone ", "text": "with AIDC (Indonesia)", "when": "2024" },
         { "b": "Server tech, Alibaba Cloud SG ", "text": "8-week back-office role", "when": "2025" }
       ]
@@ -52,20 +52,20 @@
     }
   ],
   "commits": [
-    { "msg": "feat: army chatbot for Guards combatants (AI task force)", "tag": "saf", "hash": "f21ac07", "when": "2026", "c": "#7ee08a" },
-    { "msg": "role: team manager, media & design, team of 8", "tag": "saf", "hash": "d4e9b13", "when": "2026", "c": "#7ee08a" },
-    { "msg": "ship: automated trading workflow (Claude + MCP)", "tag": "trade", "hash": "a3f9e12", "when": "2026", "c": "#ffab70" },
-    { "msg": "init: trading command sheet", "tag": "trade", "hash": "9c1d2aa", "when": "2026", "c": "#ffab70" },
-    { "msg": "merge: JPMC internship, monitoring tool live globally", "tag": "jpmc", "hash": "91c04bd", "when": "2025", "c": "#56d4dd" },
-    { "msg": "ops: server tech @ Alibaba Cloud SG, 8 weeks", "tag": "alibaba", "hash": "77aa310", "when": "2025", "c": "#56d4dd" },
-    { "msg": "ship: FRATS capstone with AIDC", "tag": "np", "hash": "c2d881f", "when": "2024", "c": "#b18aff" },
-    { "msg": "role: head secretary, Overflow · 16 workshops", "tag": "np", "hash": "4be7c09", "when": "2023", "c": "#b18aff" },
-    { "msg": "xtra: child mentor @ Touch Young Arrows", "tag": "xtra", "hash": "e0b1c55", "when": "2023", "c": "#ff7eb6" },
-    { "msg": "feat: Ngee Ann Scholarship · Director's List ×2", "tag": "np", "hash": "e19d3a4", "when": "2022", "c": "#b18aff" },
-    { "msg": "merge: graduated SST, O-Levels with Computing", "tag": "sst", "hash": "58f2b77", "when": "2021", "c": "#5aa2ff" },
-    { "msg": "role: chairperson, ACE board (+250% sign-ups)", "tag": "sst", "hash": "b90e441", "when": "2020", "c": "#5aa2ff" },
-    { "msg": "init: sorts-ios, first shipped product, age 14", "tag": "sst", "hash": "0000001", "when": "2019", "c": "#5aa2ff" },
-    { "msg": "xtra: 3M makeathon, portable water filter", "tag": "xtra", "hash": "3ma8e01", "when": "2018", "c": "#ff7eb6" },
-    { "msg": "initial commit, hello world", "tag": "root", "hash": "genesis", "when": "2005", "c": "#8792a4" }
+    { "msg": "feat: army chatbot for Guards combatants (AI task force)", "tag": "saf", "hash": "f21ac07", "body": "On the Guards AI Task Force: overseeing AI implementation initiatives and building a chatbot interface for combatants.", "when": "2026", "c": "#7ee08a" },
+    { "msg": "role: team manager, media & design, team of 8", "tag": "saf", "hash": "d4e9b13", "body": "Operationalising media & design for large-scale army exercises and events; running Guards HQ's Facebook and Instagram.", "when": "2026", "c": "#7ee08a" },
+    { "msg": "ship: automated trading workflow (Claude + MCP)", "tag": "trade", "hash": "a3f9e12", "body": "Claude + MCP integrations take over the research half of swing trading: scans, structured analysis, trade-ready summaries before the open.", "when": "2026", "c": "#ffab70" },
+    { "msg": "init: trading command sheet", "tag": "trade", "hash": "9c1d2aa", "body": "Structured research, trade-planning parameters and repeatable analysis playbooks.", "when": "2026", "c": "#ffab70" },
+    { "msg": "merge: JPMC internship, monitoring tool live globally", "tag": "jpmc", "hash": "91c04bd", "body": "Migrated FX Cash & Options workloads off legacy systems to AWS; the monitoring tool built along the way is now used across lines of business.", "when": "2025", "c": "#56d4dd" },
+    { "msg": "ops: server tech @ Alibaba Cloud SG, 8 weeks", "tag": "alibaba", "hash": "77aa310", "body": "Eight weeks on the data-centre floor: server & networking equipment, and confidential client data moved between servers.", "when": "2025", "c": "#56d4dd" },
+    { "msg": "ship: FRATS capstone with AIDC", "tag": "np", "hash": "c2d881f", "body": "Facial Recognition Attendance Taking System for AIDC, a biometrics security company in Indonesia. Python + CV libraries end to end.", "when": "2024", "c": "#b18aff" },
+    { "msg": "role: head secretary, Overflow · 16 workshops", "tag": "np", "hash": "4be7c09", "body": "Head Secretary of Overflow, NP's coding club: 16 workshops taught.", "when": "2023", "c": "#b18aff" },
+    { "msg": "xtra: child mentor @ Touch Young Arrows", "tag": "xtra", "hash": "e0b1c55", "body": "Tutoring children from underprivileged backgrounds.", "when": "2023", "c": "#ff7eb6" },
+    { "msg": "feat: Ngee Ann Scholarship · Director's List ×2", "tag": "np", "hash": "e19d3a4", "body": "Diploma in IT on the Ngee Ann Scholarship; Director's List in 2022 and 2023.", "when": "2022", "c": "#b18aff" },
+    { "msg": "merge: graduated SST, O-Levels with Computing", "tag": "sst", "hash": "58f2b77", "body": "O-Levels with a Computing specialisation, graduating with 4 distinctions.", "when": "2021", "c": "#5aa2ff" },
+    { "msg": "role: chairperson, ACE board (+250% sign-ups)", "tag": "sst", "hash": "b90e441", "body": "Chaired the ACE board at SST.", "when": "2020", "c": "#5aa2ff" },
+    { "msg": "init: sorts-ios, first shipped product, age 14", "tag": "sst", "hash": "0000001", "body": "Lead programmer on an iOS app that groups students by strength and group size, because doing it by hand took too long.", "when": "2019", "c": "#5aa2ff" },
+    { "msg": "xtra: 3M makeathon, portable water filter", "tag": "xtra", "hash": "3ma8e01", "body": "A portable water filter for third-world water shortage.", "when": "2018", "c": "#ff7eb6" },
+    { "msg": "initial commit, hello world", "tag": "root", "hash": "genesis", "body": "hello, world.", "when": "2005", "c": "#8792a4" }
   ]
 }

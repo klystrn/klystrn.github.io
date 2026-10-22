@@ -8,6 +8,7 @@ const PATH_TO_MODE = { '/': 'paper', '/tech': 'tech', '/finance': 'finance', '/l
 const MODE_TO_PATH = { paper: '/', tech: '/tech', finance: '/finance', life: '/life' };
 
 const THEME_KEY = 'theme';
+const IDE_THEME_KEY = 'ideTheme';
 
 const MODE_INTRO = {
   tech: 'Tech lens: same story as Paper, rendered as a repo. Click files in the tree, or type help in the terminal.',
@@ -32,6 +33,12 @@ export function ModeProvider({ children }) {
   const [theme, setTheme] = useState(
     () => document.documentElement.getAttribute('data-theme') || 'light'
   );
+  // Tech mode has its own theme, dark by default (it's an IDE), toggled by the
+  // same nav button while in Tech. Kept separate from the site theme so a
+  // visitor who prefers light Paper doesn't get a light IDE they never chose.
+  const [ideTheme, setIdeTheme] = useState(() => {
+    try { return localStorage.getItem(IDE_THEME_KEY) === 'light' ? 'light' : 'dark'; } catch { return 'dark'; }
+  });
   const toastTimer = useRef();
   const flashTimer = useRef();
   // Cross-mode handoff: Tech's "$SYM in Finance mode →" link pre-selects a ticker.
@@ -66,12 +73,21 @@ export function ModeProvider({ children }) {
     });
   };
 
+  const toggleIdeTheme = () => {
+    setIdeTheme((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem(IDE_THEME_KEY, next); } catch { /* storage unavailable */ }
+      trackEvent('ide_theme_toggle', { theme: next });
+      return next;
+    });
+  };
+
   useEffect(() => {
     // Life keeps the paper (light) chrome, as in the prototype.
     document.body.dataset.mode = mode === 'life' ? 'paper' : mode;
     scrollTo(0, 0);
     trackEvent('mode_switch', { mode });
-    if (mode !== 'life' && !seenModes.has(mode)) {
+    if (!seenModes.has(mode)) {
       setSeenModes((s) => new Set(s).add(mode));
       if (MODE_INTRO[mode]) setTimeout(() => toast(MODE_INTRO[mode]), 400);
     }
@@ -90,8 +106,10 @@ export function ModeProvider({ children }) {
       pendingFinanceSym,
       theme,
       toggleTheme,
+      ideTheme,
+      toggleIdeTheme,
     }),
-    [mode, seenModes, toastMsg, flashedMode, theme] // eslint-disable-line react-hooks/exhaustive-deps
+    [mode, seenModes, toastMsg, flashedMode, theme, ideTheme] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return <ModeContext.Provider value={value}>{children}</ModeContext.Provider>;

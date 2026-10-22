@@ -1,6 +1,8 @@
+import '../../styles/life.css';
 import { useRef, useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
+import { Motion, LifeBack } from './shared';
 import { life } from '../../lib/lifeData';
 import { CardsArt } from './objects';
 import { prefersReducedMotion } from '../../lib/hooks';
@@ -52,6 +54,8 @@ const KB_STEP = 16;
 const KB_SPEED = 0.42;
 
 const BEST_KEY = 'cg-best';
+let demoShown = false;
+
 const loadBest = () => {
   try {
     return Number(localStorage.getItem(BEST_KEY)) || 0;
@@ -60,7 +64,7 @@ const loadBest = () => {
   }
 };
 
-export default function CardGame() {
+function CardGamePage() {
   const arenaRef = useRef(null);
   const drag = useRef(null); // { startX, startY, lastAngle }
   const samples = useRef([]); // recent {x,y,t} pointer samples, for release velocity
@@ -80,6 +84,11 @@ export default function CardGame() {
   const [shake, setShake] = useState(false); // brief arena punch on a scoring hit
   const [dim, setDim] = useState(null); // measured arena {w,h} — drives layout
   const [status, setStatus] = useState(''); // last-throw result, announced to screen readers
+  // Ghost-hand demo of the drag-back + swirl gesture, for first-time throwers
+  // only (no stored best, first visit this session); gone on first touch.
+  const [demo, setDemo] = useState(() => !demoShown && !loadBest() && !prefersReducedMotion());
+  const [shared, setShared] = useState('');
+  useEffect(() => { if (demo) demoShown = true; }, [demo]);
   const roundScore = useRef(0); // this round's running total, read synchronously at round-end
   const bestRef = useRef(best); // mirrors `best` for synchronous read/write in the resolve callback
 
@@ -119,6 +128,7 @@ export default function CardGame() {
 
   const onDown = (e) => {
     if (phase !== 'aim') return;
+    setDemo(false);
     e.currentTarget.setPointerCapture?.(e.pointerId);
     drag.current = { startX: e.clientX, startY: e.clientY, lastAngle: null };
     samples.current = [{ x: e.clientX, y: e.clientY, t: performance.now() }];
@@ -195,6 +205,7 @@ export default function CardGame() {
   // gesture exists either, so keyboard throws never curve.
   const onCardKeyDown = (e) => {
     if (phase !== 'aim') return;
+    setDemo(false);
     const { key } = e;
     if (key === 'ArrowUp' || key === 'ArrowDown' || key === 'ArrowLeft' || key === 'ArrowRight') {
       e.preventDefault();
@@ -284,7 +295,21 @@ export default function CardGame() {
     }, duration * 1000);
   };
 
+  // Share the round: the native share sheet where there is one, otherwise
+  // the same text + link on the clipboard.
+  const share = async () => {
+    const url = `${location.origin}/life/cards`;
+    const text = `I scored ${score} with ${C.cardsPerRound} cards at ${C.title}. Beat it:`;
+    try {
+      if (navigator.share) await navigator.share({ title: C.title, text, url });
+      else { await navigator.clipboard.writeText(`${text} ${url}`); setShared('Copied to clipboard'); }
+    } catch {
+      /* share sheet dismissed, or clipboard blocked: nothing to report */
+    }
+  };
+
   const reset = () => {
+    setShared('');
     setLeft(C.cardsPerRound);
     roundScore.current = 0;
     setScore(0);
@@ -299,7 +324,7 @@ export default function CardGame() {
 
   return (
     <div className="cg">
-      <Link className="life-back cg-back" to="/life">← the table</Link>
+      <LifeBack className="cg-back" />
 
       <div className="cg-hud">
         <div className="cg-brand">
@@ -332,12 +357,32 @@ export default function CardGame() {
         {/* target board */}
         <div className="cg-board" style={{ left: boardPx.x, top: boardPx.y }}>
           <svg viewBox="-130 -130 260 260" width={RINGS[RINGS.length - 1].r * 2} height={RINGS[RINGS.length - 1].r * 2}>
+            {/* A physical board: turned-wood rim, cork rings, painted bull. */}
+            <defs>
+              <radialGradient id="cg-wood" r="0.5">
+                <stop offset="0.86" stopColor="#5a3518" />
+                <stop offset="0.93" stopColor="#8a5a2b" />
+                <stop offset="1" stopColor="#3d2410" />
+              </radialGradient>
+              <pattern id="cg-cork" width="7" height="7" patternUnits="userSpaceOnUse">
+                <rect width="7" height="7" fill="#b98a55" />
+                <circle cx="1.5" cy="2" r=".9" fill="#9a6d3d" />
+                <circle cx="5" cy="5.2" r=".7" fill="#d3a873" />
+                <circle cx="5.6" cy="1.2" r=".5" fill="#8a5f33" />
+              </pattern>
+              <pattern id="cg-cork-dk" width="7" height="7" patternUnits="userSpaceOnUse">
+                <rect width="7" height="7" fill="#9c7040" />
+                <circle cx="2" cy="5" r=".8" fill="#7f5530" />
+                <circle cx="5.2" cy="2.4" r=".7" fill="#b88a57" />
+              </pattern>
+            </defs>
+            <circle r={RINGS[RINGS.length - 1].r + 12} fill="url(#cg-wood)" />
             {[...RINGS].reverse().map((rg, i) => (
               <circle
                 key={rg.r}
                 r={rg.r}
-                fill={i % 2 === 0 ? '#1b1e24' : '#242830'}
-                stroke={aim?.ring === rg ? '#ffd23f' : '#3a4150'}
+                fill={i % 2 === 0 ? 'url(#cg-cork)' : 'url(#cg-cork-dk)'}
+                stroke={aim?.ring === rg ? '#ffd23f' : '#4a2e16'}
                 strokeWidth={aim?.ring === rg ? 3 : 1.5}
               />
             ))}
@@ -385,7 +430,7 @@ export default function CardGame() {
             settle bounce on arrival so it reads as a snappy, weighted throw. */}
         <AnimatePresence>
           {flight && (
-            <motion.div
+            <m.div
               className="cg-card flying"
               initial={{ x: homePx.x, y: homePx.y, scale: 1, rotate: 0 }}
               animate={{
@@ -402,14 +447,14 @@ export default function CardGame() {
               }}
             >
               <CardsArt className="cg-card-art" />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* impact burst — a quick expanding ring where the card lands */}
         <AnimatePresence>
           {burst && (
-            <motion.div
+            <m.div
               key={burst.id}
               className={`cg-burst ${burst.big ? 'big' : ''} ${burst.curve ? 'curve' : ''}`}
               style={{ left: burst.x, top: burst.y }}
@@ -440,10 +485,18 @@ export default function CardGame() {
           </div>
         )}
 
+        {/* first-throw demo: a ghost hand drags the card back, swirls, lets go */}
+        {demo && phase === 'aim' && (
+          <div className="cg-demo" style={{ left: homePx.x, top: homePx.y }} aria-hidden="true">
+            <span className="cg-demo-hand">☝</span>
+            <span className="cg-demo-txt">drag back · swirl for a curve · release</span>
+          </div>
+        )}
+
         {/* score popup */}
         <AnimatePresence>
           {pop && (
-            <motion.div
+            <m.div
               className={`cg-pop ${pop.miss ? 'miss' : ''} ${pop.curve ? 'curve' : ''}`}
               initial={{ opacity: 0, y: 0, scale: 0.7 }}
               animate={{ opacity: 1, y: -30, scale: 1 }}
@@ -452,22 +505,26 @@ export default function CardGame() {
             >
               {pop.miss ? 'miss' : `+${pop.pts}`}
               {pop.curve && <span className="cg-pop-curve">CURVEBALL</span>}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* game over */}
         <AnimatePresence>
           {phase === 'over' && (
-            <motion.div className="cg-over" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <motion.div className="cg-over-box" initial={{ scale: 0.9, y: 14 }} animate={{ scale: 1, y: 0 }}>
+            <m.div className="cg-over" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <m.div className="cg-over-box" initial={{ scale: 0.9, y: 14 }} animate={{ scale: 1, y: 0 }}>
                 <div className="cg-over-eyebrow">{newBest ? 'NEW BEST' : 'ROUND COMPLETE'}</div>
                 <div className="cg-over-score">{score}</div>
                 <div className="cg-over-l">points from {C.cardsPerRound} cards{!newBest && best > 0 ? ` · best ${best}` : ''}</div>
-                <button className="cg-over-btn" onClick={reset}>Throw again</button>
-                <Link className="cg-over-back" to="/life">back to the table</Link>
-              </motion.div>
-            </motion.div>
+                <div className="cg-over-actions">
+                  <button className="cg-over-btn" onClick={reset}>Throw again</button>
+                  <button className="cg-over-btn ghost" onClick={share}>Share score ↗</button>
+                </div>
+                {shared && <div className="cg-over-shared" role="status">{shared}</div>}
+                <Link className="cg-over-back" to="/life">back to the room</Link>
+              </m.div>
+            </m.div>
           )}
         </AnimatePresence>
 
@@ -477,4 +534,8 @@ export default function CardGame() {
       </div>
     </div>
   );
+}
+
+export default function CardGame() {
+  return <Motion><CardGamePage /></Motion>;
 }

@@ -36,7 +36,7 @@
     "id": "athn", "sym": "ATHN", "flag": true, "repo": "athena-cloud-migration",
     "title": "Athena Cloud Migration", "sector": "ENTERPRISE · JPMC",
     "from": "2024", "to": "2025", "year": "2024–2025", "role": "SWE Intern @ JPMC", "status": "shipped",
-    "desc": "Software engineering internship on the Athena platform: workload migration, data analytics, and tool development. Built a monitoring and visualisation tool now used globally by multiple lines of business to spot workload optimisation opportunities. Largely classified.",
+    "desc": "Software engineering internship on the Athena platform: workload migration, data analytics, and tool development. Built a monitoring and visualisation tool now used globally by multiple lines of business to spot workload optimisation opportunities.",
     "skills": ["Python", "Data analytics", "Cloud infrastructure", "Tool development"],
     "stats": { "Status": "Shipped", "Role": "SWE Intern", "Scope": "Global, multi-LOB", "Years": "2024–2025" },
     "langs": [["Python", 74, "#3572A5"], ["YAML", 15, "#b18aff"], ["Shell", 11, "#7ee08a"]],

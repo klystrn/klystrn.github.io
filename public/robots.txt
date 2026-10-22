@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://klystrn.github.io/sitemap.xml
+Sitemap: https://reginaldtan.com/sitemap.xml

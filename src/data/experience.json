@@ -6,6 +6,13 @@
     "role": "Software Engineer Intern",
     "when": "2024 – 2025",
     "location": "Singapore",
+    "logo": "/logos/jpmc.svg",
+    "monogram": "JPM",
+    "impact": [
+      "Built a workload monitoring & visualisation tool → adopted across lines of business globally (e.g. commodities, rates)",
+      "Migrated trader reports and server workloads from legacy systems → AWS",
+      "Became the SME for cloud-migration workloads and data visualisation"
+    ],
     "paperTag": "FinTech",
     "financeTag": "BLUE CHIP",
     "paperDesc": "Athena Developer for Currencies Emerging Markets (FX Cash & Options) in JPMC's Corporate & Investment Bank. I worked on migrating workloads to AWS, built a monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as SME for cloud migration workload and data visualisation.",
@@ -13,9 +20,26 @@
     "financeDesc": "Athena Developer for Currencies Emerging Markets (FX Cash & Options) in JPMC's Corporate & Investment Bank. I worked on migrating workloads to AWS, built a monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as SME for cloud migration workload and data visualisation.",
     "detail": {
       "meta": "2024 – 2025 · Software Engineer Intern · Singapore",
-      "body": "From April 2024 to March 2025, I worked at J.P. Morgan Chase as an Athena Developer for Currencies Emerging Markets (FX Cash & Options) in the Corporate & Investment Bank. During this time, I focused on extracting, optimising, & migrating trader reports and server worwadkloads from legacy systems to Amazon Web Services. I built a workload monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as subject-matter expert for the cloud migration workload and data visualisation.",
-      "skills": ["Python", "Data analytics", "Data Visualisation", "Excel", "AWS", "Jira", "Confluence", "Agile", "SQL", "Pandas", "Influx DB", "Parallel Computing"],
-      "stats": { "Years": "2024 – 2025", "Role": "SWE Intern", "Scope": "Global FX Cash & Options" },
+      "body": "From April 2024 to March 2025, I worked at J.P. Morgan Chase as an Athena Developer for Currencies Emerging Markets (FX Cash & Options) in the Corporate & Investment Bank. During this time, I focused on extracting, optimising, & migrating trader reports and server workloads from legacy systems to Amazon Web Services. I built a workload monitoring and visualisation tool used globally across various lines of business (e.g. commodities, rates), and served as subject-matter expert for the cloud migration workload and data visualisation.",
+      "skills": [
+        "Python",
+        "Data analytics",
+        "Data Visualisation",
+        "Excel",
+        "AWS",
+        "Jira",
+        "Confluence",
+        "Agile",
+        "SQL",
+        "Pandas",
+        "Influx DB",
+        "Parallel Computing"
+      ],
+      "stats": {
+        "Years": "2024 – 2025",
+        "Role": "SWE Intern",
+        "Scope": "Global FX Cash & Options"
+      },
       "private": "Specific internals are JPMC-internal, but I'm more than happy to go deeper in an interview."
     },
     "tech": {
@@ -23,7 +47,11 @@
       "title": "J.P. Morgan Chase · CIB",
       "badges": [["b-vi", "2024 – 2025"], ["b-cy", "Software Engineer Intern"], ["b-gr", "✓ shipped globally"]],
       "bodyHtml": "Specialised in <b>workload migration, data analytics, and tool development</b> on the Athena platform. Created a tool used globally by various lines of business to monitor workloads and visualise areas for optimisation. SME for cloud migration workload and data visualisation.",
-      "highlights": ["Monitoring & visualisation tool adopted across LOBs worldwide", "Python at scale: Athena, parallel computing, in-memory databases", "Largely classified; happy to go deeper in an interview"]
+      "highlights": [
+        "Built a monitoring & visualisation tool → adopted across lines of business worldwide",
+        "Extracted & optimised legacy trader reports and server workloads → migrated to AWS",
+        "Python at scale (Athena, parallel computing, in-memory databases) → SME for cloud-migration workloads"
+      ]
     }
   },
   {
@@ -33,6 +61,12 @@
     "role": "Assistant IT Engineer",
     "when": "2025",
     "location": "Singapore",
+    "logo": "/logos/alibaba.svg",
+    "monogram": "AC",
+    "impact": [
+      "Handled server & networking equipment on the data-centre floor",
+      "Migrated confidential client data between servers over an 8-week attachment"
+    ],
     "paperTag": "Infrastructure",
     "financeTag": "INFRASTRUCTURE",
     "paperDesc": "An 8-week attachment to Alibaba Cloud's data centres, handling server equipment & migrating confidential client data across servers. This was an eye-opening, on-the-grounds experience into what keeps the cloud physically running",
@@ -42,14 +76,21 @@
       "meta": "2025 · Assistant IT Engineer, Server Tech · 8 weeks",
       "body": "Full-time role in Alibaba Cloud's Singapore data centres operations centre. Over 8 weeks, I handled server & networking equipment and migrated confidential client data between servers. This was an eye-opening, on-the-grounds experience into what keeps the cloud physically running",
       "skills": ["Server operations", "Data handling", "Hardware", "Networking"],
-      "stats": { "Year": "2025", "Role": "Assistant IT Engineer", "Duration": "8 weeks" }
+      "stats": {
+        "Year": "2025",
+        "Role": "Assistant IT Engineer",
+        "Duration": "8 weeks"
+      }
     },
     "tech": {
       "file": "alibaba-dc.md",
       "title": "Alibaba Cloud · SG Data Centres",
       "badges": [["b-vi", "2025"], ["b-cy", "Assistant IT Engineer, Server Tech"], ["b-or", "8 weeks"]],
       "bodyHtml": "Back-office role handling <b>server equipment</b> and transferring <b>confidential client data</b> between servers. Short but memorable: the background processes that keep servers functional and operable, seen from the inside.",
-      "highlights": []
+      "highlights": [
+        "Handled server & networking equipment → the physical layer of the cloud, seen from the inside",
+        "Migrated confidential client data between servers → 8 weeks in the SG data centres"
+      ]
     }
   },
   {
@@ -59,6 +100,13 @@
     "role": "Team Manager, Media & Design · AI Task Force",
     "when": "2025 – now",
     "location": "Singapore",
+    "logo": null,
+    "monogram": "GDS",
+    "impact": [
+      "Leading a team of 8 → media & design for large-scale army exercises and events",
+      "Running Guards HQ's Facebook and Instagram accounts",
+      "AI Task Force → building a chatbot interface for Guards combatants"
+    ],
     "paperTag": "Service",
     "financeTag": "SOVEREIGN",
     "paperDesc": "Leading a team of 8 across media and design for large-scale army exercises and events; managing Guards HQ social accounts; building an army chatbot interface for combatants on the AI Task Force.",
@@ -67,8 +115,21 @@
     "detail": {
       "meta": "2025 – now · Team Manager, Media & Design · AI Task Force",
       "body": "Managing a team of 8 across media and design. I operationalise media & design initiatives for large-scale projects like army exercises and events. In addition, I manage the social media accounts for Guards HQ on Facebook and Instagram accounts. I also sit on the Guards AI Task Force, overseeing AI implementation initiatives and building a chatbot for Guards combatants.",
-      "skills": ["Team management", "Project Management", "Operations", "Claude", "Gemini", "Photoshop", "Lightroom", "Illustrator"],
-      "stats": { "Since": "2025", "Role": "Team Manager · AI Task Force", "Team": "8" },
+      "skills": [
+        "Team management",
+        "Project Management",
+        "Operations",
+        "Claude",
+        "Gemini",
+        "Photoshop",
+        "Lightroom",
+        "Illustrator"
+      ],
+      "stats": {
+        "Since": "2025",
+        "Role": "Team Manager · AI Task Force",
+        "Team": "8"
+      },
       "private": "Several projects (Ex COORES and others) are classified. Happy to speak to scope and scale in person."
     },
     "tech": {
@@ -76,7 +137,12 @@
       "title": "SAF · Guards HQ",
       "badges": [["b-vi", "2025 – now"], ["b-or", "National Service"], ["b-cy", "Team Manager · AI Task Force"]],
       "bodyHtml": "<b>Team Manager, media & design</b>: leading a team of 8 across large-scale projects for army exercises and events, and managing Guards HQ social accounts. On the <b>AI Task Force</b>, building an army chatbot interface for Guards combatants.",
-      "highlights": ["Ex COORES working party (classified)", "Production work in Photoshop, Illustrator, Lightroom"]
+      "highlights": [
+        "Led a team of 8 → media & design for large-scale army exercises and events",
+        "AI Task Force → building a chatbot interface for Guards combatants",
+        "Production work in Photoshop, Illustrator, Lightroom → Guards HQ's Facebook and Instagram",
+        "Ex COORES working party → scope is classified; happy to speak to it in person"
+      ]
     }
   }
 ]

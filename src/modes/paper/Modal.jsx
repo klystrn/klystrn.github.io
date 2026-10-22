@@ -1,10 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 
 /*
  * Shared detail modal (projects, experience, certificates).
- * `data`: { title, meta, body, skills, stats, private } or null when closed.
+ * `data`: { title, meta, body, impact, skills, stats, private, nav } or null
+ * when closed. `nav` ({ i, n }) turns on the ‹ › stepper; `onStep(±1)` moves.
  */
-export default function Modal({ data, onClose }) {
+export default function Modal({ data, onClose, onStep }) {
+  const titleId = useId();
   const boxRef = useRef(null);
   const closeRef = useRef(null);
   const lastFocused = useRef(null);
@@ -12,19 +14,26 @@ export default function Modal({ data, onClose }) {
   // Move focus into the dialog on open, and give it back to whatever
   // triggered it (a project/experience card) on close — a dialog that eats
   // focus without returning it strands keyboard users past the trigger.
+  // Only the closed→open transition records the trigger; stepping ‹ › swaps
+  // `data` while open, and must not overwrite it with a button in the dialog.
+  const isOpen = !!data;
   useEffect(() => {
-    if (data) {
+    if (isOpen) {
       lastFocused.current = document.activeElement;
       closeRef.current?.focus();
     } else {
       lastFocused.current?.focus?.();
     }
-  }, [data]);
+  }, [isOpen]);
 
   useEffect(() => {
     const onKey = (e) => {
       if (!data) return;
       if (e.key === 'Escape') { onClose(); return; }
+      if (data.nav && onStep && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+        onStep(e.key === 'ArrowLeft' ? -1 : 1);
+        return;
+      }
       // Trap Tab inside the dialog's focusable elements so keyboard users
       // can't tab out into the page hiding behind the modal overlay.
       if (e.key === 'Tab' && boxRef.current) {
@@ -38,14 +47,15 @@ export default function Modal({ data, onClose }) {
     };
     addEventListener('keydown', onKey);
     return () => removeEventListener('keydown', onKey);
-  }, [data, onClose]);
+  }, [data, onClose, onStep]);
 
   return (
     <div
       className={`pj-modal ${data ? 'open' : ''}`}
       role="dialog"
       aria-modal="true"
-      aria-label="Details"
+      aria-labelledby={data ? titleId : undefined}
+      aria-label={data ? undefined : 'Details'}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -53,9 +63,14 @@ export default function Modal({ data, onClose }) {
       {data && (
         <div className="box" ref={boxRef}>
           <button className="close" aria-label="Close" ref={closeRef} onClick={onClose}>✕</button>
-          <h3>{data.title}</h3>
+          <h3 id={titleId}>{data.title}</h3>
           <div className="meta">{data.meta}</div>
           <p className="body">{data.body}</p>
+          {data.impact?.length > 0 && (
+            <ul className="impact">
+              {data.impact.map((line) => <li key={line}>{line}</li>)}
+            </ul>
+          )}
           <div className="chips">
             {(data.skills || []).map((s) => (
               <span className="chip" key={s}>{s}</span>
@@ -70,6 +85,13 @@ export default function Modal({ data, onClose }) {
             ))}
           </div>
           {data.private && <div className="private" style={{ display: 'block' }}>🔒 {data.private}</div>}
+          {data.nav && onStep && (
+            <div className="pj-step">
+              <button type="button" onClick={() => onStep(-1)} aria-label="Previous">‹ prev</button>
+              <span>{data.nav.i + 1} / {data.nav.n}</span>
+              <button type="button" onClick={() => onStep(1)} aria-label="Next">next ›</button>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -1,6 +1,7 @@
+import '../../styles/life.css';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
+import { Motion, LifeBack, WipGate } from './shared';
 import { life } from '../../lib/lifeData';
 import { prefersReducedMotion } from '../../lib/hooks';
 
@@ -78,7 +79,7 @@ function SubDial({ def, angle, tick }) {
   );
 }
 
-export default function WatchStory() {
+function WatchStoryPage() {
   const [now, setNow] = useState(() => new Date());
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -165,13 +166,13 @@ export default function WatchStory() {
   const hrAng = hr * 30 + min * 0.5;
 
   return (
-    <motion.div
+    <m.div
       className="ws"
       initial={{ opacity: 0, scale: 1.04 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Link className="life-back ws-back" to="/life">← the table</Link>
+      <LifeBack className="ws-back" />
 
       <div className="ws-inner">
         <div className="ws-brand">
@@ -322,7 +323,7 @@ export default function WatchStory() {
         >
           <div aria-live="polite" aria-atomic="true">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={idx}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -332,7 +333,7 @@ export default function WatchStory() {
                 <div className="ws-year-big">{entry.year}</div>
                 <div className="ws-line1">{entry.line1}</div>
                 <p className="ws-caption">{entry.line2}</p>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 
@@ -362,6 +363,10 @@ export default function WatchStory() {
           </button>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
+}
+
+export default function WatchStory() {
+  return <WipGate page="watch"><Motion><WatchStoryPage /></Motion></WipGate>;
 }

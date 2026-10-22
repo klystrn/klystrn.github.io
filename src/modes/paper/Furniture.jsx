@@ -1,5 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { testimonials as allTestimonials } from '../../lib/data';
+import { testimonials as allTestimonials, identity, experience, awards } from '../../lib/data';
+import { FLAGSHIP } from '../../lib/projects';
+import { buildSummary } from './Constellation';
 import { prefersReducedMotion } from '../../lib/hooks';
 
 const testimonials = allTestimonials.filter((t) => t.quote);
@@ -73,12 +75,15 @@ export function ProgressBar() {
       const max = document.documentElement.scrollHeight - innerHeight;
       el.style.width = `${max > 0 ? (scrollY / max) * 100 : 0}%`;
     };
+    let raf = 0;
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; onScroll(); }); };
     onScroll();
-    addEventListener('scroll', onScroll, { passive: true });
-    addEventListener('resize', onScroll, { passive: true });
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', schedule, { passive: true });
     return () => {
-      removeEventListener('scroll', onScroll);
-      removeEventListener('resize', onScroll);
+      removeEventListener('scroll', schedule);
+      removeEventListener('resize', schedule);
+      cancelAnimationFrame(raf);
     };
   }, []);
   return <div className="mv-progress" ref={ref} aria-hidden="true" />;
@@ -116,9 +121,11 @@ export function SectionRail() {
       }
       setActive(cur);
     };
+    let raf = 0;
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; onScroll(); }); };
     onScroll();
-    addEventListener('scroll', onScroll, { passive: true });
-    return () => removeEventListener('scroll', onScroll);
+    addEventListener('scroll', schedule, { passive: true });
+    return () => { removeEventListener('scroll', schedule); cancelAnimationFrame(raf); };
   }, []);
 
   // Flash the active label on every section change (but not the initial mount).
@@ -217,6 +224,71 @@ export function TestimonialsCarousel() {
           />
         ))}
       </div>
+    </div>
+  );
+}
+
+/* Org mark beside each experience card: the brand logo when one is on file
+   (public/logos/), otherwise a typographic monogram in the same footprint so
+   the column stays aligned. */
+export function OrgMark({ logo, monogram, name }) {
+  const [broken, setBroken] = useState(false);
+  if (logo && !broken) {
+    return (
+      <span className="org-mark">
+        <img src={logo} alt={`${name} logo`} width="22" height="22" loading="lazy" onError={() => setBroken(true)} />
+      </span>
+    );
+  }
+  return <span className="org-mark mono" aria-hidden="true">{monogram}</span>;
+}
+
+/* Print-only one-page summary (hidden on screen). Paper's "Print a one-page
+   summary" button flags <body> so the print stylesheet shows this instead of
+   the long scroll. Education is Finance-only data, so it's fetched on demand
+   rather than pulled into Paper's eager bundle. */
+export function PrintSheet() {
+  const [education, setEducation] = useState([]);
+  useEffect(() => {
+    let live = true;
+    import('../../lib/financeData').then((m) => { if (live) setEducation(m.education); });
+    return () => { live = false; };
+  }, []);
+  const c = identity.contact;
+  const strip = (html) => html.replace(/<[^>]+>/g, '');
+  return (
+    <div className="print-sheet" aria-hidden="true">
+      <header>
+        <h1>{identity.name}</h1>
+        <p>{identity.location} · {c.email} · {c.linkedinHandle} · {c.githubHandle}</p>
+        <p className="ps-lede">{identity.lede}</p>
+      </header>
+      <h2>Experience</h2>
+      {experience.map((x) => (
+        <div className="ps-item" key={x.id}>
+          <div className="ps-row"><b>{x.role} · {x.orgShort}</b><span>{x.when}</span></div>
+          <ul>{(x.impact || []).map((l) => <li key={l}>{l}</li>)}</ul>
+        </div>
+      ))}
+      <h2>Projects</h2>
+      {FLAGSHIP.map((p) => (
+        <div className="ps-item" key={p.sym}>
+          <div className="ps-row"><b>{p.title}</b><span>{p.year}</span></div>
+          <p>{p.card?.blurb || p.desc}</p>
+        </div>
+      ))}
+      <h2>Education</h2>
+      {education.map((e) => (
+        <div className="ps-item" key={e.id}>
+          <div className="ps-row"><b>{e.programme} · {e.school}</b><span>{e.years}</span></div>
+        </div>
+      ))}
+      <h2>Skills</h2>
+      {buildSummary().map((g) => (
+        <p key={g.label}><b>{strip(g.label)}:</b> {g.skills.join(', ')}</p>
+      ))}
+      <h2>Awards</h2>
+      <p>{awards.filter((a) => a.curated).map((a) => `${a.name} (${a.year})`).join(' · ')}</p>
     </div>
   );
 }

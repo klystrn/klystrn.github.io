@@ -21,7 +21,7 @@ const at = (r, deg) => [VIEW.cx + r * Math.cos(deg * D2R), VIEW.cy + r * Math.si
 /* Text equivalent of the graph for assistive tech: the SVG is hover/click-
    driven and marked role="img" (a single opaque graphic to a screen reader),
    so without this the skill list itself would be unreachable non-visually. */
-function buildSummary() {
+export function buildSummary() {
   const hubById = Object.fromEntries(HUBS.map((h) => [h.id, h]));
   const subhubById = Object.fromEntries(SUBHUBS.map((s) => [s.id, s]));
   const hubOf = (parent) => hubById[parent]?.id || subhubById[parent]?.hub;
@@ -211,12 +211,15 @@ export default function Constellation({ header }) {
       const p = reduced ? 1 : Math.min(Math.max(-r.top / (r.height - innerHeight), 0), 1);
       setProgress(p);
     };
+    let raf = 0;
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; onScroll(); }); };
     onScroll();
-    addEventListener('scroll', onScroll, { passive: true });
-    addEventListener('resize', onScroll, { passive: true });
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', schedule, { passive: true });
     return () => {
-      removeEventListener('scroll', onScroll);
-      removeEventListener('resize', onScroll);
+      removeEventListener('scroll', schedule);
+      removeEventListener('resize', schedule);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -308,9 +311,11 @@ export default function Constellation({ header }) {
         <div className="sk-head">
           <h2 className="sec">{header.paper}</h2>
         </div>
-        <div className="sr-only">
+        {/* Screen-reader text equivalent everywhere; on phones (≤600px) it's
+            also the visible view, replacing the unreadably small graph. */}
+        <div className="sk-list">
           {summary.map((g) => (
-            <p key={g.label}>{g.label}: {g.skills.join(', ')}.</p>
+            <p key={g.label}><b>{g.label}</b> {g.skills.join(', ')}.</p>
           ))}
         </div>
         <svg

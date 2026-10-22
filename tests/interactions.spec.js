@@ -38,9 +38,11 @@ test.describe('card game', () => {
   });
 });
 
+// The watch page is behind the Life WIP gate until its content lands;
+// ?preview renders the real page, which is what these exercise.
 test.describe('watch mode', () => {
   test('hovering the story freezes the auto-advance progress bar', async ({ page }) => {
-    await page.goto('/life/watch');
+    await page.goto('/life/watch?preview');
     await page.hover('.ws-story');
     // The freeze is CSS animation-play-state, which is instant and doesn't
     // race — asserting it directly avoids a timing-sensitive width-over-a-
@@ -49,7 +51,7 @@ test.describe('watch mode', () => {
   });
 
   test('arrow keys navigate entries', async ({ page }) => {
-    await page.goto('/life/watch');
+    await page.goto('/life/watch?preview');
     await expect(page.locator('.ws-year-big')).toHaveText('1968');
     await page.keyboard.press('ArrowRight');
     await page.waitForTimeout(700);
@@ -126,6 +128,8 @@ test.describe('finance news feed', () => {
       })
     );
     await page.goto('/finance');
+    // The fetch is deferred until the News panel nears the viewport.
+    await page.locator('#fin-news').scrollIntoViewIfNeeded();
     await expect(page.locator('.feed-item').first()).toContainText('pushed 1 commit');
   });
 
@@ -134,6 +138,63 @@ test.describe('finance news feed', () => {
       route.fulfill({ status: 403, body: '{}' })
     );
     await page.goto('/finance');
-    await expect(page.locator('.feed-item')).toHaveCount(5);
+    await page.locator('#fin-news').scrollIntoViewIfNeeded();
+    const fallback = (await import('../src/data/feed.json', { with: { type: 'json' } })).default;
+    await expect(page.locator('.feed-item')).toHaveCount(fallback.length);
+  });
+});
+
+test.describe('paper', () => {
+  test('the detail modal steps through siblings with ‹ ›', async ({ page }) => {
+    await page.goto('/?xp=jpmc');
+    await expect(page.locator('.pj-modal.open h3')).toContainText('J.P. Morgan');
+    await page.locator('.pj-step button', { hasText: 'next' }).click();
+    await expect(page.locator('.pj-modal.open h3')).toContainText('Alibaba');
+    await expect(page).toHaveURL(/xp=ali/);
+  });
+});
+
+test.describe('tech', () => {
+  test('?file= opens that file', async ({ page }) => {
+    await page.goto('/tech?file=stack');
+    await expect(page.locator('.etab.on')).toContainText('stack.json');
+  });
+
+  test('terminal cat and grep read file contents', async ({ page }) => {
+    await page.goto('/tech');
+    const input = page.locator('input[aria-label="terminal input"]');
+    await input.fill('cat contact');
+    await input.press('Enter');
+    await expect(page.locator('.term-body')).toContainText('email:');
+    await input.fill('grep AWS');
+    await input.press('Enter');
+    await expect(page.locator('.term-body')).toContainText('jpmc-athena.md:');
+  });
+
+  test('tab completes a command', async ({ page }) => {
+    await page.goto('/tech');
+    const input = page.locator('input[aria-label="terminal input"]');
+    await input.fill('who');
+    await input.press('Tab');
+    await expect(input).toHaveValue('whoami ');
+  });
+});
+
+test.describe('finance', () => {
+  test('watchlist search filters across both tabs', async ({ page }) => {
+    await page.route('https://api.github.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '[]' }));
+    await page.goto('/finance');
+    await page.locator('.wl-search').fill('swift');
+    await expect(page.locator('.wl-row')).toHaveCount(1);
+    await expect(page.locator('.wl-row .wl-sym')).toHaveText('$SRTS');
+  });
+});
+
+test.describe('life', () => {
+  test('work-in-progress pages show the WIP card unless ?preview', async ({ page }) => {
+    await page.goto('/life/photography');
+    await expect(page.locator('.life-wip')).toBeVisible();
+    await page.goto('/life/photography?preview');
+    await expect(page.locator('.ig-grid')).toBeVisible();
   });
 });

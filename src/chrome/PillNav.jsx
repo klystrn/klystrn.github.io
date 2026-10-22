@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useMode } from './ModeContext';
+import { prefetch } from '../lib/routes';
 
 // Touch has no hover, so the CSS-only reveal above never fires there. A
 // long-press peeks at the tip without navigating (mirroring the press-to-
@@ -67,10 +68,9 @@ const MODE_TIPS = {
 };
 const LIFE_TIP = 'Off the clock — an interactive room, a watch, two games.';
 
-// Tech and Finance are permanently dark by design, and Life paints its own
-// fixed-dark stage (literal colours matching the photorealistic render, not
-// gated by the dark-mode CSS) — so the toggle only has a visible effect,
-// and is only shown, in Paper.
+// Paper toggles the site theme; Tech toggles its own IDE theme (dark by
+// default). Finance is permanently dark by design, and Life paints its own
+// fixed-dark stage — so the toggle is only shown in Paper and Tech.
 function ThemeToggle({ theme, toggleTheme }) {
   const dark = theme === 'dark';
   return (
@@ -104,11 +104,14 @@ function NavTip({ id, show, children }) {
 }
 
 export default function PillNav() {
-  const { mode, setMode, flashedMode, theme, toggleTheme } = useMode();
+  const { mode, setMode, flashedMode, theme, toggleTheme, ideTheme, toggleIdeTheme } = useMode();
   const { shownId, touchHandlers, guardClick } = useTouchTip();
   const life = mode === 'life';
   const proMode = life ? null : mode;
-  const showThemeToggle = mode === 'paper';
+  const showThemeToggle = mode === 'paper' || mode === 'tech';
+  // Hovering/focusing a tab starts that mode's chunk download, so the click
+  // usually lands on an already-loaded route.
+  const warm = (m) => ({ onMouseEnter: () => prefetch(m), onFocus: () => prefetch(m) });
 
   return (
     <nav className="nav-wrap" aria-label="Primary">
@@ -125,6 +128,7 @@ export default function PillNav() {
               onClick={guardClick(() => setMode(m))}
               aria-describedby={`nav-tip-${m}`}
               {...touchHandlers(m)}
+              {...warm(m)}
             >
               {m[0].toUpperCase() + m.slice(1)}
               <NavTip id={`nav-tip-${m}`} show={shownId === m}>{MODE_TIPS[m]}</NavTip>
@@ -137,12 +141,15 @@ export default function PillNav() {
           onClick={guardClick(() => setMode('life'))}
           aria-describedby="nav-tip-life"
           {...touchHandlers('life')}
+          {...warm('life')}
         >
           Life
           <NavTip id="nav-tip-life" show={shownId === 'life'}>{LIFE_TIP}</NavTip>
         </button>
       </div>
-      {showThemeToggle && <ThemeToggle theme={theme} toggleTheme={toggleTheme} />}
+      {showThemeToggle && (mode === 'tech'
+        ? <ThemeToggle theme={ideTheme} toggleTheme={toggleIdeTheme} />
+        : <ThemeToggle theme={theme} toggleTheme={toggleTheme} />)}
     </nav>
   );
 }

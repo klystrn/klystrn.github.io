@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { FileIcon } from './files.jsx';
 
 /*
  * ⌘K command palette — the forcing function for "the explorer is the nav".
  * Auto-opens on the first Tech-mode visit of the session; afterwards, ⌘K/Ctrl+K
  * or the titlebar chip reopen it.
+ *
+ * Matches rank: filename first, then aliases (org names, tickers, skills),
+ * then file contents. A content hit shows the matching line as a snippet.
  */
 export default function Palette({ open, onClose, onPick, items }) {
   const [q, setQ] = useState('');
@@ -14,7 +18,19 @@ export default function Palette({ open, onClose, onPick, items }) {
   const hits = useMemo(() => {
     const needle = q.trim().toLowerCase();
     if (!needle) return items;
-    return items.filter((it) => `${it.label} ${it.path}`.toLowerCase().includes(needle));
+    const out = [];
+    items.forEach((it) => {
+      if (`${it.label} ${it.path}`.toLowerCase().includes(needle)) { out.push({ ...it, rank: 0 }); return; }
+      if (it.aliases.toLowerCase().includes(needle)) { out.push({ ...it, rank: 1 }); return; }
+      const line = it.lines.find((l) => l.toLowerCase().includes(needle));
+      if (line) {
+        const at = line.toLowerCase().indexOf(needle);
+        const start = Math.max(at - 28, 0);
+        const snip = `${start ? '…' : ''}${line.slice(start, at + needle.length + 40).trim()}…`;
+        out.push({ ...it, rank: 2, snip });
+      }
+    });
+    return out.sort((a, b) => a.rank - b.rank);
   }, [q, items]);
 
   useEffect(() => {
@@ -54,12 +70,12 @@ export default function Palette({ open, onClose, onPick, items }) {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={onKey}
-          placeholder="type to search files — the explorer is the nav"
+          placeholder="search files, orgs, tickers or text — the explorer is the nav"
           aria-label="Search files"
           spellCheck="false"
         />
         <div className="kbar-list" ref={listRef}>
-          {hits.length === 0 && <div className="kbar-empty">no files match "{q}"</div>}
+          {hits.length === 0 && <div className="kbar-empty">nothing matches "{q}" — try grep in the terminal</div>}
           {hits.map((it, i) => (
             <div
               key={it.id}
@@ -67,8 +83,11 @@ export default function Palette({ open, onClose, onPick, items }) {
               onMouseEnter={() => setSel(i)}
               onClick={() => pick(it)}
             >
-              <span className="ico">{it.ico}</span>
-              {it.label}
+              <FileIcon ext={it.ext} />
+              <span className="kbar-label">
+                {it.label}
+                {it.snip && <span className="kbar-snip">{it.snip}</span>}
+              </span>
               <span className="path">{it.path}</span>
             </div>
           ))}

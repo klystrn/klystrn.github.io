@@ -1,10 +1,19 @@
 {
+  "wip": {
+    "photography": true,
+    "watch": true,
+    "title": "Still in the darkroom.",
+    "body": "This corner of the room is being rebuilt with the real content: photos from the archive and the family watch collection. Check back soon.",
+    "tag": "Work in progress"
+  },
+  "caption": "Rendered room · every glowing dot is an object you can step into",
   "intro": {
     "title": "The things I reach for.",
     "sub": "Hover an object to see the story. Click to step inside."
   },
   "objects": {
     "camera": {
+      "trait": "On the job: the same eye for timing and framing goes into the media & design work at Guards HQ.",
       "label": "Photography",
       "hoverTitle": "Behind the lens",
       "blurb": "I shoot the moments most people scroll past: the quiet in-between frames at events, on the street, and around Singapore. What started as documenting friends turned into a real obsession with light, timing and composition.",
@@ -14,6 +23,7 @@
       "route": "photography"
     },
     "watch": {
+      "trait": "On the job: keeping the record. Service histories here, documentation and audit trails at work.",
       "label": "Watches",
       "hoverTitle": "Time, inherited",
       "blurb": "Mechanical watches run in the family. I grew up around a small collection that got passed down and added to over three generations, each piece carrying a story about who wore it and why. Somewhere along the way I became the one keeping the record.",
@@ -22,6 +32,7 @@
       "route": "watch"
     },
     "cards": {
+      "trait": "On the job: drill it until it's repeatable. Same instinct behind the trading playbooks.",
       "label": "Card throwing",
       "hoverTitle": "The flick",
       "blurb": "I found card throwing down a late-night rabbit hole and never climbed back out. It's equal parts physics and patience (grip, spin, release), and there's a strange calm in drilling the same throw a hundred times until it finally bites the target.",
@@ -29,13 +40,13 @@
       "cta": "Take a throw",
       "route": "cards"
     },
-    "namecard": {
-      "label": "The professional side",
-      "hoverTitle": "Back to business",
-      "blurb": "The other side of the table. This card takes you back to the professional portfolio: the engineering, the markets, the work.",
-      "tag": "Reginald Tan, Singapore",
-      "cta": "Back to the work",
-      "route": "professional"
+    "monitors": {
+      "label": "The trading screens",
+      "hoverTitle": "Market hours",
+      "blurb": "Charts, scanners and the pre-market report the trading workflow writes every morning. This is where the Finance lens comes from.",
+      "tag": "Swing trading, automated research",
+      "cta": "Open the terminal",
+      "route": "finance"
     },
     "work": {
       "label": "The desk",
@@ -46,6 +57,7 @@
       "route": "professional"
     },
     "trophy": {
+      "trait": "On the job: years of training for a few minutes on the mat or the board. Discipline compounds.",
       "label": "Trophy cabinet",
       "hoverTitle": "The pointy end",
       "blurb": "Two sports, years of each. Taekwondo on the mat, diving off the board, and the medals that stuck around.",
@@ -71,7 +83,7 @@
     "name": "Reginald Tan",
     "bio": "Singapore. Events, street, and the occasional portrait. Shot on whatever's in my bag.",
     "avatar": "/life/reg-avatar.jpg",
-    "stats": { "posts": 12, "gear": "Sony · 35mm", "since": "2019" },
+    "stats": { "gear": "Sony · 35mm", "since": "2019" },
     "tiles": [
       { "id": "nsg", "title": "National School Games", "count": 24, "cover": "", "hue": 4, "photos": [] },
       { "id": "street", "title": "Street · Singapore", "count": 38, "cover": "", "hue": 210, "photos": [] },

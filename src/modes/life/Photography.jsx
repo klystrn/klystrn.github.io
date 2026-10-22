@@ -1,6 +1,7 @@
+import '../../styles/life.css';
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
+import { Motion, LifeBack, WipGate } from './shared';
 import { life } from '../../lib/lifeData';
 
 const P = life.photography;
@@ -12,15 +13,57 @@ function tileBg(hue, i = 0) {
   return `linear-gradient(150deg, hsl(${h} 42% 32%), hsl(${(h + 30) % 360} 38% 18%))`;
 }
 
+/* A tile's `photos` entries are either a plain path or
+   { src, caption, exif } — the viewer shows the caption and EXIF line. */
+const asPhoto = (p) => (typeof p === 'string' ? { src: p } : p);
+// Placeholder cells get varied aspect ratios so the masonry reads as one.
+const RATIOS = ['3 / 4', '1 / 1', '4 / 3', '2 / 3', '3 / 2'];
+
 /* A real photo that 404s (a path typo, a file that hasn't landed yet) falls
    back to the same gradient swatch the placeholder cells use, cell by cell,
    rather than showing a broken-image icon or losing the grid's shape. */
-function PhotoCell({ src, hue, i, title }) {
+function PhotoCell({ photo, hue, i, title, onOpen }) {
   const [broken, setBroken] = useState(false);
-  if (!src || broken) return <div className="ig-lb-cell" style={{ background: tileBg(hue, i + 1) }} />;
+  if (!photo?.src || broken) {
+    return <div className="ig-lb-cell" style={{ background: tileBg(hue, i + 1), aspectRatio: RATIOS[i % RATIOS.length] }} />;
+  }
   return (
-    <div className="ig-lb-cell">
-      <img src={src} alt={`${title} — photo ${i + 1}`} loading="lazy" onError={() => setBroken(true)} />
+    <button type="button" className="ig-lb-cell" onClick={() => onOpen(i)} aria-label={`Open photo ${i + 1}${photo.caption ? `: ${photo.caption}` : ''}`}>
+      <img src={photo.src} alt={photo.caption || `${title} — photo ${i + 1}`} loading="lazy" onError={() => setBroken(true)} />
+    </button>
+  );
+}
+
+/* Single-photo viewer inside a set: ←/→ keys, on-screen arrows, and a
+   horizontal swipe on touch; caption + EXIF underneath. */
+function Viewer({ photos, i, setI, title }) {
+  const start = useRef(null);
+  const n = photos.length;
+  const go = (d) => setI((k) => (k + d + n) % n);
+  const p = photos[i];
+  return (
+    <div
+      className="ig-view"
+      onPointerDown={(e) => { start.current = e.clientX; }}
+      onPointerUp={(e) => {
+        if (start.current == null) return;
+        const dx = e.clientX - start.current;
+        start.current = null;
+        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+      }}
+    >
+      <img src={p.src} alt={p.caption || `${title} — photo ${i + 1}`} draggable={false} />
+      {n > 1 && (
+        <>
+          <button type="button" className="ig-view-nav prev" onClick={() => go(-1)} aria-label="Previous photo">‹</button>
+          <button type="button" className="ig-view-nav next" onClick={() => go(1)} aria-label="Next photo">›</button>
+        </>
+      )}
+      <div className="ig-view-cap">
+        <span>{p.caption || title}</span>
+        {p.exif && <span className="ig-view-exif">{p.exif}</span>}
+        <span className="ig-view-n">{i + 1} / {n}</span>
+      </div>
     </div>
   );
 }
@@ -28,26 +71,32 @@ function PhotoCell({ src, hue, i, title }) {
 function Lightbox({ tile, onClose }) {
   const closeRef = useRef(null);
   const lastFocused = useRef(null);
+  const [view, setView] = useState(null); // index of the open photo, or null for the grid
+  const photos = (tile.photos || []).map(asPhoto);
   useEffect(() => {
-    const onKey = (e) => e.key === 'Escape' && onClose();
-    addEventListener('keydown', onKey);
     lastFocused.current = document.activeElement;
     closeRef.current?.focus();
-    return () => {
-      removeEventListener('keydown', onKey);
-      lastFocused.current?.focus?.();
+    return () => lastFocused.current?.focus?.();
+  }, []);
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') { if (view != null) setView(null); else onClose(); return; }
+      if (view == null || photos.length < 2) return;
+      if (e.key === 'ArrowRight') setView((k) => (k + 1) % photos.length);
+      if (e.key === 'ArrowLeft') setView((k) => (k - 1 + photos.length) % photos.length);
     };
-  }, [onClose]);
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
+  }, [onClose, view, photos.length]);
 
   // Real photos, once added to a tile's `photos` array, replace the gradient
   // placeholders automatically — no other flag to flip. Until then this set
   // still shows the placeholder grid + a note that the real thing is coming.
-  const photos = tile.photos || [];
   const hasPhotos = photos.length > 0;
   const count = hasPhotos ? photos.length : tile.count;
 
   return (
-    <motion.div
+    <m.div
       className="ig-lb"
       role="dialog"
       aria-modal="true"
@@ -57,7 +106,7 @@ function Lightbox({ tile, onClose }) {
       exit={{ opacity: 0 }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <motion.div
+      <m.div
         className="ig-lb-box"
         initial={{ scale: 0.94, y: 12 }}
         animate={{ scale: 1, y: 0 }}
@@ -68,19 +117,24 @@ function Lightbox({ tile, onClose }) {
         <div className="ig-lb-head">
           <h3>{tile.title}</h3>
           <span>{count} photos</span>
+          {view != null && <button type="button" className="ig-lb-grid-btn" onClick={() => setView(null)}>▦ all</button>}
         </div>
-        <div className="ig-lb-grid">
-          {hasPhotos
-            ? photos.map((src, i) => <PhotoCell key={src} src={src} hue={tile.hue} i={i} title={tile.title} />)
-            : Array.from({ length: Math.min(tile.count, 12) }).map((_, i) => (
-                <div key={i} className="ig-lb-cell" style={{ background: tileBg(tile.hue, i + 1) }} />
-              ))}
-        </div>
+        {view != null ? (
+          <Viewer photos={photos} i={view} setI={setView} title={tile.title} />
+        ) : (
+          <div className="ig-lb-grid">
+            {hasPhotos
+              ? photos.map((ph, i) => <PhotoCell key={ph.src} photo={ph} hue={tile.hue} i={i} title={tile.title} onOpen={setView} />)
+              : Array.from({ length: Math.min(tile.count, 12) }).map((_, i) => (
+                  <PhotoCell key={i} hue={tile.hue} i={i} title={tile.title} />
+                ))}
+          </div>
+        )}
         {!hasPhotos && (
           <p className="ig-lb-note">A selection from this set. Full galleries coming as I digitise the archive.</p>
         )}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -90,7 +144,7 @@ function Lightbox({ tile, onClose }) {
    gradient swatch if that image 404s, same as a lightbox cell would. */
 function Tile({ t, onOpen }) {
   const [broken, setBroken] = useState(false);
-  const src = t.cover || t.photos?.[0] || '';
+  const src = t.cover || asPhoto(t.photos?.[0] || '').src || '';
   const count = t.photos?.length || t.count;
   const showImg = src && !broken;
   return (
@@ -106,17 +160,17 @@ function Tile({ t, onOpen }) {
   );
 }
 
-export default function Photography() {
+function PhotographyPage() {
   const [open, setOpen] = useState(null);
 
   return (
-    <motion.div
+    <m.div
       className="ig"
       initial={{ opacity: 0, scale: 1.04 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Link className="life-back" to="/life">← the table</Link>
+      <LifeBack />
 
       <header className="ig-head">
         <div className="ig-avatar">
@@ -129,7 +183,7 @@ export default function Photography() {
             <span className="ig-badge">Photography</span>
           </div>
           <div className="ig-stats">
-            <span><b>{P.stats.posts}</b> sets</span>
+            <span><b>{P.tiles.length}</b> sets</span>
             <span><b>{P.stats.gear}</b></span>
             <span>shooting since <b>{P.stats.since}</b></span>
           </div>
@@ -147,6 +201,10 @@ export default function Photography() {
       </div>
 
       <AnimatePresence>{open && <Lightbox tile={open} onClose={() => setOpen(null)} />}</AnimatePresence>
-    </motion.div>
+    </m.div>
   );
+}
+
+export default function Photography() {
+  return <WipGate page="photography"><Motion><PhotographyPage /></Motion></WipGate>;
 }
