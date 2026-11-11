@@ -34,7 +34,7 @@ type: TITLE_HERO
 art: hero-silhouette
 interaction: pointer-parallax
 ```
-- VISUAL: Black screen; red rim light reveals current-age Reginald, upper body with arms folded, as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller red `陈彦杰` overlaps the centre of the Latin letters.
+- VISUAL: Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.
 - VISUAL: Scrolling pushes the camera from the upper body into a close-up of the face while the name lifts away.
 - ALT {draft}: A red silhouette of Reginald Tan on black, under his name in English and Chinese.
 - NOTE: No narration, awards or job titles in the hero. The `PORTFOLIO` eyebrow is replaced by the nav bar (review, 11 Nov). Pointer moves a red glint 1–2°; touch gets a static frame. CJK font subset to the three glyphs. One-line name on desktop, two lines on mobile.
@@ -62,6 +62,9 @@ category: none
 ## Story C02A · Three directions at once
 
 ### Scene C02-S01 · A life in three panels
+```story
+storyboard: approved
+```
 
 #### Panel C02-S01-P01 · Present selector
 ```story
@@ -137,40 +140,54 @@ type: PANEL_SPLASH
 art: sst-python-classroom
 portal: [testimonial-jovita]
 ```
-- VISUAL: SST computing classroom, mostly black and white. Teenage Reginald with classmates over a Python/pandas lesson on a synthetic dataset; one highlighted line of code glows red.
+- VISUAL: SST computing classroom, mostly black and white. A teacher at the front explains pandas on the board; teenage Reginald sits at his desk staring at his laptop, trying the practical. One highlighted line of code glows red.
 - NAR {draft}: The first systems I learn aren't markets. They're small programs I can change.
 - THO {draft}: Okay. Why did *that* work?
 - SKL {draft}: Python, Data handling
 - PORTAL {draft}: Read Jovita Tang's testimonial
 
-#### Panel C03-S01-P02 · Building with friends
+#### Panel C03-S01-P02 · Building locationX with friends
 ```story
 type: PANEL_STANDARD
 art: sst-friends-building
 data_ref: projects:locx
 interaction: hover-reveal
 ```
-- VISUAL: Split frame. Left: Reginald and friends at a whiteboard and editor, building locationX. Right: Reginald alone at night, testing an NRIC validator on dummy IDs only.
-- NAR {draft}: With friends, we solve problems we can see around us. Some I chip at alone.
-- FAC {draft}: locationX — scheduling app for the National School Games, built with friends (2021) · NRIC validator — solo build
+- VISUAL: Reginald and friends at a whiteboard and laptop, building locationX — clearly labelled as a planner for the National School Games (venues, schools, time slots on the board).
+- NAR {draft}: With friends, we solve problems we can see around us.
+- FAC {draft}: locationX — a planner for the National School Games, built with friends (2021)
 - DIA[Friend] {draft}: Wait — what if the teachers just enter the venues first?
 - SKL {draft}: Python, Algorithms
-- NOTE: Hover the red-marked algorithm for a one-line explanation. [EDIT: year of the NRIC validator, and one sentence on what it checked]
+- NOTE: Hover the red-marked algorithm for a one-line explanation.
+
+### Scene C03-S05 · The NRIC validator
+
+#### Panel C03-S05-P01 · It actually works
+```story
+type: PANEL_STANDARD
+art: sst-nric-validator
+```
+- VISUAL: Reginald at a desk with his laptop; friends sitting and standing around him, shocked that the algorithm can tell a valid NRIC number from a fake one. Dummy numbers only on screen.
+- NAR {draft}: Then I build one on my own, and show them.
+- DIA[Friend] {draft}: Hold on. It knows that one's fake?
+- FAC {draft}: NRIC validator — solo build
+- NOTE: [EDIT: year of the NRIC validator, and one sentence on what it checked]
 
 ## Story C03B · Being responsible for others
 
-### Scene C03-S02 · ACE recruitment
+### Scene C03-S02 · ACE: Singapore Cancer Society and recruitment
 
-#### Panel C03-S02-P01 · The recruitment drive
+#### Panel C03-S02-P01 · SCS and the recruitment drive
 ```story
 type: PANEL_STANDARD
 art: sst-ace-drive
 portal: [testimonial-keith]
 ```
-- VISUAL: After-class ACE board planning, then the recruitment booth — flyers, a sign-up board, students queueing. Focus is on talking to people, not medals. Students anonymous.
+- VISUAL: Two beats. First: working with the Singapore Cancer Society — Reginald and the SCS@ACE team signing up volunteers for Relay For Life 2020. Second: the ACE Recruitment Drive — Reginald on stage giving an assembly talk, recruiting students to become ACE leaders. Students anonymous.
 - NAR {draft}: As an ACE leader, an idea only matters if I can get people to act on it.
 - THO {draft}: The code can be right. The plan still has to work with people.
 - FAC {draft}: Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target
+- FAC {draft}: Overall-in-charge, ACE Recruitment Drive — recruiting and interviewing new student leaders
 - SKL {draft}: Leadership, Recruitment
 - PORTAL {draft}: Read Keith Wee's testimonial
 
@@ -178,15 +195,17 @@ portal: [testimonial-keith]
 
 ### Scene C03-S03 · DrCT
 
-#### Panel C03-S03-P01 · Screen, clock, bronze
+#### Panel C03-S03-P01 · Exam, problem, bronze
 ```story
 type: PANEL_EVIDENCE
 art: sst-drct
 data_ref: awards:DrCT International, Bronze
 ```
-- VISUAL: Generic online-test UI and a ticking clock (black and white), then the real Bronze certificate revealed in muted gold with a red edge. Exit: a whiteboard line extends into the NP chapter.
+- VISUAL: Three beats. A classroom of students sitting the DrCT exam. Then Reginald's own view of the exam screen as he works a computing problem. Last: Reginald happily receiving his Bronze certificate — no podium, just the certificate. Exit: a whiteboard line extends into the NP chapter.
 - NAR {draft}: Some challenges are quieter. A screen, a clock, and a question I don't know yet.
 - SFX {draft}: TICK
+- THO {draft}: Brute force is too slow. What repeats? Break it into smaller steps.
+- THO {draft}: Bronze. I'll take it.
 - FAC {draft}: DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)
 - NOTE: Use a scan of the real certificate, not generated award text.
 
@@ -212,7 +231,7 @@ type: PANEL_SPLASH
 art: np-workshop-open
 interaction: evidence-drawer
 ```
-- VISUAL: NP campus/studio; Reginald moves among laptops, prototypes and classmates. A small awards drawer in the corner expands on click.
+- VISUAL: Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: inside a lecture theatre for the module Programming 1. A small awards drawer in the corner expands on click.
 - NAR {draft}: At Ngee Ann, I start putting the pieces together: code, design, users and deadlines.
 - FAC {draft}: Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prizes: Computing Mathematics, Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)
 - NOTE: The drawer replaces the old separate recognition panel (C04-S04-P01). Use real scans if you want images inside it.
@@ -224,7 +243,7 @@ art: np-tea-shop-frats
 portal: [frats]
 data_ref: projects:frts
 ```
-- VISUAL: The Tea Shop's early website beside an abstract FRATS capture → recognise → attendance pipeline. A progression in complexity, not the same week.
+- VISUAL: Two beats. First: Reginald at work putting the pieces together — one of them his mock website, TheTeaShop, on screen. Second: Reginald presenting FRATS (capture → recognise → attendance) in a hackathon-style setting, slide behind him, judges in front.
 - NAR {draft}: One project teaches me how to make something. Another teaches me how much has to happen before it actually works.
 - SKL {draft}: Computer vision, UX
 - PORTAL {draft}: Built a facial-recognition attendance system with AIDC

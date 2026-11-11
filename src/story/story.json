@@ -36,7 +36,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Black screen; red rim light reveals current-age Reginald, upper body with arms folded, as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller red `陈彦杰` overlaps the centre of the Latin letters.",
+                      "text": "Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.",
                       "status": "draft"
                     },
                     {
@@ -99,6 +99,7 @@
               "kind": "scene",
               "id": "C02-S01",
               "label": "A life in three panels",
+              "storyboard": "approved",
               "status": "draft",
               "panels": [
                 {
@@ -284,7 +285,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "SST computing classroom, mostly black and white. Teenage Reginald with classmates over a Python/pandas lesson on a synthetic dataset; one highlighted line of code glows red.",
+                      "text": "SST computing classroom, mostly black and white. A teacher at the front explains pandas on the board; teenage Reginald sits at his desk staring at his laptop, trying the practical. One highlighted line of code glows red.",
                       "status": "draft"
                     },
                     {
@@ -312,7 +313,7 @@
                 {
                   "kind": "panel",
                   "id": "C03-S01-P02",
-                  "label": "Building with friends",
+                  "label": "Building locationX with friends",
                   "type": "PANEL_STANDARD",
                   "art": "sst-friends-building",
                   "data_ref": "projects:locx",
@@ -321,17 +322,17 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Split frame. Left: Reginald and friends at a whiteboard and editor, building locationX. Right: Reginald alone at night, testing an NRIC validator on dummy IDs only.",
+                      "text": "Reginald and friends at a whiteboard and laptop, building locationX — clearly labelled as a planner for the National School Games (venues, schools, time slots on the board).",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
-                      "text": "With friends, we solve problems we can see around us. Some I chip at alone.",
+                      "text": "With friends, we solve problems we can see around us.",
                       "status": "draft"
                     },
                     {
                       "type": "FAC",
-                      "text": "locationX — scheduling app for the National School Games, built with friends (2021) · NRIC validator — solo build",
+                      "text": "locationX — a planner for the National School Games, built with friends (2021)",
                       "status": "draft"
                     },
                     {
@@ -343,6 +344,45 @@
                     {
                       "type": "SKL",
                       "text": "Python, Algorithms",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C03-S05",
+              "label": "The NRIC validator",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C03-S05-P01",
+                  "label": "It actually works",
+                  "type": "PANEL_STANDARD",
+                  "art": "sst-nric-validator",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald at a desk with his laptop; friends sitting and standing around him, shocked that the algorithm can tell a valid NRIC number from a fake one. Dummy numbers only on screen.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Then I build one on my own, and show them.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "Hold on. It knows that one's fake?",
+                      "status": "draft",
+                      "speaker": "Friend"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "NRIC validator — solo build",
                       "status": "draft"
                     }
                   ]
@@ -360,13 +400,13 @@
             {
               "kind": "scene",
               "id": "C03-S02",
-              "label": "ACE recruitment",
+              "label": "ACE: Singapore Cancer Society and recruitment",
               "status": "draft",
               "panels": [
                 {
                   "kind": "panel",
                   "id": "C03-S02-P01",
-                  "label": "The recruitment drive",
+                  "label": "SCS and the recruitment drive",
                   "type": "PANEL_STANDARD",
                   "art": "sst-ace-drive",
                   "portal": [
@@ -376,7 +416,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "After-class ACE board planning, then the recruitment booth — flyers, a sign-up board, students queueing. Focus is on talking to people, not medals. Students anonymous.",
+                      "text": "Two beats. First: working with the Singapore Cancer Society — Reginald and the SCS@ACE team signing up volunteers for Relay For Life 2020. Second: the ACE Recruitment Drive — Reginald on stage giving an assembly talk, recruiting students to become ACE leaders. Students anonymous.",
                       "status": "draft"
                     },
                     {
@@ -392,6 +432,11 @@
                     {
                       "type": "FAC",
                       "text": "Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Overall-in-charge, ACE Recruitment Drive — recruiting and interviewing new student leaders",
                       "status": "draft"
                     },
                     {
@@ -425,7 +470,7 @@
                 {
                   "kind": "panel",
                   "id": "C03-S03-P01",
-                  "label": "Screen, clock, bronze",
+                  "label": "Exam, problem, bronze",
                   "type": "PANEL_EVIDENCE",
                   "art": "sst-drct",
                   "data_ref": "awards:DrCT International, Bronze",
@@ -433,7 +478,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Generic online-test UI and a ticking clock (black and white), then the real Bronze certificate revealed in muted gold with a red edge. Exit: a whiteboard line extends into the NP chapter.",
+                      "text": "Three beats. A classroom of students sitting the DrCT exam. Then Reginald's own view of the exam screen as he works a computing problem. Last: Reginald happily receiving his Bronze certificate — no podium, just the certificate. Exit: a whiteboard line extends into the NP chapter.",
                       "status": "draft"
                     },
                     {
@@ -444,6 +489,16 @@
                     {
                       "type": "SFX",
                       "text": "TICK",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Brute force is too slow. What repeats? Break it into smaller steps.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Bronze. I'll take it.",
                       "status": "draft"
                     },
                     {
@@ -495,7 +550,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "NP campus/studio; Reginald moves among laptops, prototypes and classmates. A small awards drawer in the corner expands on click.",
+                      "text": "Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: inside a lecture theatre for the module Programming 1. A small awards drawer in the corner expands on click.",
                       "status": "draft"
                     },
                     {
@@ -524,7 +579,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "The Tea Shop's early website beside an abstract FRATS capture → recognise → attendance pipeline. A progression in complexity, not the same week.",
+                      "text": "Two beats. First: Reginald at work putting the pieces together — one of them his mock website, TheTeaShop, on screen. Second: Reginald presenting FRATS (capture → recognise → attendance) in a hackathon-style setting, slide behind him, judges in front.",
                       "status": "draft"
                     },
                     {

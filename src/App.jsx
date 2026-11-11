@@ -17,6 +17,8 @@ const Life = lazy(() => import('./modes/life/Life'));
 const Photography = lazy(() => import('./modes/life/Photography'));
 const WatchStory = lazy(() => import('./modes/life/WatchStory'));
 const CardGame = lazy(() => import('./modes/life/CardGame'));
+// Story mode preview: unlinked from the nav until launch is approved.
+const Story = lazy(() => import('./modes/story/Story'));
 
 function Analytics() {
   const location = useLocation();
@@ -43,6 +45,9 @@ export default function App() {
             <Route path="/life/photography" element={<Photography />} />
             <Route path="/life/watch" element={<WatchStory />} />
             <Route path="/life/cards" element={<CardGame />} />
+            <Route path="/story" element={<Story />} />
+            <Route path="/story/chapter/:chapter" element={<Story />} />
+            <Route path="/story/arc/:arc" element={<Story />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

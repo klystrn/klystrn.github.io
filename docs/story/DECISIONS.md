@@ -3,6 +3,21 @@
 Resolved decisions. Newest first. The script (`docs/STORY-SCRIPT.md`) and `src/data/*.json`
 already reflect everything here.
 
+## 2026-11-11 — Story sample on the site, second review round
+
+| Topic | Decision |
+|---|---|
+| Story sample | A working preview lives at `/story` (plus `/story/chapter/<slug>` and `/story/arc/<slug>`). Not linked from the nav, `noindex`; `/` is still Paper. It renders straight from the script and storyboards, with storyboard sketches standing in for final art. |
+| External dependencies | Only image and video generation is external. Captions, balloons, titles, cards, diagrams, the hero zoom, reveals, the chapter rail and all scrolling are code in the repo (React + CSS, no animation service or library beyond what the site already ships). |
+| Frame edges | Captions may sit on the panel edge like a comic. On phones nothing is cropped: frames are shown whole and captions stack underneath. |
+| C02-S01 | Storyboard **approved** (`storyboard: approved` in the script). |
+| C01-S01 | Figure taller so the face is clear above the name; Chinese name letter-spaced wide like the reference; head facing fully straight. |
+| C01-S01 wardrobe | Collared button-up work shirt. |
+| C04-S01 | Opens with walking into Ngee Ann Polytechnic, then a Programming 1 lecture theatre; then building TheTeaShop (mock website); then presenting FRATS in a hackathon setting. |
+| C03-S01 / C03-S05 | Teacher explains pandas while you try the practical; locationX shown as the National School Games planner; the NRIC validator becomes its own scene (`C03-S05`) with friends amazed around the desk. |
+| C03-S02 | Beat 1 is the Singapore Cancer Society work (the 25% figure); beat 2 is the ACE Recruitment Drive as an assembly talk. |
+| C03-S03 | Exam hall → your view of a problem with a brainstorm thought → receiving the Bronze certificate (no podium). |
+
 ## 2026-11-11 — first storyboard reviews
 
 | Topic | Decision |

@@ -18,7 +18,7 @@ furniture only — no hardcoded content strings outside `src/data/`.
 Reference doc: `docs/CONTENT-DOC-reginald-v4.md` (authoritative content source, kept in sync with
 `src/data/`). Outstanding items: `KNOWN-GAPS.md`.
 
-### Story mode (in production — not yet routed)
+### Story mode (in production — preview at `/story`)
 
 Story mode is a cinematic autobiographical comic with its **own** content source, outside the
 content parity rule above. Paper/CV, Tech and Finance keep sharing the canonical `src/data` facts.
@@ -34,7 +34,11 @@ differently, but it must not contradict them. `scripts/story/build.py` warns whe
 - Working docs, edit list and plan: `docs/story/`
 - Claude skill: `.claude/skills/portfolio-story-content-update/`
 
-`/` stays Paper until Story launch is explicitly approved.
+A **preview** of Story mode is live at `/story` (also `/story/chapter/<slug>` and
+`/story/arc/<slug>`): it renders the script and storyboards with pencil sketches standing in for
+final art. It is not linked from the nav and is marked `noindex`. The only external dependency of
+Story mode is image/video generation for the art; every caption, card, title and scroll effect is
+code in `src/modes/story/`. `/` stays Paper until Story launch is explicitly approved.
 
 ## Develop
 

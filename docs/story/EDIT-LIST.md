@@ -87,6 +87,10 @@ not publish; a deleted panel just disappears (don't reuse its ID).
 
 ## 3. Storyboards
 
+**See it on the site:** `https://reginaldtan.com/story` is a working sample of Story mode built
+from the script and storyboards (sketches stand in for art). Edit the script, run the build, push —
+the sample updates.
+
 Storyboarding has started. **49 of 67 scenes are drafted** (all 28 main-story scenes plus 21 arc
 scenes); 18 arc scenes wait on the arc gaps in section 1.
 

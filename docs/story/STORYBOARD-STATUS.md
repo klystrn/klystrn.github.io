@@ -7,7 +7,7 @@
 
 | Status | Scenes |
 |---|---|
-| Approved | 0 |
+| Approved | 1 |
 | Changes requested | 0 |
 | Drafted — awaiting your review | 49 |
 | Partly drafted | 0 |
@@ -24,14 +24,15 @@
 
 | Scene | | Panels | Storyboard |
 |---|---|---|---|
-| `C02-S01` | A life in three panels | 2 | Drafted — awaiting your review |
+| `C02-S01` | A life in three panels | 2 | Approved |
 
 ## Chapter `sst` · SCHOOL OF SCIENCE & TECHNOLOGY
 
 | Scene | | Panels | Storyboard |
 |---|---|---|---|
 | `C03-S01` | The classroom | 2 | Drafted — awaiting your review |
-| `C03-S02` | ACE recruitment | 1 | Drafted — awaiting your review |
+| `C03-S05` | The NRIC validator | 1 | Drafted — awaiting your review |
+| `C03-S02` | ACE: Singapore Cancer Society and recruitment | 1 | Drafted — awaiting your review |
 | `C03-S03` | DrCT | 1 | Drafted — awaiting your review |
 
 ## Chapter `np` · NGEE ANN POLYTECHNIC

@@ -27,7 +27,7 @@
 
 ## REF-YOU-HERO-POSE · You, hero pose
 - kind: character
-- source: your own photos — upper body, arms folded, facing camera; plus a tight head-and-shoulders close-up; one strong side light if you can (it guides the red rim light)
+- source: your own photos in a collared button-up work shirt — upper body, arms folded, head facing straight at the camera; plus a tight head-and-shoulders close-up; one strong side light if you can (it guides the red rim light)
 - privacy: private — never in the repo
 - priority: 1
 - status: needed
@@ -49,7 +49,7 @@
 - privacy: private — never in the repo
 - priority: 2
 - status: needed
-- scenes: C02-S01, C03-S01, C03-S02, C03-S03, A-TJ-S01, A-TJ-S02, A-TK-S01, A-TK-S02
+- scenes: C02-S01, C03-S01, C03-S05, C03-S02, C03-S03, A-TJ-S01, A-TJ-S02, A-TK-S01, A-TK-S02
 
 ## REF-YOU-NP · You at NP (2022–25)
 - kind: character
@@ -133,13 +133,13 @@
 - status: needed
 - scenes: C06-S03, A-TY2-S01
 
-## REF-P-EXTRAS · Everyone else (classmates, ACE students, NP peers, the child at TYA, interns, coworkers, the presentation panel, your media team, the client)
+## REF-P-EXTRAS · Everyone else (the SST teacher at the board, classmates, the SCS partner, ACE students, NP peers, the child at TYA, interns, coworkers, the presentation panel, your media team, the client)
 - kind: person
 - source: none — designed as generic, non-identifiable characters (backs, silhouettes, soft focus)
 - privacy: never based on a real person's photo without permission
 - priority: 2
 - status: not needed
-- scenes: C03-S01, C03-S02, C04-S01, C04-S02, C04-S03, C05-S02, C05-S03, C05-S05, C05-S06, C06-S01, C06-S03, C07-S02, A-OV-S02
+- scenes: C03-S01, C03-S05, C03-S02, C03-S03, C04-S01, C04-S02, C04-S03, C05-S02, C05-S03, C05-S05, C05-S06, C06-S01, C06-S03, C07-S02, A-OV-S02
 
 # Locations & settings
 
@@ -149,11 +149,11 @@
 - privacy: public source is fine; no identifiable students
 - priority: 2
 - status: needed
-- scenes: C03-S01, A-TJ-S01
+- scenes: C03-S01, C03-S05, A-TJ-S01
 
-## REF-L-SST-ACE · SST foyer / booth area and the ACE meeting room
+## REF-L-SST-ACE · SST assembly hall / auditorium, and the ACE meeting room
 - kind: location
-- source: public SST photos or your own; any ACE / SCS outreach photos
+- source: public SST photos or your own (the stage and seating for the assembly talk); any ACE / SCS Relay For Life outreach photos
 - privacy: no identifiable students without permission
 - priority: 2
 - status: needed
@@ -161,15 +161,15 @@
 
 ## REF-L-TEST-ROOM · An online test setting
 - kind: location
-- source: none — a generic school computer desk
+- source: none — a generic classroom laid out for an online exam
 - privacy: n/a
 - priority: 2
 - status: not needed
 - scenes: C03-S03
 
-## REF-L-NP-ICT · NP School of ICT studio, lecture room and corridors
+## REF-L-NP-ICT · NP campus entrance, a School of ICT lecture theatre, presentation space and corridors
 - kind: location
-- source: public NP photos (NP website, open house media) or your own
+- source: public NP photos (NP website, open house media) or your own: the entrance you'd walk in by, a lecture theatre (Programming 1), and a room set up for hackathon-style presentations
 - privacy: public source is fine
 - priority: 2
 - status: needed
@@ -353,7 +353,7 @@
 - privacy: no real NRICs
 - priority: 2
 - status: needed
-- scenes: C03-S01
+- scenes: C03-S01, C03-S05
 
 ## REF-E-TEASHOP · The Tea Shop website
 - kind: evidence

@@ -256,7 +256,7 @@ function layerOf(tok) {
   if (tok.includes('real')) return 'evidence';
   return 'art';
 }
-const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']) };
+const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']), story: new Set(['art', 'overlay', 'evidence']) };
 
 function renderFrame(frame, panel, key, layer = 'all') {
   const [aw, ah] = frame.aspect.split(':').map(Number);
@@ -275,11 +275,12 @@ function renderFrame(frame, panel, key, layer = 'all') {
   for (const tok of frame.els) {
     const k = tok[0];
     const lay = layerOf(tok);
+    if (layer === 'story' && k === 'cap') continue;  // the website draws captions as real HTML
     if (show && !show.has(lay)) { if (k === 'dark' && layer === 'overlay') { /* keep tone hint */ } else continue; }
     const nums = tok.slice(1).filter((t) => /^-?\d+(\.\d+)?$/.test(t)).map(Number);
     const words = tok.slice(1).filter((t) => !/^-?\d+(\.\d+)?$/.test(t));
     const flags = new Set(words);
-    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'code', 'real', 'detail', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !w.startsWith('tail=') && !(k === 'cap' && w === tok[1]));
+    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'code', 'real', 'detail', 'wide', 'fold', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !w.startsWith('tail=') && !(k === 'cap' && w === tok[1]));
     const [a, b, c, d] = nums;
     const dark = (x, y) => inDark(x, y);
     const ink = (x, y) => (flags.has('red') ? C.red : dark(x, y) ? C.light : C.pencil);
@@ -347,7 +348,7 @@ function renderFrame(frame, panel, key, layer = 'all') {
       case 'text': {
         const color = flags.has('red') ? C.red : flags.has('ivory') ? '#efe9dc' : C.pencil;
         const t = el('text', { x: X(a), y: Y(b), fill: color, 'font-family': /[㐀-鿿]/.test(label || '') ? '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif' : 'Archivo, Arial Narrow, sans-serif',
-          'font-weight': 900, 'font-size': Y(c), 'font-stretch': '68%', 'text-anchor': flags.has('center') ? 'middle' : 'start', 'dominant-baseline': 'middle', 'letter-spacing': c < 4 ? 6 : 0 }, g);
+          'font-weight': 900, 'font-size': Y(c), 'font-stretch': '68%', 'text-anchor': flags.has('center') ? 'middle' : 'start', 'dominant-baseline': 'middle', 'letter-spacing': flags.has('wide') ? Y(c) * 1.15 : c < 4 ? 6 : 0 }, g);
         t.textContent = label || '';
         break;
       }
@@ -437,12 +438,13 @@ function drawFigure(g, x, y, h, words, flags, stroke, C, r, label, onDark) {
   const op = faint ? .5 : 1;
   const grp = el('g', { opacity: op }, g);
   if (pose === 'bust' || pose === 'silhouette') {
-    const headR = h * .17, hx = x + (pose === 'bust' ? facing * h * .04 : 0), hy = y - h * .66;
+    const front = words.includes('f');  // facing the camera: head centred and level, no profile nose
+    const headR = h * .17, hx = x + (pose === 'bust' && !front ? facing * h * .04 : 0), hy = y - h * .66;
     const fill = pose === 'silhouette' || red ? (red ? C.red : s) : 'none';
     const d = `M${x - h * .5} ${y} C${x - h * .48} ${y - h * .3} ${x - h * .3} ${y - h * .38} ${x - h * .12} ${y - h * .44} L${x - h * .08} ${y - h * .52} L${x + h * .08} ${y - h * .52} L${x + h * .12} ${y - h * .44} C${x + h * .3} ${y - h * .38} ${x + h * .48} ${y - h * .3} ${x + h * .5} ${y} Z`;
     el('path', { d, fill, 'fill-opacity': fill === 'none' ? 0 : .92, stroke: s, 'stroke-width': 2.6 }, grp);
     el('ellipse', { cx: hx, cy: hy, rx: headR * .86, ry: headR, fill, 'fill-opacity': fill === 'none' ? 0 : .92, stroke: s, 'stroke-width': 2.6 }, grp);
-    if (pose === 'bust') el('path', { d: `M${hx + facing * headR * .8} ${hy - 2} l${facing * 8} 10 l${-facing * 8} 3`, fill: 'none', stroke: s, 'stroke-width': 2 }, grp);
+    if (pose === 'bust' && !front) el('path', { d: `M${hx + facing * headR * .8} ${hy - 2} l${facing * 8} 10 l${-facing * 8} 3`, fill: 'none', stroke: s, 'stroke-width': 2 }, grp);
     if (words.includes('fold')) {  // arms folded across the chest
       el('path', { d: `M${x - h * .44} ${y - h * .2} Q${x} ${y - h * .3} ${x + h * .44} ${y - h * .2} L${x + h * .4} ${y - h * .08} Q${x} ${y - h * .16} ${x - h * .4} ${y - h * .08} Z`,
         fill: red ? '#8f0d18' : 'none', stroke: s, 'stroke-width': 2.4 }, grp);
@@ -482,7 +484,6 @@ function drawDetail(g, x, y, h, pose, facing) {
     el('path', { ...o, d: `M${x - h * .1} ${y - h * .5} L${x} ${y - h * .36} L${x + h * .1} ${y - h * .5}` }, g);
     el('path', { ...o, d: `M${x - h * .3} ${y - h * .38} Q${x - h * .36} ${y - h * .2} ${x - h * .34} ${y}` }, g);
     el('path', { ...o, d: `M${x + h * .3} ${y - h * .38} Q${x + h * .36} ${y - h * .2} ${x + h * .34} ${y}` }, g);
-    el('path', { ...o, d: `M${x - h * .12} ${y - h * .6} Q${x} ${y - h * .5} ${x + h * .12} ${y - h * .6}` }, g);
   } else {
     const u = h / 8;
     el('path', { ...o, d: `M${x - u * .35} ${y - u * 6.85} L${x} ${y - u * 6.3} L${x + u * .35} ${y - u * 6.85}` }, g);

@@ -29,16 +29,21 @@ into a Higgsfield batch.
 **Caption safe zones:** the `cap` boxes in each storyboard are the areas a plate must keep calm
 (no faces or key action underneath). They're passed into every generation prompt.
 
-## Staying inside the frame
+## Frame edges and phones
 
-Nothing may cross the panel edge:
+Like a printed comic, captions and balloons **may sit on the panel's edge** (the build allows a
+caption to hang up to 4% past it, and the website nudges edge captions outward so they straddle the
+border). Art, figures and diagrams stay inside the frame. **On phones nothing is cropped:** every
+frame is shown whole, scaled to the screen, and its captions stack underneath in reading order.
 
-- `python3 scripts/story/build.py` **errors** on any element outside the frame (boxes, figures,
-  discs, lines, lists, crops, text that's too wide) and **warns** when a caption's text may wrap
-  past the bottom or overlap another caption.
-- The viewer — and later the Story components — measure each caption/balloon/label after layout
-  and nudge it inside the frame (shrinking the type a little if it still won't fit), so a longer
-  line of copy can never spill out of a panel.
+What the build enforces:
+
+- `python3 scripts/story/build.py` **errors** on art outside the frame (boxes, figures, discs,
+  lines, lists, crops, text that's too wide) and on captions hanging more than 4% past it, and
+  **warns** when a caption's text may wrap past the bottom or overlap another caption.
+- The Storyboard Room keeps its sketches tidy by fitting captions inside each frame. The website
+  (`/story`) places them as real HTML at the same positions; `tests/story.spec.js` checks at four
+  screen sizes that no caption, title or card is cut off and the page never scrolls sideways.
 
 ## Approving
 
