@@ -1,0 +1,3486 @@
+{
+  "_generated": "by scripts/story/build.py from docs/STORY-SCRIPT.md — do not edit by hand",
+  "mode": "dev",
+  "chapters": [
+    {
+      "kind": "chapter",
+      "id": "opening",
+      "label": "REGINALD TAN / 陈彦杰",
+      "order": "1",
+      "title": "REGINALD TAN",
+      "title_type": "TITLE_HERO",
+      "years": "none",
+      "category": "none",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C01A",
+          "label": "The first frame",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C01-S01",
+              "label": "Silhouette / identity",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C01-S01-P01",
+                  "label": "Hero nameplate",
+                  "type": "TITLE_HERO",
+                  "art": "hero-silhouette",
+                  "interaction": "pointer-parallax",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Black screen; narrow red rim light reveals current-age Reginald as a crimson silhouette. `PORTFOLIO` types in above the name; ivory `REGINALD TAN` lands huge; red `陈彦杰` overlaps the centre of the Latin letters.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "VISUAL",
+                      "text": "Pose and 1- vs 2-line name chosen after the wireframe comparison (A folded arms · B close-up · C three-quarter turn).",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "PORTFOLIO",
+                      "status": "approved"
+                    },
+                    {
+                      "type": "ALT",
+                      "text": "A red silhouette of Reginald Tan on black, under his name in English and Chinese.",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C01-S01-P02",
+                  "label": "Three-way fracture",
+                  "type": "PANEL_TRANSITION",
+                  "art": "hero-fracture",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "The silhouette fractures along three diagonal panel borders — foreshadowing the three present-day lives. Top nav compacts into the right-side mode dock as this panel exits.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "If you ask what I'm doing, the answer changes with the hour.",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/opening"
+    },
+    {
+      "kind": "chapter",
+      "id": "present",
+      "label": "WHAT I'M DOING NOW",
+      "order": "2",
+      "title": "WHAT I'M DOING NOW",
+      "title_type": "TITLE_CHAPTER",
+      "years": "none",
+      "category": "none",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C02A",
+          "label": "Three directions at once",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C02-S01",
+              "label": "A life in three panels",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C02-S01-P01",
+                  "label": "Present selector",
+                  "type": "PANEL_SELECTION",
+                  "layout": {
+                    "desktop": "3",
+                    "mobile": "stack"
+                  },
+                  "interaction": "staggered-slide-in, hover-expand, tap-expand",
+                  "status": "draft",
+                  "items": [
+                    {
+                      "kind": "item",
+                      "id": "present-trading",
+                      "label": "",
+                      "title": "ACTIVE TRADING",
+                      "art": "present-trading",
+                      "arc": "trading-nebius",
+                      "skills": [
+                        "Markets research",
+                        "Risk management"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Current Reginald reviewing a generic, synthetic market display; one red decision line; no balances or order IDs.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "Trading since 2024 — now a disciplined process for volatile, AI-linked equities: research, risk decisions and review.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "NAR",
+                          "text": "At the market, I have to decide what the evidence is actually telling me.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Developed a high-volatility trading strategy",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "present-registudio",
+                      "label": "",
+                      "title": "RUNNING REGISTUDIO",
+                      "art": "present-registudio",
+                      "arc": "registudio-business",
+                      "skills": [
+                        "Client discovery",
+                        "Pricing strategy"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Desk with proposal drafts, a rough pipeline board and concept sketches; clients anonymous.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "Building a web-services business — finding the right clients, defining an offer, learning to price and deliver.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "NAR",
+                          "text": "When it's my own business, a finished site is only part of the work.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Built a web-services business from the ground up",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "present-ns",
+                      "label": "",
+                      "title": "SERVING NS",
+                      "art": "present-ns",
+                      "arc": "guards-media",
+                      "skills": [
+                        "Team management",
+                        "Visual storytelling"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Current Reginald with a camera in a media-planning setting at Guards HQ.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "Team Manager, Media & Design at Guards HQ — leading a team of 9, and on the AI Task Force.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "NAR",
+                          "text": "And there's a part of my day that doesn't run on my own schedule.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Led a media team of 9 at Guards HQ",
+                          "status": "draft"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C02-S01-P04",
+                  "label": "Into the past",
+                  "type": "PANEL_TRANSITION",
+                  "art": "present-merge",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "The three cards slide together into one notebook/code window; red drains to monochrome as a younger Reginald appears.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "None of this begins here. To explain how I got here, I have to go back.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/present"
+    },
+    {
+      "kind": "chapter",
+      "id": "sst",
+      "label": "SCHOOL OF SCIENCE & TECHNOLOGY",
+      "order": "3",
+      "title": "SCHOOL OF SCIENCE & TECHNOLOGY",
+      "title_type": "TITLE_CHAPTER",
+      "years": "2018–2021",
+      "category": "education",
+      "data_ref": "education:sst",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C03A",
+          "label": "Learning to code together",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C03-S01",
+              "label": "The classroom",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C03-S01-P01",
+                  "label": "Python classroom",
+                  "type": "PANEL_SPLASH",
+                  "art": "sst-python-classroom",
+                  "portal": [
+                    "testimonial-jovita"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "SST computing classroom, mostly black and white. Teenage Reginald with classmates over a Python/pandas lesson on a synthetic dataset; one highlighted line of code glows red.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "The first systems I learn aren't markets. They're small programs I can change.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Okay. Why did *that* work?",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Python, Data handling",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Read Jovita Tang's testimonial",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C03-S01-P02",
+                  "label": "Building with friends",
+                  "type": "PANEL_STANDARD",
+                  "art": "sst-friends-building",
+                  "data_ref": "projects:locx",
+                  "interaction": "hover-reveal",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Split frame. Left: Reginald and friends at a whiteboard and editor, building locationX. Right: Reginald alone at night, testing an NRIC validator on dummy IDs only.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "With friends, we solve problems we can see around us. Some I chip at alone.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "locationX — scheduling app for the National School Games, built with friends (2021) · NRIC validator — solo build",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "Wait — what if the teachers just enter the venues first?",
+                      "status": "draft",
+                      "speaker": "Friend"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Python, Algorithms",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C03B",
+          "label": "Being responsible for others",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C03-S02",
+              "label": "ACE recruitment",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C03-S02-P01",
+                  "label": "The recruitment drive",
+                  "type": "PANEL_STANDARD",
+                  "art": "sst-ace-drive",
+                  "portal": [
+                    "testimonial-keith"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "After-class ACE board planning, then the recruitment booth — flyers, a sign-up board, students queueing. Focus is on talking to people, not medals. Students anonymous.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "As ACE Chairperson, an idea only matters if I can get people to act on it.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "The code can be right. The plan still has to work with people.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Chairperson, ACE board (2020) — provided 25% of Singapore Cancer Society's volunteers",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Leadership, Recruitment",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Read Keith Wee's testimonial",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C03C",
+          "label": "A quieter test",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C03-S03",
+              "label": "DrCT",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C03-S03-P01",
+                  "label": "Screen, clock, bronze",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "sst-drct",
+                  "data_ref": "awards:DrCT International, Bronze",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Generic online-test UI and a ticking clock (black and white), then the real Bronze certificate revealed in muted gold with a red edge. Exit: a whiteboard line extends into the NP chapter.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Some challenges are quieter. A screen, a clock, and a question I don't know yet.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SFX",
+                      "text": "TICK",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "DrCT International — Bronze (2021)",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/sst"
+    },
+    {
+      "kind": "chapter",
+      "id": "np",
+      "label": "NGEE ANN POLYTECHNIC",
+      "order": "4",
+      "title": "NGEE ANN POLYTECHNIC",
+      "title_type": "TITLE_CHAPTER",
+      "years": "2022–2025",
+      "category": "education",
+      "data_ref": "education:np",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C04A",
+          "label": "A bigger workshop",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C04-S01",
+              "label": "First weeks and personal builds",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C04-S01-P01",
+                  "label": "The workshop opens",
+                  "type": "PANEL_SPLASH",
+                  "art": "np-workshop-open",
+                  "interaction": "evidence-drawer",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "NP campus/studio; Reginald moves among laptops, prototypes and classmates. A small awards drawer in the corner expands on click.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "At Ngee Ann, I start putting the pieces together: code, design, users and deadlines.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prizes: Computing Mathematics, Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C04-S01-P02",
+                  "label": "Tea Shop to FRATS",
+                  "type": "PANEL_STANDARD",
+                  "art": "np-tea-shop-frats",
+                  "portal": [
+                    "frats"
+                  ],
+                  "data_ref": "projects:frts",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "The Tea Shop's early website beside an abstract FRATS capture → recognise → attendance pipeline. A progression in complexity, not the same week.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "One project teaches me how to make something. Another teaches me how much has to happen before it actually works.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Computer vision, UX",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Built a facial-recognition attendance system with AIDC",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C04B",
+          "label": "Passing skills forward",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C04-S02",
+              "label": "Overflow",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C04-S02-P01",
+                  "label": "Teaching the workshop",
+                  "type": "PANEL_STANDARD",
+                  "art": "np-overflow-workshop",
+                  "portal": [
+                    "overflow"
+                  ],
+                  "data_ref": "projects:pnlp",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald explaining a concept to peers; a partial Panel Party screen slides in at the side. Never implies he built the whole game.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Explaining something forces me to learn it twice: once for myself, once for everyone else.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Head Secretary, Overflow · 16 workshops taught",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Teaching, Game design",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Led workshops and helped build Panel Party",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C04-S03",
+              "label": "Touch Young Arrows",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C04-S03-P01",
+                  "label": "Tutoring",
+                  "type": "PANEL_STANDARD",
+                  "art": "np-tya-tutoring",
+                  "portal": [
+                    "tya"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Respectful tutoring setting, framed from behind; the child is never identifiable.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Some lessons aren't about technology at all. They're about being patient enough to make something understandable.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Tutored and mentored children at Touch Young Arrows",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C04C",
+          "label": "A call at my desk",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C04-S05",
+              "label": "The internship offer",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C04-S05-P01",
+                  "label": "The phone rings",
+                  "type": "PANEL_STANDARD",
+                  "art": "np-jpm-call",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald at his home computer desk. The room drains to grey; only the phone notification is red.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SFX",
+                      "text": "RING",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Wait. Is this the call I think it is?",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "Hi Reginald — I'm calling from J.P. Morgan about your internship application.",
+                      "status": "edit",
+                      "speaker": "Caller"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C04-S05-P02",
+                  "label": "The offer",
+                  "type": "PANEL_SPLASH",
+                  "art": "np-jpm-offer",
+                  "portal": [
+                    "testimonial-dimuthu"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reaction stays on Reginald. The red edge of the phone becomes a door/window line — match-cut to CapitaSpring after the chapter separator.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "We'd like to offer you the internship.",
+                      "status": "draft",
+                      "speaker": "Caller"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Then one call changes what the next year looks like.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Read a testimonial from my NP mentor, Dimuthu Makawita",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/np"
+    },
+    {
+      "kind": "chapter",
+      "id": "jpmorgan",
+      "label": "JPMorganChase",
+      "order": "5",
+      "title": "JPMorganChase",
+      "title_type": "TITLE_CHAPTER",
+      "years": "2024–2025",
+      "category": "career",
+      "data_ref": "experience:jpmc",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C05A",
+          "label": "The first day",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C05-S01",
+              "label": "CapitaSpring arrival",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S01-P01",
+                  "label": "Walking in",
+                  "type": "PANEL_SPLASH",
+                  "art": "jpm-capitaspring-arrival",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "One oversized panel: Reginald walking toward CapitaSpring, Singapore. Painterly recreation from a public exterior reference.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "On my first day, the building feels a lot bigger than anything I've worked on before.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C05-S02",
+              "label": "Meeting the people",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S02-P01",
+                  "label": "Conference room",
+                  "type": "PANEL_STANDARD",
+                  "art": "jpm-conference-room",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Interns around a conference table; Rahul turns to Reginald.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I meet the people I'll be learning alongside. Then the conversation turns to what I've built.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "So — tell me about something you've built recently.",
+                      "status": "draft",
+                      "speaker": "Rahul"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "All right. Explain it clearly.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C05-S03",
+              "label": "At the desk with the team",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S03-P01",
+                  "label": "The migration brief",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "jpm-migration-brief",
+                  "data_ref": "projects:athn",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Rahul brings Reginald to a desk beside Farhan, a fellow intern. Overlay: an abstract red route from on-premise boxes to cloud shapes — never a real architecture diagram.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "We support FX Cash and FX Options. The plan is to move these workloads from our own servers to AWS.",
+                      "status": "draft",
+                      "speaker": "Rahul"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "The problem isn't just moving work. It's knowing what to move, why, and what the data says.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Currencies & Emerging Markets · Athena · Corporate & Investment Bank",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "AWS, Data analytics",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C05B",
+          "label": "The hard stretch",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C05-S04",
+              "label": "Time and uncertainty",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S04-P01",
+                  "label": "Day into night",
+                  "type": "PANEL_STANDARD",
+                  "art": "jpm-long-workday",
+                  "interaction": "timeline-scrub",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Day-to-night match-cut at the same desk; simple clock marks. Static fallback for the scrubber.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "The work takes longer than I expect. Some nights I keep looking at the same problem from a different angle.",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C05-S04-P02",
+                  "label": "One next step",
+                  "type": "PANEL_STANDARD",
+                  "art": "jpm-fatigue-choice",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Head in hands; a pause; then a small framed decision — one sticky note, one next step.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "I'm tired. What's the one thing I can actually move forward?",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I break the problem down again. Progress is rarely as dramatic as the final slide.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Problem decomposition, Persistence",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C05C",
+          "label": "From learning to explaining",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C05-S05",
+              "label": "The go-to data person",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S05-P01",
+                  "label": "Grafana and the update",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "jpm-grafana-update",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Left: a coworker leans over as Reginald wires their team's database into Grafana (safe mock dashboard). Right: Reginald presenting migration progress on a high-level stage board.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "Can you show me how you got that into Grafana?",
+                      "status": "draft",
+                      "speaker": "Coworker"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Eventually I stop only asking questions. People start asking me how to see the data — and the next challenge is explaining it so they can decide.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Data visualisation, Technical communication",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C05D",
+          "label": "Report day",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C05-S06",
+              "label": "End-of-internship presentation",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S06-P01",
+                  "label": "Standing behind it",
+                  "type": "PANEL_SPLASH",
+                  "art": "jpm-final-presentation",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald presenting lessons and outcomes to a panel; the screen unfolds into the milestones grid.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "A year of questions becomes a report I have to stand behind.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C05-S07",
+              "label": "Achievements & Milestones",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S07-P01",
+                  "label": "Milestone grid",
+                  "type": "PANEL_SELECTION",
+                  "layout": {
+                    "desktop": "2x2",
+                    "mobile": "stack"
+                  },
+                  "portal": [
+                    "testimonial-rahul"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "These are the outcomes. The interesting part is what it takes to get there.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Read Rahul Varma's testimonial",
+                      "status": "draft"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "kind": "item",
+                      "id": "ms-retrieval",
+                      "label": "",
+                      "title": "OPTIMISED DATA RETRIEVAL",
+                      "art": "jpm-card-retrieval",
+                      "arc": "jpm-data-retrieval",
+                      "skills": [
+                        "Python",
+                        "Parallel Computing"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "SUB",
+                          "text": "Cut a data-retrieval process from about 4 hours to 30 seconds.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Optimised data retrieval from 4 hours to 30 seconds",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "ms-visualisation",
+                      "label": "",
+                      "title": "VISUALISED WORKLOADS",
+                      "art": "jpm-card-visualisation",
+                      "arc": "jpm-visualisation",
+                      "skills": [
+                        "Data Visualisation",
+                        "Influx DB"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "SUB",
+                          "text": "Built a workload monitoring and visualisation tool to inform migration planning.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Built workload visualisations for migration decisions",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "ms-migration",
+                      "label": "",
+                      "title": "MIGRATED WORKLOADS",
+                      "art": "jpm-card-migration",
+                      "arc": "jpm-migration",
+                      "skills": [
+                        "AWS",
+                        "Data analytics"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "SUB",
+                          "text": "Helped migrate trader reports and server workloads from legacy systems to AWS.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Migrated trading workloads to the cloud",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "ms-multilob",
+                      "label": "",
+                      "title": "CROSS-TEAM DELIVERY",
+                      "art": "jpm-card-multilob",
+                      "arc": "jpm-multilob",
+                      "skills": [
+                        "Technical communication",
+                        "Stakeholder reporting"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "SUB",
+                          "text": "My tool was adopted across multiple lines of business; I supported and coordinated its rollout.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Supported a multi-line-of-business rollout",
+                          "status": "draft"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/jpmorgan"
+    },
+    {
+      "kind": "chapter",
+      "id": "guards",
+      "label": "GUARDS FORMATION",
+      "order": "6",
+      "title": "GUARDS FORMATION",
+      "title_type": "TITLE_CHAPTER",
+      "years": "2025–2027",
+      "category": "national service",
+      "data_ref": "experience:saf",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C06A",
+          "label": "A detour",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C06-S01",
+              "label": "BMT to a new posting",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C06-S01-P01",
+                  "label": "Training",
+                  "type": "PANEL_STANDARD",
+                  "art": "guards-bmt",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Brief BMT montage with Guards-related training; fatigue creeps in.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I think I know the shape of the next chapter. Then my health changes the plan.",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C06-S01-P02",
+                  "label": "Pneumonia, then a different route",
+                  "type": "PANEL_STANDARD",
+                  "art": "guards-pneumonia-transition",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Restrained and symbolic — a corridor that forks; one path closes, a side door opens. No hospital melodrama.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Pneumonia takes me off the path I expected. I have to figure out what I can make of the new one.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C06B",
+          "label": "A new lens",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C06-S02",
+              "label": "Picking up the camera",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C06-S02-P01",
+                  "label": "First frame",
+                  "type": "PANEL_STANDARD",
+                  "art": "guards-first-camera",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Through a viewfinder, a monochrome scene snaps into a deliberate composition with a narrow red focus guide.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "A camera changes what I pay attention to. Suddenly the story is in the framing.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Photography, Lightroom",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C06-S03",
+              "label": "Media team and AI",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C06-S03-P01",
+                  "label": "Leading the team",
+                  "type": "PANEL_STANDARD",
+                  "art": "guards-media-team",
+                  "portal": [
+                    "guards-media",
+                    "testimonial-yap"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Wide split scene: a planning meeting with Yap Shi Hao (Head of Manpower, Guards Formation), then Reginald directing his media team's coverage of a parade.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "What do we need from the team for the parade?",
+                      "status": "draft",
+                      "speaker": "Yap Shi Hao"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "The role grows from taking pictures to helping a team of nine deliver them.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Team Manager, Media & Design · team of 9 · Guards HQ social accounts · Recruitment Board",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Team management, Project Management",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Led media coverage for Guards HQ",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C06-S03-P02",
+                  "label": "AI Task Force",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "guards-ai-process",
+                  "portal": [
+                    "guards-ai"
+                  ],
+                  "data_ref": "projects:grds",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Illustrative diagram — caption drafting, event admin and daily-task automation, AI workshops, and a chatbot for Guards combatants. Labelled \"illustrative workflow\".",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I also start looking for repetitive work we can make less repetitive.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Guards AI Task Force · chatbot for combatants (in progress)",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Claude, Gemini",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Built AI workflows for the Guards AI Task Force",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C06C",
+          "label": "The rhythm outside work",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C06-S04",
+              "label": "Daily life",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C06-S04-P01",
+                  "label": "Daily-life board",
+                  "type": "PANEL_SELECTION",
+                  "layout": {
+                    "desktop": "2+2",
+                    "mobile": "stack"
+                  },
+                  "interaction": "staggered-slide-in, hover-expand, tap-expand",
+                  "portal": [
+                    "market-city"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "PORTAL",
+                      "text": "Started Market City, a spatial way to visualise markets",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "VISUAL",
+                      "text": "The board assembles from clock ticks. One compact experience — not four pinned scroll sequences.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "The schedule changes. What I do with the hours around it changes too.",
+                      "status": "draft"
+                    }
+                  ],
+                  "items": [
+                    {
+                      "kind": "item",
+                      "id": "guards-life-trading",
+                      "label": "",
+                      "title": "TRADING & MARKETS",
+                      "art": "guards-card-trading",
+                      "arc": "trading-nebius",
+                      "skills": [
+                        "Markets research",
+                        "Risk management"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Commute podcasts → strategy videos → a trade-tracking spreadsheet; a red ticker ribbon flows from phone to home desk.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "I've traded since 2024. In NS I go deeper — documenting what I think will happen, and what actually does.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Developed a high-volatility strategy around Nebius",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "guards-life-building",
+                      "label": "",
+                      "title": "BUILDING TOOLS",
+                      "art": "guards-card-building",
+                      "arc": "imperium",
+                      "skills": [
+                        "Claude & MCP",
+                        "Python"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Home desk at night: the Automated Trading Workflow running, Imperium and Market City sketches pinned beside it.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "I build an automated trading workflow — and start on Imperium and Market City, both still in progress.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Built an automated trading workflow",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "guards-life-discipline",
+                      "label": "",
+                      "title": "DISCIPLINE & CREATIVITY",
+                      "art": "guards-card-discipline",
+                      "arc": "guards-life",
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Two compact moments: gym progression; a hand lifting a card deck off a shelf after five years, then a flourish.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "60 kg to 75 kg in 12 months at the gym — and back to cardistry after a five-year break.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Rebuilt old habits and new ones",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "guards-life-media",
+                      "label": "",
+                      "title": "THE CAMERA OFF-DUTY",
+                      "art": "guards-card-media",
+                      "arc": "guards-media",
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "SUB",
+                          "text": "[EDIT: keep this fourth card (personal photography), replace it, or delete it for a 3-card board]",
+                          "status": "edit"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/guards"
+    },
+    {
+      "kind": "chapter",
+      "id": "registudio",
+      "label": "REGISTUDIO",
+      "order": "7",
+      "title": "REGISTUDIO",
+      "title_type": "TITLE_CHAPTER",
+      "years": "2026–present",
+      "category": "running a business",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C07A",
+          "label": "An opportunity arrives",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C07-S01",
+              "label": "A call in the city",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C07-S01-P01",
+                  "label": "Meanwhile",
+                  "type": "PANEL_STANDARD",
+                  "art": "registudio-friend-call",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald walking through Singapore city streets; phone lights up with a red line.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Meanwhile, still in NS, I start trying to turn building into a real service.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SFX",
+                      "text": "RING",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "I know someone who needs a website. You keen?",
+                      "status": "draft",
+                      "speaker": "Friend"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C07-S02",
+              "label": "First pitch",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C07-S02-P01",
+                  "label": "The video call",
+                  "type": "PANEL_STANDARD",
+                  "art": "registudio-first-call",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Generic video-call UI; Reginald listening more than talking. Client anonymous.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "It isn't the code that gets me the first chance. I have to make somebody confident I understand their problem.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "First client secured — [EDIT: month/year]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Client discovery, Pitching",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C07B",
+          "label": "A pricing lesson",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C07-S03",
+              "label": "A prospect says no",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C07-S03-P01",
+                  "label": "Priced out, then repriced",
+                  "type": "PANEL_STANDARD",
+                  "art": "registudio-pricing",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "A proposal built on online agency pricing meets a budget mismatch; the lost lead fades. Next beat: Reginald rewriting an anonymised pricing/positioning board with segments and scope made explicit.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Great. I may have priced myself out of my own pitch.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I priced for the market I saw online, not the client in front of me. So I learn to price around value, scope and the people I actually serve.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Pricing strategy, Market segmentation",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C07C",
+          "label": "Creating a system",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C07-S05",
+              "label": "Pipeline and differentiation",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C07-S05-P01",
+                  "label": "Lead pipeline",
+                  "type": "PANEL_STANDARD",
+                  "art": "registudio-pipeline",
+                  "portal": [
+                    "registudio-business"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Leads from freelance platforms, outreach and conversations flowing into an anonymised lead → meeting → proposal → client funnel. No phone numbers or names.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "A business needs a repeatable way to find the right conversation, not just the occasional lucky introduction.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Built a lead-to-client process for RegiStudio",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C07-S05-P02",
+                  "label": "Design Playground",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "registudio-design-playground",
+                  "portal": [
+                    "design-playground"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "One-off experiments snapping into reusable components; real components from the repo, not mock-ups.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I also need a way to build faster without making everything look the same.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Design systems, Process design",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Built Design Playground to streamline delivery",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C07D",
+          "label": "What building a business teaches",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C07-S07",
+              "label": "Reflection",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C07-S07-P01",
+                  "label": "Closing the notebook",
+                  "type": "PANEL_SPLASH",
+                  "art": "registudio-reflection",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald closes a planning notebook; the last page becomes a view of the future (time-lapse into Chapter 8).",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I started by offering to build websites. I'm learning that building a business means decisions about people, value and trust.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/registudio"
+    },
+    {
+      "kind": "chapter",
+      "id": "future",
+      "label": "FUTURE PLANS",
+      "order": "8",
+      "title": "FUTURE PLANS",
+      "title_type": "TITLE_CHAPTER",
+      "years": "none",
+      "category": "none",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "C08A",
+          "label": "One possible future",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C08-S01",
+              "label": "Near the Botanic Gardens",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C08-S01-P01",
+                  "label": "The bench",
+                  "type": "PANEL_SPLASH",
+                  "art": "future-bench",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "A much older, imagined Reginald alone on a bench near the Singapore Botanic Gardens amphitheatre at sunset; softened red accents.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "AN IMAGINED FUTURE",
+                      "status": "approved"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Sometimes I imagine myself years from now, sitting somewhere quiet, looking back.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Did I make the most of the chances I had?",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C08-S02",
+              "label": "Possible lives",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C08-S02-P01",
+                  "label": "Glimpses",
+                  "type": "PANEL_STANDARD",
+                  "art": "future-glimpses",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Ink-wash glimpses: studying and working in the UK, a graduation, senior leadership, cities and nature. No real university logos or certificates.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I hope I keep learning, see the world, build things that matter, and grow into responsibility I can be proud of.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "A future I'm working toward — not a record of what's happened.",
+                      "status": "approved"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "C08-S03",
+              "label": "The fade",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C08-S03-P01",
+                  "label": "Thank you for reading",
+                  "type": "PANEL_SPLASH",
+                  "art": "future-fade",
+                  "interaction": "cta-links",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Old Reginald lets out a satisfied breath; camera pulls back; colour fades to black.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "For now, the next page is still being written.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "THANK YOU FOR READING.",
+                      "status": "approved"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/chapter/future"
+    }
+  ],
+  "arcs": [
+    {
+      "kind": "project",
+      "id": "frats",
+      "label": "FRATS — facial-recognition attendance",
+      "parent": "C04-S01-P02",
+      "title": "FRATS",
+      "portal": "Built a facial-recognition attendance system with AIDC",
+      "data_ref": "projects:frts",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-FR",
+          "label": "The capstone",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-FR-S01",
+              "label": "The brief",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-FR-S01-P01",
+                  "label": "AIDC's problem",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-frats-brief",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "AIDC's attendance problem as a conventional-workflow diagram, with requirements pinned around it.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "We need more than a model that recognises a face. We need a workflow people can actually use.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-FR-S02",
+              "label": "Building it",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-FR-S02-P01",
+                  "label": "The pipeline",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-frats-build",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Team sketching capture → recognition → attendance; a red mark on the data-flow decision.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: the modules you personally built]",
+                      "status": "edit"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "A-FR-S02-P02",
+                  "label": "What broke",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-frats-failure",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: one real technical problem — lighting, accuracy, data, performance or privacy — and how you handled it]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-FR-S03",
+              "label": "Demo and outcome",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-FR-S03-P01",
+                  "label": "Demo",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-frats-demo",
+                  "interaction": "pipeline-inspector",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Real demo screens with synthetic faces only; interactive pipeline inspection.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Delivered to AIDC, a biometrics security company in Indonesia (2024), mentored by an AIDC technical manager.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: result and what you learnt]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Computer vision, Python",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/frats"
+    },
+    {
+      "kind": "project",
+      "id": "overflow",
+      "label": "Overflow and Panel Party",
+      "parent": "C04-S02-P01",
+      "title": "OVERFLOW",
+      "portal": "Led workshops and helped build Panel Party",
+      "data_ref": "projects:pnlp",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-OV",
+          "label": "Teaching and building",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-OV-S01",
+              "label": "Planning the workshops",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-OV-S01-P01",
+                  "label": "Head Secretary",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-overflow-planning",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Lesson plans, attendee lists, a room being set up.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "As Head Secretary, half the job happens before anyone walks into the room.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "16 workshops · Vue.js · DSA bootcamp · Portfolio with Figma & Web Dev",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-OV-S02",
+              "label": "Open House",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-OV-S02-P01",
+                  "label": "Panel Party",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-overflow-panel-party",
+                  "interaction": "playable-snippet",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Panel Party at NP ICT Open House 2023; sprite movement and collision highlighted.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "I built sprite movement and collision detection for the team's game.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Technical knowledge gets clearer when I have to teach it.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "JavaScript, Collision detection",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/overflow"
+    },
+    {
+      "kind": "daily-life",
+      "id": "tya",
+      "label": "Touch Young Arrows",
+      "parent": "C04-S03-P01",
+      "title": "TOUCH YOUNG ARROWS",
+      "portal": "Tutored and mentored children at Touch Young Arrows",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TY",
+          "label": "Mentoring",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TY-S01",
+              "label": "Showing up",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TY-S01-P01",
+                  "label": "Every week",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-tya-commitment",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Symbolic, non-identifiable tutoring room; English, Maths and Science books.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: why you volunteered and how often]",
+                      "status": "edit"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "A-TY-S01-P02",
+                  "label": "One moment",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-tya-moment",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: one real (anonymised) tutoring moment]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Making a concept accessible turns out to be its own kind of engineering.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/tya"
+    },
+    {
+      "kind": "project",
+      "id": "trading-nebius",
+      "label": "Nebius and a volatility process",
+      "parent": "C06-S04-P01",
+      "title": "A VOLATILITY PROCESS",
+      "portal": "Developed a high-volatility strategy around Nebius",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-NB",
+          "label": "From curiosity to process",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-NB-S01",
+              "label": "Curiosity",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-NB-S01-P01",
+                  "label": "Podcasts on the commute",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-nebius-curiosity",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Earbuds, a train window, notes on AI-infrastructure companies.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I've been trading since 2024. Podcasts and research pull me toward a volatile corner of AI infrastructure.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-NB-S02",
+              "label": "The thesis",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-NB-S02-P01",
+                  "label": "Catalyst, entry, invalidation",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-nebius-thesis",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Three small panels: the business catalyst; the entry criteria; the invalidation/risk rules.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: your actual entry criteria and risk rules, in 2–3 short lines]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-NB-S03",
+              "label": "The trade",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-NB-S03-P01",
+                  "label": "$90 to $299",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-nebius-price-path",
+                  "interaction": "illustrative-chart",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Illustrative price path labelled \"illustrative\" with two red markers: entry and exit.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Nebius (NBIS) — entered at about $90, exited at about $299 [EDIT: entry and exit month/year; confirm ticker]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Holding through the volatility is the hard part. The plan has to be written down before the price moves.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-NB-S04",
+              "label": "Lessons",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-NB-S04-P01",
+                  "label": "What I'd do again",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-nebius-lessons",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: one real lesson — a changed thesis or a call you got wrong]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/trading-nebius"
+    },
+    {
+      "kind": "project",
+      "id": "imperium",
+      "label": "The Automated Trading Workflow and Imperium",
+      "parent": "C06-S04-P01",
+      "title": "IMPERIUM",
+      "portal": "Built an automated trading workflow",
+      "data_ref": "projects:atw",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-IM",
+          "label": "Tools for how I think",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-IM-S01",
+              "label": "The friction",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-IM-S01-P01",
+                  "label": "Too many tabs",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-imperium-friction",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: the manual research/checklist problem that made you build it]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-IM-S02",
+              "label": "The workflow",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-IM-S02-P01",
+                  "label": "Before the open",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-imperium-workflow",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Real ATW output: scans → structured analysis → trade-ready summary.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "A daily workflow on Claude and MCP: scans, structured analysis and trade-ready summaries before the open. In daily use.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Claude & MCP, Prompt engineering",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-IM-S03",
+              "label": "Imperium (in progress)",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-IM-S03-P01",
+                  "label": "The next layer",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-imperium-wip",
+                  "interaction": "dummy-data-demo",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Imperium screens with visibly dummy data; clearly stamped WORK IN PROGRESS.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: what Imperium adds on top of the workflow]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Status: work in progress",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/imperium"
+    },
+    {
+      "kind": "project",
+      "id": "market-city",
+      "label": "Market City",
+      "parent": "C06-S04-P01",
+      "title": "MARKET CITY",
+      "portal": "Started a spatial way to visualise markets",
+      "data_ref": "projects:atw",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-MC",
+          "label": "A city of markets",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-MC-S01",
+              "label": "Motivation",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-MC-S01-P01",
+                  "label": "Tables hide relationships",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-market-city-motivation",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "Tables are good at numbers and bad at relationships. I want to walk through a market instead.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-MC-S02",
+              "label": "The build",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-MC-S02-P01",
+                  "label": "Renders",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-market-city-renders",
+                  "interaction": "pointer-map",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Real renders/screenshots; pointer-reactive map with demo data and an accessible list alternative. Stamped WORK IN PROGRESS.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: city or constellation layout? and one real build problem]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Status: work in progress",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/market-city"
+    },
+    {
+      "kind": "daily-life",
+      "id": "guards-media",
+      "label": "Leading the media team",
+      "parent": "C06-S03-P01",
+      "title": "THE MEDIA TEAM",
+      "portal": "Led media coverage for Guards HQ",
+      "data_ref": "experience:saf",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-GM",
+          "label": "Covering the formation",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-GM-S01",
+              "label": "Planning to parade",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-GM-S01-P01",
+                  "label": "Briefing the team",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-guards-media-brief",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "Nine people, one event, and a shot list that has to survive contact with reality.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Team of 9 · media and design for army exercises and events · Guards HQ Facebook and Instagram",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "A-GM-S01-P02",
+                  "label": "Coverage",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-guards-media-coverage",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Real published photos from the team (approved selection).",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: one leadership lesson from running the team]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/guards-media"
+    },
+    {
+      "kind": "project",
+      "id": "guards-ai",
+      "label": "The AI Task Force",
+      "parent": "C06-S03-P02",
+      "title": "AI TASK FORCE",
+      "portal": "Built AI workflows for the Guards AI Task Force",
+      "data_ref": "projects:grds",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-GA",
+          "label": "Less repetitive work",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-GA-S01",
+              "label": "Workflows",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-GA-S01-P01",
+                  "label": "Captions, admin, workshops",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-guards-ai-workflows",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Caption drafting, event admin automation and AI workshops — with a human reviewing every output.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: the workflow you're proudest of and what it saved]",
+                      "status": "edit"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "A-GA-S01-P02",
+                  "label": "A chatbot for combatants",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-guards-ai-chatbot",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "FAC",
+                      "text": "An army chatbot for Guards combatants — in progress.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "The goal isn't a clever demo. It's something a soldier actually uses.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/guards-ai"
+    },
+    {
+      "kind": "daily-life",
+      "id": "guards-life",
+      "label": "Gym and cardistry",
+      "parent": "C06-S04-P01",
+      "title": "DISCIPLINE & CREATIVITY",
+      "portal": "Rebuilt old habits and new ones",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-GL",
+          "label": "Practice",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-GL-S01",
+              "label": "Two kinds of reps",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-GL-S01-P01",
+                  "label": "The gym",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-guards-life-gym",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "FAC",
+                      "text": "60 kg → 75 kg in 12 months",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Some things get easier with practice.",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "A-GL-S01-P02",
+                  "label": "The deck",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-guards-life-cards",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "Others are easier to return to than I expect. Five years later, my hands still remember the deck.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/guards-life"
+    },
+    {
+      "kind": "project",
+      "id": "registudio-business",
+      "label": "RegiStudio, the business",
+      "parent": "C07-S05-P01",
+      "title": "REGISTUDIO",
+      "portal": "Built a web-services business from the ground up",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-RS",
+          "label": "From favour to business",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-RS-S01",
+              "label": "Why start",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-RS-S01-P01",
+                  "label": "The first idea",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-registudio-idea",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: why you started, who you wanted to serve, and your first price formula]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-RS-S02",
+              "label": "Delivering",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-RS-S02-P01",
+                  "label": "The first project",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-registudio-delivery",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: scope, timeline and one thing that went differently than planned]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-RS-S03",
+              "label": "Packaging the offer",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-RS-S03-P01",
+                  "label": "Segments and packages",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-registudio-packages",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Earlier vs current offer — only if you supply real (scrubbed) pricing history.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Lower prices aren't the answer. Clearer offers are.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-RS-S04",
+              "label": "Auction House (concept)",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-RS-S04-P01",
+                  "label": "What makes it worth choosing",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-registudio-auction-house",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Planning board: a watch price-history tracker and an art price-per-inch valuation idea. Stamped CONCEPT.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Now I ask a different question before I build: what makes this useful enough to choose?",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Status: concept",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Product strategy",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/registudio-business"
+    },
+    {
+      "kind": "project",
+      "id": "design-playground",
+      "label": "Design Playground",
+      "parent": "C07-S05-P02",
+      "title": "DESIGN PLAYGROUND",
+      "portal": "Built Design Playground to streamline delivery",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-DP",
+          "label": "Building faster, not samer",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-DP-S01",
+              "label": "The repetition problem",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-DP-S01-P01",
+                  "label": "One-off styling",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-design-playground-problem",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: where one-off styling slowed you down]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-DP-S02",
+              "label": "Play with it",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-DP-S02-P01",
+                  "label": "Tokens demo",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-design-playground-demo",
+                  "interaction": "token-playground",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Live demo — change typography, spacing and layout tokens with keyboard/tap support.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: real impact on launch time, or say it's a goal]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/design-playground"
+    },
+    {
+      "kind": "achievement",
+      "id": "jpm-data-retrieval",
+      "label": "4 hours to 30 seconds",
+      "parent": "C05-S07-P01",
+      "title": "OPTIMISED DATA RETRIEVAL",
+      "portal": "Optimised data retrieval from 4 hours to 30 seconds",
+      "data_ref": "experience:jpmc",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-JR",
+          "label": "The tasking",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-JR-S01",
+              "label": "Problem to result",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-JR-S01-P01",
+                  "label": "Four hours",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-jpm-retrieval-problem",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "A retrieval process takes about four hours. [EDIT: what was being retrieved, at a non-confidential level]",
+                      "status": "edit"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "A-JR-S01-P02",
+                  "label": "Thirty seconds",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-jpm-retrieval-result",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: the change you made — e.g. parallelising, caching, a better query]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "~4 hours → ~30 seconds",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Python, Parallel Computing",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/jpm-data-retrieval"
+    },
+    {
+      "kind": "achievement",
+      "id": "jpm-visualisation",
+      "label": "Seeing the workloads",
+      "parent": "C05-S07-P01",
+      "title": "VISUALISED WORKLOADS",
+      "portal": "Built workload visualisations for migration decisions",
+      "data_ref": "projects:athn",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-JV",
+          "label": "Making it visible",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-JV-S01",
+              "label": "The tool",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-JV-S01-P01",
+                  "label": "What the graphs show",
+                  "type": "PANEL_EVIDENCE",
+                  "art": "arc-jpm-visualisation-tool",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Safe mock of the dashboard layout — no real data.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "A workload monitoring and visualisation tool, now used globally across lines of business to spot optimisation opportunities.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: which decision the tool made easier]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/jpm-visualisation"
+    },
+    {
+      "kind": "achievement",
+      "id": "jpm-migration",
+      "label": "Moving to the cloud",
+      "parent": "C05-S07-P01",
+      "title": "MIGRATED WORKLOADS",
+      "portal": "Migrated trading workloads to the cloud",
+      "data_ref": "projects:athn",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-JM",
+          "label": "Legacy to AWS",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-JM-S01",
+              "label": "The migration",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-JM-S01-P01",
+                  "label": "My part",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-jpm-migration",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "FAC",
+                      "text": "Extracted, optimised and migrated trader reports and server workloads from legacy systems to AWS.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: which tasks were yours vs the team's]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/jpm-migration"
+    },
+    {
+      "kind": "achievement",
+      "id": "jpm-multilob",
+      "label": "Across lines of business",
+      "parent": "C05-S07-P01",
+      "title": "CROSS-TEAM DELIVERY",
+      "portal": "Supported a multi-line-of-business rollout",
+      "data_ref": "projects:athn",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-JL",
+          "label": "Beyond one team",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-JL-S01",
+              "label": "Adoption",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-JL-S01-P01",
+                  "label": "Other teams pick it up",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-jpm-multilob",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "FAC",
+                      "text": "Adopted across lines of business such as commodities and rates; I supported and coordinated the rollout as subject-matter expert.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "The tool stops being mine the moment other teams rely on it.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/jpm-multilob"
+    },
+    {
+      "kind": "testimonial",
+      "id": "testimonial-jovita",
+      "label": "Jovita Tang",
+      "parent": "C03-S01-P01",
+      "title": "A LETTER FROM JOVITA TANG",
+      "portal": "Read Jovita Tang's testimonial",
+      "data_ref": "testimonials:jovita-tang",
+      "letter": {
+        "slug": "jovita-tang",
+        "name": "Jovita Tang",
+        "title": "ML & NLP Specialist · Mathematics & Computing, SST",
+        "status": "awaiting-text",
+        "text": null
+      },
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TJ",
+          "label": "Testimonial",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TJ-S01",
+              "label": "Introduction",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TJ-S01-P01",
+                  "label": "The classroom",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-testimonial-jovita-classroom",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "SST computing classroom after lessons; teenage Reginald and his teacher.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Some teachers make you take a subject seriously. She makes me take myself seriously.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-TJ-S02",
+              "label": "The letter",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TJ-S02-P01",
+                  "label": "Over the shoulder",
+                  "type": "PANEL_TESTIMONIAL",
+                  "art": "arc-testimonial-jovita-handover",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Stylised handover; camera pivots over Reginald's shoulder to the paper reader.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/testimonial-jovita"
+    },
+    {
+      "kind": "testimonial",
+      "id": "testimonial-keith",
+      "label": "Keith Wee",
+      "parent": "C03-S02-P01",
+      "title": "A LETTER FROM KEITH WEE",
+      "portal": "Read Keith Wee's testimonial",
+      "data_ref": "testimonials:keith-wee",
+      "letter": {
+        "slug": "keith-wee",
+        "name": "Keith Wee",
+        "title": "Service-Learning In-Charge · Mathematics, SST",
+        "status": "awaiting-text",
+        "text": null
+      },
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TK",
+          "label": "Testimonial",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TK-S01",
+              "label": "Introduction",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TK-S01-P01",
+                  "label": "After the drive",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-testimonial-keith-ace",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "The ACE room after the recruitment drive; teenage Reginald and his teacher-in-charge.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Behind every drive is a teacher who trusted us to run it.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-TK-S02",
+              "label": "The letter",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TK-S02-P01",
+                  "label": "Over the shoulder",
+                  "type": "PANEL_TESTIMONIAL",
+                  "art": "arc-testimonial-keith-handover",
+                  "status": "draft"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/testimonial-keith"
+    },
+    {
+      "kind": "testimonial",
+      "id": "testimonial-dimuthu",
+      "label": "Dimuthu Makawita",
+      "parent": "C04-S05-P02",
+      "title": "A LETTER FROM DIMUTHU MAKAWITA",
+      "portal": "Read a testimonial from my NP mentor, Dimuthu Makawita",
+      "data_ref": "testimonials:dimuthu-makawita",
+      "letter": {
+        "slug": "dimuthu-makawita",
+        "name": "Dimuthu Makawita",
+        "title": "Deputy Director (School Operations & Planning), ICT, Ngee Ann Polytechnic",
+        "status": "awaiting-text",
+        "text": null
+      },
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TD",
+          "label": "Testimonial",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TD-S01",
+              "label": "Introduction",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TD-S01-P01",
+                  "label": "The staff room",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-testimonial-dimuthu-staffroom",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "NP ICT staff room; NP-age Reginald and his mentor.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Before I leave for the internship, there's one more conversation at school.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-TD-S02",
+              "label": "The letter",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TD-S02-P01",
+                  "label": "Over the shoulder",
+                  "type": "PANEL_TESTIMONIAL",
+                  "art": "arc-testimonial-dimuthu-handover",
+                  "status": "draft"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/testimonial-dimuthu"
+    },
+    {
+      "kind": "testimonial",
+      "id": "testimonial-rahul",
+      "label": "Rahul Varma",
+      "parent": "C05-S07-P01",
+      "title": "A LETTER FROM RAHUL VARMA",
+      "portal": "Read Rahul Varma's testimonial",
+      "data_ref": "testimonials:rahul-varma",
+      "letter": {
+        "slug": "rahul-varma",
+        "name": "Rahul Varma",
+        "title": "Executive Director, Global Head of Currencies & Emerging Markets Platform Technology, J.P. Morgan",
+        "status": "awaiting-text",
+        "text": null
+      },
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TR",
+          "label": "Testimonial",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TR-S01",
+              "label": "Introduction",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TR-S01-P01",
+                  "label": "At the desk",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-testimonial-rahul-desk",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald at his desk near the end of the internship; Rahul approaches with a sheet of paper.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "There's a different kind of feedback I don't want to forget.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-TR-S02",
+              "label": "The letter",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TR-S02-P01",
+                  "label": "Over the shoulder",
+                  "type": "PANEL_TESTIMONIAL",
+                  "art": "arc-testimonial-rahul-handover",
+                  "status": "draft"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/testimonial-rahul"
+    },
+    {
+      "kind": "testimonial",
+      "id": "testimonial-yap",
+      "label": "Yap Shi Hao (coming soon)",
+      "parent": "C06-S03-P01",
+      "title": "A LETTER FROM YAP SHI HAO",
+      "portal": "Coming soon — a testimonial from Guards Formation",
+      "letter": {
+        "slug": "yap-shi-hao",
+        "name": "Yap Shi Hao",
+        "title": "Head of Manpower, Guards Formation",
+        "status": "awaiting-text",
+        "text": null
+      },
+      "status": "hold",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TY2",
+          "label": "Testimonial (pending)",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TY2-S01",
+              "label": "Coming soon",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TY2-S01-P01",
+                  "label": "Teaser",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-testimonial-yap-teaser",
+                  "status": "hold",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Concept only — 2027 parade square, Singapore flag, Reginald in uniform, Yap Shi Hao (Head of Manpower, Guards Formation) nearby. Shown as a \"coming soon\" teaser; no letter handed over.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Testimonial pending — coming in 2027.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/testimonial-yap"
+    }
+  ]
+}

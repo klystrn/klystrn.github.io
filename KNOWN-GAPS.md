@@ -29,3 +29,9 @@ RESOLVED 2026-07-17 (Reginald's direct edits + follow-up sync):
 ## News feed
 
 - `feed.json` links are all `#` — replace with real GitHub/LinkedIn URLs.
+
+## Story mode
+
+Story content gaps are tracked separately in `docs/story/EDIT-LIST.md` (live list:
+`python3 scripts/story/build.py --todo`). Testimonial letters for the Story reader still need their
+full text pasted into `docs/story/letters/`.

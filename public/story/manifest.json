@@ -1,0 +1,2381 @@
+{
+  "version": 1,
+  "assets": {
+    "arc-design-playground-demo": {
+      "scene_ids": [
+        "A-DP-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Live demo — change typography, spacing and layout tokens with keyboard/tap support.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-design-playground-problem": {
+      "scene_ids": [
+        "A-DP-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-frats-brief": {
+      "scene_ids": [
+        "A-FR-S01-P01"
+      ],
+      "kind": "image",
+      "description": "AIDC's attendance problem as a conventional-workflow diagram, with requirements pinned around it.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-frats-build": {
+      "scene_ids": [
+        "A-FR-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Team sketching capture → recognition → attendance; a red mark on the data-flow decision.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-frats-demo": {
+      "scene_ids": [
+        "A-FR-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Real demo screens with synthetic faces only; interactive pipeline inspection.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-frats-failure": {
+      "scene_ids": [
+        "A-FR-S02-P02"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-guards-ai-chatbot": {
+      "scene_ids": [
+        "A-GA-S01-P02"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-guards-ai-workflows": {
+      "scene_ids": [
+        "A-GA-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Caption drafting, event admin automation and AI workshops — with a human reviewing every output.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-guards-life-cards": {
+      "scene_ids": [
+        "A-GL-S01-P02"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-guards-life-gym": {
+      "scene_ids": [
+        "A-GL-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-guards-media-brief": {
+      "scene_ids": [
+        "A-GM-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-guards-media-coverage": {
+      "scene_ids": [
+        "A-GM-S01-P02"
+      ],
+      "kind": "image",
+      "description": "Real published photos from the team (approved selection).",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-imperium-friction": {
+      "scene_ids": [
+        "A-IM-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-imperium-wip": {
+      "scene_ids": [
+        "A-IM-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Imperium screens with visibly dummy data; clearly stamped WORK IN PROGRESS.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-imperium-workflow": {
+      "scene_ids": [
+        "A-IM-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Real ATW output: scans → structured analysis → trade-ready summary.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-jpm-migration": {
+      "scene_ids": [
+        "A-JM-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-jpm-multilob": {
+      "scene_ids": [
+        "A-JL-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-jpm-retrieval-problem": {
+      "scene_ids": [
+        "A-JR-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-jpm-retrieval-result": {
+      "scene_ids": [
+        "A-JR-S01-P02"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-jpm-visualisation-tool": {
+      "scene_ids": [
+        "A-JV-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Safe mock of the dashboard layout — no real data.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-market-city-motivation": {
+      "scene_ids": [
+        "A-MC-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-market-city-renders": {
+      "scene_ids": [
+        "A-MC-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Real renders/screenshots; pointer-reactive map with demo data and an accessible list alternative. Stamped WORK IN PROGRESS.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-nebius-curiosity": {
+      "scene_ids": [
+        "A-NB-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Earbuds, a train window, notes on AI-infrastructure companies.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-nebius-lessons": {
+      "scene_ids": [
+        "A-NB-S04-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-nebius-price-path": {
+      "scene_ids": [
+        "A-NB-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Illustrative price path labelled \"illustrative\" with two red markers: entry and exit.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-nebius-thesis": {
+      "scene_ids": [
+        "A-NB-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Three small panels: the business catalyst; the entry criteria; the invalidation/risk rules.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-overflow-panel-party": {
+      "scene_ids": [
+        "A-OV-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Panel Party at NP ICT Open House 2023; sprite movement and collision highlighted.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-overflow-planning": {
+      "scene_ids": [
+        "A-OV-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Lesson plans, attendee lists, a room being set up.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-registudio-auction-house": {
+      "scene_ids": [
+        "A-RS-S04-P01"
+      ],
+      "kind": "image",
+      "description": "Planning board: a watch price-history tracker and an art price-per-inch valuation idea. Stamped CONCEPT.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-registudio-delivery": {
+      "scene_ids": [
+        "A-RS-S02-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-registudio-idea": {
+      "scene_ids": [
+        "A-RS-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-registudio-packages": {
+      "scene_ids": [
+        "A-RS-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Earlier vs current offer — only if you supply real (scrubbed) pricing history.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-dimuthu-handover": {
+      "scene_ids": [
+        "A-TD-S02-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-dimuthu-staffroom": {
+      "scene_ids": [
+        "A-TD-S01-P01"
+      ],
+      "kind": "image",
+      "description": "NP ICT staff room; NP-age Reginald and his mentor.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-jovita-classroom": {
+      "scene_ids": [
+        "A-TJ-S01-P01"
+      ],
+      "kind": "image",
+      "description": "SST computing classroom after lessons; teenage Reginald and his teacher.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-jovita-handover": {
+      "scene_ids": [
+        "A-TJ-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Stylised handover; camera pivots over Reginald's shoulder to the paper reader.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-keith-ace": {
+      "scene_ids": [
+        "A-TK-S01-P01"
+      ],
+      "kind": "image",
+      "description": "The ACE room after the recruitment drive; teenage Reginald and his teacher-in-charge.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-keith-handover": {
+      "scene_ids": [
+        "A-TK-S02-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-rahul-desk": {
+      "scene_ids": [
+        "A-TR-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Reginald at his desk near the end of the internship; Rahul approaches with a sheet of paper.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-rahul-handover": {
+      "scene_ids": [
+        "A-TR-S02-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-yap-teaser": {
+      "scene_ids": [
+        "A-TY2-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Concept only — 2027 parade square, Singapore flag, Reginald in uniform, Yap Shi Hao (Head of Manpower, Guards Formation) nearby. Shown as a \"coming soon\" teaser; no letter handed over.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-tya-commitment": {
+      "scene_ids": [
+        "A-TY-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Symbolic, non-identifiable tutoring room; English, Maths and Science books.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-tya-moment": {
+      "scene_ids": [
+        "A-TY-S01-P02"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "future-bench": {
+      "scene_ids": [
+        "C08-S01-P01"
+      ],
+      "kind": "image",
+      "description": "A much older, imagined Reginald alone on a bench near the Singapore Botanic Gardens amphitheatre at sunset; softened red accents.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "future-fade": {
+      "scene_ids": [
+        "C08-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Old Reginald lets out a satisfied breath; camera pulls back; colour fades to black.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "future-glimpses": {
+      "scene_ids": [
+        "C08-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Ink-wash glimpses: studying and working in the UK, a graduation, senior leadership, cities and nature. No real university logos or certificates.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-ai-process": {
+      "scene_ids": [
+        "C06-S03-P02"
+      ],
+      "kind": "image",
+      "description": "Illustrative diagram — caption drafting, event admin and daily-task automation, AI workshops, and a chatbot for Guards combatants. Labelled \"illustrative workflow\".",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-bmt": {
+      "scene_ids": [
+        "C06-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Brief BMT montage with Guards-related training; fatigue creeps in.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-card-building": {
+      "scene_ids": [
+        "guards-life-building"
+      ],
+      "kind": "image",
+      "description": "Home desk at night: the Automated Trading Workflow running, Imperium and Market City sketches pinned beside it.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-card-discipline": {
+      "scene_ids": [
+        "guards-life-discipline"
+      ],
+      "kind": "image",
+      "description": "Two compact moments: gym progression; a hand lifting a card deck off a shelf after five years, then a flourish.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-card-media": {
+      "scene_ids": [
+        "guards-life-media"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-card-trading": {
+      "scene_ids": [
+        "guards-life-trading"
+      ],
+      "kind": "image",
+      "description": "Commute podcasts → strategy videos → a trade-tracking spreadsheet; a red ticker ribbon flows from phone to home desk.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-first-camera": {
+      "scene_ids": [
+        "C06-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Through a viewfinder, a monochrome scene snaps into a deliberate composition with a narrow red focus guide.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-media-team": {
+      "scene_ids": [
+        "C06-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Wide split scene: a planning meeting with Yap Shi Hao (Head of Manpower, Guards Formation), then Reginald directing his media team's coverage of a parade.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "guards-pneumonia-transition": {
+      "scene_ids": [
+        "C06-S01-P02"
+      ],
+      "kind": "image",
+      "description": "Restrained and symbolic — a corridor that forks; one path closes, a side door opens. No hospital melodrama.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "hero-fracture": {
+      "scene_ids": [
+        "C01-S01-P02"
+      ],
+      "kind": "image",
+      "description": "The silhouette fractures along three diagonal panel borders — foreshadowing the three present-day lives. Top nav compacts into the right-side mode dock as this panel exits.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "hero-silhouette": {
+      "scene_ids": [
+        "C01-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Black screen; narrow red rim light reveals current-age Reginald as a crimson silhouette. `PORTFOLIO` types in above the name; ivory `REGINALD TAN` lands huge; red `陈彦杰` overlaps the centre of the Latin letters. Pose and 1- vs 2-line name chosen after the wireframe comparison (A folded arms · B close-up · C three-quarter turn).",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-capitaspring-arrival": {
+      "scene_ids": [
+        "C05-S01-P01"
+      ],
+      "kind": "image",
+      "description": "One oversized panel: Reginald walking toward CapitaSpring, Singapore. Painterly recreation from a public exterior reference.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-card-migration": {
+      "scene_ids": [
+        "ms-migration"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-card-multilob": {
+      "scene_ids": [
+        "ms-multilob"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-card-retrieval": {
+      "scene_ids": [
+        "ms-retrieval"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-card-visualisation": {
+      "scene_ids": [
+        "ms-visualisation"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-conference-room": {
+      "scene_ids": [
+        "C05-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Interns around a conference table; Rahul turns to Reginald.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-fatigue-choice": {
+      "scene_ids": [
+        "C05-S04-P02"
+      ],
+      "kind": "image",
+      "description": "Head in hands; a pause; then a small framed decision — one sticky note, one next step.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-final-presentation": {
+      "scene_ids": [
+        "C05-S06-P01"
+      ],
+      "kind": "image",
+      "description": "Reginald presenting lessons and outcomes to a panel; the screen unfolds into the milestones grid.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-grafana-update": {
+      "scene_ids": [
+        "C05-S05-P01"
+      ],
+      "kind": "image",
+      "description": "Left: a coworker leans over as Reginald wires their team's database into Grafana (safe mock dashboard). Right: Reginald presenting migration progress on a high-level stage board.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-long-workday": {
+      "scene_ids": [
+        "C05-S04-P01"
+      ],
+      "kind": "image",
+      "description": "Day-to-night match-cut at the same desk; simple clock marks. Static fallback for the scrubber.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "jpm-migration-brief": {
+      "scene_ids": [
+        "C05-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Rahul brings Reginald to a desk beside Farhan, a fellow intern. Overlay: an abstract red route from on-premise boxes to cloud shapes — never a real architecture diagram.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "np-jpm-call": {
+      "scene_ids": [
+        "C04-S05-P01"
+      ],
+      "kind": "image",
+      "description": "Reginald at his home computer desk. The room drains to grey; only the phone notification is red.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "np-jpm-offer": {
+      "scene_ids": [
+        "C04-S05-P02"
+      ],
+      "kind": "image",
+      "description": "Reaction stays on Reginald. The red edge of the phone becomes a door/window line — match-cut to CapitaSpring after the chapter separator.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "np-overflow-workshop": {
+      "scene_ids": [
+        "C04-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Reginald explaining a concept to peers; a partial Panel Party screen slides in at the side. Never implies he built the whole game.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "np-tea-shop-frats": {
+      "scene_ids": [
+        "C04-S01-P02"
+      ],
+      "kind": "image",
+      "description": "The Tea Shop's early website beside an abstract FRATS capture → recognise → attendance pipeline. A progression in complexity, not the same week.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "np-tya-tutoring": {
+      "scene_ids": [
+        "C04-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Respectful tutoring setting, framed from behind; the child is never identifiable.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "np-workshop-open": {
+      "scene_ids": [
+        "C04-S01-P01"
+      ],
+      "kind": "image",
+      "description": "NP campus/studio; Reginald moves among laptops, prototypes and classmates. A small awards drawer in the corner expands on click.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "present-merge": {
+      "scene_ids": [
+        "C02-S01-P04"
+      ],
+      "kind": "image",
+      "description": "The three cards slide together into one notebook/code window; red drains to monochrome as a younger Reginald appears.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "present-ns": {
+      "scene_ids": [
+        "present-ns"
+      ],
+      "kind": "image",
+      "description": "Current Reginald with a camera in a media-planning setting at Guards HQ.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "present-registudio": {
+      "scene_ids": [
+        "present-registudio"
+      ],
+      "kind": "image",
+      "description": "Desk with proposal drafts, a rough pipeline board and concept sketches; clients anonymous.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "present-trading": {
+      "scene_ids": [
+        "present-trading"
+      ],
+      "kind": "image",
+      "description": "Current Reginald reviewing a generic, synthetic market display; one red decision line; no balances or order IDs.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "registudio-design-playground": {
+      "scene_ids": [
+        "C07-S05-P02"
+      ],
+      "kind": "image",
+      "description": "One-off experiments snapping into reusable components; real components from the repo, not mock-ups.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "registudio-first-call": {
+      "scene_ids": [
+        "C07-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Generic video-call UI; Reginald listening more than talking. Client anonymous.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "registudio-friend-call": {
+      "scene_ids": [
+        "C07-S01-P01"
+      ],
+      "kind": "image",
+      "description": "Reginald walking through Singapore city streets; phone lights up with a red line.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "registudio-pipeline": {
+      "scene_ids": [
+        "C07-S05-P01"
+      ],
+      "kind": "image",
+      "description": "Leads from freelance platforms, outreach and conversations flowing into an anonymised lead → meeting → proposal → client funnel. No phone numbers or names.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "registudio-pricing": {
+      "scene_ids": [
+        "C07-S03-P01"
+      ],
+      "kind": "image",
+      "description": "A proposal built on online agency pricing meets a budget mismatch; the lost lead fades. Next beat: Reginald rewriting an anonymised pricing/positioning board with segments and scope made explicit.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "registudio-reflection": {
+      "scene_ids": [
+        "C07-S07-P01"
+      ],
+      "kind": "image",
+      "description": "Reginald closes a planning notebook; the last page becomes a view of the future (time-lapse into Chapter 8).",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "sst-ace-drive": {
+      "scene_ids": [
+        "C03-S02-P01"
+      ],
+      "kind": "image",
+      "description": "After-class ACE board planning, then the recruitment booth — flyers, a sign-up board, students queueing. Focus is on talking to people, not medals. Students anonymous.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "sst-drct": {
+      "scene_ids": [
+        "C03-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Generic online-test UI and a ticking clock (black and white), then the real Bronze certificate revealed in muted gold with a red edge. Exit: a whiteboard line extends into the NP chapter.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "sst-friends-building": {
+      "scene_ids": [
+        "C03-S01-P02"
+      ],
+      "kind": "image",
+      "description": "Split frame. Left: Reginald and friends at a whiteboard and editor, building locationX. Right: Reginald alone at night, testing an NRIC validator on dummy IDs only.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "sst-python-classroom": {
+      "scene_ids": [
+        "C03-S01-P01"
+      ],
+      "kind": "image",
+      "description": "SST computing classroom, mostly black and white. Teenage Reginald with classmates over a Python/pandas lesson on a synthetic dataset; one highlighted line of code glows red.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    }
+  }
+}

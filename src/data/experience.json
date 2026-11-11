@@ -61,21 +61,21 @@
     "location": "Singapore",
     "paperTag": "Service",
     "financeTag": "SOVEREIGN",
-    "paperDesc": "Leading a team of 8 across media and design for large-scale army exercises and events; managing Guards HQ social accounts; building an army chatbot interface for combatants on the AI Task Force.",
+    "paperDesc": "Leading a team of 9 across media and design for large-scale army exercises and events; managing Guards HQ social accounts; building an army chatbot interface for combatants on the AI Task Force.",
     "financeMeta": "POSITION 2025 – NOW · TEAM MANAGER, MEDIA & DESIGN · AI TASK FORCE",
-    "financeDesc": "Leading a team of 8 across media and design for army exercises and events; managing Guards HQ social accounts; building an army chatbot for combatants.",
+    "financeDesc": "Leading a team of 9 across media and design for army exercises and events; managing Guards HQ social accounts; building an army chatbot for combatants.",
     "detail": {
       "meta": "2025 – now · Team Manager, Media & Design · AI Task Force",
-      "body": "Managing a team of 8 across media and design. I operationalise media & design initiatives for large-scale projects like army exercises and events. In addition, I manage the social media accounts for Guards HQ on Facebook and Instagram accounts. I also sit on the Guards AI Task Force, overseeing AI implementation initiatives and building a chatbot for Guards combatants.",
+      "body": "Managing a team of 9 across media and design. I operationalise media & design initiatives for large-scale projects like army exercises and events. In addition, I manage the social media accounts for Guards HQ on Facebook and Instagram accounts. I also sit on the Guards AI Task Force, overseeing AI implementation initiatives and building a chatbot for Guards combatants.",
       "skills": ["Team management", "Project Management", "Operations", "Claude", "Gemini", "Photoshop", "Lightroom", "Illustrator"],
-      "stats": { "Since": "2025", "Role": "Team Manager · AI Task Force", "Team": "8" },
+      "stats": { "Since": "2025", "Role": "Team Manager · AI Task Force", "Team": "9" },
       "private": "Several projects (Ex COORES and others) are classified. Happy to speak to scope and scale in person."
     },
     "tech": {
       "file": "saf-guards.md",
       "title": "SAF · Guards HQ",
       "badges": [["b-vi", "2025 – now"], ["b-or", "National Service"], ["b-cy", "Team Manager · AI Task Force"]],
-      "bodyHtml": "<b>Team Manager, media & design</b>: leading a team of 8 across large-scale projects for army exercises and events, and managing Guards HQ social accounts. On the <b>AI Task Force</b>, building an army chatbot interface for Guards combatants.",
+      "bodyHtml": "<b>Team Manager, media & design</b>: leading a team of 9 across large-scale projects for army exercises and events, and managing Guards HQ social accounts. On the <b>AI Task Force</b>, building an army chatbot interface for Guards combatants.",
       "highlights": ["Ex COORES working party (classified)", "Production work in Photoshop, Illustrator, Lightroom"]
     }
   }

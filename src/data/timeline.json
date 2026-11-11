@@ -44,7 +44,7 @@
       "tag": "national service",
       "miles": [
         { "b": "Working party ", "text": "Ex COORES", "when": "2025" },
-        { "b": "Team manager ", "text": "media & design, team of 8", "when": "2026" },
+        { "b": "Team manager ", "text": "media & design, team of 9", "when": "2026" },
         { "b": "Recruitment Board ", "text": "spearhead recruitment initiatives for Guardsmen", "when": "2026" },
         { "b": "AI Task Force ", "text": "chatbot for combatants", "when": "2026" },
         { "b": "Automated Trading Workflow ", "text": "built after hours", "when": "2026" }
@@ -53,7 +53,7 @@
   ],
   "commits": [
     { "msg": "feat: army chatbot for Guards combatants (AI task force)", "tag": "saf", "hash": "f21ac07", "when": "2026", "c": "#7ee08a" },
-    { "msg": "role: team manager, media & design, team of 8", "tag": "saf", "hash": "d4e9b13", "when": "2026", "c": "#7ee08a" },
+    { "msg": "role: team manager, media & design, team of 9", "tag": "saf", "hash": "d4e9b13", "when": "2026", "c": "#7ee08a" },
     { "msg": "ship: automated trading workflow (Claude + MCP)", "tag": "trade", "hash": "a3f9e12", "when": "2026", "c": "#ffab70" },
     { "msg": "init: trading command sheet", "tag": "trade", "hash": "9c1d2aa", "when": "2026", "c": "#ffab70" },
     { "msg": "merge: JPMC internship, monitoring tool live globally", "tag": "jpmc", "hash": "91c04bd", "when": "2025", "c": "#56d4dd" },

@@ -65,14 +65,14 @@
 
 ### SAF · Guards HQ
 - Title: Team Manager, Media & Design · AI Task Force · Dates: 2025–now (NS)
-- Summary: Leading a team of 8; building an army chatbot for combatants.
-- Detail: Managerial role over a team of 8 for the media & design team: multiple large-scale projects
+- Summary: Leading a team of 9; building an army chatbot for combatants.
+- Detail: Managerial role over a team of 9 for the media & design team: multiple large-scale projects
   for army exercises and events (classified); managing Guards HQ Facebook and Instagram. Sitting on the AI Task
   Force and Recruitment Team, I'm working on multiple projects, like building an army chatbot for Guards combatants 
   and managing the media for division-level exercises.
 - Skills: Team management, Photoshop, Illustrator, AI / Claude
 - Finance-mode tag: SOVEREIGN · Privacy note: "Several projects (Ex COORES and others) are classified."
-> DECISION LOCKED: Guards media IC counts as work experience (managerial, deliverables, 8 reports).
+> DECISION LOCKED: Guards media IC counts as work experience (managerial, deliverables, 9 reports — UPDATED 2026-11-11: new joiner).
 
 ## 4 · EDUCATION (→ education.json)
 
@@ -99,7 +99,7 @@
 | Child Mentor Volunteer | Touch Young Arrows | 2023 | Tutoring underprivileged children: English, Mathematics, Science |
 | SME, cloud migration workload & data visualisation | JPMC CIB | 2024–2025 | Folded into JPMC experience card |
 | AI Task Force | Guards HQ, SAF | 2026 | Army chatbot interface for Guards combatants |
-| Team Manager, Media & Design | Guards HQ, SAF | 2026–2027 | Team of 8; classified large-scale projects; social accounts |
+| Team Manager, Media & Design | Guards HQ, SAF | 2026–2027 | Team of 9; classified large-scale projects; social accounts |
 
 ## 6 · PROJECTS (→ projects.json)
 > Flagship = featured cards in Vanilla + FLAGSHIP watchlist tab (Finance) + top-level repos (Tech).
@@ -112,6 +112,9 @@
 - Ticker $ATW · repo `automated-trading-workflow` · sector MARKETS TOOLING · langs Python 55 / Md 30 / Shell 15
 - Detail: A daily workflow running on Claude and MCP integrations that automates the research half of a
   swing-trading side hustle: scans, structured analysis, and trade-ready summaries before the open.
+  Two larger components are in progress: Imperium, a trading-workflow app, and Market City, a spatial
+  way to visualise markets. (UPDATED 2026-11-11: Imperium / Market City / "Trading Universe" are all
+  part of ATW; Imperium and Market City are WIP. Trading began 2024; ATW and the deeper dive came during NS.)
 - Skills: Claude & MCP, Prompt engineering, Python, Markets research
 - Milestones: [2] First MCP pipeline running · 25 → [6] Pre-market report automated · 60 → [10] Full workflow in daily use · 90
 - Links: [repo/demo URL?] · Images: [atw-01.png…]
@@ -156,7 +159,7 @@
 | 2022 | The Tea Shop | Mock online tea business with friends; first website built from scratch; Bootstrap + product renders | Web |
 | 2022 | Tower Defence Game | Text-based Python unit-defence game (PvZ-style); game design & logic | Python · PyGame |
 | 2021 | C3 | Mock start-up pitch: code collaboration + AI product suite; highest grade band | Pitch |
-| 2021 | locationX | SST capstone: Python scheduling app for the National School Games (NSG); teachers plan interschool games in place of a slow manual process (MERGED: the former "Interschool Games Planner" was the same project) | Python |
+| 2021 | locationX | SST capstone, built with friends (UPDATED 2026-11-11; was "solo"): Python scheduling app for the National School Games (NSG); teachers plan interschool games in place of a slow manual process (MERGED: the former "Interschool Games Planner" was the same project) | Python |
 | 2019 | Sorts (iOS) | Student-grouping app for educators; lead programmer, team Pollo, shipped at 14 ($SRTS, `sorts-ios`) | Swift · iOS |
 
 ### PROJECT IMAGES [PENDING]
@@ -265,7 +268,7 @@ All four now link out to the full testimonial PDF/letter on Google Drive (`url` 
 |---|---|---|
 | recent | GitHub | pushed commits to automated-trading-workflow |
 | recent | LinkedIn | joined the Guards HQ AI Task Force, building a chatbot for combatants |
-| recent | LinkedIn | appointed Team Manager, media & design (team of 8), Guards HQ |
+| recent | LinkedIn | appointed Team Manager, media & design (team of 9), Guards HQ |
 | recent | GitHub | published playbook update to trading-command-sheet |
 | 2025 | LinkedIn | Position closed: JPMC internship, monitoring tool live globally |
 

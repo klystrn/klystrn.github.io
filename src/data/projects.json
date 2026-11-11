@@ -3,7 +3,7 @@
     "id": "atw", "sym": "ATW", "flag": true, "repo": "automated-trading-workflow",
     "title": "Automated Trading Workflow", "sector": "MARKETS TOOLING",
     "from": "2026", "to": "NOW", "year": "2026", "role": "Solo builder", "status": "active",
-    "desc": "A daily workflow running on Claude and MCP integrations that automates the research half of a swing-trading side hustle: scans, structured analysis, and trade-ready summaries before the open.",
+    "desc": "A daily workflow running on Claude and MCP integrations that automates the research half of a swing-trading side hustle: scans, structured analysis, and trade-ready summaries before the open. Two larger components are in progress: Imperium, a trading-workflow app, and Market City, a spatial way to visualise markets.",
     "skills": ["Claude & MCP", "Prompt engineering", "Python", "Markets research"],
     "stats": { "Status": "Active, in daily use", "Role": "Solo builder", "Domain": "FinTech / AI", "Started": "2026" },
     "langs": [["Python", 55, "#3572A5"], ["Markdown", 30, "#56d4dd"], ["Shell", 15, "#7ee08a"]],
@@ -12,7 +12,7 @@
     "card": {
       "feat": true,
       "yr": "2026 · active",
-      "blurb": "A daily workflow running on Claude and MCP integrations that automates the research half of a swing-trading side hustle: scans, structured analysis, and trade-ready summaries before the open.",
+      "blurb": "A daily workflow running on Claude and MCP integrations that automates the research half of a swing-trading side hustle: scans, structured analysis, and trade-ready summaries before the open. Two larger components are in progress: Imperium, a trading-workflow app, and Market City, a spatial way to visualise markets.",
       "tags": ["Claude & MCP", "Python", "Markets"]
     }
   },
@@ -158,10 +158,10 @@
   {
     "id": "locx", "sym": "LOCX", "flag": false, "repo": "locationx",
     "title": "locationX", "sector": "CAPSTONE · SST",
-    "from": "2021", "to": "2021", "year": "2021", "role": "Solo builder, SST capstone", "status": "shipped",
+    "from": "2021", "to": "2021", "year": "2021", "role": "Team build with friends, SST capstone", "status": "shipped",
     "desc": "SST capstone: a Python scheduling app built for the National School Games (NSG), giving teachers a fast way to plan interschool games in place of a slow manual process.",
     "skills": ["Python", "Scheduling", "Algorithms"],
-    "stats": { "Status": "Delivered", "Role": "Solo builder", "Client": "SST · NSG", "Year": "2021" },
+    "stats": { "Status": "Delivered", "Role": "Team build", "Client": "SST · NSG", "Year": "2021" },
     "langs": [["Python", 100, "#3572A5"]],
     "curve": [2, 4, 6, 9, 8, 11, 14, 13, 16, 19, 18, 21],
     "miles": [[2, "Scheduling logic working"], [6, "Teacher inputs supported"], [10, "Capstone delivered for NSG"]],

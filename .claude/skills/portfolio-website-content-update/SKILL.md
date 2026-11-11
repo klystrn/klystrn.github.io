@@ -39,7 +39,11 @@ content strings — everything lives in `src/data/`.
    (e.g. a testimonial `url` for a Drive-hosted PDF), check whether it's meant to resolve a pending
    `KNOWN-GAPS.md` item — if so, wire a minimal, content-parity-respecting UI touchpoint (e.g. a
    "Read in full ↗" link) in every mode that renders that fact, don't just let the data sit unused.
-7. **Keep the repo content doc in sync.** After editing JSON, mirror the same prose changes into
+7. **Story mode is separate.** `docs/STORY-SCRIPT.md` is not covered by content parity (see the
+   `portfolio-story-content-update` skill). After changing a fact here, run
+   `python3 scripts/story/build.py` — if it warns that the Story script now disagrees with
+   `src/data`, tell the user which Story panel needs the same change.
+8. **Keep the repo content doc in sync.** After editing JSON, mirror the same prose changes into
    `docs/CONTENT-DOC-reginald-v4.md` (mark them e.g. `UPDATED <date>`), and tick/update items in
    `KNOWN-GAPS.md`. The repo doc — not the upload — remains the canonical record.
 
