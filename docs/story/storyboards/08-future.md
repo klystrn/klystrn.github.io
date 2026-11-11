@@ -16,7 +16,7 @@ tree 90 68 26
 box 36 70 28 4 "bench"
 fig 46 82 40 bench r old "Reginald (imagined)"
 cap FAC 4 4 26
-cap NAR 4 82 40
+cap NAR 4 75 44
 cap THO 60 12 30
 crop mobile 30 0 40 100
 
@@ -55,10 +55,10 @@ floor 70
 fig 50 74 14 bench r old faint
 cap NAR 30 82 40
 frame 16:9 end card
-dark 0 0 100 100
+dark 0 0 100 100 code
 cap FAC 30 30 40
-box 14 62 14 8 "Contact" red
-box 30 62 12 8 "LinkedIn"
-box 44 62 12 8 "GitHub"
-box 58 62 12 8 "Projects"
-box 72 62 14 8 "CV"
+box 14 62 14 8 "Contact" red code
+box 30 62 12 8 "LinkedIn" code
+box 44 62 12 8 "GitHub" code
+box 58 62 12 8 "Projects" code
+box 72 62 14 8 "CV" code

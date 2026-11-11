@@ -1,68 +1,42 @@
 # Storyboards · Chapter 1 · Opening
 
 ## Panel C01-S01-P01
-shot: Full-bleed title card · straight-on · centred
-camera: Static. Pointer moves a red rim-light glint 1–2°; scroll lifts the title and deepens the silhouette slightly
-scroll: Black for ~0.3 s → silhouette fades up → PORTFOLIO types in → REGINALD TAN lands → 陈彦杰 stamps over it
-transition: First scroll: title rises and fades; nav shrinks into the right-side dock
-mobile: Name stacks on two lines; silhouette crops to head and shoulders behind the name
+shot: Full-bleed title card · upper body, arms folded, straight-on
+camera: Scroll-driven push-in from upper body to a close-up of the face (scale 1.0 → ~1.9, anchored on the face). Pointer moves the red rim-light glint 1–2°
+scroll: Nav bar visible from the first frame → silhouette fades up → REGINALD TAN lands → 陈彦杰 stamps over the centre → scrolling pushes the camera into the close-up while the name lifts away
+transition: When the push-in ends, the nav bar compacts into the right-side dock; then the fracture (P02)
+mobile: Name on two lines; same push-in, cropped to head and shoulders
 tags: GENERATE LATER, NEEDS PERMISSION (your photos for the silhouette)
-refs: REF-HERO-02 (title over black, red CJK in the counters)
-note: Choose a pose (A/B/C) and 1- vs 2-line name. These sketches are the layout comparison you asked for.
+refs: REF-HERO-02 (title over black, red CJK over the name)
+note: Review of 11 Nov applied — bigger REGINALD TAN, smaller Chinese name, pose A (folded arms) with a scroll zoom into a close-up, the silhouette shows body detail in red rim light instead of one flat shade, and the PORTFOLIO eyebrow is replaced by the nav bar. Assumed: one-line name on desktop, two lines on mobile.
+note: Two plates are generated (upper body, close-up) or one tall high-resolution plate the camera pushes into. The name, Chinese name and nav bar are code overlays.
 
-variant A · Folded arms, upper body · 1-line name
-frame 16:9 desktop
+variant Desktop · at rest
+frame 16:9 desktop, top of page
 dark 0 0 100 100
-fig 50 100 78 fold f adult red
-text 50 12 2.6 "PORTFOLIO" ivory center
-text 50 50 22 "REGINALD TAN" ivory center
-text 50 50 15 "陈彦杰" red center
+box 28 3 44 7 "Story · CV · Tech · Finance · Life" code
+fig 50 100 86 bust f adult red detail fold
+text 50 52 27 "REGINALD TAN" ivory center
+text 50 52 9 "陈彦杰" red center
 crop mobile 34 0 32 100
 
-variant B · Close-up, head and shoulders · 1-line name
-frame 16:9 desktop
+variant Desktop · scrolled into close-up
+frame 16:9 desktop, end of the push-in
 dark 0 0 100 100
-fig 50 100 95 silhouette f adult red
-text 50 12 2.6 "PORTFOLIO" ivory center
-text 50 56 22 "REGINALD TAN" ivory center
-text 50 56 15 "陈彦杰" red center
-crop mobile 34 0 32 100
+box 28 3 44 7 "nav bar" code
+fig 50 100 96 silhouette f adult red detail
+text 50 22 12 "REGINALD TAN" ivory center
+text 50 22 4 "陈彦杰" red center
+label 4 92 "camera pushed in ~1.9×, name lifting away"
 
-variant C · Three-quarter turn into camera · 1-line name
-frame 16:9 desktop
-dark 0 0 100 100
-fig 64 100 82 bust l adult red
-text 46 12 2.6 "PORTFOLIO" ivory center
-text 46 50 22 "REGINALD TAN" ivory center
-text 46 50 15 "陈彦杰" red center
-crop mobile 40 0 32 100
-
-variant A2 · Folded arms · 2-line name (mobile-first)
+variant Mobile
 frame 9:16 mobile
 dark 0 0 100 100
-fig 50 100 62 fold f adult red
-text 50 20 2 "PORTFOLIO" ivory center
-text 50 36 13 "REGINALD" ivory center
-text 50 50 13 "TAN" ivory center
-text 50 43 10 "陈彦杰" red center
-
-variant B2 · Close-up · 2-line name (mobile-first)
-frame 9:16 mobile
-dark 0 0 100 100
-fig 50 100 70 silhouette f adult red
-text 50 20 2 "PORTFOLIO" ivory center
-text 50 40 13 "REGINALD" ivory center
-text 50 54 13 "TAN" ivory center
-text 50 47 10 "陈彦杰" red center
-
-variant C2 · Three-quarter turn · 2-line name (mobile-first)
-frame 9:16 mobile
-dark 0 0 100 100
-fig 58 100 66 bust l adult red
-text 50 20 2 "PORTFOLIO" ivory center
-text 50 36 13 "REGINALD" ivory center
-text 50 50 13 "TAN" ivory center
-text 50 43 10 "陈彦杰" red center
+box 6 2 88 4 "nav bar" code
+fig 50 100 62 bust f adult red detail fold
+text 50 33 13 "REGINALD" ivory center
+text 50 47 13 "TAN" ivory center
+text 50 40 5 "陈彦杰" red center
 
 ## Panel C01-S01-P02
 shot: Graphic transition · straight-on
@@ -75,9 +49,9 @@ note: Built from the hero art plus CSS masks — no separate generated image req
 
 frame 16:9
 dark 0 0 100 100
-fig 50 100 78 fold f adult red
-line 28 0 44 100 red
-line 52 0 68 100 red
+fig 50 100 86 bust f adult red detail fold
+line 28 0 44 100 red code
+line 52 0 68 100 red code
 arrow 30 50 18 50 "slide"
 arrow 70 50 82 50 "slide"
-cap NAR 34 82 32
+cap NAR 34 74 32

@@ -138,6 +138,22 @@ textarea { width: 100%; min-height: 64px; border: 1px solid var(--line); border-
 .tags { display: flex; flex-wrap: wrap; gap: 6px }
 .items { display: grid; gap: 18px; padding-left: 14px; border-left: 2px dashed var(--line) }
 .items h4 { margin: 0; font: 800 15px var(--display); font-stretch: 85%; text-transform: uppercase }
+.layer-tabs { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.layer-tabs .lbl { font: 11px var(--mono); color: var(--muted); margin-right: 2px }
+.layer-tabs button { border: 1px dashed var(--line); background: transparent; border-radius: 4px; padding: 3px 9px; font-size: 12px; cursor: pointer }
+.layer-tabs button[aria-pressed="true"] { border-style: solid; border-color: var(--teal); color: var(--teal); font-weight: 600 }
+.plate { font: 600 11px var(--mono); padding: 4px 8px; border-radius: 4px; border: 1px solid currentColor }
+.plate.generate { color: var(--crimson) } .plate.code { color: var(--teal) } .plate.evidence { color: var(--gold) }
+.refs { display: grid; gap: 8px }
+.ref { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 12px 14px; display: grid; gap: 4px }
+.ref .rid { font: 500 12px var(--mono); color: var(--crimson) }
+.ref b { font: 700 15px var(--body) }
+.ref .meta { font-size: 13px; color: var(--muted) }
+.ref .scenes { font: 12px var(--mono) }
+.ref .scenes a { text-decoration: none; margin-right: 6px }
+.chip.needed { color: var(--crimson); border-color: var(--crimson) }
+.chip.received { background: var(--ok-soft); color: var(--ok); border-color: transparent }
+.ref-filter { display: flex; flex-wrap: wrap; gap: 6px }
 .empty { border: 1.5px dashed var(--line); border-radius: 8px; padding: 18px; color: var(--muted); background: var(--surface) }
 
 @media (max-width: 880px) {
@@ -156,7 +172,10 @@ textarea { width: 100%; min-height: 64px; border: 1px solid var(--line); border-
 </div>
 
 <script>
-const DATA = /*__STORY_DATA__*/null;
+const PAYLOAD = /*__STORY_DATA__*/null;
+const DATA = PAYLOAD.groups;
+const REFS = PAYLOAD.refs || [];
+const NOREF = new Set(PAYLOAD.noRefScenes || []);
 
 const LABEL = { approved: 'Approved', revise: 'Changes requested', drafted: 'Drafted · needs review', partial: 'Partly drafted',
   waiting: 'Waiting on script edits', 'not-started': 'Not started' };
@@ -176,6 +195,7 @@ function effective(s) {
   if (s.status === 'approved' || s.status === 'revise') return { status: s.status, source: 'script' };
   const r = reviews[s.id];
   if (r && (r.status === 'approved' || r.status === 'revise')) return { status: r.status, source: 'viewer', stale: r.hash !== s.hash };
+  if (r && r.status === 'addressed') return { status: s.status, source: 'script', addressed: r };
   return { status: s.status, source: 'script' };
 }
 
@@ -227,7 +247,18 @@ function lineFor(panel, type, n) {
   return pool[(n || 1) - 1];
 }
 
-function renderFrame(frame, panel, key) {
+const GUIDE_ELS = new Set(['crop', 'label', 'vp']);
+const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list']);
+function layerOf(tok) {
+  const k = tok[0];
+  if (GUIDE_ELS.has(k) || (k === 'arrow' && !tok.includes('code'))) return 'guide';
+  if (OVERLAY_ELS.has(k) || tok.includes('code')) return 'overlay';
+  if (tok.includes('real')) return 'evidence';
+  return 'art';
+}
+const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']) };
+
+function renderFrame(frame, panel, key, layer = 'all') {
   const [aw, ah] = frame.aspect.split(':').map(Number);
   const W = 1000, H = Math.round(1000 * ah / aw);
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `Storyboard sketch, ${frame.aspect}${frame.label ? ', ' + frame.label : ''}` });
@@ -240,18 +271,21 @@ function renderFrame(frame, panel, key) {
   const inDark = (x, y) => darks.some(([a, b, c, d]) => x >= a && x <= a + c && y >= b && y <= b + d);
   const g = el('g', {}, svg);
 
+  const show = LAYER_SHOW[layer];
   for (const tok of frame.els) {
     const k = tok[0];
+    const lay = layerOf(tok);
+    if (show && !show.has(lay)) { if (k === 'dark' && layer === 'overlay') { /* keep tone hint */ } else continue; }
     const nums = tok.slice(1).filter((t) => /^-?\d+(\.\d+)?$/.test(t)).map(Number);
     const words = tok.slice(1).filter((t) => !/^-?\d+(\.\d+)?$/.test(t));
     const flags = new Set(words);
-    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !(k === 'cap' && w === tok[1]));
+    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'code', 'real', 'detail', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !w.startsWith('tail=') && !(k === 'cap' && w === tok[1]));
     const [a, b, c, d] = nums;
     const dark = (x, y) => inDark(x, y);
     const ink = (x, y) => (flags.has('red') ? C.red : dark(x, y) ? C.light : C.pencil);
     const base = { r, w: flags.has('faint') ? 1.4 : 2.2, dash: flags.has('dash') };
     switch (k) {
-      case 'dark': darks.push([a, b, c, d]); el('rect', { x: X(a), y: Y(b), width: X(c), height: Y(d), fill: C.night }, g); break;
+      case 'dark': darks.push([a, b, c, d]); el('rect', { x: X(a), y: Y(b), width: X(c), height: Y(d), fill: C.night, opacity: show && layer === 'overlay' && lay !== 'overlay' ? .18 : 1 }, g); break;
       case 'wash': el('rect', { x: X(a), y: Y(b), width: X(c), height: Y(d), fill: C.red, opacity: .55 }, g); break;
       case 'floor': roughLine(g, 0, Y(a), W, Y(a), { ...base, stroke: dark(50, a) ? C.light : C.pencil, w: 1.6 }); break;
       case 'vp': for (const [tx, ty] of [[0, 0], [100, 0], [0, 100], [100, 100], [0, 50], [100, 50], [25, 100], [75, 100]])
@@ -327,10 +361,71 @@ function renderFrame(frame, panel, key) {
         break;
       }
       case 'label': hand(g, X(a), Y(b), label || '', { fill: dark(a, b) ? C.light : C.pencil, size: 25 }); break;
-      case 'cap': drawCaption(g, tok[1], X(nums[0]), Y(nums[1]), X(nums[2]), lineFor(panel, tok[1], nums[3]), W, H); break;
+      case 'cap': {
+        const tail = words.find((w) => w.startsWith('tail='));
+        const tp = tail ? tail.slice(5).split(',').map(Number) : null;
+        drawCaption(g, tok[1], X(nums[0]), Y(nums[1]), X(nums[2]), lineFor(panel, tok[1], nums[3]), W, H, tp ? [X(tp[0]), Y(tp[1])] : null);
+        break;
+      }
+      case 'list': {
+        const strs = words.filter((w) => !['red', 'code', 'faint'].includes(w));
+        const items = (strs[strs.length - 1] || '').split('|').filter(Boolean);
+        const title = strs.length > 1 ? strs[0] : '';
+        const onDark = dark(a, b);
+        const fo = el('foreignObject', { x: X(a), y: Y(b), width: X(c), height: H, 'data-fit': 'list' }, g);
+        const div = document.createElement('div');
+        div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+        const col = onDark ? '#ece5d6' : '#1d1b19';
+        div.innerHTML = `<div style="font:500 19px/1.35 'Hanken Grotesk',Arial,sans-serif;color:${col};display:grid;gap:6px">${title ? `<b style="font:800 18px Archivo,Arial Narrow,sans-serif;font-stretch:78%;letter-spacing:.06em;text-transform:uppercase">${esc(title)}</b>` : ''}${items.map((t, i) => `<span style="display:flex;gap:8px;align-items:center"><span style="width:15px;height:15px;border:2px solid ${i === 0 ? '#b3121f' : col};flex:none;${i === 0 ? 'background:#b3121f' : ''}"></span>${esc(t)}</span>`).join('')}</div>`;
+        fo.appendChild(div);
+        break;
+      }
+    }
+    if (lay === 'evidence' && ['box', 'screen', 'paper'].includes(k)) {
+      const tg = el('g', {}, g);
+      el('rect', { x: X(a) + 4, y: Y(b) + 4, width: 62, height: 22, fill: C.teal }, tg);
+      const t = el('text', { x: X(a) + 10, y: Y(b) + 20, fill: '#fff', 'font-family': 'IBM Plex Mono, monospace', 'font-size': 14 }, tg); t.textContent = 'REAL';
     }
   }
   return svg;
+}
+
+// Keep every caption, list and label inside the frame (runs once the SVG is laid out).
+function fitFrame(svg) {
+  const [, , W, H] = svg.getAttribute('viewBox').split(' ').map(Number);
+  const pad = 10;
+  for (const fo of svg.querySelectorAll('foreignObject')) {
+    const box = fo.firstChild && fo.firstChild.firstChild;
+    if (!box) continue;
+    let w = box.offsetWidth, h = box.offsetHeight;
+    let fs = parseFloat(getComputedStyle(box).fontSize) || 20, guard = 0;
+    while (h > H - 2 * pad && fs > 11 && guard++ < 20) { fs -= 1; box.style.fontSize = fs + 'px'; h = box.offsetHeight; w = box.offsetWidth; }
+    let x = +fo.getAttribute('x'), y = +fo.getAttribute('y');
+    if (x + w > W - pad) x = Math.max(pad, W - pad - w);
+    if (y + h > H - pad) y = Math.max(pad, H - pad - h);
+    x = Math.max(pad, x); y = Math.max(pad, y);
+    fo.setAttribute('x', x); fo.setAttribute('y', y); fo.setAttribute('height', h + 6);
+    const tail = fo.dataset.tail;
+    if (tail) {
+      const [tx, ty] = tail.split(',').map(Number);
+      const cx = Math.min(Math.max(tx, x + 24), x + w - 24);
+      const below = ty > y + h, by = below ? y + h - 2 : y + 2;
+      const p = el('path', { d: `M${cx - 14} ${by} L${tx} ${ty} L${cx + 14} ${by} Z`, fill: '#fff', stroke: '#1d1b19', 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, null);
+      fo.parentNode.insertBefore(p, fo);
+    }
+  }
+  for (const t of svg.querySelectorAll('text')) {
+    let bb; try { bb = t.getBBox(); } catch { continue; }
+    if (bb.width > W - 2 * pad) {
+      const fsz = parseFloat(t.getAttribute('font-size')) || 24;
+      t.setAttribute('font-size', fsz * (W - 2 * pad) / bb.width);
+      bb = t.getBBox();
+    }
+    let dx = 0, dy = 0;
+    if (bb.x < pad) dx = pad - bb.x; else if (bb.x + bb.width > W - pad) dx = W - pad - bb.x - bb.width;
+    if (bb.y < pad) dy = pad - bb.y; else if (bb.y + bb.height > H - pad) dy = H - pad - bb.y - bb.height;
+    if (dx || dy) t.setAttribute('transform', `translate(${dx} ${dy})`);
+  }
 }
 
 function drawFigure(g, x, y, h, words, flags, stroke, C, r, label, onDark) {
@@ -348,6 +443,11 @@ function drawFigure(g, x, y, h, words, flags, stroke, C, r, label, onDark) {
     el('path', { d, fill, 'fill-opacity': fill === 'none' ? 0 : .92, stroke: s, 'stroke-width': 2.6 }, grp);
     el('ellipse', { cx: hx, cy: hy, rx: headR * .86, ry: headR, fill, 'fill-opacity': fill === 'none' ? 0 : .92, stroke: s, 'stroke-width': 2.6 }, grp);
     if (pose === 'bust') el('path', { d: `M${hx + facing * headR * .8} ${hy - 2} l${facing * 8} 10 l${-facing * 8} 3`, fill: 'none', stroke: s, 'stroke-width': 2 }, grp);
+    if (words.includes('fold')) {  // arms folded across the chest
+      el('path', { d: `M${x - h * .44} ${y - h * .2} Q${x} ${y - h * .3} ${x + h * .44} ${y - h * .2} L${x + h * .4} ${y - h * .08} Q${x} ${y - h * .16} ${x - h * .4} ${y - h * .08} Z`,
+        fill: red ? '#8f0d18' : 'none', stroke: s, 'stroke-width': 2.4 }, grp);
+      if (flags.has('detail')) el('path', { d: `M${x - h * .36} ${y - h * .2} Q${x} ${y - h * .27} ${x + h * .36} ${y - h * .17}`, fill: 'none', stroke: '#f3c6c6', 'stroke-width': 2.2, opacity: .85 }, grp);
+    }
   } else {
     const P = POSES[pose] || POSES.stand;
     const units = age === 'teen' ? 7.4 : 8;
@@ -367,11 +467,35 @@ function drawFigure(g, x, y, h, words, flags, stroke, C, r, label, onDark) {
     if (!P.hair && !words.includes('f')) el('path', { d: `M${hx + facing * headR * .9} ${hy - 2} l${facing * 7} 6 l${-facing * 7} 2`, fill: 'none', stroke: s, 'stroke-width': 2 }, grp);
     if (age === 'old') roughLine(grp, ...pt([.9, -4]), ...pt([1.1, 0]), { r, stroke: s, w: 2, passes: 1 });
   }
-  if (label) hand(g, x, Math.min(y + 26, 99999), label, { fill: s, size: 23, anchor: 'middle' }).setAttribute('opacity', faint ? .7 : 1);
+  if (flags.has('detail')) drawDetail(grp, x, y, h, pose, facing);
+  if (label) {
+    const H = +g.ownerSVGElement?.getAttribute('viewBox')?.split(' ')[3] || 99999;
+    const ly = y + 26 <= H - 8 ? y + 26 : y - h - 10;
+    hand(g, x, ly, label, { fill: s, size: 23, anchor: 'middle' }).setAttribute('opacity', faint ? .7 : 1);
+  }
 }
 
-function drawCaption(g, type, x, y, w, line, W, H) {
-  const fo = el('foreignObject', { x, y, width: w, height: H * .9, overflow: 'visible' }, g);
+// Rim-light detail lines over a red silhouette: collar, shoulder seams, folded forearms, jaw.
+function drawDetail(g, x, y, h, pose, facing) {
+  const c = '#f3c6c6', o = { fill: 'none', stroke: c, 'stroke-width': 2.4, 'stroke-linecap': 'round', opacity: .85 };
+  if (pose === 'bust' || pose === 'silhouette') {
+    el('path', { ...o, d: `M${x - h * .1} ${y - h * .5} L${x} ${y - h * .36} L${x + h * .1} ${y - h * .5}` }, g);
+    el('path', { ...o, d: `M${x - h * .3} ${y - h * .38} Q${x - h * .36} ${y - h * .2} ${x - h * .34} ${y}` }, g);
+    el('path', { ...o, d: `M${x + h * .3} ${y - h * .38} Q${x + h * .36} ${y - h * .2} ${x + h * .34} ${y}` }, g);
+    el('path', { ...o, d: `M${x - h * .12} ${y - h * .6} Q${x} ${y - h * .5} ${x + h * .12} ${y - h * .6}` }, g);
+  } else {
+    const u = h / 8;
+    el('path', { ...o, d: `M${x - u * .35} ${y - u * 6.85} L${x} ${y - u * 6.3} L${x + u * .35} ${y - u * 6.85}` }, g);
+    el('path', { ...o, d: `M${x - u * .9} ${y - u * 5.3} Q${x} ${y - u * 5.0} ${x + u * .9} ${y - u * 5.6}` }, g);
+    el('path', { ...o, d: `M${x - u * .9} ${y - u * 5.75} Q${x} ${y - u * 5.45} ${x + u * .9} ${y - u * 5.15}` }, g);
+    el('path', { ...o, d: `M${x - u * .7} ${y - u * 4.1} L${x + u * .7} ${y - u * 4.1}` }, g);
+    el('path', { ...o, d: `M${x - u * .3} ${y - u * 7.2} Q${x} ${y - u * 6.9} ${x + u * .3} ${y - u * 7.2}` }, g);
+  }
+}
+
+function drawCaption(g, type, x, y, w, line, W, H, tail) {
+  const fo = el('foreignObject', { x, y, width: w, height: H, 'data-fit': 'cap' }, g);
+  if (tail && (type === 'DIA' || type === 'THO')) fo.dataset.tail = tail.join(',');
   const div = document.createElement('div');
   div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
   const text = line ? line.x : `(no ${type} line in the script)`;
@@ -398,7 +522,7 @@ const side = document.getElementById('side');
 const view = document.getElementById('view');
 
 function sideHTML() {
-  let html = `<a class="brand" href="#"><b>Storyboard Room</b><span>Reginald Tan · Story mode</span></a>`;
+  let html = `<a class="brand" href="#"><b>Storyboard Room</b><span>Reginald Tan · Story mode</span></a><a class="scene-link" href="#references" data-id="references"><span class="dot drafted"></span><span>Reference images<span class="id">${REFS.filter((r) => r.status === 'needed').length} still needed</span></span></a>`;
   let arcsStarted = false;
   for (const g of DATA) {
     if (g.kind === 'arc' && !arcsStarted) { html += `<div class="divider">Side stories (arcs)</div>`; arcsStarted = true; }
@@ -413,7 +537,7 @@ function sideHTML() {
 }
 
 function pickerHTML(current) {
-  let html = `<label class="picker"><span class="eyebrow">Jump to a scene</span><select id="scene-picker"><option value="">Overview — all scenes</option>`;
+  let html = `<label class="picker"><span class="eyebrow">Jump to a scene</span><select id="scene-picker"><option value="">Overview — all scenes</option><option value="references" ${current === 'references' ? 'selected' : ''}>Reference images</option>`;
   for (const g of DATA) {
     html += `<optgroup label="${esc((g.kind === 'arc' ? 'Arc · ' : '') + (g.title || g.id))}">`;
     for (const s of g.scenes) html += `<option value="${s.id}" ${s.id === current ? 'selected' : ''}>${s.id} · ${esc(s.label)} — ${LABEL[effective(s).status]}</option>`;
@@ -427,7 +551,7 @@ function overview() {
   const counts = {}; for (const s of scenes) { const st = effective(s).status; counts[st] = (counts[st] || 0) + 1; }
   let html = pickerHTML('');
   html += `<header><div class="eyebrow">docs/STORY-SCRIPT.md · ${scenes.length} scenes</div><h1>Storyboards</h1>
-    <p class="lede">Every scene gets a rough storyboard before any image is generated. Pick a scene to see its sketches, the current script lines, camera and scroll notes. Approve it here, or add <code>storyboard: approved</code> to the scene in the script.</p></header>`;
+    <p class="lede">Every scene gets a rough storyboard before any image is generated. Pick a scene to see its sketches, the current script lines, camera and scroll notes. Approve it here, or add <code>storyboard: approved</code> to the scene in the script. Captions, titles, diagrams and screen contents are drawn in code over the art, so they can change without regenerating an image — use “Show” on any panel to see which parts need a generated plate. <a href="#references">Reference images to collect →</a></p></header>`;
   html += `<div class="counts" role="group" aria-label="Filter by status">${ORDER.filter((k) => counts[k]).map((k) =>
     `<button class="count" data-filter="${k}" aria-pressed="${filter === k}"><b>${counts[k]}</b><span>${LABEL[k]}</span></button>`).join('')}</div>`;
   html += dbNote();
@@ -455,25 +579,54 @@ function dbNote() {
   return `<p class="note">Reviews can't be saved in this view. Statuses come from the script — add <code>storyboard: approved</code> or <code>storyboard: revise</code> to a scene's <code>story</code> block instead.</p>`;
 }
 
+const PLATE = { generate: 'Needs a generated plate', code: 'Built in code — nothing to generate', evidence: 'Real evidence + code — nothing to generate' };
 function tagClass(t) { return t.startsWith('GENERATE') ? 'gen' : t.startsWith('REAL') ? 'real' : t.startsWith('NEEDS') ? 'perm' : ''; }
 
 function panelHTML(p, sceneId, isItem) {
   const b = p.board;
   const head = `<div class="panel-head"><span class="pid">${p.id}</span>${isItem ? `<h4>${esc(p.title || p.label)}</h4>` : `<h2>${esc(p.label)}</h2>`}
-    ${p.type ? `<span class="ptype">${p.type}</span>` : ''}${p.art ? `<span class="ptype">art: ${esc(p.art)}</span>` : ''}${p.status === 'hold' ? `<span class="chip">on hold</span>` : ''}</div>`;
+    ${p.type ? `<span class="ptype">${p.type}</span>` : ''}${p.art ? `<span class="ptype">art: ${esc(p.art)}</span>` : ''}${p.plate ? `<span class="plate ${p.plate}">${PLATE[p.plate]}</span>` : ''}${p.status === 'hold' ? `<span class="chip">on hold</span>` : ''}</div>`;
   const copy = (p.copy || []).filter((l) => l.t !== 'VISUAL');
   const visual = (p.copy || []).filter((l) => l.t === 'VISUAL').map((l) => esc(l.x)).join(' ');
   const copyHTML = copy.length ? `<ul class="copy">${copy.map((l) => `<li><span class="t">${l.t}${l.s ? `·${esc(l.s)}` : ''}</span><span class="x ${l.st === 'edit' ? 'edit' : ''}">${markEdits(l.x)}${l.st !== 'draft' ? ` <span class="note">{${l.st}}</span>` : ''}</span></li>`).join('')}</ul>` : '';
   let sketch;
   if (b && b.variants && b.variants.length) {
     const tabs = b.variants.length > 1 ? `<div class="variant-tabs" role="tablist">${b.variants.map((v, i) => `<button role="tab" aria-selected="${i === 0}" data-v="${i}">${esc(v.label || 'Option ' + (i + 1))}</button>`).join('')}</div>` : '';
-    sketch = `<div class="variants" data-panel="${p.id}">${tabs}<div class="frames"></div></div>`;
+    const layers = `<div class="layer-tabs" role="group" aria-label="Layers"><span class="lbl">Show</span><button data-layer="all" aria-pressed="true">Composite</button><button data-layer="art" aria-pressed="false">Generated plate</button><button data-layer="overlay" aria-pressed="false">Code overlays + evidence</button></div>`;
+    sketch = `<div class="variants" data-panel="${p.id}">${tabs}${layers}<div class="frames"></div></div>`;
   } else sketch = `<div class="empty">No storyboard yet for this ${isItem ? 'card' : 'panel'}.</div>`;
   const spec = b ? `<dl>${['shot', 'camera', 'scroll', 'transition', 'mobile', 'refs', 'note'].filter((k) => b[k]).map((k) => `<dt>${k}</dt><dd>${b[k].map(esc).join('<br>')}</dd>`).join('')}</dl>
     ${b.tags ? `<div class="tags">${b.tags.map((t) => `<span class="chip tag ${tagClass(t)}">${esc(t)}</span>`).join('')}</div>` : ''}` : '';
   const items = (p.items || []).length ? `<div class="items">${p.items.map((i) => panelHTML(i, sceneId, true)).join('')}</div>` : '';
   return `<section class="panel" id="p-${p.id}">${head}<div class="panel-body"><div>${sketch}</div><div class="spec">${spec}
     ${visual ? `<dl><dt>visual</dt><dd>${visual}</dd></dl>` : ''}${copyHTML ? `<div><div class="eyebrow">Script lines (live from the script)</div>${copyHTML}</div>` : ''}</div></div>${items}</section>`;
+}
+
+function refHTML(r) {
+  return `<div class="ref"><span class="rid">${esc(r.id)}</span><b>${esc(r.name)}</b>
+    <div class="meta">${esc(r.source || '')}</div>
+    ${r.privacy ? `<div class="meta">Privacy: ${esc(r.privacy)}</div>` : ''}
+    ${r.notes ? `<div class="meta">${esc(r.notes)}</div>` : ''}
+    <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="chip ${esc((r.status || '').split(' ')[0])}">${esc(r.status || '')}</span>${r.priority ? `<span class="chip tag">priority ${esc(r.priority)}</span>` : ''}<span class="scenes">${(r.scenes || []).map((x) => `<a href="#${x}">${x}</a>`).join('')}</span></div></div>`;
+}
+
+let refFilter = 'all';
+function refsView() {
+  let html = pickerHTML('');
+  html += `<div class="nav-row"><a class="btn" href="#">← Overview</a></div>`;
+  html += `<header><div class="eyebrow">docs/story/REFERENCES.md · ${REFS.length} references</div><h1>Reference images</h1>
+    <p class="lede">What to collect before generating anything, built from the drafted storyboards. Photos of you and other people stay out of the public repo — keep them in a private folder named by reference ID. Arcs still waiting on script edits are listed under Pending.</p></header>`;
+  const counts = { needed: 0, received: 0, 'not needed': 0 }; for (const r of REFS) counts[r.status] = (counts[r.status] || 0) + 1;
+  html += `<div class="ref-filter" role="group" aria-label="Filter references">${['all', 'needed', 'received', 'not needed'].map((k) => `<button class="btn" data-rf="${k}" aria-pressed="${refFilter === k}" style="${refFilter === k ? 'border-color:var(--ink)' : ''}">${k === 'all' ? 'All' : k[0].toUpperCase() + k.slice(1)} (${k === 'all' ? REFS.length : counts[k] || 0})</button>`).join('')}</div>`;
+  const sections = [...new Set(REFS.map((r) => r.section))];
+  for (const sec of sections) {
+    const rows = REFS.filter((r) => r.section === sec && (refFilter === 'all' || r.status === refFilter));
+    if (!rows.length) continue;
+    html += `<section class="panel"><div class="panel-head"><h2>${esc(sec)}</h2></div><div class="refs">${rows.map(refHTML).join('')}</div></section>`;
+  }
+  view.innerHTML = html;
+  view.querySelectorAll('[data-rf]').forEach((b) => b.addEventListener('click', () => { refFilter = b.dataset.rf; refsView(); }));
+  wirePicker();
 }
 
 function sceneView(id) {
@@ -490,23 +643,35 @@ function sceneView(id) {
   html += reviewHTML(s, e, review);
   if (!s.panels.some((p) => p.board)) html += `<div class="empty">${s.status === 'waiting' ? 'Waiting on script edits before this scene can be storyboarded. Fill the <b>[EDIT: …]</b> gaps below in docs/STORY-SCRIPT.md.' : 'Not storyboarded yet.'}</div>`;
   html += s.panels.map((p) => panelHTML(p, s.id, false)).join('');
+  const sref = REFS.filter((r) => (r.scenes || []).includes(s.id));
+  html += `<section class="panel"><div class="panel-head"><h2>Reference images for this scene</h2><a class="ptype" href="#references">all references →</a></div>${
+    sref.length ? `<div class="refs">${sref.map(refHTML).join('')}</div>` : `<p class="note">${NOREF.has(s.id) ? 'None — this scene is built entirely in code.' : 'None listed yet.'}</p>`}</section>`;
   html += `<div class="nav-row"><a class="btn" href="#">← Overview</a><span>${next ? `<a class="btn" href="#${next.id}">Next: ${next.id} →</a>` : ''}</span></div>`;
   view.innerHTML = html;
   view.querySelectorAll('.variants').forEach((v) => {
     const p = findPanel(s, v.dataset.panel);
+    let cur = 0, layer = 'all';
     const show = (i) => {
+      cur = i;
       const box = v.querySelector('.frames'); box.innerHTML = '';
       for (const [fi, fr] of p.board.variants[i].frames.entries()) {
         const fig = document.createElement('figure');
         const [aw, ah] = fr.aspect.split(':').map(Number);
         fig.className = 'frame' + (ah > aw ? ' tall' : '');
-        fig.appendChild(renderFrame(fr, p, `${p.id}-${i}-${fi}`));
+        const svg = renderFrame(fr, p, `${p.id}-${i}-${fi}`, layer);
+        fig.appendChild(svg);
         const cap = document.createElement('figcaption'); cap.textContent = `${fr.aspect}${fr.label ? ' · ' + fr.label : ''}`; fig.appendChild(cap);
         box.appendChild(fig);
+        fitFrame(svg);
       }
       v.querySelectorAll('[role=tab]').forEach((t) => t.setAttribute('aria-selected', String(Number(t.dataset.v) === i)));
     };
     v.querySelectorAll('[role=tab]').forEach((t) => t.addEventListener('click', () => show(Number(t.dataset.v))));
+    v.querySelectorAll('[data-layer]').forEach((b) => b.addEventListener('click', () => {
+      layer = b.dataset.layer;
+      v.querySelectorAll('[data-layer]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      show(cur);
+    }));
     show(0);
   });
   wireReview(s);
@@ -516,9 +681,11 @@ function sceneView(id) {
 function findPanel(s, pid) { for (const p of s.panels) { if (p.id === pid) return p; for (const i of p.items || []) if (i.id === pid) return i; } }
 
 function reviewHTML(s, e, review) {
+  review = review || null;
   const drafted = s.panels.some((p) => p.board);
   let state = '';
   if (e.source === 'script' && (e.status === 'approved' || e.status === 'revise')) state = `<p class="note">Set in the script (<code>storyboard: ${e.status}</code>).</p>`;
+  else if (review && review.status === 'addressed') { state = `<p class="note">Your change request from ${esc(new Date(review.at).toLocaleDateString())} was applied${review.addressedAt ? ' on ' + esc(new Date(review.addressedAt).toLocaleDateString()) : ''}. Review the new version below.</p>${review.note ? `<p class="note">You asked: “${esc(review.note)}”</p>` : ''}${review.reply ? `<p>What changed: ${esc(review.reply)}</p>` : ''}`; review = null; }
   else if (review) state = `<p class="note ${review.hash !== s.hash ? 'warn' : ''}">${review.status === 'approved' ? 'Approved' : 'Changes requested'} here${review.at ? ' on ' + esc(new Date(review.at).toLocaleDateString()) : ''}${review.hash !== s.hash ? ' — the storyboard or script changed since then, so check it again' : ''}. Ask Claude to “sync storyboard reviews” to write this into the script.</p>${review.note ? `<p>“${esc(review.note)}”</p>` : ''}`;
   if (!drafted) return `<div class="review"><strong>Review</strong>${state || '<p class="note">Nothing to review yet.</p>'}</div>`;
   const disabled = dbState !== 'ready' || canWrite === false ? 'disabled' : '';
@@ -557,7 +724,7 @@ function route() {
   const id = decodeURIComponent(location.hash.slice(1));
   side.innerHTML = sideHTML();
   side.querySelectorAll('.scene-link').forEach((a) => { if (a.dataset.id === id) { a.setAttribute('aria-current', 'page'); } });
-  if (id && byId[id]) sceneView(id); else overview();
+  if (id === 'references') refsView(); else if (id && byId[id]) sceneView(id); else overview();
 }
 window.addEventListener('hashchange', () => { route(); window.scrollTo(0, 0); });
 route();

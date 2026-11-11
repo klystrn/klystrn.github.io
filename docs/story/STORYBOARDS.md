@@ -8,6 +8,38 @@ up after `python3 scripts/story/build.py`.
 
 **Rule:** no Higgsfield / Soul ID / Kling batch for a scene until its storyboard is `approved`.
 
+## Layers — what Higgsfield makes vs what code draws
+
+Every panel is built from layers, so text and UI never have to be generated (or regenerated):
+
+| Layer | Made by | Contains |
+|---|---|---|
+| **Plate** | Higgsfield, from an approved batch | Characters, places, props, light. **No text, lettering, speech balloons, captions, logos or on-screen UI** — screens are blank (or softly lit) so code can fill them. |
+| **Evidence** | Your real files | Screenshots, certificates, letters — placed as-is (`real` flag). |
+| **Code overlays** | Claude, in HTML/CSS/SVG | Narration, thought and speech balloons (with tails), fact boxes, skills, portals, SFX lettering, titles and the Chinese name, nav bar, selection cards, charts, trade logs, to-do lists, diagrams, red lines and highlights (`code` flag or an overlay element). |
+| Guides | Storyboard only | Crop boxes, pencil notes, motion arrows, perspective lines — never shipped. |
+
+So Claude can add, move, reword or delete any caption, balloon, label, diagram or screen content
+by editing the script/storyboard — no new image, no external service. In the viewer, each panel's
+**Show** toggle splits the composite into *Generated plate* and *Code overlays + evidence*, and a
+badge says whether the panel needs a generated plate at all. The build records the same in
+`public/story/manifest.json` (`plate: generate | evidence | code`); only `generate` art IDs ever go
+into a Higgsfield batch.
+
+**Caption safe zones:** the `cap` boxes in each storyboard are the areas a plate must keep calm
+(no faces or key action underneath). They're passed into every generation prompt.
+
+## Staying inside the frame
+
+Nothing may cross the panel edge:
+
+- `python3 scripts/story/build.py` **errors** on any element outside the frame (boxes, figures,
+  discs, lines, lists, crops, text that's too wide) and **warns** when a caption's text may wrap
+  past the bottom or overlap another caption.
+- The viewer — and later the Story components — measure each caption/balloon/label after layout
+  and nudge it inside the frame (shrinking the type a little if it still won't fit), so a longer
+  line of copy can never spill out of a panel.
+
 ## Approving
 
 Add to the scene's `story` block in the script (create the block under the `### Scene` heading if
@@ -76,8 +108,11 @@ crop mobile 30 0 40 100
 | `line X1 Y1 X2 Y2` | plain line |
 | `wash X Y W H` / `dark X Y W H` | red flood / black flood |
 | `text X Y SIZE "TEXT"` | on-screen typography; SIZE = % of frame height; flags `red ivory ink center` |
-| `cap TYPE X Y W [N]` | caption box filled from the script (NAR, THO, DIA, FAC, SFX, SUB, PORTAL); N = which line of that type (1 = first) |
+| `cap TYPE X Y W [N] [tail=X,Y]` | caption box filled from the script (NAR, THO, DIA, FAC, SFX, SUB, PORTAL, SKL); N = which line of that type (1 = first); `tail=` points a speech/thought balloon at the speaker |
+| `list X Y W ["TITLE"] "a\|b\|c"` | code-drawn checklist / log (to-do lists, trade logs) |
 | `crop NAME X Y W H` | dashed crop guide (mobile crop, card crop, full) |
 | `label X Y "text"` | pencil annotation |
+
+Flags on any element: `red` · `dash` · `fill` · `faint` · `code` (drawn in code, not generated) · `real` (your real file) · `detail` (on a red figure: rim-light body detail).
 
 Tags: `PLACEHOLDER` · `REAL EVIDENCE` · `GENERATE LATER` · `NEEDS PERMISSION`.

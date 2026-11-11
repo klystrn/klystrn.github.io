@@ -36,18 +36,13 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Black screen; narrow red rim light reveals current-age Reginald as a crimson silhouette. `PORTFOLIO` types in above the name; ivory `REGINALD TAN` lands huge; red `陈彦杰` overlaps the centre of the Latin letters.",
+                      "text": "Black screen; red rim light reveals current-age Reginald, upper body with arms folded, as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller red `陈彦杰` overlaps the centre of the Latin letters.",
                       "status": "draft"
                     },
                     {
                       "type": "VISUAL",
-                      "text": "Pose and 1- vs 2-line name chosen after the wireframe comparison (A folded arms · B close-up · C three-quarter turn).",
+                      "text": "Scrolling pushes the camera from the upper body into a close-up of the face while the name lifts away.",
                       "status": "draft"
-                    },
-                    {
-                      "type": "FAC",
-                      "text": "PORTFOLIO",
-                      "status": "approved"
                     },
                     {
                       "type": "ALT",
@@ -133,7 +128,7 @@
                       "copy": [
                         {
                           "type": "VISUAL",
-                          "text": "Current Reginald reviewing a generic, synthetic market display; one red decision line; no balances or order IDs.",
+                          "text": "Current Reginald at his home trading setup — several monitors with charts and a trade-log screen (synthetic data); one red decision line; no balances or order IDs.",
                           "status": "draft"
                         },
                         {
@@ -168,7 +163,7 @@
                       "copy": [
                         {
                           "type": "VISUAL",
-                          "text": "Desk with proposal drafts, a rough pipeline board and concept sketches; clients anonymous.",
+                          "text": "Desk with a to-do list for the business (leads, proposals, invoices, site builds), proposal drafts and sketches; clients anonymous.",
                           "status": "draft"
                         },
                         {
@@ -386,7 +381,7 @@
                     },
                     {
                       "type": "NAR",
-                      "text": "As ACE Chairperson, an idea only matters if I can get people to act on it.",
+                      "text": "As an ACE leader, an idea only matters if I can get people to act on it.",
                       "status": "draft"
                     },
                     {
@@ -3443,7 +3438,7 @@
       "letter": {
         "slug": "rahul-varma",
         "name": "Rahul Varma",
-        "title": "Senior Vice President, Manager of Software Engineering, JPMorgan Chase & Co.",
+        "title": "Executive Director, Global Head of Currencies & Emerging Markets Platform Technology, J.P. Morgan",
         "status": "transcribed",
         "text": null
       },

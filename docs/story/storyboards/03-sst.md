@@ -40,11 +40,11 @@ line 14 30 48 30 red
 fig 22 96 62 point r teen "friend" faint
 fig 48 96 64 stand l teen "Reginald"
 fig 72 96 60 back l teen "friend" faint
-cap DIA 56 6 40
+cap DIA 4 4 34 tail=24,36
 cap NAR 4 56 44
 frame 3:4 solo · NRIC validator
 dark 0 0 100 100
-screen 18 30 64 32 "validator ✓ ✗" red
+screen 18 30 64 32 "validator ✓ ✗" red real
 fig 50 100 54 bust f teen "Reginald"
 cap FAC 6 4 88
 
@@ -90,6 +90,6 @@ disc 62 30 10
 line 62 30 62 22
 line 62 30 68 32
 cap SFX 56 46 14
-paper 70 34 24 50 "DrCT Bronze 2021" red
-cap NAR 10 72 40
-cap FAC 56 88 40
+paper 70 28 24 48 "DrCT Bronze 2021" red real
+cap NAR 10 70 34
+cap FAC 50 82 46

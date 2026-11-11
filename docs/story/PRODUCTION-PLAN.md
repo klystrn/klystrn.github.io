@@ -21,7 +21,7 @@ conditional in Future Plans.
 ## 2. Chapters
 | # | Slug | Title | Years | Category |
 |---|---|---|---|---|
-| 1 | `opening` | REGINALD TAN / 陈彦杰 (`PORTFOLIO` typed above) | — | — |
+| 1 | `opening` | REGINALD TAN / 陈彦杰 (nav bar above; upper-body silhouette, scroll zoom to close-up) | — | — |
 | 2 | `present` | WHAT I'M DOING NOW | — | — |
 | 3 | `sst` | SCHOOL OF SCIENCE & TECHNOLOGY | 2018–2021 | education |
 | 4 | `np` | NGEE ANN POLYTECHNIC | 2022–2025 | education |
@@ -61,7 +61,7 @@ Main path: **37 panels** (budget 30–42). 20 arcs: `frats`, `overflow`, `tya`, 
 | **G** Launch | Paper → `/paper`; redirect `/?project=` and `/?xp=`; re-point tests; sitemap | Explicit launch go |
 
 ### Batch approval form (Phases C and D — shown before anything runs)
-Batch ID and scene/arc IDs · purpose and art IDs · model, mode, expected credits / cap · exact
+Batch ID and scene/arc IDs (each with an **approved storyboard**) · purpose and art IDs (only `plate: generate`) · **clean-plate rule: no text, balloons, captions, logos or on-screen UI; caption safe zones from the storyboard** · model, mode, expected credits / cap · exact
 prompts and negative constraints · reference inputs and subject consent · quantity, resolution,
 aspect, responsive crops (and duration for clips) · rights/privacy/brand checks · reused approved
 frames · fallback · **explicit "approve Batch X"**.

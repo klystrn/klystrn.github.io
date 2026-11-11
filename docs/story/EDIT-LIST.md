@@ -55,13 +55,10 @@ not publish; a deleted panel just disappears (don't reuse its ID).
    phone numbers, emails, postal addresses, signature blocks and a LinkedIn URL. **Victor Lum** is
    new — I added a `testimonial-victor` arc linked from the Overflow panel (C04-S02-P01). He isn't in
    `src/data/testimonials.json` (the live site) yet; say if you want him there too.
-   - **Rahul's title differs:** his letter signs off *Senior Vice President, Manager of Software
-     Engineering*; the live site says *Executive Director, Global Head of Currencies & Emerging
-     Markets Platform Technology*. Which should both use? (The build warns until they match.)
-   - **ACE wording:** Keith's letter says you were *Overall-In-Charge of SCS@ACE*, and the team
-     gathered *129 volunteers for Relay For Life 2020, nearly 25% of SCS's national target*. I
-     updated the Story fact (C03-S02-P01) to say exactly that. The live site still says
-     "Chairperson, ACE board · provided 25% of SCS's volunteers" — keep or align?
+   - ~~Rahul's title~~ — resolved: the reader shows *Executive Director* (he was promoted); the
+     letter text is unchanged.
+   - ~~ACE wording~~ — resolved: live site, content doc and Story now all say *Overall-in-charge,
+     SCS@ACE — 129 Relay For Life volunteers, nearly 25% of SCS's national target*.
 2. **Teacher titles.** The script uses the live-site titles from `src/data/testimonials.json`:
    Jovita Tang — *ML & NLP Specialist · Mathematics & Computing, SST*; Keith Wee —
    *Service-Learning In-Charge · Mathematics, SST*. Your manuscript said "Computing+, form teacher"
@@ -97,8 +94,10 @@ scenes); 18 arc scenes wait on the arc gaps in section 1.
   *Request changes* (with a note). Then ask Claude to "sync storyboard reviews".
 - Live status list: `docs/story/STORYBOARD-STATUS.md` (generated on every build).
 - Format and how approval works: `docs/story/STORYBOARDS.md`.
-- **Decide while reviewing:** hero pose A/B/C and 1- vs 2-line name (scene `C01-S01`), and the
-  4th daily-life card (`C06-S04`).
+- **Decide while reviewing:** the 4th daily-life card (`C06-S04`). Hero pose is decided (folded
+  arms → close-up); I assumed a one-line name on desktop and two lines on mobile.
+- **Reference images to collect:** `docs/story/REFERENCES.md` (also the *Reference images* page in
+  the Storyboard Room). Start with priority 1 — they unblock the hero and Present scenes.
 
 ## 4. Reference material to gather for storyboarding (keep out of the public repo)
 

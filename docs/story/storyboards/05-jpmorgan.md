@@ -33,8 +33,8 @@ fig 34 78 40 sit r young faint
 fig 62 78 44 sit l adult "Rahul"
 fig 82 78 40 sit l young "Reginald"
 cap NAR 2 6 28
-cap DIA 54 34 30
-cap THO 76 86 22
+cap DIA 50 6 32 tail=63,36
+cap THO 76 86 22 tail=82,44
 
 ## Panel C05-S03-P01
 shot: Medium two-shot at a desk + graphic overlay
@@ -45,18 +45,18 @@ mobile: Overlay sits above the image instead of on top
 tags: GENERATE LATER, PLACEHOLDER (abstract diagram only), NEEDS PERMISSION (Farhan from behind or stylised)
 note: Never a real architecture diagram.
 frame 16:9
-box 6 64 88 6 "desks"
+box 6 64 88 6 "desks" code
 screen 16 44 14 14 ""
 screen 66 44 14 14 ""
 fig 34 88 46 present r adult "Rahul"
 fig 54 88 44 sit r young "Reginald"
 fig 80 88 42 sit l young "Farhan" faint
-box 6 6 18 14 "on-prem" dash
-box 6 22 18 10 "on-prem" dash
-arrow 26 18 44 12 red
-disc 52 12 6
+box 6 6 18 14 "on-prem" dash code
+box 6 22 18 10 "on-prem" dash code
+arrow 26 18 44 12 red code
+disc 52 12 6 code
 label 46 22 "AWS"
-cap DIA 62 4 34
+cap DIA 60 4 36 tail=36,44
 cap NAR 2 74 34
 
 ## Panel C05-S04-P01
@@ -92,7 +92,7 @@ box 6 72 88 6 "desk"
 fig 50 96 70 slump r young "Reginald"
 cap THO 6 6 50
 frame 4:3 one next step
-box 20 20 60 50 "ONE NEXT STEP" red
+box 20 20 60 50 "ONE NEXT STEP" red code
 cap NAR 6 80 88
 
 ## Panel C05-S05-P01
@@ -107,9 +107,9 @@ screen 10 10 54 46 "dashboard (mock)" red
 chart 14 18 46 30 red
 fig 36 96 54 sit r young "Reginald"
 fig 74 96 58 lean l young "coworker" faint
-cap DIA 56 4 40
+cap DIA 52 4 40 tail=68,42
 frame 4:3 the update
-box 8 10 60 40 "stages: ▢▢▣▢" dash
+box 8 10 60 40 "stages: ▢▢▣▢" dash code
 fig 78 96 60 present l young "Reginald"
 fig 20 98 30 back r adult faint
 fig 40 98 30 back r adult faint
@@ -124,8 +124,8 @@ mobile: Crop to Reginald and the screen
 tags: GENERATE LATER
 frame 16:9
 box 34 8 46 40 "screen"
-line 57 8 57 48 red
-line 34 28 80 28 red
+line 57 8 57 48 red code
+line 34 28 80 28 red code
 fig 26 86 56 present r young "Reginald"
 fig 74 100 34 back l adult faint
 fig 86 100 34 back l adult faint
@@ -140,20 +140,20 @@ mobile: One column of four; tap expands
 tags: GENERATE LATER, PLACEHOLDER (stylised, non-sensitive imagery)
 frame 16:9
 text 50 6 4 "ACHIEVEMENTS & MILESTONES" ink center
-card 6 12 43 38 "OPTIMISED DATA RETRIEVAL" red
-card 51 12 43 38 "VISUALISED WORKLOADS"
-card 6 52 43 38 "MIGRATED WORKLOADS"
-card 51 52 43 38 "CROSS-TEAM DELIVERY"
-cap NAR 4 92 50
-cap PORTAL 60 92 36
+card 6 11 43 34 "OPTIMISED DATA RETRIEVAL" red
+card 51 11 43 34 "VISUALISED WORKLOADS"
+card 6 47 43 34 "MIGRATED WORKLOADS"
+card 51 47 43 34 "CROSS-TEAM DELIVERY"
+cap NAR 4 83 56
+cap PORTAL 62 83 36
 
 ## Item ms-retrieval
 shot: Graphic · a long hourglass collapsing into a stopwatch
 tags: PLACEHOLDER
 frame 4:3 crop
-box 20 14 18 60 "4 h" dash
-arrow 40 44 60 44 red
-disc 74 44 12
+box 20 14 18 60 "4 h" dash code
+arrow 40 44 60 44 red code
+disc 74 44 12 code
 label 70 64 "30 s"
 cap SUB 6 84 88
 
@@ -161,9 +161,9 @@ cap SUB 6 84 88
 shot: Graphic · server racks becoming a heat-map
 tags: PLACEHOLDER
 frame 4:3 crop
-box 8 16 18 60 "rack"
-box 28 16 18 60 "rack"
-arrow 48 46 58 46 red
+box 8 16 18 60 "rack" code
+box 28 16 18 60 "rack" code
+arrow 48 46 58 46 red code
 chart 60 20 34 50 red
 cap SUB 6 84 88
 
@@ -171,10 +171,10 @@ cap SUB 6 84 88
 shot: Graphic · boxes lifting into a cloud shape
 tags: PLACEHOLDER
 frame 4:3 crop
-box 10 56 20 16 "on-prem"
-box 34 60 20 12 "on-prem"
-arrow 30 54 58 26 red
-disc 72 24 14
+box 10 56 20 16 "on-prem" code
+box 34 60 20 12 "on-prem" code
+arrow 30 54 58 26 red code
+disc 72 24 14 code
 label 66 44 "AWS"
 cap SUB 6 84 88
 
@@ -182,10 +182,10 @@ cap SUB 6 84 88
 shot: Graphic · one tool radiating to several team desks
 tags: PLACEHOLDER
 frame 4:3 crop
-screen 38 30 24 20 "tool" red
-arrow 50 50 20 70
-arrow 50 50 50 74
-arrow 50 50 80 70
+screen 38 30 24 20 "tool" red code
+arrow 50 50 20 70 code
+arrow 50 50 50 74 code
+arrow 50 50 80 70 code
 label 12 78 "rates"
 label 42 80 "FX"
 label 74 78 "commodities"

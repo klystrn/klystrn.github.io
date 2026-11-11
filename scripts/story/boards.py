@@ -22,13 +22,20 @@ FIELDS = {'shot', 'camera', 'scroll', 'transition', 'mobile', 'tags', 'refs', 'n
 ELEMENTS = {
     'floor': 1, 'vp': 2, 'box': 4, 'screen': 4, 'chart': 4, 'card': 4, 'building': 4,
     'fig': 3, 'phone': 2, 'disc': 3, 'arrow': 4, 'line': 4, 'wash': 4, 'dark': 4,
-    'text': 3, 'cap': 3, 'crop': 4, 'label': 2, 'paper': 4, 'tree': 3,
+    'text': 3, 'cap': 3, 'list': 3, 'crop': 4, 'label': 2, 'paper': 4, 'tree': 3,
 }
 CAP_TYPES = {'NAR', 'THO', 'DIA', 'FAC', 'SFX', 'SUB', 'PORTAL', 'SKL'}
 POSES = {'stand', 'walk', 'sit', 'type', 'slump', 'point', 'present', 'hold', 'fold', 'bust',
          'silhouette', 'back', 'bench', 'lean'}
 FLAGS = {'red', 'dash', 'fill', 'ivory', 'ink', 'center', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old',
          'faint', 'bold'}
+REFS_MD = os.path.join(ROOT, 'docs', 'story', 'REFERENCES.md')
+MANIFEST = os.path.join(ROOT, 'public', 'story', 'manifest.json')
+# Layer model (docs/story/STORYBOARDS.md): what a generated plate must contain vs what code draws.
+GUIDE_ELS = {'crop', 'label', 'vp'}                 # storyboard annotations, never shipped
+OVERLAY_ELS = {'cap', 'text', 'card', 'chart', 'list'}      # always drawn in code (HTML/CSS/SVG)
+REF_KINDS = {'character', 'person', 'location', 'prop', 'evidence', 'style'}
+FLAGS.update({'code', 'detail', 'real'})
 ASPECT_RE = re.compile(r'^\d+(?:\.\d+)?:\d+(?:\.\d+)?$')
 HEAD_RE = re.compile(r'^##\s+(Panel|Item)\s+(\S+)\s*$')
 NUM_RE = re.compile(r'^-?\d+(?:\.\d+)?$')
@@ -151,6 +158,157 @@ def walk(node):
         yield from walk(c)
 
 
+def layer_of(tok):
+    k = tok[0]
+    if k in GUIDE_ELS or (k == 'arrow' and 'code' not in tok):
+        return 'guide'
+    if k in OVERLAY_ELS or 'code' in tok:
+        return 'overlay'
+    if 'real' in tok:
+        return 'evidence'
+    return 'art'
+
+
+def nums_of(tok):
+    return [float(t) for t in tok[1:] if NUM_RE.match(t)]
+
+
+def caption_height(kind, text, w_pct, H):
+    """Rough rendered height (% of frame height) of a caption box w_pct wide. Mirrors the viewer."""
+    if kind == 'SFX':
+        return 64 / H * 100
+    cw, lh, extra = {'FAC': (9.6, 21.6, 24), 'SKL': (9.0, 19.5, 22)}.get(kind, (9.9, 26.4, 26))
+    usable = max(40, w_pct * 10 - 34)
+    chars = max(1, int(usable / cw))
+    words, lines, cur = (text + (' →' if kind == 'PORTAL' else '')).split(), 1, 0
+    for wd in words:
+        add = len(wd) + (1 if cur else 0)
+        if cur + add > chars:
+            lines, cur = lines + 1, len(wd)
+        else:
+            cur += add
+    return (lines * lh + extra) / H * 100
+
+
+def check_frame(nid, where, fr, node, rep):
+    aw, ah = (float(x) for x in fr['aspect'].split(':'))
+    H = 1000 * ah / aw
+    def out(msg):
+        rep.err(where, f'{nid} [{fr["aspect"]}{" " + fr["label"] if fr["label"] else ""}]: {msg} — keep every element inside the panel frame')
+    inside = lambda v: -0.01 <= v <= 100.01
+    caps = []
+    for tok in fr['els']:
+        k, n = tok[0], nums_of(tok)
+        if k in ('box', 'screen', 'chart', 'card', 'building', 'paper', 'wash', 'dark', 'crop'):
+            x, y, w, h = n[:4]
+            if x < 0 or y < 0 or x + w > 100.01 or y + h > 100.01:
+                out(f'{k} at {x:g},{y:g} size {w:g}×{h:g} crosses the edge')
+        elif k in ('line', 'arrow'):
+            if not all(inside(v) for v in n[:4]):
+                out(f'{k} endpoint outside 0–100')
+        elif k in ('floor',):
+            if not inside(n[0]):
+                out('floor outside the frame')
+        elif k == 'vp':
+            if not (inside(n[0]) and inside(n[1])):
+                out('vanishing point outside the frame')
+        elif k == 'fig':
+            x, y, h = n[:3]
+            if not inside(x) or y > 100.01 or y - h < -0.01:
+                out(f'figure at {x:g},{y:g} height {h:g} is cut off')
+        elif k == 'disc':
+            x, y, r = n[:3]
+            ry = r * 1000 / H
+            if x - r < 0 or x + r > 100.01 or y - ry < -0.01 or y + ry > 100.01:
+                out(f'disc at {x:g},{y:g} r {r:g} crosses the edge')
+        elif k == 'phone':
+            x, y = n[:2]
+            if x < 0 or y < 0 or x + 2.6 > 100 or y + 4800 / H > 100:
+                out('phone crosses the edge')
+        elif k == 'tree':
+            x, y, h = n[:3]
+            if x - h * 0.3 * H / 1000 < 0 or x + h * 0.3 * H / 1000 > 100 or y - h < 0 or y > 100.01:
+                out('tree crosses the edge')
+        elif k in ('text', 'label'):
+            x, y = n[:2]
+            label = next((t for t in tok[1:] if not NUM_RE.match(t) and t not in FLAGS), '')
+            size = n[2] if k == 'text' else 2.5 * 1000 / H
+            width = len(label) * size * H / 1000 * (0.47 if k == 'text' else 0.45)
+            left = x - width / 2 if 'center' in tok else x
+            if left < -0.5 or left + width > 100.5 or not inside(y):
+                out(f'{k} "{label}" runs past the edge (≈{width:.0f}% wide)')
+        elif k == 'list':
+            x, y, w = n[:3]
+            strs = [t for t in tok[1:] if not NUM_RE.match(t) and t not in FLAGS]
+            items = strs[-1].split('|') if strs else []
+            h = (len(items) * 40 + (40 if len(strs) > 1 and strs[0] else 0)) / H * 100
+            if x < 0 or x + w > 100.01 or y < 0 or y + h > 100.5:
+                out(f'list at {x:g},{y:g} ({len(items)} items) crosses the edge')
+        elif k == 'cap':
+            x, y, w = n[:3]
+            idx = int(n[3]) if len(n) > 3 else 1
+            pool = [l for n2 in [node] + node['children'] for l in n2['lines'] if l['type'] == tok[1]]
+            text = pool[idx - 1]['text'] if len(pool) >= idx else '(no line)'
+            if x < 0 or y < 0 or x + w > 100.01:
+                out(f'caption {tok[1]} at {x:g},{y:g} width {w:g} crosses the edge')
+            else:
+                h = caption_height(tok[1], text, w * 1000 / 1000, H)
+                for (cx, cy, cw, ch, ck) in caps:
+                    if x < cx + cw and cx < x + w and y < cy + ch and cy < y + h:
+                        rep.warn(where, f'{nid} [{fr["aspect"]}]: caption {tok[1]} may overlap caption {ck}')
+                caps.append((x, y, w, h, tok[1]))
+                if y + h > 100.5:
+                    rep.warn(where, f'{nid} [{fr["aspect"]}]: caption {tok[1]} is about {h:.0f}% tall and may reach past the bottom '
+                             f'(starts at {y:g}%) — the viewer and the Story nudge it inside, but move it up for a clean layout')
+
+
+def plate_of(board):
+    if not board:
+        return None
+    layers = {layer_of(t) for v in board['variants'] for f in v['frames'] for t in f['els']}
+    if 'art' in layers:
+        return 'generate'
+    return 'evidence' if 'evidence' in layers else 'code'
+
+
+def parse_refs(by_id, scene_ids, rep):
+    if not os.path.exists(REFS_MD):
+        return [], set()
+    refs, cur, none_scenes, section = [], None, set(), None
+    for n, raw in enumerate(open(REFS_MD, encoding='utf-8').read().split('\n'), 1):
+        line = raw.strip()
+        where = f'docs/story/REFERENCES.md:{n}'
+        m = re.match(r'^##\s+(REF-[A-Z0-9-]+)\s+·\s+(.+)$', line)
+        if m:
+            cur = {'id': m.group(1), 'name': m.group(2), 'scenes': [], 'line': n, 'section': section}
+            refs.append(cur)
+            continue
+        m = re.match(r'^#\s+(.+)$', line)
+        if m:
+            section, cur = m.group(1), None
+            continue
+        if line.lower().startswith('no reference needed:'):
+            none_scenes |= {x.strip(' `') for x in line.split(':', 1)[1].split(',') if x.strip(' `')}
+            continue
+        if cur is None or ':' not in line or line.startswith(('>', '|')):
+            continue
+        k, v = (x.strip() for x in line.lstrip('- ').split(':', 1))
+        k = k.lower()
+        if k == 'scenes':
+            cur['scenes'] = [x.strip(' `') for x in v.split(',') if x.strip(' `')]
+            for sid in cur['scenes']:
+                if sid not in scene_ids:
+                    rep.err(where, f'{cur["id"]}: scene {sid} is not in the script')
+        elif k in ('kind', 'source', 'status', 'privacy', 'notes', 'priority'):
+            cur[k] = v
+            if k == 'kind' and v not in REF_KINDS:
+                rep.err(where, f'{cur["id"]}: kind must be one of {sorted(REF_KINDS)}')
+    for sid in none_scenes:
+        if sid not in scene_ids:
+            rep.err('docs/story/REFERENCES.md', f'"No reference needed" lists unknown scene {sid}')
+    return refs, none_scenes
+
+
 def run(roots, by_id, rep, write=True):
     boards = parse_boards(rep)
     for nid, b in boards.items():
@@ -168,6 +326,9 @@ def run(roots, by_id, rep, write=True):
                     have = sum(1 for n2 in [node] + node['children'] for l in n2['lines'] if l['type'] == el[1])
                     if have < idx:
                         rep.warn(f'{b["file"]}:{b["line"]}', f'{nid}: caption {el[1]} #{idx} has no matching line in the script')
+                check_frame(nid, f'{b["file"]}:{b["line"]}', fr, node, rep)
+    scene_ids = {n['id'] for r in roots for n in walk(r) if n['kind'] == 'Scene'}
+    refs, none_scenes = parse_refs(by_id, scene_ids, rep)
     groups = []
     counts = {}
     for root in roots:
@@ -176,10 +337,14 @@ def run(roots, by_id, rep, write=True):
             st = scene_status(scene, boards, rep)
             counts[st] = counts.get(st, 0) + 1
             scenes.append({'node': scene, 'status': st, 'hash': scene_hash(scene, boards)})
+            if st in ('drafted', 'approved', 'revise') and scene['id'] not in none_scenes \
+                    and not any(scene['id'] in r['scenes'] for r in refs) and refs:
+                rep.warn(f'Scene {scene["id"]}', 'storyboarded but not listed in docs/story/REFERENCES.md')
         groups.append({'root': root, 'scenes': scenes})
     if write:
         write_status(groups, counts)
-        write_viewer(groups, boards)
+        write_viewer(groups, boards, refs, none_scenes)
+        sync_plates(by_id, boards)
     return counts
 
 
@@ -209,6 +374,23 @@ def write_status(groups, counts):
     open(STATUS_MD, 'w', encoding='utf-8').write('\n'.join(out))
 
 
+def sync_plates(by_id, boards):
+    """Record in the manifest whether each art ID needs a generated plate or is drawn in code."""
+    if not os.path.exists(MANIFEST):
+        return
+    man = json.load(open(MANIFEST, encoding='utf-8'))
+    changed = False
+    for nid, b in boards.items():
+        node = by_id.get(nid)
+        art = node and node['meta'].get('art')
+        entry = art and man.get('assets', {}).get(art)
+        if entry is not None and entry.get('plate') != plate_of(b):
+            entry['plate'] = plate_of(b)
+            changed = True
+    if changed:
+        open(MANIFEST, 'w', encoding='utf-8').write(json.dumps(man, ensure_ascii=False, indent=2) + '\n')
+
+
 def copy_lines(node):
     return [{'t': l['type'], 's': l['speaker'], 'x': l['text'], 'st': l['status']}
             for l in node['lines'] if l['type'] != 'NOTE']
@@ -227,6 +409,7 @@ def panel_json(p, boards):
         out['title'] = p['meta'].get('title')
         out['arc'] = p['meta'].get('arc')
     if b:
+        out['plate'] = plate_of(b)
         out['board'] = {k: b[k] for k in ('shot', 'camera', 'scroll', 'transition', 'mobile', 'tags', 'refs',
                                           'note', 'variants') if k in b}
     kids = [panel_json(i, boards) for i in p['children']]
@@ -235,7 +418,7 @@ def panel_json(p, boards):
     return out
 
 
-def write_viewer(groups, boards):
+def write_viewer(groups, boards, refs=(), none_scenes=()):
     data = []
     for g in groups:
         r = g['root']
@@ -252,5 +435,8 @@ def write_viewer(groups, boards):
     if not os.path.exists(VIEWER_TPL):
         return
     tpl = open(VIEWER_TPL, encoding='utf-8').read()
-    blob = json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+    payload = {'groups': data, 'refs': [{k: r.get(k) for k in ('id', 'name', 'kind', 'source', 'status', 'privacy',
+                                                                  'priority', 'notes', 'scenes', 'section')} for r in refs],
+               'noRefScenes': sorted(none_scenes)}
+    blob = json.dumps(payload, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
     open(VIEWER_OUT, 'w', encoding='utf-8').write(tpl.replace('/*__STORY_DATA__*/null', blob))

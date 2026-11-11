@@ -8,6 +8,7 @@ transition: Hover/focus widens a card to ~50% and its neighbours narrow; the ima
 mobile: Cards stack vertically; tap expands one card in place to show the subtitle and the full image
 tags: GENERATE LATER
 note: Each card needs 4 images (desktop crop/full, mobile crop/full) of the same scene — 12 in total.
+note: Review of 11 Nov applied — the expanded state shows the captions (narration + subtitle) as code overlays; trading shows a real home-trader setup with a trade-log screen; RegiStudio shows a business to-do list instead of a pipeline board.
 
 variant At rest · three equal cards
 frame 16:9 desktop, resting
@@ -21,7 +22,8 @@ variant Hover · trading expanded
 frame 16:9 desktop, hover on card 1
 text 50 8 5 "WHAT I'M DOING NOW" ink center
 card 3 16 52 80 "ACTIVE TRADING" red
-cap SUB 6 70 46 1
+cap NAR 6 52 46 1
+cap SUB 6 68 46 1
 card 57 16 19 80 "REGISTUDIO"
 card 78 16 19 80 "NS"
 
@@ -34,44 +36,53 @@ label 10 66 "tapped: subtitle + full image"
 card 6 74 88 14 "SERVING NS"
 
 ## Item present-trading
-shot: Medium · over-the-shoulder at a desk at night
-camera: Pointer parallax on the chart only
+shot: Medium · over-the-shoulder at a home trading desk at night
+camera: Pointer parallax on the screens only
 mobile: Crop to the face lit by the screen and the red line
-tags: GENERATE LATER
-refs: Synthetic chart — no real balances, order IDs or tickers on screen
+tags: GENERATE LATER, REAL EVIDENCE (your home trading setup for layout)
+refs: Your desk and monitor layout; synthetic charts and trade log — no real balances, order IDs or tickers
+note: Screen contents (charts, trade-log rows) are code overlays on blank screens, so they can change without regenerating the plate.
 frame 3:4 card crop
 dark 0 0 100 100
 screen 30 20 66 44 "chart" red
 chart 34 26 58 32 red
 fig 22 100 70 bust r adult "Reginald"
 cap NAR 6 74 88
-frame 16:9 full (hover)
+frame 16:9 full (hover) · home trader setup
 dark 0 0 100 100
-box 4 70 92 4 "desk"
-screen 30 14 30 40 "chart" red
-chart 32 18 26 32 red
-screen 62 18 22 30 "notes"
-fig 20 100 60 sit r adult "Reginald"
-crop card 18 0 42 100
+box 4 62 92 4 "desk"
+screen 22 18 22 30 "charts"
+chart 24 26 18 18
+screen 46 10 26 38 "main chart" red
+chart 48 18 22 26 red
+screen 74 18 22 30 "trade log"
+list 75 22 20 "" "BUY 10 · 09:31|SELL 5 · 11:02|STOP moved|BUY 4 · 15:40"
+box 40 57 18 4 "keyboard"
+fig 16 100 56 sit r adult "Reginald"
+cap NAR 30 70 32
+cap SUB 64 70 32
+crop card 14 0 42 100
 
 ## Item present-registudio
 shot: Medium-wide · high angle over a planning desk
-mobile: Crop to hands on the proposal and the pipeline board behind
+mobile: Crop to the to-do list and hands
 tags: GENERATE LATER
-refs: Client names and logos never visible
+refs: Client names and logos never visible; the to-do items are code overlays you can edit any time
 frame 3:4 card crop
-paper 10 50 44 30 "proposal"
-box 40 10 54 36 "pipeline board" dash
-fig 70 100 64 sit l adult "Reginald"
+paper 8 6 56 46 ""
+list 12 10 48 "TO-DO" "Reply to new lead|Send proposal v2|Invoice: site build|Post case study"
+fig 72 100 62 sit l adult "Reginald"
 cap NAR 6 82 88
 frame 16:9 full (hover)
-box 4 72 92 4 "desk"
-box 8 10 40 40 "pipeline board" dash
-paper 30 56 20 14 "proposal"
-paper 52 58 16 12 "sketches"
-screen 70 30 20 26 "site draft"
-fig 60 100 62 sit l adult "Reginald"
-crop card 34 0 42 100
+box 4 70 92 4 "desk"
+paper 6 8 32 56 ""
+list 8 12 28 "TO-DO · REGISTUDIO" "Reply to new lead|Send proposal v2|Invoice: site build|Post case study|Book a client call"
+paper 42 58 14 10 "proposal"
+screen 70 22 24 34 "site draft"
+fig 56 100 54 sit r adult "Reginald"
+cap SUB 42 6 26
+cap NAR 40 76 56
+crop card 30 0 42 100
 
 ## Item present-ns
 shot: Medium · eye level · camera raised to the eye
@@ -84,11 +95,13 @@ box 42 26 16 10 "camera" red
 cap NAR 6 82 88
 frame 16:9 full (hover)
 floor 78
-box 4 20 30 40 "shot list board" dash
+box 4 40 24 30 "shot list board" dash
 fig 46 96 70 hold f adult "Reginald"
 box 41 34 12 8 "camera" red
 fig 76 96 52 stand l adult "team"
 fig 86 96 50 stand l adult
+cap SUB 4 6 30
+cap NAR 62 6 34
 crop card 30 0 42 100
 
 ## Panel C02-S01-P04

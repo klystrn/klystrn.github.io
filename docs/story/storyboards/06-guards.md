@@ -49,9 +49,9 @@ tags: GENERATE LATER, PLACEHOLDER (subject depends on your first assignment)
 frame 16:9
 dark 0 0 100 100
 box 6 8 88 84 "" 
-line 6 50 94 50 faint
-line 50 8 50 92 faint
-box 42 36 16 26 "" red
+line 6 50 94 50 faint code
+line 50 8 50 92 faint code
+box 42 36 16 26 "" red code
 fig 50 80 50 stand f adult "subject" faint
 cap NAR 8 76 40
 cap SKL 70 80 24
@@ -67,7 +67,7 @@ frame 4:3 planning
 box 8 60 84 8 "table · shot list"
 fig 28 82 50 sit r adult "Yap Shi Hao"
 fig 70 82 50 sit l adult "Reginald"
-cap DIA 4 6 60
+cap DIA 4 6 60 tail=29,38
 frame 16:9 parade coverage
 floor 70
 fig 20 74 26 stand f adult faint
@@ -87,13 +87,13 @@ transition: Clock ticks start building the daily-life board
 mobile: Vertical flow
 tags: PLACEHOLDER (illustrative workflow)
 frame 16:9
-box 4 34 18 20 "captions"
-arrow 22 44 28 44
-box 28 34 18 20 "event admin"
-arrow 46 44 52 44
-box 52 34 18 20 "workshops"
-arrow 70 44 76 44 red
-box 76 34 20 20 "chatbot" red
+box 4 34 18 20 "captions" code
+arrow 22 44 28 44 code
+box 28 34 18 20 "event admin" code
+arrow 46 44 52 44 code
+box 52 34 18 20 "workshops" code
+arrow 70 44 76 44 red code
+box 76 34 20 20 "chatbot" red code
 label 4 60 "illustrative workflow · human review on every output"
 cap NAR 4 6 50
 cap FAC 4 78 50
@@ -107,13 +107,13 @@ mobile: One column; tap expands
 tags: GENERATE LATER
 note: 4th card is waiting on your decision (keep / replace / delete).
 frame 16:9
-disc 50 8 4
+disc 50 8 4 code
 cap NAR 4 2 40
-card 6 14 43 38 "TRADING & MARKETS" red
-card 51 14 43 38 "BUILDING TOOLS"
-card 6 54 43 38 "DISCIPLINE & CREATIVITY"
-card 51 54 43 38 "4th card · TBD" dash
-cap PORTAL 52 93 44
+card 6 12 43 34 "TRADING & MARKETS" red
+card 51 12 43 34 "BUILDING TOOLS"
+card 6 48 43 34 "DISCIPLINE & CREATIVITY"
+card 51 48 43 34 "4th card · TBD" dash
+cap PORTAL 50 84 46
 
 ## Item guards-life-trading
 shot: Graphic strip · commute → home desk, joined by a red ticker ribbon

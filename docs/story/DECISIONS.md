@@ -3,6 +3,18 @@
 Resolved decisions. Newest first. The script (`docs/STORY-SCRIPT.md`) and `src/data/*.json`
 already reflect everything here.
 
+## 2026-11-11 — first storyboard reviews
+
+| Topic | Decision |
+|---|---|
+| Rahul Varma's title | Show **Executive Director, Global Head of Currencies & Emerging Markets Platform Technology** (promoted since writing). Letter text unchanged — it still signs off with his title at the time. |
+| ACE | Live site, content doc and Story aligned to Keith Wee's letter: Overall-in-charge, SCS@ACE — 129 Relay For Life 2020 volunteers, nearly 25% of SCS's national target. The unverified "+250% sign-ups" is gone. |
+| Hero (C01-S01) | Upper body, arms folded; scroll pushes into a close-up. REGINALD TAN larger, 陈彦杰 smaller. Silhouette shows rim-lit body detail, not one flat shade. `PORTFOLIO` eyebrow replaced by the nav bar. (Assumed: one-line name on desktop, two on mobile.) |
+| Present (C02-S01) | Trading expanded view = a real home-trader setup with a trade-log screen; RegiStudio shows a business to-do list instead of a pipeline board; expanded views show the captions. |
+| Overlays | Every caption, balloon, label, title, diagram, chart and screen content is drawn in code over a text-free generated plate. Only `plate: generate` art IDs go to Higgsfield. |
+| Frame bounds | All panel elements must stay inside the frame — enforced by the build (errors/warnings) and by auto-fitting in the viewer and Story. |
+| Reference images | `docs/story/REFERENCES.md` — from the drafted storyboards; incomplete arcs sidelined as pending. |
+
 ## 2026-11-11 — storyboarding phase started
 
 | Topic | Decision |

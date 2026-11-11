@@ -94,7 +94,7 @@
 
 | Position | Org | Years | Notes |
 |---|---|---|---|
-| Chairperson, ACE Board | SST | 2020 | Service-learning board; partners incl. Singapore Cancer Society, National Youth Council, Special Olympics SG; sign-ups +~250%; 100+ individual service hours |
+| Chairperson, ACE Board | SST | 2020 | Service-learning board; partners incl. Singapore Cancer Society, National Youth Council, Special Olympics SG; Overall-in-charge of SCS@ACE — 129 volunteers for Relay For Life 2020, nearly 25% of SCS's national target (UPDATED 2026-11-11 from Keith Wee's letter; replaces the unverified "+~250% sign-ups"); 100+ individual service hours |
 | Head Secretary, Overflow | NP | 2023–2024 | Logistics, admin, EXCO event prep; technical support; taught and ran multiple workshops |
 | Child Mentor Volunteer | Touch Young Arrows | 2023 | Tutoring underprivileged children: English, Mathematics, Science |
 | SME, cloud migration workload & data visualisation | JPMC CIB | 2024–2025 | Folded into JPMC experience card |

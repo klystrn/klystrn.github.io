@@ -27,7 +27,7 @@ mobile: Playable inset fills the width; booth image above
 tags: REAL EVIDENCE (Panel Party build/screens), GENERATE LATER (booth)
 frame 16:9
 floor 80
-screen 30 10 40 44 "Panel Party (playable)" red
+screen 30 10 40 44 "Panel Party (playable)" red real
 fig 20 92 44 stand r young "Reginald"
 fig 66 98 30 back l teen faint
 fig 78 98 30 back l teen faint
@@ -74,12 +74,12 @@ transition: Return to chapter
 mobile: Vertical
 tags: PLACEHOLDER
 frame 16:9
-disc 50 50 26
-screen 42 40 16 18 "tool" red
-arrow 50 40 20 14
-arrow 58 50 86 30
-arrow 50 58 24 84
-arrow 58 56 82 82
+disc 50 50 26 code
+screen 42 40 16 18 "tool" red code
+arrow 50 40 20 14 code
+arrow 58 50 86 30 code
+arrow 50 58 24 84 code
+arrow 58 56 82 82 code
 label 10 10 "rates"
 label 84 26 "FX"
 label 14 90 "commodities"
@@ -115,11 +115,11 @@ fig 30 96 70 present r adult "teacher"
 fig 70 96 64 back l teen "Reginald"
 paper 46 50 10 12 "letter" red
 frame 16:9 the reader
-dark 0 0 100 100
-paper 30 6 40 88 "letter (real text, HTML)"
-box 76 10 16 8 "zoom +/−"
-box 76 22 16 8 "original PDF"
-box 76 84 16 8 "← chapter" red
+dark 0 0 100 100 code
+paper 30 6 40 88 "letter (real text, HTML)" code
+box 76 10 16 8 "zoom +/−" code
+box 76 22 16 8 "original PDF" code
+box 76 84 16 8 "← chapter" red code
 
 ## Panel A-TK-S01-P01
 shot: Medium · the ACE room after the recruitment drive, flyers on the table
@@ -144,9 +144,9 @@ fig 30 96 70 present r adult "Keith Wee"
 fig 70 96 64 back l teen "Reginald"
 paper 46 50 10 12 "letter" red
 frame 16:9 the reader
-dark 0 0 100 100
-paper 30 6 40 88 "letter (real text, HTML)"
-box 76 84 16 8 "← chapter" red
+dark 0 0 100 100 code
+paper 30 6 40 88 "letter (real text, HTML)" code
+box 76 84 16 8 "← chapter" red code
 
 ## Panel A-TD-S01-P01
 shot: Medium · NP ICT staff room
@@ -171,9 +171,9 @@ fig 30 96 70 present r adult "Dimuthu Makawita"
 fig 70 96 64 back l young "Reginald"
 paper 46 50 10 12 "letter" red
 frame 16:9 the reader
-dark 0 0 100 100
-paper 30 6 40 88 "letter (real text, HTML)"
-box 76 84 16 8 "← chapter" red
+dark 0 0 100 100 code
+paper 30 6 40 88 "letter (real text, HTML)" code
+box 76 84 16 8 "← chapter" red code
 
 ## Panel A-TV-S01-P01
 shot: Medium · NP ICT corridor / consultation room, workshop slides on the table
@@ -197,9 +197,9 @@ fig 30 96 70 present r adult "Victor Lum"
 fig 70 96 64 back l young "Reginald"
 paper 46 50 10 12 "letter" red
 frame 16:9 the reader
-dark 0 0 100 100
-paper 30 6 40 88 "letter (real text, HTML)"
-box 76 84 16 8 "← chapter" red
+dark 0 0 100 100 code
+paper 30 6 40 88 "letter (real text, HTML)" code
+box 76 84 16 8 "← chapter" red code
 
 ## Panel A-TR-S01-P01
 shot: Medium · JPM desk near the end of the internship
@@ -225,9 +225,9 @@ fig 30 96 70 present r adult "Rahul Varma"
 fig 70 96 64 back l young "Reginald"
 paper 46 50 10 12 "letter" red
 frame 16:9 the reader
-dark 0 0 100 100
-paper 30 6 40 88 "letter (real text, HTML)"
-box 76 84 16 8 "← chapter" red
+dark 0 0 100 100 code
+paper 30 6 40 88 "letter (real text, HTML)" code
+box 76 84 16 8 "← chapter" red code
 
 ## Panel A-TY2-S01-P01
 shot: Wide concept · parade square at dusk, flag on its pole
@@ -254,14 +254,14 @@ transition: Cut to the team's whiteboard (A-FR-S02, waiting on your edits)
 mobile: Diagram vertical; notes below
 tags: PLACEHOLDER, REAL EVIDENCE (AIDC brief, if shareable)
 frame 16:9
-box 6 34 16 16 "sign-in sheet"
-arrow 22 42 32 42
-box 32 34 16 16 "manual count"
-arrow 48 42 58 42
-box 58 34 16 16 "records" dash
-paper 78 10 18 14 "accuracy"
-paper 78 30 18 14 "speed"
-paper 78 50 18 14 "privacy" red
+box 6 34 16 16 "sign-in sheet" code
+arrow 22 42 32 42 code
+box 32 34 16 16 "manual count" code
+arrow 48 42 58 42 code
+box 58 34 16 16 "records" dash code
+paper 78 10 18 14 "accuracy" code
+paper 78 30 18 14 "speed" code
+paper 78 50 18 14 "privacy" red code
 cap NAR 4 70 60
 
 ## Panel A-NB-S01-P01
@@ -287,11 +287,11 @@ transition: Cut to the Imperium WIP screen (A-IM-S03, waiting on your edits)
 mobile: Stages stack
 tags: REAL EVIDENCE (ATW output screenshots, scrubbed)
 frame 16:9
-screen 4 14 28 56 "scans"
-arrow 32 42 36 42
-screen 36 14 28 56 "analysis"
-arrow 64 42 68 42 red
-screen 68 14 28 56 "trade-ready summary" red
+screen 4 14 28 56 "scans" real
+arrow 32 42 36 42 code
+screen 36 14 28 56 "analysis" real
+arrow 64 42 68 42 red code
+screen 68 14 28 56 "trade-ready summary" red real
 cap FAC 4 76 60
 cap SKL 70 80 26
 
@@ -303,16 +303,16 @@ transition: Cut to the renders (A-MC-S02, waiting on your edits)
 mobile: Table on top, city below
 tags: PLACEHOLDER, REAL EVIDENCE (Market City renders when available)
 frame 16:9
-box 4 14 40 60 "table of numbers"
-line 4 26 44 26 faint
-line 4 38 44 38 faint
-line 4 50 44 50 faint
-arrow 46 44 54 44 red
-building 58 40 6 34 ""
-building 66 24 8 50 "" 
-building 76 46 6 28 ""
-building 84 30 8 44 "" 
-floor 74
+box 4 14 40 60 "table of numbers" code
+line 4 26 44 26 faint code
+line 4 38 44 38 faint code
+line 4 50 44 50 faint code
+arrow 46 44 54 44 red code
+building 58 40 6 34 "" code
+building 66 24 8 50 "" code
+building 76 46 6 28 "" code
+building 84 30 8 44 "" code
+floor 74 code
 cap NAR 4 80 60
 
 ## Panel A-RS-S03-P01
@@ -324,7 +324,7 @@ mobile: Stacked
 tags: PLACEHOLDER (only real, scrubbed pricing history)
 frame 16:9
 card 8 10 36 66 "BEFORE · one price" dash
-arrow 46 42 54 42 red
+arrow 46 42 54 42 red code
 card 56 10 36 66 "AFTER · packages by segment" red
 cap NAR 4 82 60
 
@@ -336,10 +336,10 @@ transition: Return to chapter
 mobile: Columns stack
 tags: PLACEHOLDER
 frame 16:9
-box 4 8 92 70 "planning board" dash
-box 8 14 40 58 "watch price history"
+box 4 8 92 70 "planning board" dash code
+box 8 14 40 58 "watch price history" code
 chart 12 26 32 30 red
-box 52 14 40 58 "art: price per inch"
-box 60 30 20 20 "" 
+box 52 14 40 58 "art: price per inch" code
+box 60 30 20 20 "" code
 text 80 70 6 "CONCEPT" red center
 cap NAR 4 82 60

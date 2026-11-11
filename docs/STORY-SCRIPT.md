@@ -34,11 +34,10 @@ type: TITLE_HERO
 art: hero-silhouette
 interaction: pointer-parallax
 ```
-- VISUAL: Black screen; narrow red rim light reveals current-age Reginald as a crimson silhouette. `PORTFOLIO` types in above the name; ivory `REGINALD TAN` lands huge; red `陈彦杰` overlaps the centre of the Latin letters.
-- VISUAL: Pose and 1- vs 2-line name chosen after the wireframe comparison (A folded arms · B close-up · C three-quarter turn).
-- FAC {approved}: PORTFOLIO
+- VISUAL: Black screen; red rim light reveals current-age Reginald, upper body with arms folded, as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller red `陈彦杰` overlaps the centre of the Latin letters.
+- VISUAL: Scrolling pushes the camera from the upper body into a close-up of the face while the name lifts away.
 - ALT {draft}: A red silhouette of Reginald Tan on black, under his name in English and Chinese.
-- NOTE: No narration, awards or job titles in the hero. Pointer moves a red glint 1–2°; touch gets a static frame. CJK font subset to the three glyphs.
+- NOTE: No narration, awards or job titles in the hero. The `PORTFOLIO` eyebrow is replaced by the nav bar (review, 11 Nov). Pointer moves a red glint 1–2°; touch gets a static frame. CJK font subset to the three glyphs. One-line name on desktop, two lines on mobile.
 
 #### Panel C01-S01-P02 · Three-way fracture
 ```story
@@ -79,7 +78,7 @@ art: present-trading
 arc: trading-nebius
 skills: [Markets research, Risk management]
 ```
-- VISUAL: Current Reginald reviewing a generic, synthetic market display; one red decision line; no balances or order IDs.
+- VISUAL: Current Reginald at his home trading setup — several monitors with charts and a trade-log screen (synthetic data); one red decision line; no balances or order IDs.
 - SUB {draft}: Trading since 2024 — now a disciplined process for volatile, AI-linked equities: research, risk decisions and review.
 - NAR {draft}: At the market, I have to decide what the evidence is actually telling me.
 - PORTAL {draft}: Developed a high-volatility trading strategy
@@ -91,7 +90,7 @@ art: present-registudio
 arc: registudio-business
 skills: [Client discovery, Pricing strategy]
 ```
-- VISUAL: Desk with proposal drafts, a rough pipeline board and concept sketches; clients anonymous.
+- VISUAL: Desk with a to-do list for the business (leads, proposals, invoices, site builds), proposal drafts and sketches; clients anonymous.
 - SUB {draft}: Building a web-services business — finding the right clients, defining an offer, learning to price and deliver.
 - NAR {draft}: When it's my own business, a finished site is only part of the work.
 - PORTAL {draft}: Built a web-services business from the ground up
@@ -169,7 +168,7 @@ art: sst-ace-drive
 portal: [testimonial-keith]
 ```
 - VISUAL: After-class ACE board planning, then the recruitment booth — flyers, a sign-up board, students queueing. Focus is on talking to people, not medals. Students anonymous.
-- NAR {draft}: As ACE Chairperson, an idea only matters if I can get people to act on it.
+- NAR {draft}: As an ACE leader, an idea only matters if I can get people to act on it.
 - THO {draft}: The code can be right. The plan still has to work with people.
 - FAC {draft}: Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target
 - SKL {draft}: Leadership, Recruitment

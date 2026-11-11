@@ -80,7 +80,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "arc-frats-build": {
       "scene_ids": [
@@ -242,7 +243,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-guards-life-gym": {
       "scene_ids": [
@@ -269,7 +271,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-guards-media-brief": {
       "scene_ids": [
@@ -404,7 +407,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "evidence"
     },
     "arc-jpm-migration": {
       "scene_ids": [
@@ -458,7 +462,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "arc-jpm-retrieval-problem": {
       "scene_ids": [
@@ -566,7 +571,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "arc-market-city-renders": {
       "scene_ids": [
@@ -620,7 +626,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-nebius-lessons": {
       "scene_ids": [
@@ -728,7 +735,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-overflow-planning": {
       "scene_ids": [
@@ -755,7 +763,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-registudio-auction-house": {
       "scene_ids": [
@@ -782,7 +791,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "arc-registudio-delivery": {
       "scene_ids": [
@@ -863,7 +873,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "arc-testimonial-dimuthu-handover": {
       "scene_ids": [
@@ -890,7 +901,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-dimuthu-staffroom": {
       "scene_ids": [
@@ -917,7 +929,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-jovita-classroom": {
       "scene_ids": [
@@ -944,7 +957,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-jovita-handover": {
       "scene_ids": [
@@ -971,7 +985,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-keith-ace": {
       "scene_ids": [
@@ -998,7 +1013,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-keith-handover": {
       "scene_ids": [
@@ -1025,7 +1041,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-rahul-desk": {
       "scene_ids": [
@@ -1052,7 +1069,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-rahul-handover": {
       "scene_ids": [
@@ -1079,7 +1097,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-victor-advisor": {
       "scene_ids": [
@@ -1106,7 +1125,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-victor-handover": {
       "scene_ids": [
@@ -1133,7 +1153,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-testimonial-yap-teaser": {
       "scene_ids": [
@@ -1160,7 +1181,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "arc-tya-commitment": {
       "scene_ids": [
@@ -1241,7 +1263,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "future-fade": {
       "scene_ids": [
@@ -1268,7 +1291,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "future-glimpses": {
       "scene_ids": [
@@ -1295,7 +1319,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-ai-process": {
       "scene_ids": [
@@ -1322,7 +1347,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "guards-bmt": {
       "scene_ids": [
@@ -1349,7 +1375,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-card-building": {
       "scene_ids": [
@@ -1376,7 +1403,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-card-discipline": {
       "scene_ids": [
@@ -1403,7 +1431,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-card-media": {
       "scene_ids": [
@@ -1457,7 +1486,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-first-camera": {
       "scene_ids": [
@@ -1484,7 +1514,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-media-team": {
       "scene_ids": [
@@ -1511,7 +1542,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-pneumonia-transition": {
       "scene_ids": [
@@ -1538,7 +1570,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "hero-fracture": {
       "scene_ids": [
@@ -1565,7 +1598,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "hero-silhouette": {
       "scene_ids": [
@@ -1592,7 +1626,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "jpm-capitaspring-arrival": {
       "scene_ids": [
@@ -1619,7 +1654,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "jpm-card-migration": {
       "scene_ids": [
@@ -1646,7 +1682,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "jpm-card-multilob": {
       "scene_ids": [
@@ -1673,7 +1710,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "jpm-card-retrieval": {
       "scene_ids": [
@@ -1700,7 +1738,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "jpm-card-visualisation": {
       "scene_ids": [
@@ -1727,7 +1766,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "jpm-conference-room": {
       "scene_ids": [
@@ -1754,7 +1794,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "jpm-fatigue-choice": {
       "scene_ids": [
@@ -1781,7 +1822,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "jpm-final-presentation": {
       "scene_ids": [
@@ -1808,7 +1850,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "jpm-grafana-update": {
       "scene_ids": [
@@ -1835,7 +1878,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "jpm-long-workday": {
       "scene_ids": [
@@ -1862,7 +1906,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "jpm-migration-brief": {
       "scene_ids": [
@@ -1889,7 +1934,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "np-jpm-call": {
       "scene_ids": [
@@ -1916,7 +1962,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "np-jpm-offer": {
       "scene_ids": [
@@ -1943,7 +1990,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "np-overflow-workshop": {
       "scene_ids": [
@@ -1970,7 +2018,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "np-tea-shop-frats": {
       "scene_ids": [
@@ -1997,7 +2046,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "evidence"
     },
     "np-tya-tutoring": {
       "scene_ids": [
@@ -2024,7 +2074,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "np-workshop-open": {
       "scene_ids": [
@@ -2051,7 +2102,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "present-merge": {
       "scene_ids": [
@@ -2078,7 +2130,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "present-ns": {
       "scene_ids": [
@@ -2105,7 +2158,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "present-registudio": {
       "scene_ids": [
@@ -2132,7 +2186,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "present-trading": {
       "scene_ids": [
@@ -2159,7 +2214,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "registudio-design-playground": {
       "scene_ids": [
@@ -2186,7 +2242,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "evidence"
     },
     "registudio-first-call": {
       "scene_ids": [
@@ -2213,7 +2270,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "registudio-friend-call": {
       "scene_ids": [
@@ -2240,7 +2298,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "registudio-pipeline": {
       "scene_ids": [
@@ -2267,7 +2326,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "code"
     },
     "registudio-pricing": {
       "scene_ids": [
@@ -2294,7 +2354,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "registudio-reflection": {
       "scene_ids": [
@@ -2321,7 +2382,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "sst-ace-drive": {
       "scene_ids": [
@@ -2348,7 +2410,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "sst-drct": {
       "scene_ids": [
@@ -2375,7 +2438,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "sst-friends-building": {
       "scene_ids": [
@@ -2402,7 +2466,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "sst-python-classroom": {
       "scene_ids": [
@@ -2429,7 +2494,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     }
   }
 }

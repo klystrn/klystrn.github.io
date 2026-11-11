@@ -2,12 +2,15 @@
 
 ```story
 name: Rahul Varma
-title: Senior Vice President, Manager of Software Engineering, JPMorgan Chase & Co.
+title: Executive Director, Global Head of Currencies & Emerging Markets Platform Technology, J.P. Morgan
 data_ref: testimonials:rahul-varma
 date: 8 January 2026
 status: transcribed
 ```
 
+> **Title:** the reader shows Rahul's current title (Executive Director — promoted since he wrote
+> the letter). The letter text below is unchanged and still signs off with his title at the time.
+>
 > Transcribed verbatim from the PDF you supplied on 2026-11-11 (Story chat). Removed for the
 > public repo: email address and phone number. Check it against the PDF, then change `status` to `approved` — the
 > Story reader only shows text that is `approved` or `published`.

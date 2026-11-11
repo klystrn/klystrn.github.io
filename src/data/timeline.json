@@ -8,7 +8,7 @@
       "miles": [
         { "b": "3M makeathon ", "text": "portable water filter for third-world water shortage", "when": "2018" },
         { "b": "Sorts ships on App Store ", "text": "lead programmer for iOS app at 14", "when": "2019" },
-        { "b": "Chairperson, ACE board ", "text": "provided 25% of Singapore Cancer Society's volunteers", "when": "2020" },
+        { "b": "Overall-in-charge, SCS@ACE ", "text": "129 Relay For Life volunteers, nearly 25% of Singapore Cancer Society's national target", "when": "2020" },
         { "b": "DrCT International Olympiad ", "text": "Bronze Award", "when": "2021" },
         { "b": "Graduated ", "text": "4 distinctions", "when": "2021" }
       ]
@@ -63,7 +63,7 @@
     { "msg": "xtra: child mentor @ Touch Young Arrows", "tag": "xtra", "hash": "e0b1c55", "when": "2023", "c": "#ff7eb6" },
     { "msg": "feat: Ngee Ann Scholarship · Director's List ×2", "tag": "np", "hash": "e19d3a4", "when": "2022", "c": "#b18aff" },
     { "msg": "merge: graduated SST, O-Levels with Computing", "tag": "sst", "hash": "58f2b77", "when": "2021", "c": "#5aa2ff" },
-    { "msg": "role: chairperson, ACE board (+250% sign-ups)", "tag": "sst", "hash": "b90e441", "when": "2020", "c": "#5aa2ff" },
+    { "msg": "role: overall-in-charge, SCS@ACE (129 Relay For Life volunteers)", "tag": "sst", "hash": "b90e441", "when": "2020", "c": "#5aa2ff" },
     { "msg": "init: sorts-ios, first shipped product, age 14", "tag": "sst", "hash": "0000001", "when": "2019", "c": "#5aa2ff" },
     { "msg": "xtra: 3M makeathon, portable water filter", "tag": "xtra", "hash": "3ma8e01", "when": "2018", "c": "#ff7eb6" },
     { "msg": "initial commit, hello world", "tag": "root", "hash": "genesis", "when": "2005", "c": "#8792a4" }

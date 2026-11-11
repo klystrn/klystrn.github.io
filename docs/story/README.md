@@ -11,6 +11,8 @@
 | [`STORYBOARD-STATUS.md`](STORYBOARD-STATUS.md) | Generated: every scene's storyboard state. |
 | [`storyboards/`](storyboards/) | Storyboard sketches, one file per chapter (+ arcs). |
 | [`viewer/`](viewer/) | Storyboard Room: `template.html` (source) → `index.html` (generated; open locally or at https://claude.ai/artifact/SwkpGXkwGMVKsYQV5MVN5x). |
+| [`REFERENCES.md`](REFERENCES.md) | Reference images to collect before generation (by scene; pending arcs sidelined). |
+| [`STORYBOARD-REVIEWS.md`](STORYBOARD-REVIEWS.md) | Log of your storyboard reviews and what was done. |
 | [`letters/`](letters/) | Verbatim testimonial letters (one file per person). |
 
 Related: `public/story/manifest.json` (art registry) · `scripts/story/build.py` (validator) ·
