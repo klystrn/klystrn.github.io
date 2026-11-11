@@ -6,3 +6,5 @@ dist
 test-results
 playwright-report
 blob-report
+
+__pycache__/
