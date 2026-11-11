@@ -44,6 +44,7 @@ Main path: **37 panels** (budget 30–42). 20 arcs: `frats`, `overflow`, `tya`, 
 | `src/story/story.json` | Generated — never hand-edit | generated (dev) |
 | `public/story/manifest.json` | Art registry: provenance, rights, status, variants | 88 IDs, all `pending` |
 | `.claude/skills/portfolio-story-content-update/` | How Claude edits Story content safely | current |
+| `docs/story/storyboards/`, `docs/story/viewer/` | Storyboards + Storyboard Room (artifact) | 49/67 scenes drafted |
 | `src/modes/story/`, `/story` route | Components and routes | **not built** (Phase E) |
 | `src/modes/cv/`, `/cv` route | Interactive CV | **not built** (Phase F) |
 
@@ -51,7 +52,7 @@ Main path: **37 panels** (budget 30–42). 20 arcs: `frats`, `overflow`, `tya`, 
 | Phase | Work | Gate (explicit go from Reginald) |
 |---|---|---|
 | **A** Script | Fill `EDIT-LIST.md`; mark lines `{approved}` | Script sign-off |
-| **B** Storyboards | Hero wireframes; rough boards per chapter/arc tagged `PLACEHOLDER / REAL EVIDENCE / GENERATE LATER / NEEDS PERMISSION`; numbered master asset list with cost estimates | Storyboards + asset list approved |
+| **B** Storyboards *(in progress)* | Every scene gets a storyboard (`docs/story/storyboards/`), reviewed in the Storyboard Room (https://claude.ai/artifact/SwkpGXkwGMVKsYQV5MVN5x); then a numbered master asset list with cost estimates | **No asset generation for a scene until its storyboard is approved**; asset list approved |
 | **C** Soul ID characters | Verify current Higgsfield models/prices (read-only, with permission). Consented photos kept outside git. Character bible and age variants as stills first | "Approve Batch C-n" per batch |
 | **D** Kling transitions | Only from approved stills and locked storyboards; still fallbacks | "Approve Batch D-n" per batch |
 | **E0** Placeholder | Inert `/story/*` Coming Soon route; `/` untouched; tests | "Start placeholder" |

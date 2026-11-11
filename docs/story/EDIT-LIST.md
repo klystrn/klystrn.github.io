@@ -1,6 +1,6 @@
 # What you need to edit — and what can be storyboarded now
 
-**Updated 2026-11-11.** Work through this on your desktop clone, then run:
+**Updated 2026-11-11 (storyboarding started).** Work through this on your desktop clone, then run:
 
 ```bash
 python3 scripts/story/build.py --todo    # the live version of section 1
@@ -50,9 +50,18 @@ not publish; a deleted panel just disappears (don't reuse its ID).
 
 ## 2. Not marked in the script, but needs you
 
-1. **Paste the four testimonial letters** into `docs/story/letters/{jovita-tang,keith-wee,dimuthu-makawita,rahul-varma}.md`
-   under `## Text`, verbatim, then set `status: approved`. (Drive was blocked from the build
-   session, so I couldn't transcribe them.) Leave `yap-shi-hao.md` as `awaiting-text`.
+1. **Check the six letter transcriptions** in `docs/story/letters/` against your PDFs, then set
+   `status: approved` in each. I copied them verbatim from the PDFs you uploaded and removed only
+   phone numbers, emails, postal addresses, signature blocks and a LinkedIn URL. **Victor Lum** is
+   new — I added a `testimonial-victor` arc linked from the Overflow panel (C04-S02-P01). He isn't in
+   `src/data/testimonials.json` (the live site) yet; say if you want him there too.
+   - **Rahul's title differs:** his letter signs off *Senior Vice President, Manager of Software
+     Engineering*; the live site says *Executive Director, Global Head of Currencies & Emerging
+     Markets Platform Technology*. Which should both use? (The build warns until they match.)
+   - **ACE wording:** Keith's letter says you were *Overall-In-Charge of SCS@ACE*, and the team
+     gathered *129 volunteers for Relay For Life 2020, nearly 25% of SCS's national target*. I
+     updated the Story fact (C03-S02-P01) to say exactly that. The live site still says
+     "Chairperson, ACE board · provided 25% of SCS's volunteers" — keep or align?
 2. **Teacher titles.** The script uses the live-site titles from `src/data/testimonials.json`:
    Jovita Tang — *ML & NLP Specialist · Mathematics & Computing, SST*; Keith Wee —
    *Service-Learning In-Charge · Mathematics, SST*. Your manuscript said "Computing+, form teacher"
@@ -79,43 +88,17 @@ not publish; a deleted panel just disappears (don't reuse its ID).
 
 ---
 
-## 3. What can be storyboarded now
+## 3. Storyboards
 
-Storyboards are rough layout boards (boxes, silhouettes, camera, text placement). They don't need
-final copy or any generated art.
+Storyboarding has started. **49 of 67 scenes are drafted** (all 28 main-story scenes plus 21 arc
+scenes); 18 arc scenes wait on the arc gaps in section 1.
 
-### Ready now — 34 of 37 main-path panels
-| Chapter | Panels |
-|---|---|
-| Opening | `C01-S01-P01` as 6 wireframes (A/B/C × 1/2 lines), `C01-S01-P02` |
-| Present | `C02-S01-P01` (3 cards: crop vs full framing), `C02-S01-P04` |
-| SST | `C03-S01-P01`, `C03-S01-P02`, `C03-S02-P01`, `C03-S03-P01` |
-| NP | `C04-S01-P01`, `C04-S01-P02`, `C04-S02-P01`, `C04-S03-P01`, `C04-S05-P01`, `C04-S05-P02` |
-| JPMorganChase | `C05-S01-P01` → `C05-S07-P01` (all 8, plus the 4 milestone cards) |
-| Guards | `C06-S01-P01`, `C06-S01-P02`, `C06-S03-P01`, `C06-S03-P02` |
-| RegiStudio | `C07-S01-P01`, `C07-S02-P01`, `C07-S03-P01`, `C07-S05-P01`, `C07-S07-P01` |
-| Future | `C08-S01-P01`, `C08-S02-P01`, `C08-S03-P01` |
-
-### Ready with a placeholder — 2
-- `C06-S02-P01` (first camera) — frame now, swap the subject when you name the assignment.
-- `C07-S05-P02` (Design Playground) — frame now, real components drop in later.
-
-### Waiting on you — 1
-- `C06-S04-P01` daily-life board — decide the 4th card first.
-
-### Arcs
-- **Ready now:** `overflow`, `guards-life`, `jpm-multilob`, all five testimonial arcs (shared
-  three-scene layout; Yap stays a "coming soon" teaser).
-- **After your arc edits (section 1):** `frats`, `tya`, `trading-nebius`, `imperium`,
-  `market-city`, `guards-media`, `guards-ai`, `registudio-business`, `design-playground`,
-  `jpm-data-retrieval`, `jpm-visualisation`, `jpm-migration`.
-
-### Shared components to board alongside
-Chapter title plate · arc title plate · selection panel (3-up, 2×2, mobile stack) · letter reader ·
-skills sidecar · portal inset · right-side chapter rail + mode dock (desktop) and the single mobile
-drawer.
-
----
+- Review them in the **Storyboard Room**: https://claude.ai/artifact/SwkpGXkwGMVKsYQV5MVN5x — pick a scene, then *Approve storyboard* or
+  *Request changes* (with a note). Then ask Claude to "sync storyboard reviews".
+- Live status list: `docs/story/STORYBOARD-STATUS.md` (generated on every build).
+- Format and how approval works: `docs/story/STORYBOARDS.md`.
+- **Decide while reviewing:** hero pose A/B/C and 1- vs 2-line name (scene `C01-S01`), and the
+  4th daily-life card (`C06-S04`).
 
 ## 4. Reference material to gather for storyboarding (keep out of the public repo)
 

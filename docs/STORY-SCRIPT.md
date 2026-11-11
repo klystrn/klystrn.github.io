@@ -171,7 +171,7 @@ portal: [testimonial-keith]
 - VISUAL: After-class ACE board planning, then the recruitment booth — flyers, a sign-up board, students queueing. Focus is on talking to people, not medals. Students anonymous.
 - NAR {draft}: As ACE Chairperson, an idea only matters if I can get people to act on it.
 - THO {draft}: The code can be right. The plan still has to work with people.
-- FAC {draft}: Chairperson, ACE board (2020) — provided 25% of Singapore Cancer Society's volunteers
+- FAC {draft}: Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target
 - SKL {draft}: Leadership, Recruitment
 - PORTAL {draft}: Read Keith Wee's testimonial
 
@@ -188,7 +188,7 @@ data_ref: awards:DrCT International, Bronze
 - VISUAL: Generic online-test UI and a ticking clock (black and white), then the real Bronze certificate revealed in muted gold with a red edge. Exit: a whiteboard line extends into the NP chapter.
 - NAR {draft}: Some challenges are quieter. A screen, a clock, and a question I don't know yet.
 - SFX {draft}: TICK
-- FAC {draft}: DrCT International — Bronze (2021)
+- FAC {draft}: DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)
 - NOTE: Use a scan of the real certificate, not generated award text.
 
 ---
@@ -238,7 +238,7 @@ data_ref: projects:frts
 ```story
 type: PANEL_STANDARD
 art: np-overflow-workshop
-portal: [overflow]
+portal: [overflow, testimonial-victor]
 data_ref: projects:pnlp
 ```
 - VISUAL: Reginald explaining a concept to peers; a partial Panel Party screen slides in at the side. Never implies he built the whole game.
@@ -246,6 +246,7 @@ data_ref: projects:pnlp
 - FAC {draft}: Head Secretary, Overflow · 16 workshops taught
 - SKL {draft}: Teaching, Game design
 - PORTAL {draft}: Led workshops and helped build Panel Party
+- PORTAL {draft}: Read Victor Lum's testimonial
 
 ### Scene C04-S03 · Touch Young Arrows
 
@@ -1336,6 +1337,37 @@ art: arc-testimonial-dimuthu-staffroom
 ```story
 type: PANEL_TESTIMONIAL
 art: arc-testimonial-dimuthu-handover
+```
+
+---
+
+# Arc testimonial-victor · Victor Lum
+```story
+kind: testimonial
+parent: C04-S02-P01
+title: A LETTER FROM VICTOR LUM
+portal: Read Victor Lum's testimonial
+letter: victor-lum
+```
+
+## Story A-TV · Testimonial
+
+### Scene A-TV-S01 · Introduction
+
+#### Panel A-TV-S01-P01 · Three years of advising
+```story
+type: PANEL_STANDARD
+art: arc-testimonial-victor-advisor
+```
+- VISUAL: An NP ICT corridor or consultation room; NP-age Reginald with his advisor, a stack of workshop slides between them.
+- NAR {draft}: For three years, one advisor keeps track of the whole picture — the internship, the workshops, the rest.
+
+### Scene A-TV-S02 · The letter
+
+#### Panel A-TV-S02-P01 · Over the shoulder
+```story
+type: PANEL_TESTIMONIAL
+art: arc-testimonial-victor-handover
 ```
 
 ---

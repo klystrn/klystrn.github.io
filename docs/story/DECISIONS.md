@@ -3,6 +3,17 @@
 Resolved decisions. Newest first. The script (`docs/STORY-SCRIPT.md`) and `src/data/*.json`
 already reflect everything here.
 
+## 2026-11-11 — storyboarding phase started
+
+| Topic | Decision |
+|---|---|
+| Branch | All changes go straight to `main` from now on (each push deploys the live site). |
+| Storyboard gate | Every scene gets its own storyboard; no Higgsfield generation for a scene until its storyboard is approved. |
+| Review tool | Storyboard Room artifact; reviews saved there are synced into the script as `storyboard: approved / revise`. |
+| Letters | Six letters supplied as PDFs; transcribed verbatim (contact details removed), status `transcribed` until you approve. |
+| Victor Lum | New testimonial (Senior Lecturer, School of ICT, NP; your advisor for 3 years) → arc `testimonial-victor`, linked from C04-S02-P01. |
+| ACE | Per Keith Wee's letter: Overall-In-Charge of SCS@ACE; 129 volunteers for Relay For Life 2020, nearly 25% of SCS's national target. |
+
 ## 2026-11-11 — answers to the v0.3 audit
 
 | # | Topic | Decision | Applied in |

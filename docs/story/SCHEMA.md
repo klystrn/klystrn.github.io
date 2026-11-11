@@ -113,8 +113,8 @@ skills not found in `src/data/skills.json`.
 ## 6. Testimonial letters
 
 `docs/story/letters/<slug>.md` — a `story` meta block (`name`, `title`, `data_ref`, `status`)
-followed by `## Text` with the verbatim letter. Status: `awaiting-text` → `approved` →
-`published`. The reader only renders text whose status is `approved` or `published`. Never write,
+followed by `## Text` with the verbatim letter. Status: `awaiting-text` → `transcribed` (text
+pasted, not yet checked) → `approved` → `published`. The reader only renders text whose status is `approved` or `published`. Never write,
 paraphrase or "improve" letter text.
 
 ## 7. Asset manifest (`public/story/manifest.json`)

@@ -1081,6 +1081,60 @@
       },
       "motion": null
     },
+    "arc-testimonial-victor-advisor": {
+      "scene_ids": [
+        "A-TV-S01-P01"
+      ],
+      "kind": "image",
+      "description": "An NP ICT corridor or consultation room; NP-age Reginald with his advisor, a stack of workshop slides between them.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
+    "arc-testimonial-victor-handover": {
+      "scene_ids": [
+        "A-TV-S02-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
+    },
     "arc-testimonial-yap-teaser": {
       "scene_ids": [
         "A-TY2-S01-P01"

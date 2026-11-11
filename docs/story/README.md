@@ -7,6 +7,10 @@
 | [`SCHEMA.md`](SCHEMA.md) | Script format: headings, IDs, meta blocks, copy-line prefixes, statuses. |
 | [`DECISIONS.md`](DECISIONS.md) | Resolved decisions log. |
 | [`PRODUCTION-PLAN.md`](PRODUCTION-PLAN.md) | Phases A–G, gates, generation approval form, architecture notes. |
+| [`STORYBOARDS.md`](STORYBOARDS.md) | Storyboard sketch format and how approval works. |
+| [`STORYBOARD-STATUS.md`](STORYBOARD-STATUS.md) | Generated: every scene's storyboard state. |
+| [`storyboards/`](storyboards/) | Storyboard sketches, one file per chapter (+ arcs). |
+| [`viewer/`](viewer/) | Storyboard Room: `template.html` (source) → `index.html` (generated; open locally or at https://claude.ai/artifact/SwkpGXkwGMVKsYQV5MVN5x). |
 | [`letters/`](letters/) | Verbatim testimonial letters (one file per person). |
 
 Related: `public/story/manifest.json` (art registry) · `scripts/story/build.py` (validator) ·

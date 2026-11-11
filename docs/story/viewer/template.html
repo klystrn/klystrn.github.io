@@ -1,0 +1,593 @@
+<title>Storyboard Room</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Caveat:wght@500;700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a storyboard room — scene index on the left wall, the board for one scene on the table.
+   Chrome is graphite/ivory like the Story itself; sketches are always on drawing paper. */
+:root {
+  --bg: #f1ede4;          /* room, light */
+  --surface: #fbf9f4;
+  --line: #d8d1c3;
+  --ink: #1d1b19;
+  --muted: #6b645a;
+  --crimson: #b3121f;
+  --crimson-soft: #f4dcdc;
+  --teal: #1f7a78;
+  --gold: #9a7420;
+  --paper: #f6f1e6;       /* sketch paper — same in both themes */
+  --pencil: #3a3632;
+  --pencil-light: #ece5d6;
+  --night: #1b1a18;
+  --ok: #2f7a3e; --ok-soft: #dcefdf;
+  --warn: #9a6a12; --warn-soft: #f6ead0;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --hand: "Caveat", "Segoe Print", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161514; --surface: #1f1d1b; --line: #34302b; --ink: #efe9dc; --muted: #a39b8d;
+  --crimson: #e2393f; --crimson-soft: #3a1a1b; --teal: #4fb3ae; --gold: #d2a64a;
+  --ok: #6cc07c; --ok-soft: #1d3322; --warn: #e0b04f; --warn-soft: #3a2f17; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #161514; --surface: #1f1d1b; --line: #34302b; --ink: #efe9dc; --muted: #a39b8d;
+  --crimson: #e2393f; --crimson-soft: #3a1a1b; --teal: #4fb3ae; --gold: #d2a64a;
+  --ok: #6cc07c; --ok-soft: #1d3322; --warn: #e0b04f; --warn-soft: #3a2f17; color-scheme: dark }
+
+* { box-sizing: border-box }
+html, body { height: 100% }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg) }
+a { color: inherit }
+button, select, textarea { font: inherit; color: inherit }
+:focus-visible { outline: 2px solid var(--crimson); outline-offset: 2px }
+
+.app { display: grid; grid-template-columns: 290px minmax(0, 1fr); min-height: 100% }
+.side { border-right: 1px solid var(--line); background: var(--surface); position: sticky; top: env(safe-area-inset-top, 0px);
+  height: calc(100vh - env(safe-area-inset-top, 0px)); overflow-y: auto; padding-block: 18px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: 14px }
+.brand { display: block; text-decoration: none; margin-bottom: 14px }
+.brand b { font: 800 22px/1 var(--display); font-stretch: 75%; letter-spacing: .01em; text-transform: uppercase; display: block }
+.brand span { font: 12px var(--mono); color: var(--muted) }
+.group { margin-top: 16px }
+.group h3 { margin: 0 0 4px; font: 700 12px/1.3 var(--display); font-stretch: 85%; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  display: flex; gap: 6px; align-items: baseline }
+.group h3 .yrs { font: 11px var(--mono); letter-spacing: 0; text-transform: none }
+.scene-link { display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 8px; align-items: center; padding: 5px 8px; border-radius: 6px;
+  text-decoration: none; font-size: 13.5px; line-height: 1.3 }
+.scene-link:hover { background: var(--bg) }
+.scene-link[aria-current="page"] { background: var(--crimson-soft) }
+.scene-link .id { font: 11px var(--mono); color: var(--muted); display: block }
+.dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--muted) }
+.dot.approved { background: var(--ok); border-color: var(--ok) }
+.dot.drafted { background: var(--paper); border-color: var(--crimson) }
+.dot.revise { background: var(--warn); border-color: var(--warn) }
+.dot.waiting, .dot.not-started, .dot.partial { background: transparent; border-style: dashed }
+.side .divider { margin: 22px 0 6px; font: 700 11px var(--display); font-stretch: 85%; letter-spacing: .12em; text-transform: uppercase; color: var(--crimson) }
+
+main { min-width: 0; padding-block: 22px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 22px }
+.picker { display: none }
+.eyebrow { font: 12px var(--mono); color: var(--muted); letter-spacing: .02em }
+h1 { margin: 2px 0 0; font: 800 clamp(28px, 4vw, 44px)/1.02 var(--display); font-stretch: 72%; text-transform: uppercase; text-wrap: balance; letter-spacing: .005em }
+h2 { margin: 0; font: 800 22px/1.1 var(--display); font-stretch: 80%; text-transform: uppercase; letter-spacing: .01em }
+.lede { color: var(--muted); max-width: 68ch; margin: 6px 0 0 }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; font: 600 12px/1 var(--body); padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); white-space: nowrap }
+.chip.approved { background: var(--ok-soft); color: var(--ok); border-color: transparent }
+.chip.drafted { background: var(--crimson-soft); color: var(--crimson); border-color: transparent }
+.chip.revise { background: var(--warn-soft); color: var(--warn); border-color: transparent }
+.chip.waiting, .chip.not-started, .chip.partial { color: var(--muted); border-style: dashed }
+.chip.tag { font: 500 11px var(--mono); padding: 4px 8px; border-radius: 4px }
+.chip.tag.gen { color: var(--crimson); border-color: var(--crimson) }
+.chip.tag.real { color: var(--teal); border-color: var(--teal) }
+.chip.tag.perm { color: var(--gold); border-color: var(--gold) }
+
+/* overview */
+.counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px }
+.count { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; text-align: left; cursor: pointer }
+.count[aria-pressed="true"] { border-color: var(--crimson); box-shadow: inset 0 0 0 1px var(--crimson) }
+.count b { font: 800 30px/1 var(--display); font-stretch: 80%; font-variant-numeric: tabular-nums }
+.count span { font-size: 13px; color: var(--muted) }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+table { border-collapse: collapse; width: 100%; min-width: 620px }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 14px }
+th { font: 600 11px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; background: var(--bg) }
+tr.grp td { background: var(--bg); font: 700 13px var(--display); font-stretch: 85%; text-transform: uppercase; letter-spacing: .05em }
+td.mono { font: 12.5px var(--mono); white-space: nowrap }
+td a { text-decoration: none } td a:hover { text-decoration: underline; text-decoration-color: var(--crimson) }
+
+/* scene */
+.scene-head { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: flex-end; justify-content: space-between }
+.review { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 14px; display: grid; gap: 10px }
+.review-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 8px 14px; cursor: pointer; font-weight: 600 }
+.btn:hover { border-color: var(--ink) }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+.btn:disabled { opacity: .5; cursor: not-allowed }
+textarea { width: 100%; min-height: 64px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: var(--bg); resize: vertical }
+.note { font-size: 13px; color: var(--muted) }
+.note.warn { color: var(--warn) }
+.nav-row { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap }
+
+.panel { border-top: 2px solid var(--ink); padding-top: 14px; display: grid; gap: 14px }
+.panel-head { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline }
+.panel-head .pid { font: 500 13px var(--mono); color: var(--crimson) }
+.panel-head .ptype { font: 11px var(--mono); color: var(--muted) }
+.panel-body { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 20px }
+.variants { display: grid; gap: 14px }
+.variant-tabs { display: flex; flex-wrap: wrap; gap: 6px }
+.variant-tabs button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 11px; font-size: 12.5px; cursor: pointer }
+.variant-tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+.frames { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start }
+.frame { margin: 0; flex: 1 1 260px; min-width: 0; display: grid; gap: 4px }
+.frame.tall { flex: 0 1 230px }
+.frame figcaption { font: 11.5px var(--mono); color: var(--muted) }
+.frame svg { width: 100%; height: auto; display: block; border: 1.5px solid var(--pencil); border-radius: 2px; background: var(--paper); box-shadow: 0 1px 0 var(--line) }
+.spec { display: grid; gap: 10px; align-content: start; font-size: 14px }
+.spec dl { margin: 0; display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 6px 10px }
+.spec dt { font: 11px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; padding-top: 2px }
+.spec dd { margin: 0 }
+.copy { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none }
+.copy li { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; font-size: 14px }
+.copy .t { font: 11px/1.35 var(--mono); color: var(--muted); padding-top: 2px; overflow-wrap: anywhere }
+.copy .x.edit { color: var(--warn) }
+.edit-mark { background: var(--warn-soft); color: var(--warn); border-radius: 3px; padding: 0 3px }
+.tags { display: flex; flex-wrap: wrap; gap: 6px }
+.items { display: grid; gap: 18px; padding-left: 14px; border-left: 2px dashed var(--line) }
+.items h4 { margin: 0; font: 800 15px var(--display); font-stretch: 85%; text-transform: uppercase }
+.empty { border: 1.5px dashed var(--line); border-radius: 8px; padding: 18px; color: var(--muted); background: var(--surface) }
+
+@media (max-width: 880px) {
+  .app { grid-template-columns: minmax(0, 1fr) }
+  .side { display: none }
+  .picker { display: grid; gap: 4px }
+  .picker select { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface) }
+  .panel-body { grid-template-columns: minmax(0, 1fr) }
+}
+@media (prefers-reduced-motion: no-preference) { .frame svg { transition: box-shadow .2s } .frame svg:hover { box-shadow: 0 6px 18px rgba(0,0,0,.12) } }
+</style>
+
+<div class="app">
+  <nav class="side" id="side" aria-label="Scenes"></nav>
+  <main id="main"><div class="wrap" id="view"></div></main>
+</div>
+
+<script>
+const DATA = /*__STORY_DATA__*/null;
+
+const LABEL = { approved: 'Approved', revise: 'Changes requested', drafted: 'Drafted · needs review', partial: 'Partly drafted',
+  waiting: 'Waiting on script edits', 'not-started': 'Not started' };
+const ORDER = ['drafted', 'revise', 'approved', 'partial', 'waiting', 'not-started'];
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const markEdits = (s) => esc(s).replace(/\[EDIT:[^\]]*\]/g, (m) => `<span class="edit-mark">${m}</span>`);
+
+// ---- scene index -------------------------------------------------------
+const scenes = [];
+for (const g of DATA) for (const s of g.scenes) scenes.push({ ...s, group: g });
+const byId = Object.fromEntries(scenes.map((s) => [s.id, s]));
+let reviews = {};          // from the artifact's db (may stay empty)
+let dbState = 'loading';   // loading | ready | unavailable | slow
+let canWrite = null;
+
+function effective(s) {
+  if (s.status === 'approved' || s.status === 'revise') return { status: s.status, source: 'script' };
+  const r = reviews[s.id];
+  if (r && (r.status === 'approved' || r.status === 'revise')) return { status: r.status, source: 'viewer', stale: r.hash !== s.hash };
+  return { status: s.status, source: 'script' };
+}
+
+// ---- sketch renderer ---------------------------------------------------
+const NS = 'http://www.w3.org/2000/svg';
+function rng(seed) { let x = seed % 2147483647; if (x <= 0) x += 2147483646; return () => ((x = (x * 16807) % 2147483647) - 1) / 2147483646; }
+function hashStr(s) { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; }
+
+const POSES = {
+  // joints in head-units (figure = 8 units tall), facing right, feet at y=0
+  stand:   { head: [0, -7.5], neck: [0, -6.9], hip: [0, -4], arms: [[[0.35, -5.3], [0.4, -4.1]], [[-0.35, -5.3], [-0.4, -4.1]]], legs: [[[0.25, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]] },
+  back:    { head: [0, -7.5], neck: [0, -6.9], hip: [0, -4], arms: [[[0.35, -5.3], [0.4, -4.1]], [[-0.35, -5.3], [-0.4, -4.1]]], legs: [[[0.25, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]], hair: true },
+  walk:    { head: [0.15, -7.5], neck: [0.1, -6.9], hip: [0, -4], arms: [[[0.6, -5.4], [1, -4.6]], [[-0.5, -5.3], [-0.8, -4.4]]], legs: [[[0.6, -2], [1.1, 0]], [[-0.2, -2], [-0.7, 0]]] },
+  point:   { head: [0, -7.5], neck: [0, -6.9], hip: [0, -4], arms: [[[0.8, -6.4], [1.8, -6.7]], [[-0.35, -5.3], [-0.4, -4.1]]], legs: [[[0.25, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]] },
+  present: { head: [0, -7.5], neck: [0, -6.9], hip: [0, -4], arms: [[[0.9, -5.9], [1.9, -6.3]], [[-0.35, -5.3], [-0.3, -4.1]]], legs: [[[0.25, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]] },
+  hold:    { head: [0, -7.5], neck: [0, -6.9], hip: [0, -4], arms: [[[0.55, -5.4], [0.75, -6.4]], [[-0.3, -5.4], [0.45, -6.3]]], legs: [[[0.25, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]] },
+  fold:    { head: [0, -7.5], neck: [0, -6.9], hip: [0, -4], arms: [[[0.55, -5.4], [-0.45, -5.6]], [[-0.55, -5.4], [0.45, -5.6]]], legs: [[[0.25, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]] },
+  lean:    { head: [0.7, -7.2], neck: [0.55, -6.6], hip: [0, -4], arms: [[[0.9, -5.3], [1.4, -4.4]], [[0.2, -5.2], [0.6, -4.3]]], legs: [[[0.2, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]] },
+  sit:     { head: [0.1, -6.7], neck: [0.08, -6.1], hip: [0, -3.2], arms: [[[0.5, -4.6], [1.2, -4.2]], [[0.3, -4.6], [0.9, -4.1]]], legs: [[[1.6, -3.2], [1.6, 0]], [[1.4, -3.1], [1.3, 0]]], seat: true },
+  type:    { head: [0.25, -6.7], neck: [0.2, -6.1], hip: [0, -3.2], arms: [[[0.7, -4.8], [1.6, -4.5]], [[0.5, -4.7], [1.4, -4.4]]], legs: [[[1.6, -3.2], [1.6, 0]], [[1.4, -3.1], [1.3, 0]]], seat: true },
+  bench:   { head: [-0.1, -6.6], neck: [-0.1, -6], hip: [0, -3.2], arms: [[[0.3, -4.6], [0.9, -3.4]], [[-0.2, -4.6], [0.5, -3.4]]], legs: [[[1.5, -3.2], [1.6, 0]], [[1.3, -3.1], [1.3, 0]]], seat: true },
+  slump:   { head: [1.1, -5.4], neck: [0.7, -5.6], hip: [0, -3.2], arms: [[[1.5, -4.4], [1.35, -5.3]], [[1.3, -4.3], [1.05, -5.2]]], legs: [[[1.6, -3.2], [1.6, 0]], [[1.4, -3.1], [1.3, 0]]], seat: true },
+};
+
+function el(tag, attrs, parent) { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+
+function roughLine(g, x1, y1, x2, y2, o) {
+  const r = o.r, j = o.jitter ?? 1.6;
+  for (let pass = 0; pass < (o.passes ?? 2); pass++) {
+    const mx = (x1 + x2) / 2 + (r() - .5) * j * 2, my = (y1 + y2) / 2 + (r() - .5) * j * 2;
+    el('path', { d: `M${x1 + (r() - .5) * j} ${y1 + (r() - .5) * j} Q${mx} ${my} ${x2 + (r() - .5) * j} ${y2 + (r() - .5) * j}`,
+      fill: 'none', stroke: o.stroke, 'stroke-width': o.w ?? 2, 'stroke-linecap': 'round', opacity: pass ? .4 : .85,
+      'stroke-dasharray': o.dash ? '10 8' : 'none' }, g);
+  }
+}
+function roughRect(g, x, y, w, h, o) {
+  if (o.fill) el('rect', { x, y, width: w, height: h, fill: o.fill, opacity: o.fillOpacity ?? 1 }, g);
+  roughLine(g, x, y, x + w, y, o); roughLine(g, x + w, y, x + w, y + h, o);
+  roughLine(g, x + w, y + h, x, y + h, o); roughLine(g, x, y + h, x, y, o);
+}
+function hand(g, x, y, text, o) {
+  const t = el('text', { x, y, fill: o.fill, 'font-family': 'Caveat, cursive', 'font-weight': 700, 'font-size': o.size ?? 26,
+    'text-anchor': o.anchor ?? 'start', 'dominant-baseline': o.base ?? 'auto' }, g);
+  t.textContent = text; return t;
+}
+
+function lineFor(panel, type, n) {
+  const pool = [...(panel.copy || []), ...((panel.items || []).flatMap((i) => i.copy || []))].filter((l) => l.t === type);
+  return pool[(n || 1) - 1];
+}
+
+function renderFrame(frame, panel, key) {
+  const [aw, ah] = frame.aspect.split(':').map(Number);
+  const W = 1000, H = Math.round(1000 * ah / aw);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `Storyboard sketch, ${frame.aspect}${frame.label ? ', ' + frame.label : ''}` });
+  const css = getComputedStyle(document.documentElement);
+  const C = { pencil: css.getPropertyValue('--pencil').trim() || '#3a3632', light: css.getPropertyValue('--pencil-light').trim() || '#ece5d6',
+    red: '#b3121f', teal: '#1f7a78', night: css.getPropertyValue('--night').trim() || '#1b1a18', paper: '#f6f1e6' };
+  const r = rng(hashStr(key));
+  const X = (v) => v * W / 100, Y = (v) => v * H / 100;
+  const darks = [];
+  const inDark = (x, y) => darks.some(([a, b, c, d]) => x >= a && x <= a + c && y >= b && y <= b + d);
+  const g = el('g', {}, svg);
+
+  for (const tok of frame.els) {
+    const k = tok[0];
+    const nums = tok.slice(1).filter((t) => /^-?\d+(\.\d+)?$/.test(t)).map(Number);
+    const words = tok.slice(1).filter((t) => !/^-?\d+(\.\d+)?$/.test(t));
+    const flags = new Set(words);
+    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !(k === 'cap' && w === tok[1]));
+    const [a, b, c, d] = nums;
+    const dark = (x, y) => inDark(x, y);
+    const ink = (x, y) => (flags.has('red') ? C.red : dark(x, y) ? C.light : C.pencil);
+    const base = { r, w: flags.has('faint') ? 1.4 : 2.2, dash: flags.has('dash') };
+    switch (k) {
+      case 'dark': darks.push([a, b, c, d]); el('rect', { x: X(a), y: Y(b), width: X(c), height: Y(d), fill: C.night }, g); break;
+      case 'wash': el('rect', { x: X(a), y: Y(b), width: X(c), height: Y(d), fill: C.red, opacity: .55 }, g); break;
+      case 'floor': roughLine(g, 0, Y(a), W, Y(a), { ...base, stroke: dark(50, a) ? C.light : C.pencil, w: 1.6 }); break;
+      case 'vp': for (const [tx, ty] of [[0, 0], [100, 0], [0, 100], [100, 100], [0, 50], [100, 50], [25, 100], [75, 100]])
+          el('line', { x1: X(a), y1: Y(b), x2: X(tx), y2: Y(ty), stroke: dark(a, b) ? C.light : C.pencil, 'stroke-width': 1, opacity: .22, 'stroke-dasharray': '4 6' }, g);
+        break;
+      case 'line': roughLine(g, X(a), Y(b), X(c), Y(d), { ...base, stroke: ink((a + c) / 2, (b + d) / 2), w: flags.has('red') ? 3.2 : base.w, passes: flags.has('faint') ? 1 : 2 }); break;
+      case 'arrow': {
+        const s = ink((a + c) / 2, (b + d) / 2);
+        roughLine(g, X(a), Y(b), X(c), Y(d), { ...base, stroke: s, w: 2.4 });
+        const ang = Math.atan2(Y(d) - Y(b), X(c) - X(a)), L = 18;
+        el('path', { d: `M${X(c)} ${Y(d)} L${X(c) - L * Math.cos(ang - .45)} ${Y(d) - L * Math.sin(ang - .45)} M${X(c)} ${Y(d)} L${X(c) - L * Math.cos(ang + .45)} ${Y(d) - L * Math.sin(ang + .45)}`, stroke: s, 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round' }, g);
+        if (label) hand(g, X((a + c) / 2) + 6, Y((b + d) / 2) - 10, label, { fill: s, size: 24 });
+        break;
+      }
+      case 'box': case 'paper': case 'building': case 'screen': case 'card': {
+        const s = ink(a + c / 2, b + d / 2);
+        const fill = flags.has('fill') ? (dark(a, b) ? '#2a2826' : '#e3dccd') : k === 'paper' ? '#fffdf8' : k === 'card' ? (dark(a, b) ? '#232120' : '#efe8da') : null;
+        roughRect(g, X(a), Y(b), X(c), Y(d), { ...base, stroke: s, fill, w: k === 'card' ? 3.4 : base.w });
+        if (k === 'screen') {
+          roughRect(g, X(a) + 8, Y(b) + 8, X(c) - 16, Y(d) - 16, { r, stroke: s, w: 1.2, passes: 1 });
+          for (let i = 0; i < 3; i++) el('line', { x1: X(a) + 18, y1: Y(b) + 24 + i * 12, x2: X(a) + 18 + (X(c) - 40) * (.4 + r() * .4), y2: Y(b) + 24 + i * 12, stroke: s, 'stroke-width': 2, opacity: .45 }, g);
+        }
+        if (k === 'building') for (let yy = b + 6; yy < b + d - 2; yy += 6) el('line', { x1: X(a) + 4, y1: Y(yy), x2: X(a + c) - 4, y2: Y(yy), stroke: s, 'stroke-width': 1, opacity: .4 }, g);
+        if (k === 'paper') {
+          for (let i = 1; i < 6 && b + i * d / 7 < b + d; i++) el('line', { x1: X(a) + 10, y1: Y(b + i * d / 7) + 12, x2: X(a + c) - 10 - r() * 20, y2: Y(b + i * d / 7) + 12, stroke: s, 'stroke-width': 1.4, opacity: .35 }, g);
+        }
+        if (label) {
+          if (k === 'card') {
+            const t = el('text', { x: X(a) + 14, y: Y(b + d) - 16, fill: s, 'font-family': 'Archivo, Arial Narrow, sans-serif', 'font-weight': 800, 'font-size': Math.min(34, X(c) / 9), 'font-stretch': '75%' }, g);
+            t.textContent = label;
+          } else hand(g, X(a + c / 2), k === 'screen' ? Y(b) - 8 : Y(b + d / 2), label, { fill: s, size: 25, anchor: 'middle', base: k === 'screen' ? 'auto' : 'middle' });
+        }
+        break;
+      }
+      case 'chart': {
+        const s = flags.has('red') ? C.red : ink(a, b); let pts = [], n = 12;
+        for (let i = 0; i <= n; i++) pts.push(`${X(a + c * i / n)},${Y(b + d - d * (i / n) * .8 - (r() * d * .25))}`);
+        el('polyline', { points: pts.join(' '), fill: 'none', stroke: s, 'stroke-width': 3, 'stroke-linejoin': 'round' }, g);
+        break;
+      }
+      case 'tree': {
+        const s = ink(a, b);
+        roughLine(g, X(a), Y(b), X(a), Y(b - c * .45), { r, stroke: s, w: 2.4 });
+        for (let i = 0; i < 4; i++) el('circle', { cx: X(a) + (r() - .5) * X(c) * .5, cy: Y(b - c * .7) + (r() - .5) * Y(c) * .3, r: Y(c) * .22, fill: 'none', stroke: s, 'stroke-width': 1.6, opacity: .7 }, g);
+        break;
+      }
+      case 'disc': {
+        const red = flags.has('red');
+        el('circle', { cx: X(a), cy: Y(b), r: X(c), fill: red ? C.red : 'none', opacity: red ? .9 : 1, stroke: red ? C.red : ink(a, b), 'stroke-width': 2.2 }, g);
+        break;
+      }
+      case 'phone': {
+        const red = flags.has('red');
+        if (red) el('circle', { cx: X(a) + 13, cy: Y(b) + 24, r: 44, fill: C.red, opacity: .22 }, g);
+        roughRect(g, X(a), Y(b), 26, 48, { r, stroke: red ? C.red : ink(a, b), w: 2.4, fill: red ? C.red : null, fillOpacity: .85 });
+        break;
+      }
+      case 'fig': drawFigure(g, X(a), Y(b), Y(c), words, flags, ink(a, b - c / 2), C, r, label, dark(a, b - c / 2)); break;
+      case 'text': {
+        const color = flags.has('red') ? C.red : flags.has('ivory') ? '#efe9dc' : C.pencil;
+        const t = el('text', { x: X(a), y: Y(b), fill: color, 'font-family': /[㐀-鿿]/.test(label || '') ? '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif' : 'Archivo, Arial Narrow, sans-serif',
+          'font-weight': 900, 'font-size': Y(c), 'font-stretch': '68%', 'text-anchor': flags.has('center') ? 'middle' : 'start', 'dominant-baseline': 'middle', 'letter-spacing': c < 4 ? 6 : 0 }, g);
+        t.textContent = label || '';
+        break;
+      }
+      case 'crop': {
+        const [x0, y0, w0, h0] = nums;
+        el('rect', { x: X(x0), y: Y(y0), width: X(w0), height: Y(h0), fill: 'none', stroke: C.teal, 'stroke-width': 3, 'stroke-dasharray': '14 9' }, g);
+        const tag = el('g', {}, g);
+        el('rect', { x: X(x0), y: Y(y0), width: 16 + (tok[1].length + 5) * 11, height: 28, fill: C.teal }, tag);
+        const t = el('text', { x: X(x0) + 8, y: Y(y0) + 20, fill: '#fff', 'font-family': 'IBM Plex Mono, monospace', 'font-size': 17 }, tag);
+        t.textContent = tok[1] + ' crop';
+        break;
+      }
+      case 'label': hand(g, X(a), Y(b), label || '', { fill: dark(a, b) ? C.light : C.pencil, size: 25 }); break;
+      case 'cap': drawCaption(g, tok[1], X(nums[0]), Y(nums[1]), X(nums[2]), lineFor(panel, tok[1], nums[3]), W, H); break;
+    }
+  }
+  return svg;
+}
+
+function drawFigure(g, x, y, h, words, flags, stroke, C, r, label, onDark) {
+  const facing = words.includes('l') ? -1 : 1;
+  const age = words.find((w) => ['teen', 'young', 'adult', 'old'].includes(w)) || 'adult';
+  const pose = words.find((w) => POSES[w] || w === 'bust' || w === 'silhouette') || 'stand';
+  const red = flags.has('red'), faint = flags.has('faint');
+  const s = red ? C.red : stroke;
+  const op = faint ? .5 : 1;
+  const grp = el('g', { opacity: op }, g);
+  if (pose === 'bust' || pose === 'silhouette') {
+    const headR = h * .17, hx = x + (pose === 'bust' ? facing * h * .04 : 0), hy = y - h * .66;
+    const fill = pose === 'silhouette' || red ? (red ? C.red : s) : 'none';
+    const d = `M${x - h * .5} ${y} C${x - h * .48} ${y - h * .3} ${x - h * .3} ${y - h * .38} ${x - h * .12} ${y - h * .44} L${x - h * .08} ${y - h * .52} L${x + h * .08} ${y - h * .52} L${x + h * .12} ${y - h * .44} C${x + h * .3} ${y - h * .38} ${x + h * .48} ${y - h * .3} ${x + h * .5} ${y} Z`;
+    el('path', { d, fill, 'fill-opacity': fill === 'none' ? 0 : .92, stroke: s, 'stroke-width': 2.6 }, grp);
+    el('ellipse', { cx: hx, cy: hy, rx: headR * .86, ry: headR, fill, 'fill-opacity': fill === 'none' ? 0 : .92, stroke: s, 'stroke-width': 2.6 }, grp);
+    if (pose === 'bust') el('path', { d: `M${hx + facing * headR * .8} ${hy - 2} l${facing * 8} 10 l${-facing * 8} 3`, fill: 'none', stroke: s, 'stroke-width': 2 }, grp);
+  } else {
+    const P = POSES[pose] || POSES.stand;
+    const units = age === 'teen' ? 7.4 : 8;
+    const u = h / units;
+    const pt = ([px, py]) => [x + facing * px * u, y + py * u * (units / 8) * (age === 'old' ? .97 : 1)];
+    const mass = red ? u * .9 : 0;  // red figures read as a solid silhouette
+    const line = (a, b, w = 3) => roughLine(grp, ...pt(a), ...pt(b), { r, stroke: s, w: mass || w, passes: 1, jitter: .8 });
+    const [hx, hy] = pt(P.head);
+    const headR = u * (age === 'teen' ? .58 : .5);
+    let neck = P.neck, hip = P.hip;
+    if (age === 'old' && !P.seat) { neck = [neck[0] + .3, neck[1]]; }
+    line(neck, hip, red ? u * 1.4 : 3);
+    for (const [e, hnd] of P.arms) { line([neck[0], neck[1] + .35], e); line(e, hnd); }
+    for (const [kn, ft] of P.legs) { line(hip, kn); line(kn, ft); }
+    if (P.seat) roughLine(grp, ...pt([-.4, -3.2]), ...pt([1.8, -3.2]), { r, stroke: s, w: 1.4, passes: 1, dash: true });
+    el('circle', { cx: hx, cy: hy, r: headR, fill: red ? C.red : P.hair ? s : (onDark ? '#2a2826' : '#f6f1e6'), 'fill-opacity': red || P.hair ? .85 : 1, stroke: s, 'stroke-width': 2.6 }, grp);
+    if (!P.hair && !words.includes('f')) el('path', { d: `M${hx + facing * headR * .9} ${hy - 2} l${facing * 7} 6 l${-facing * 7} 2`, fill: 'none', stroke: s, 'stroke-width': 2 }, grp);
+    if (age === 'old') roughLine(grp, ...pt([.9, -4]), ...pt([1.1, 0]), { r, stroke: s, w: 2, passes: 1 });
+  }
+  if (label) hand(g, x, Math.min(y + 26, 99999), label, { fill: s, size: 23, anchor: 'middle' }).setAttribute('opacity', faint ? .7 : 1);
+}
+
+function drawCaption(g, type, x, y, w, line, W, H) {
+  const fo = el('foreignObject', { x, y, width: w, height: H * .9, overflow: 'visible' }, g);
+  const div = document.createElement('div');
+  div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+  const text = line ? line.x : `(no ${type} line in the script)`;
+  const who = line && line.s ? `<b style="display:block;font:700 15px var(--display);font-stretch:80%;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">${esc(line.s)}</b>` : '';
+  const base = 'font:20px/1.32 "Hanken Grotesk",Arial,sans-serif;color:#1d1b19;padding:10px 14px;display:inline-block;max-width:100%;';
+  const styles = {
+    NAR: base + 'background:#fbf7ee;border:2px solid #1d1b19;border-left:7px solid #b3121f;',
+    THO: base + 'background:#ffffffee;border:2px dashed #3a3632;border-radius:26px;font-style:italic;',
+    DIA: base + 'background:#fff;border:2.5px solid #1d1b19;border-radius:18px 18px 18px 4px;',
+    FAC: base + 'background:#1d1b19;color:#f6f1e6;font:16px/1.35 "IBM Plex Mono",monospace;',
+    SUB: base + 'background:#fbf7ee;border:2px solid #1d1b19;',
+    SKL: base + 'background:#f6f1e6;border:1.5px solid #1f7a78;color:#1f7a78;font:15px/1.3 "IBM Plex Mono",monospace;border-radius:999px;',
+    PORTAL: base + 'background:#fff;border:2.5px solid #b3121f;color:#b3121f;font-weight:600;border-radius:4px;',
+    SFX: 'font:900 54px/1 Archivo,Arial Narrow,sans-serif;font-stretch:70%;color:#b3121f;letter-spacing:.04em;transform:rotate(-6deg);display:inline-block;',
+  };
+  div.style.cssText = 'width:100%';
+  const inner = type === 'PORTAL' ? `${markEdits(text)} &rarr;` : markEdits(text);
+  div.innerHTML = `<div style='${styles[type] || base}'>${who}${inner}</div>`;
+  fo.appendChild(div);
+}
+
+// ---- views --------------------------------------------------------------
+const side = document.getElementById('side');
+const view = document.getElementById('view');
+
+function sideHTML() {
+  let html = `<a class="brand" href="#"><b>Storyboard Room</b><span>Reginald Tan · Story mode</span></a>`;
+  let arcsStarted = false;
+  for (const g of DATA) {
+    if (g.kind === 'arc' && !arcsStarted) { html += `<div class="divider">Side stories (arcs)</div>`; arcsStarted = true; }
+    html += `<div class="group"><h3>${esc(g.kind === 'chapter' ? g.title : g.title || g.id)}${g.years && g.years !== 'none' ? `<span class="yrs">${esc(g.years)}</span>` : ''}</h3>`;
+    for (const s of g.scenes) {
+      const e = effective(s);
+      html += `<a class="scene-link" href="#${s.id}" data-id="${s.id}"><span class="dot ${e.status}" title="${LABEL[e.status]}"></span><span>${esc(s.label)}<span class="id">${s.id}</span></span></a>`;
+    }
+    html += `</div>`;
+  }
+  return html;
+}
+
+function pickerHTML(current) {
+  let html = `<label class="picker"><span class="eyebrow">Jump to a scene</span><select id="scene-picker"><option value="">Overview — all scenes</option>`;
+  for (const g of DATA) {
+    html += `<optgroup label="${esc((g.kind === 'arc' ? 'Arc · ' : '') + (g.title || g.id))}">`;
+    for (const s of g.scenes) html += `<option value="${s.id}" ${s.id === current ? 'selected' : ''}>${s.id} · ${esc(s.label)} — ${LABEL[effective(s).status]}</option>`;
+    html += `</optgroup>`;
+  }
+  return html + `</select></label>`;
+}
+
+let filter = null;
+function overview() {
+  const counts = {}; for (const s of scenes) { const st = effective(s).status; counts[st] = (counts[st] || 0) + 1; }
+  let html = pickerHTML('');
+  html += `<header><div class="eyebrow">docs/STORY-SCRIPT.md · ${scenes.length} scenes</div><h1>Storyboards</h1>
+    <p class="lede">Every scene gets a rough storyboard before any image is generated. Pick a scene to see its sketches, the current script lines, camera and scroll notes. Approve it here, or add <code>storyboard: approved</code> to the scene in the script.</p></header>`;
+  html += `<div class="counts" role="group" aria-label="Filter by status">${ORDER.filter((k) => counts[k]).map((k) =>
+    `<button class="count" data-filter="${k}" aria-pressed="${filter === k}"><b>${counts[k]}</b><span>${LABEL[k]}</span></button>`).join('')}</div>`;
+  html += dbNote();
+  html += `<div class="table-wrap"><table><thead><tr><th>Scene</th><th>Title</th><th>Panels</th><th>Storyboard</th></tr></thead><tbody>`;
+  for (const g of DATA) {
+    const rows = g.scenes.filter((s) => !filter || effective(s).status === filter);
+    if (!rows.length) continue;
+    html += `<tr class="grp"><td colspan="4">${g.kind === 'arc' ? 'Arc · ' : ''}${esc(g.title || g.id)}${g.years && g.years !== 'none' ? ` · ${esc(g.years)}` : ''}</td></tr>`;
+    for (const s of rows) {
+      const e = effective(s);
+      html += `<tr><td class="mono"><a href="#${s.id}">${s.id}</a></td><td><a href="#${s.id}">${esc(s.label)}</a></td><td class="mono">${s.panels.length}</td>
+        <td><span class="chip ${e.status}">${LABEL[e.status]}</span>${e.source === 'viewer' ? ` <span class="note">saved here, not yet in the script</span>` : ''}</td></tr>`;
+    }
+  }
+  html += `</tbody></table></div>`;
+  view.innerHTML = html;
+  view.querySelectorAll('[data-filter]').forEach((b) => b.addEventListener('click', () => { filter = filter === b.dataset.filter ? null : b.dataset.filter; overview(); }));
+  wirePicker();
+}
+
+function dbNote() {
+  if (dbState === 'ready') return '';
+  if (dbState === 'loading') return `<p class="note">Loading saved reviews…</p>`;
+  if (dbState === 'slow') return `<p class="note warn">Saved reviews can't be reached yet. Statuses shown come from the script.</p>`;
+  return `<p class="note">Reviews can't be saved in this view. Statuses come from the script — add <code>storyboard: approved</code> or <code>storyboard: revise</code> to a scene's <code>story</code> block instead.</p>`;
+}
+
+function tagClass(t) { return t.startsWith('GENERATE') ? 'gen' : t.startsWith('REAL') ? 'real' : t.startsWith('NEEDS') ? 'perm' : ''; }
+
+function panelHTML(p, sceneId, isItem) {
+  const b = p.board;
+  const head = `<div class="panel-head"><span class="pid">${p.id}</span>${isItem ? `<h4>${esc(p.title || p.label)}</h4>` : `<h2>${esc(p.label)}</h2>`}
+    ${p.type ? `<span class="ptype">${p.type}</span>` : ''}${p.art ? `<span class="ptype">art: ${esc(p.art)}</span>` : ''}${p.status === 'hold' ? `<span class="chip">on hold</span>` : ''}</div>`;
+  const copy = (p.copy || []).filter((l) => l.t !== 'VISUAL');
+  const visual = (p.copy || []).filter((l) => l.t === 'VISUAL').map((l) => esc(l.x)).join(' ');
+  const copyHTML = copy.length ? `<ul class="copy">${copy.map((l) => `<li><span class="t">${l.t}${l.s ? `·${esc(l.s)}` : ''}</span><span class="x ${l.st === 'edit' ? 'edit' : ''}">${markEdits(l.x)}${l.st !== 'draft' ? ` <span class="note">{${l.st}}</span>` : ''}</span></li>`).join('')}</ul>` : '';
+  let sketch;
+  if (b && b.variants && b.variants.length) {
+    const tabs = b.variants.length > 1 ? `<div class="variant-tabs" role="tablist">${b.variants.map((v, i) => `<button role="tab" aria-selected="${i === 0}" data-v="${i}">${esc(v.label || 'Option ' + (i + 1))}</button>`).join('')}</div>` : '';
+    sketch = `<div class="variants" data-panel="${p.id}">${tabs}<div class="frames"></div></div>`;
+  } else sketch = `<div class="empty">No storyboard yet for this ${isItem ? 'card' : 'panel'}.</div>`;
+  const spec = b ? `<dl>${['shot', 'camera', 'scroll', 'transition', 'mobile', 'refs', 'note'].filter((k) => b[k]).map((k) => `<dt>${k}</dt><dd>${b[k].map(esc).join('<br>')}</dd>`).join('')}</dl>
+    ${b.tags ? `<div class="tags">${b.tags.map((t) => `<span class="chip tag ${tagClass(t)}">${esc(t)}</span>`).join('')}</div>` : ''}` : '';
+  const items = (p.items || []).length ? `<div class="items">${p.items.map((i) => panelHTML(i, sceneId, true)).join('')}</div>` : '';
+  return `<section class="panel" id="p-${p.id}">${head}<div class="panel-body"><div>${sketch}</div><div class="spec">${spec}
+    ${visual ? `<dl><dt>visual</dt><dd>${visual}</dd></dl>` : ''}${copyHTML ? `<div><div class="eyebrow">Script lines (live from the script)</div>${copyHTML}</div>` : ''}</div></div>${items}</section>`;
+}
+
+function sceneView(id) {
+  const s = byId[id];
+  if (!s) { overview(); return; }
+  const idx = scenes.indexOf(s), prev = scenes[idx - 1], next = scenes[idx + 1];
+  const e = effective(s);
+  const g = s.group;
+  const review = reviews[s.id];
+  let html = pickerHTML(id);
+  html += `<div class="nav-row"><a class="btn" href="#">← Overview</a><span>${prev ? `<a class="btn" href="#${prev.id}">← ${prev.id}</a> ` : ''}${next ? `<a class="btn" href="#${next.id}">${next.id} →</a>` : ''}</span></div>`;
+  html += `<header class="scene-head"><div><div class="eyebrow">${g.kind === 'arc' ? `Arc · ${esc(g.id)}${g.parent ? ` · returns to ${esc(g.parent)}` : ''}` : `Chapter ${esc(g.order)} · ${esc(g.title)}${g.years && g.years !== 'none' ? ' · ' + esc(g.years) : ''}`} · ${s.id}</div>
+    <h1>${esc(s.label)}</h1></div><span class="chip ${e.status}">${LABEL[e.status]}</span></header>`;
+  html += reviewHTML(s, e, review);
+  if (!s.panels.some((p) => p.board)) html += `<div class="empty">${s.status === 'waiting' ? 'Waiting on script edits before this scene can be storyboarded. Fill the <b>[EDIT: …]</b> gaps below in docs/STORY-SCRIPT.md.' : 'Not storyboarded yet.'}</div>`;
+  html += s.panels.map((p) => panelHTML(p, s.id, false)).join('');
+  html += `<div class="nav-row"><a class="btn" href="#">← Overview</a><span>${next ? `<a class="btn" href="#${next.id}">Next: ${next.id} →</a>` : ''}</span></div>`;
+  view.innerHTML = html;
+  view.querySelectorAll('.variants').forEach((v) => {
+    const p = findPanel(s, v.dataset.panel);
+    const show = (i) => {
+      const box = v.querySelector('.frames'); box.innerHTML = '';
+      for (const [fi, fr] of p.board.variants[i].frames.entries()) {
+        const fig = document.createElement('figure');
+        const [aw, ah] = fr.aspect.split(':').map(Number);
+        fig.className = 'frame' + (ah > aw ? ' tall' : '');
+        fig.appendChild(renderFrame(fr, p, `${p.id}-${i}-${fi}`));
+        const cap = document.createElement('figcaption'); cap.textContent = `${fr.aspect}${fr.label ? ' · ' + fr.label : ''}`; fig.appendChild(cap);
+        box.appendChild(fig);
+      }
+      v.querySelectorAll('[role=tab]').forEach((t) => t.setAttribute('aria-selected', String(Number(t.dataset.v) === i)));
+    };
+    v.querySelectorAll('[role=tab]').forEach((t) => t.addEventListener('click', () => show(Number(t.dataset.v))));
+    show(0);
+  });
+  wireReview(s);
+  wirePicker();
+}
+
+function findPanel(s, pid) { for (const p of s.panels) { if (p.id === pid) return p; for (const i of p.items || []) if (i.id === pid) return i; } }
+
+function reviewHTML(s, e, review) {
+  const drafted = s.panels.some((p) => p.board);
+  let state = '';
+  if (e.source === 'script' && (e.status === 'approved' || e.status === 'revise')) state = `<p class="note">Set in the script (<code>storyboard: ${e.status}</code>).</p>`;
+  else if (review) state = `<p class="note ${review.hash !== s.hash ? 'warn' : ''}">${review.status === 'approved' ? 'Approved' : 'Changes requested'} here${review.at ? ' on ' + esc(new Date(review.at).toLocaleDateString()) : ''}${review.hash !== s.hash ? ' — the storyboard or script changed since then, so check it again' : ''}. Ask Claude to “sync storyboard reviews” to write this into the script.</p>${review.note ? `<p>“${esc(review.note)}”</p>` : ''}`;
+  if (!drafted) return `<div class="review"><strong>Review</strong>${state || '<p class="note">Nothing to review yet.</p>'}</div>`;
+  const disabled = dbState !== 'ready' || canWrite === false ? 'disabled' : '';
+  const why = dbState === 'ready' && canWrite === false ? `<p class="note">Only the artifact's owner and editors can save reviews.</p>` : dbNote();
+  return `<div class="review"><strong>Review this storyboard</strong>${state}
+    <label for="review-note" class="note">Notes for Claude (optional — what to change)</label>
+    <textarea id="review-note" placeholder="e.g. Move the narration to the bottom; make Reginald smaller in frame 2">${esc(review?.note || '')}</textarea>
+    <div class="review-row"><button class="btn primary" id="approve" ${disabled}>Approve storyboard</button><button class="btn" id="revise" ${disabled}>Request changes</button>${review ? `<button class="btn" id="clear" ${disabled}>Clear my review</button>` : ''}<span class="note" id="review-msg" role="status"></span></div>${why}</div>`;
+}
+
+let db = null;
+function wireReview(s) {
+  const msg = document.getElementById('review-msg');
+  const save = async (status) => {
+    if (!db) return;
+    const note = document.getElementById('review-note').value.trim();
+    msg.textContent = 'Saving…';
+    try {
+      await db.collection('reviews').doc(s.id).set({ status, note, hash: s.hash, at: new Date().toISOString() });
+      msg.textContent = status === 'approved' ? 'Approved.' : 'Change request saved.';
+    } catch (err) { msg.textContent = err && err.code === 'permission_denied' ? 'Only the owner and editors can save reviews.' : 'Couldn’t save. Try again in a moment.'; }
+  };
+  document.getElementById('approve')?.addEventListener('click', () => save('approved'));
+  document.getElementById('revise')?.addEventListener('click', () => save('revise'));
+  document.getElementById('clear')?.addEventListener('click', async () => {
+    try { await db.collection('reviews').doc(s.id).delete(); msg.textContent = 'Cleared.'; } catch { msg.textContent = 'Couldn’t clear it.'; }
+  });
+}
+
+function wirePicker() {
+  const sel = document.getElementById('scene-picker');
+  sel?.addEventListener('change', () => { location.hash = sel.value ? sel.value : ''; if (!sel.value) route(); });
+}
+
+function route() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  side.innerHTML = sideHTML();
+  side.querySelectorAll('.scene-link').forEach((a) => { if (a.dataset.id === id) { a.setAttribute('aria-current', 'page'); } });
+  if (id && byId[id]) sceneView(id); else overview();
+}
+window.addEventListener('hashchange', () => { route(); window.scrollTo(0, 0); });
+route();
+const cur = side.querySelector('[aria-current="page"]'); if (cur) cur.scrollIntoView({ block: 'center' });
+
+// ---- saved reviews (artifact db) ----------------------------------------
+(async () => {
+  const timer = setTimeout(() => { if (dbState === 'loading') { dbState = 'slow'; rerender(); } }, 10000);
+  try {
+    if (!window.claude || !window.claude.use) throw new Error('no viewer');
+    db = await window.claude.use('db');
+    if (!db) throw new Error('no db');
+    const user = await window.claude.use('user');
+    canWrite = user ? await user.can('data.write').then((v) => v !== false).catch(() => null) : null;
+    if (user) { try { canWrite = (await user.canEdit()) || (await user.isOwner()); } catch { /* keep */ } }
+    db.collection('reviews').onSnapshot((snap) => {
+      reviews = {}; for (const d of snap.docs) if (d.exists) reviews[d.id] = d.data();
+      if (!snap.metadata.fromCache) { clearTimeout(timer); dbState = 'ready'; } else if (dbState === 'loading') dbState = 'ready';
+      rerender();
+    }, () => { clearTimeout(timer); dbState = 'unavailable'; rerender(); });
+  } catch { clearTimeout(timer); dbState = 'unavailable'; rerender(); }
+})();
+
+function rerender() {
+  const note = document.getElementById('review-note');
+  const draft = note ? note.value : null, focused = document.activeElement === note;
+  const y = window.scrollY;
+  route();
+  const n2 = document.getElementById('review-note');
+  if (n2 && draft !== null) { n2.value = draft; if (focused) n2.focus(); }
+  window.scrollTo(0, y);
+}
+</script>

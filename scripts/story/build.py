@@ -17,6 +17,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import boards  # noqa: E402  (storyboards: docs/story/storyboards/)
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 SCRIPT = os.path.join(ROOT, 'docs', 'STORY-SCRIPT.md')
 LETTERS = os.path.join(ROOT, 'docs', 'story', 'letters')
@@ -34,7 +37,7 @@ LINE_STATUS = {'draft', 'approved', 'edit'}
 PUBLISHED = {'NAR', 'THO', 'DIA', 'SUB', 'FAC', 'SKL', 'SFX', 'PORTAL', 'ALT'}
 INTERNAL = {'VISUAL', 'NOTE'}
 SPOKEN = {'NAR', 'THO', 'DIA'}
-LETTER_STATUS = {'awaiting-text', 'approved', 'published'}
+LETTER_STATUS = {'awaiting-text', 'transcribed', 'approved', 'published'}
 ART_STATUS = {'pending', 'approved-for-generation', 'generated', 'approved-for-publication', 'rejected'}
 SCENE_WORD_BUDGET = 45
 MAIN_PATH_BUDGET = 42
@@ -591,6 +594,8 @@ def main():
         roots, by_id = parse_script(SCRIPT, rep)
         res = validate(roots, by_id, manifest, data, a.release, rep)
 
+    board_counts = boards.run(roots, by_id, rep, write=not a.check and not rep.errors)
+
     if not a.quiet:
         for w in rep.warnings:
             print(f'warning  {w}')
@@ -609,7 +614,8 @@ def main():
 
     print(f'\n{len(res["chapters"])} chapters · {len(res["arcs"])} arcs · '
           f'{res["main_path_panels"]} main-path panels · {len(res["art_refs"])} art IDs · '
-          f'{len(rep.errors)} error(s) · {len(rep.warnings)} warning(s)'
+          f'{len(rep.errors)} error(s) · {len(rep.warnings)} warning(s)\n'
+          f'storyboards: ' + ' · '.join(f'{k} {v}' for k, v in sorted(board_counts.items()))
           + ('' if rep.errors or a.check else f'\nwrote {os.path.relpath(OUT, ROOT)}'))
     return 1 if rep.errors else 0
 

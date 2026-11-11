@@ -396,7 +396,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Chairperson, ACE board (2020) — provided 25% of Singapore Cancer Society's volunteers",
+                      "text": "Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target",
                       "status": "draft"
                     },
                     {
@@ -453,7 +453,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "DrCT International — Bronze (2021)",
+                      "text": "DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)",
                       "status": "draft"
                     }
                   ]
@@ -572,7 +572,8 @@
                   "type": "PANEL_STANDARD",
                   "art": "np-overflow-workshop",
                   "portal": [
-                    "overflow"
+                    "overflow",
+                    "testimonial-victor"
                   ],
                   "data_ref": "projects:pnlp",
                   "status": "draft",
@@ -600,6 +601,11 @@
                     {
                       "type": "PORTAL",
                       "text": "Led workshops and helped build Panel Party",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Read Victor Lum's testimonial",
                       "status": "draft"
                     }
                   ]
@@ -3144,7 +3150,7 @@
         "slug": "jovita-tang",
         "name": "Jovita Tang",
         "title": "ML & NLP Specialist · Mathematics & Computing, SST",
-        "status": "awaiting-text",
+        "status": "transcribed",
         "text": null
       },
       "status": "draft",
@@ -3223,7 +3229,7 @@
         "slug": "keith-wee",
         "name": "Keith Wee",
         "title": "Service-Learning In-Charge · Mathematics, SST",
-        "status": "awaiting-text",
+        "status": "transcribed",
         "text": null
       },
       "status": "draft",
@@ -3295,7 +3301,7 @@
         "slug": "dimuthu-makawita",
         "name": "Dimuthu Makawita",
         "title": "Deputy Director (School Operations & Planning), ICT, Ngee Ann Polytechnic",
-        "status": "awaiting-text",
+        "status": "transcribed",
         "text": null
       },
       "status": "draft",
@@ -3357,6 +3363,77 @@
     },
     {
       "kind": "testimonial",
+      "id": "testimonial-victor",
+      "label": "Victor Lum",
+      "parent": "C04-S02-P01",
+      "title": "A LETTER FROM VICTOR LUM",
+      "portal": "Read Victor Lum's testimonial",
+      "letter": {
+        "slug": "victor-lum",
+        "name": "Victor Lum",
+        "title": "Senior Lecturer, School of ICT, Ngee Ann Polytechnic",
+        "status": "transcribed",
+        "text": null
+      },
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TV",
+          "label": "Testimonial",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TV-S01",
+              "label": "Introduction",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TV-S01-P01",
+                  "label": "Three years of advising",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-testimonial-victor-advisor",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "An NP ICT corridor or consultation room; NP-age Reginald with his advisor, a stack of workshop slides between them.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "For three years, one advisor keeps track of the whole picture — the internship, the workshops, the rest.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-TV-S02",
+              "label": "The letter",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TV-S02-P01",
+                  "label": "Over the shoulder",
+                  "type": "PANEL_TESTIMONIAL",
+                  "art": "arc-testimonial-victor-handover",
+                  "status": "draft"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/testimonial-victor"
+    },
+    {
+      "kind": "testimonial",
       "id": "testimonial-rahul",
       "label": "Rahul Varma",
       "parent": "C05-S07-P01",
@@ -3366,8 +3443,8 @@
       "letter": {
         "slug": "rahul-varma",
         "name": "Rahul Varma",
-        "title": "Executive Director, Global Head of Currencies & Emerging Markets Platform Technology, J.P. Morgan",
-        "status": "awaiting-text",
+        "title": "Senior Vice President, Manager of Software Engineering, JPMorgan Chase & Co.",
+        "status": "transcribed",
         "text": null
       },
       "status": "draft",
