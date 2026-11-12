@@ -4,6 +4,8 @@
 |---|---|
 | [`../STORY-SCRIPT.md`](../STORY-SCRIPT.md) | **The script.** The only file you edit for Story copy. |
 | [`EDIT-LIST.md`](EDIT-LIST.md) | What you still need to fill in, and what can be storyboarded now. |
+| [`OVERLAYS.md`](OVERLAYS.md) | **How to add and edit code overlays** (narration, dialogue, buttons, pop-up lists, skills) and their content types. |
+| [`OVERLAY-INDEX.md`](OVERLAY-INDEX.md) | Generated: every overlay in the story, its type, target and where it sits. |
 | [`SCHEMA.md`](SCHEMA.md) | Script format: headings, IDs, meta blocks, copy-line prefixes, statuses. |
 | [`DECISIONS.md`](DECISIONS.md) | Resolved decisions log. |
 | [`PRODUCTION-PLAN.md`](PRODUCTION-PLAN.md) | Phases A–G, gates, generation approval form, architecture notes. |

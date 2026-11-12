@@ -1378,6 +1378,34 @@
       "motion": null,
       "plate": "generate"
     },
+    "guards-card-ai": {
+      "scene_ids": [
+        "guards-life-ai"
+      ],
+      "kind": "image",
+      "description": "Reginald working with a teammate, the two of them talking to an LLM chatbot on screen.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null,
+      "plate": "generate"
+    },
     "guards-card-building": {
       "scene_ids": [
         "guards-life-building"
@@ -1459,7 +1487,8 @@
           "full": null
         }
       },
-      "motion": null
+      "motion": null,
+      "plate": "generate"
     },
     "guards-card-trading": {
       "scene_ids": [
@@ -1683,7 +1712,7 @@
         }
       },
       "motion": null,
-      "plate": "code"
+      "plate": "generate"
     },
     "jpm-card-multilob": {
       "scene_ids": [
@@ -1711,7 +1740,7 @@
         }
       },
       "motion": null,
-      "plate": "code"
+      "plate": "generate"
     },
     "jpm-card-retrieval": {
       "scene_ids": [
@@ -1739,7 +1768,7 @@
         }
       },
       "motion": null,
-      "plate": "code"
+      "plate": "generate"
     },
     "jpm-card-visualisation": {
       "scene_ids": [
@@ -1767,7 +1796,7 @@
         }
       },
       "motion": null,
-      "plate": "code"
+      "plate": "generate"
     },
     "jpm-conference-room": {
       "scene_ids": [
@@ -1915,6 +1944,34 @@
       ],
       "kind": "image",
       "description": "Rahul brings Reginald to a desk beside Farhan, a fellow intern. Overlay: an abstract red route from on-premise boxes to cloud shapes — never a real architecture diagram.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null,
+      "plate": "generate"
+    },
+    "np-graduation": {
+      "scene_ids": [
+        "C05-S09-P01"
+      ],
+      "kind": "image",
+      "description": "Ngee Ann Polytechnic graduation ceremony, May 2025. Reginald in a graduation gown, on stage, receiving his certificate. An awards button opens a pop-up list.",
       "character_age": null,
       "status": "pending",
       "rights": "not_reviewed",

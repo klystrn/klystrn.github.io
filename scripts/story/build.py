@@ -34,7 +34,7 @@ PANEL_TYPES = {'TITLE_HERO', 'TITLE_CHAPTER', 'PANEL_SPLASH', 'PANEL_STANDARD', 
 ARC_KINDS = {'project', 'daily-life', 'achievement', 'testimonial'}
 NODE_STATUS = {'draft', 'approved', 'hold'}
 LINE_STATUS = {'draft', 'approved', 'edit'}
-PUBLISHED = {'NAR', 'THO', 'DIA', 'SUB', 'FAC', 'SKL', 'SFX', 'PORTAL', 'ALT'}
+PUBLISHED = {'NAR', 'THO', 'DIA', 'SUB', 'FAC', 'SKL', 'SFX', 'PORTAL', 'MODAL', 'ALT'}
 INTERNAL = {'VISUAL', 'NOTE'}
 SPOKEN = {'NAR', 'THO', 'DIA'}
 LETTER_STATUS = {'awaiting-text', 'transcribed', 'approved', 'published'}
@@ -44,7 +44,7 @@ MAIN_PATH_BUDGET = 42
 
 HEAD_RE = re.compile(r'^(#{1,6})\s+(Chapter|Arc|Story|Scene|Panel|Item)\s+([A-Za-z0-9][A-Za-z0-9_-]*)(?:\s+·\s+(.*?))?\s*$')
 ANY_HEAD_RE = re.compile(r'^#{1,6}\s')
-LINE_RE = re.compile(r'^\s*(?:[-*]\s+)?(NAR|THO|DIA|SUB|FAC|SKL|SFX|PORTAL|ALT|VISUAL|NOTE)'
+LINE_RE = re.compile(r'^\s*(?:[-*]\s+)?(NAR|THO|DIA|SUB|FAC|SKL|SFX|PORTAL|MODAL|ALT|VISUAL|NOTE)'
                      r'(?:\[([^\]]+)\])?\s*(?:\{([a-z-]+)\})?\s*:\s*(.*?)\s*$')
 SLUG_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
 EDIT_RE = re.compile(r'\[EDIT:[^\]]*\]')
@@ -174,6 +174,8 @@ def parse_script(path, rep):
                     rep.err(f'line {n}', f'unknown status {{{status}}} (use draft, approved or edit)')
                 if prefix == 'DIA' and not speaker:
                     rep.err(f'line {n}', 'DIA needs a speaker: DIA[Name]')
+                if prefix == 'MODAL' and not speaker:
+                    rep.err(f'line {n}', 'MODAL needs a button label: MODAL[Label]: item · item · item')
                 cur['lines'].append({'type': prefix, 'speaker': speaker, 'status': status or 'draft',
                                      'text': text, 'line': n})
         elif raw.strip() and not raw.lstrip().startswith(('>', '---', '<!--')):
@@ -273,6 +275,21 @@ def validate(roots, by_id, manifest, data, release, rep):
     chapters = [r for r in roots if r['kind'] == 'Chapter']
     arcs = [r for r in roots if r['kind'] == 'Arc']
     arc_slugs = {a['id'] for a in arcs}
+    # PORTAL[arc-slug] lines name their destination; fold them into the panel's portal list.
+    for root in roots:
+        for node in walk(root):
+            if node['kind'] != 'Panel':
+                continue
+            for l in node['lines']:
+                if l['type'] == 'PORTAL' and l['speaker']:
+                    if l['speaker'] not in arc_slugs:
+                        rep.err(f'{node["id"]} line {l["line"]}', f'PORTAL[{l["speaker"]}] is not an Arc in this script')
+                    else:
+                        cur = as_list(node['meta'].get('portal'))
+                        if l['speaker'] not in cur:
+                            node['meta']['portal'] = cur + [l['speaker']]
+                elif l['type'] == 'PORTAL' and not as_list(node['meta'].get('portal')):
+                    rep.err(f'{node["id"]} line {l["line"]}', 'PORTAL needs a destination: PORTAL[arc-slug]: label')
     orders = {}
     letters = {}
     unknown_skills = set()

@@ -7,9 +7,9 @@
 
 | Status | Scenes |
 |---|---|
-| Approved | 1 |
+| Approved | 5 |
 | Changes requested | 0 |
-| Drafted — awaiting your review | 49 |
+| Drafted — awaiting your review | 46 |
 | Partly drafted | 0 |
 | Waiting on script edits | 18 |
 | Not started | 0 |
@@ -41,20 +41,21 @@
 |---|---|---|---|
 | `C04-S01` | First weeks and personal builds | 2 | Drafted — awaiting your review |
 | `C04-S02` | Overflow | 1 | Drafted — awaiting your review |
-| `C04-S03` | Touch Young Arrows | 1 | Drafted — awaiting your review |
-| `C04-S05` | The internship offer | 2 | Drafted — awaiting your review |
+| `C04-S03` | Touch Young Arrows | 1 | Approved |
+| `C04-S05` | The internship offer | 2 | Approved |
 
 ## Chapter `jpmorgan` · JPMorganChase
 
 | Scene | | Panels | Storyboard |
 |---|---|---|---|
-| `C05-S01` | CapitaSpring arrival | 1 | Drafted — awaiting your review |
+| `C05-S01` | CapitaSpring arrival | 1 | Approved |
 | `C05-S02` | Meeting the people | 1 | Drafted — awaiting your review |
 | `C05-S03` | At the desk with the team | 1 | Drafted — awaiting your review |
 | `C05-S04` | Time and uncertainty | 2 | Drafted — awaiting your review |
 | `C05-S05` | The go-to data person | 1 | Drafted — awaiting your review |
 | `C05-S06` | End-of-internship presentation | 1 | Drafted — awaiting your review |
 | `C05-S07` | Achievements & Milestones | 1 | Drafted — awaiting your review |
+| `C05-S09` | Graduation | 1 | Drafted — awaiting your review |
 
 ## Chapter `guards` · GUARDS FORMATION
 
@@ -62,7 +63,7 @@
 |---|---|---|---|
 | `C06-S01` | BMT to a new posting | 2 | Drafted — awaiting your review |
 | `C06-S02` | Picking up the camera | 1 | Drafted — awaiting your review |
-| `C06-S03` | Media team and AI | 2 | Drafted — awaiting your review |
+| `C06-S03` | Media team and AI | 2 | Approved |
 | `C06-S04` | Daily life | 1 | Drafted — awaiting your review |
 
 ## Chapter `registudio` · REGISTUDIO

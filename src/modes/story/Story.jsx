@@ -74,8 +74,48 @@ function PortalLink({ slug, children, from }) {
   );
 }
 
+function Modal({ label, items }) {
+  const ref = useRef(null);
+  return (
+    <>
+      <button type="button" className="st-cap MODAL" aria-haspopup="dialog" onClick={() => ref.current?.showModal()}>
+        {label} <span aria-hidden="true">▸</span>
+      </button>
+      <dialog className="st-dialog" ref={ref} aria-label={label} onClick={(e) => { if (e.target === ref.current) ref.current.close(); }}>
+        <h3>{label}</h3>
+        <ul>{items.map((it) => <li key={it}>{it}</li>)}</ul>
+        <form method="dialog"><button className="st-back">Close</button></form>
+      </dialog>
+    </>
+  );
+}
+
+/* Hand-inked panel border, drawn in code around every plate (plates are
+   generated full-bleed with no border of their own). */
+function InkFrame({ seed }) {
+  const d = useMemo(() => {
+    let x = 0; for (const c of String(seed)) x = (x * 31 + c.charCodeAt(0)) % 2147483647;
+    const r = () => ((x = (x * 16807 + 11) % 2147483647) / 2147483647 - 0.5);
+    const pass = (j) => {
+      const p = [[0, 0], [100, 0], [100, 100], [0, 100]].map(([px, py]) => [px + r() * j, py + r() * j]);
+      const mid = (a, b) => [(a[0] + b[0]) / 2 + r() * j, (a[1] + b[1]) / 2 + r() * j];
+      let out = `M${p[0][0]} ${p[0][1]}`;
+      for (let i = 0; i < 4; i++) { const a = p[i], b = p[(i + 1) % 4], m = mid(a, b); out += ` Q${m[0]} ${m[1]} ${b[0]} ${b[1]}`; }
+      return `${out} Z`;
+    };
+    return [pass(0.5), pass(0.9)];
+  }, [seed]);
+  return (
+    <svg className="st-ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d={d[0]} className="a" vectorEffect="non-scaling-stroke" />
+      <path d={d[1]} className="b" vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
 function CaptionBody({ type, line, panel, n }) {
-  if (type === 'PORTAL') return <PortalLink slug={portalFor(panel, n)} from={panel.id}>{line.x}</PortalLink>;
+  if (type === 'PORTAL') return <PortalLink slug={line.s || portalFor(panel, n)} from={panel.id}>{line.x}</PortalLink>;
+  if (type === 'MODAL') return <Modal label={line.s || 'Open list'} items={line.x.split(' · ').map((v) => v.trim()).filter(Boolean)} />;
   if (type === 'SKL') return <ul className="st-cap SKL" aria-label="Skills">{line.x.split(',').map((s) => <li key={s}>{s.trim()}</li>)}</ul>;
   return (
     <p className={`st-cap ${type}`}>
@@ -106,6 +146,7 @@ function Frame({ frame, panel, id, used, visual }) {
   return (
     <figure className="st-frame" style={{ '--ar': `${aw} / ${ah}`, flex: `${aw / ah} 1 0` }}>
       <Sketch frame={frame} panel={panel} id={id} label={visual} />
+      <InkFrame seed={id} />
       <div className="st-caps">{caps}</div>
       {frame.label && <figcaption className="st-framelabel">{frame.label}</figcaption>}
     </figure>
@@ -181,6 +222,9 @@ function Selection({ panel }) {
               <div className="st-carddetail" id={`card-${it.id}`}>
                 {sub && <p className="st-cap SUB">{sub.x}</p>}
                 {nar && <p className="st-cap NAR">{nar.x}</p>}
+                {Array.isArray(it.skills) && it.skills.length > 0 && (
+                  <ul className="st-cap SKL" aria-label="Skills">{it.skills.map((k) => <li key={k}>{k}</li>)}</ul>
+                )}
                 {portal && it.arc && <PortalLink slug={it.arc} from={panel.id}>{portal.x}</PortalLink>}
               </div>
             </section>
@@ -222,6 +266,12 @@ function Hero({ chapter }) {
       <div className="st-heropin">
         <div className="st-herofig desk">{desk && <Sketch frame={desk} panel={panel} id="hero-d" layer="art" cover label="Red silhouette of Reginald Tan, arms folded" />}</div>
         <div className="st-herofig phone">{phone && <Sketch frame={phone} panel={panel} id="hero-m" layer="art" cover label="Red silhouette of Reginald Tan, arms folded" />}</div>
+        <nav className="st-nav" aria-label="Portfolio modes">
+          <Link to="/"><span>CV</span></Link>
+          <Link to="/tech"><span>Tech</span></Link>
+          <Link to="/finance"><span>Finance</span></Link>
+          <Link to="/life"><span>Life</span></Link>
+        </nav>
         <h1 className="st-name">
           <span className="st-latin"><span>{first}</span> <span>{rest.join(' ')}</span></span>
           <span className="st-cjk" lang="zh-Hans">陈彦杰</span>

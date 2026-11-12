@@ -34,8 +34,8 @@ type: TITLE_HERO
 art: hero-silhouette
 interaction: pointer-parallax
 ```
-- VISUAL: Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.
-- VISUAL: Scrolling pushes the camera from the upper body into a close-up of the face while the name lifts away.
+- VISUAL: Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. A comic-style nav box sits at the top — one box split into CV, Tech, Finance and Life tabs by diagonal dividers tilted 17° clockwise; a hovered tab fills red and widens slightly. Ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.
+- VISUAL: On scroll the name first travels up with the page like normal content, then fades out; the camera pushes from the upper body into a close-up of the face. Everything keeps strong contrast: a darker crimson figure with bright rim lines, ivory name, bright red Chinese name with a dark outline, ivory nav box with ink text.
 - ALT {draft}: A red silhouette of Reginald Tan on black, under his name in English and Chinese.
 - NOTE: No narration, awards or job titles in the hero. The `PORTFOLIO` eyebrow is replaced by the nav bar (review, 11 Nov). Pointer moves a red glint 1–2°; touch gets a static frame. CJK font subset to the three glyphs. One-line name on desktop, two lines on mobile.
 
@@ -138,13 +138,12 @@ data_ref: education:sst
 ```story
 type: PANEL_SPLASH
 art: sst-python-classroom
-portal: [testimonial-jovita]
 ```
 - VISUAL: SST computing classroom, mostly black and white. A teacher at the front explains pandas on the board; teenage Reginald sits at his desk staring at his laptop, trying the practical. One highlighted line of code glows red.
 - NAR {draft}: The first systems I learn aren't markets. They're small programs I can change.
 - THO {draft}: Okay. Why did *that* work?
-- SKL {draft}: Python, Data handling
-- PORTAL {draft}: Read Jovita Tang's testimonial
+- SKL {draft}: Python, Pandas
+- PORTAL[testimonial-jovita] {draft}: Read Jovita Tang's testimonial
 
 #### Panel C03-S01-P02 · Building locationX with friends
 ```story
@@ -171,6 +170,7 @@ art: sst-nric-validator
 - NAR {draft}: Then I build one on my own, and show them.
 - DIA[Friend] {draft}: Hold on. It knows that one's fake?
 - FAC {draft}: NRIC validator — solo build
+- SKL {draft}: Python, Algorithms
 - NOTE: [EDIT: year of the NRIC validator, and one sentence on what it checked]
 
 ## Story C03B · Being responsible for others
@@ -181,7 +181,6 @@ art: sst-nric-validator
 ```story
 type: PANEL_STANDARD
 art: sst-ace-drive
-portal: [testimonial-keith]
 ```
 - VISUAL: Two beats. First: working with the Singapore Cancer Society — Reginald and the SCS@ACE team signing up volunteers for Relay For Life 2020. Second: the ACE Recruitment Drive — Reginald on stage giving an assembly talk, recruiting students to become ACE leaders. Students anonymous.
 - NAR {draft}: As an ACE leader, an idea only matters if I can get people to act on it.
@@ -189,7 +188,7 @@ portal: [testimonial-keith]
 - FAC {draft}: Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target
 - FAC {draft}: Overall-in-charge, ACE Recruitment Drive — recruiting and interviewing new student leaders
 - SKL {draft}: Leadership, Recruitment
-- PORTAL {draft}: Read Keith Wee's testimonial
+- PORTAL[testimonial-keith] {draft}: Read Keith Wee's testimonial
 
 ## Story C03C · A quieter test
 
@@ -206,6 +205,7 @@ data_ref: awards:DrCT International, Bronze
 - SFX {draft}: TICK
 - THO {draft}: Brute force is too slow. What repeats? Break it into smaller steps.
 - THO {draft}: Bronze. I'll take it.
+- SKL {draft}: Algorithms
 - FAC {draft}: DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)
 - NOTE: Use a scan of the real certificate, not generated award text.
 
@@ -225,28 +225,24 @@ data_ref: education:np
 
 ### Scene C04-S01 · First weeks and personal builds
 
-#### Panel C04-S01-P01 · The workshop opens
+#### Panel C04-S01-P01 · Walking in
 ```story
 type: PANEL_SPLASH
 art: np-workshop-open
-interaction: evidence-drawer
 ```
-- VISUAL: Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: inside a lecture theatre for the module Programming 1. A small awards drawer in the corner expands on click.
+- VISUAL: Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: a full lecture theatre — rows of students, like a real lecture — for the module Computing Mathematics.
 - NAR {draft}: At Ngee Ann, I start putting the pieces together: code, design, users and deadlines.
-- FAC {draft}: Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prizes: Computing Mathematics, Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)
-- NOTE: The drawer replaces the old separate recognition panel (C04-S04-P01). Use real scans if you want images inside it.
 
 #### Panel C04-S01-P02 · Tea Shop to FRATS
 ```story
 type: PANEL_STANDARD
 art: np-tea-shop-frats
-portal: [frats]
 data_ref: projects:frts
 ```
 - VISUAL: Two beats. First: Reginald at work putting the pieces together — one of them his mock website, TheTeaShop, on screen. Second: Reginald presenting FRATS (capture → recognise → attendance) in a hackathon-style setting, slide behind him, judges in front.
 - NAR {draft}: One project teaches me how to make something. Another teaches me how much has to happen before it actually works.
-- SKL {draft}: Computer vision, UX
-- PORTAL {draft}: Built a facial-recognition attendance system with AIDC
+- SKL {draft}: Web Development, Computer Vision
+- PORTAL[frats] {draft}: Built a facial-recognition attendance system with AIDC
 
 ## Story C04B · Passing skills forward
 
@@ -256,31 +252,35 @@ data_ref: projects:frts
 ```story
 type: PANEL_STANDARD
 art: np-overflow-workshop
-portal: [overflow, testimonial-victor]
 data_ref: projects:pnlp
 ```
-- VISUAL: Reginald explaining a concept to peers; a partial Panel Party screen slides in at the side. Never implies he built the whole game.
+- VISUAL: Reginald teaching an Overflow workshop on Data Structures & Algorithms — hash maps on the slide behind him, students following on laptops.
 - NAR {draft}: Explaining something forces me to learn it twice: once for myself, once for everyone else.
 - FAC {draft}: Head Secretary, Overflow · 16 workshops taught
-- SKL {draft}: Teaching, Game design
-- PORTAL {draft}: Led workshops and helped build Panel Party
-- PORTAL {draft}: Read Victor Lum's testimonial
+- SKL {draft}: Teaching, Algorithms
+- PORTAL[overflow] {draft}: Led workshops and helped build Panel Party
 
 ### Scene C04-S03 · Touch Young Arrows
+```story
+storyboard: approved
+```
 
 #### Panel C04-S03-P01 · Tutoring
 ```story
 type: PANEL_STANDARD
 art: np-tya-tutoring
-portal: [tya]
 ```
 - VISUAL: Respectful tutoring setting, framed from behind; the child is never identifiable.
 - NAR {draft}: Some lessons aren't about technology at all. They're about being patient enough to make something understandable.
-- PORTAL {draft}: Tutored and mentored children at Touch Young Arrows
+- SKL {draft}: Mentoring
+- PORTAL[tya] {draft}: Tutored and mentored children at Touch Young Arrows
 
 ## Story C04C · A call at my desk
 
 ### Scene C04-S05 · The internship offer
+```story
+storyboard: approved
+```
 
 #### Panel C04-S05-P01 · The phone rings
 ```story
@@ -297,12 +297,10 @@ art: np-jpm-call
 ```story
 type: PANEL_SPLASH
 art: np-jpm-offer
-portal: [testimonial-dimuthu]
 ```
 - VISUAL: Reaction stays on Reginald. The red edge of the phone becomes a door/window line — match-cut to CapitaSpring after the chapter separator.
 - DIA[Caller] {draft}: We'd like to offer you the internship.
 - NAR {draft}: Then one call changes what the next year looks like.
-- PORTAL {draft}: Read a testimonial from my NP mentor, Dimuthu Makawita
 
 ---
 
@@ -319,6 +317,9 @@ data_ref: experience:jpmc
 ## Story C05A · The first day
 
 ### Scene C05-S01 · CapitaSpring arrival
+```story
+storyboard: approved
+```
 
 #### Panel C05-S01-P01 · Walking in
 ```story
@@ -330,16 +331,16 @@ art: jpm-capitaspring-arrival
 
 ### Scene C05-S02 · Meeting the people
 
-#### Panel C05-S02-P01 · Conference room
+#### Panel C05-S02-P01 · Networking session
 ```story
 type: PANEL_STANDARD
 art: jpm-conference-room
 ```
-- VISUAL: Interns around a conference table; Rahul turns to Reginald.
-- NAR {draft}: I meet the people I'll be learning alongside. Then the conversation turns to what I've built.
-- DIA[Rahul] {draft}: So — tell me about something you've built recently.
-- THO {draft}: All right. Explain it clearly.
-- NOTE: [EDIT: which project you talked about — FRATS?]
+- VISUAL: A networking session. Rahul and Reginald stand face to face, each holding a coffee as they talk; other interns mingle behind them.
+- NAR {draft}: At a networking session, coffee in hand, I meet the people I'll be learning from.
+- DIA[Rahul] {draft}: So, tell me about yourself.
+- DIA[Reginald] {draft}: I work hard, and I keep people in the loop. You'll always know where things stand.
+- SKL {draft}: Communication
 
 ### Scene C05-S03 · At the desk with the team
 
@@ -350,10 +351,10 @@ art: jpm-migration-brief
 data_ref: projects:athn
 ```
 - VISUAL: Rahul brings Reginald to a desk beside Farhan, a fellow intern. Overlay: an abstract red route from on-premise boxes to cloud shapes — never a real architecture diagram.
-- DIA[Rahul] {draft}: We support FX Cash and FX Options. The plan is to move these workloads from our own servers to AWS.
+- DIA[Rahul] {draft}: Our project is to move these FX Cash and FX Options workloads from our own servers to AWS.
 - NAR {draft}: The problem isn't just moving work. It's knowing what to move, why, and what the data says.
 - FAC {draft}: Currencies & Emerging Markets · Athena · Corporate & Investment Bank
-- SKL {draft}: AWS, Data analytics
+- SKL {draft}: AWS, Data Analytics
 
 ## Story C05B · The hard stretch
 
@@ -369,16 +370,15 @@ interaction: timeline-scrub
 - NAR {draft}: The work takes longer than I expect. Some nights I keep looking at the same problem from a different angle.
 - NOTE: Your account: ~9am–8pm in office, ~10pm–1/2am at home, some weekends, for weeks. Shown as my choice, not an employer requirement.
 
-#### Panel C05-S04-P02 · One next step
+#### Panel C05-S04-P02 · Lock in
 ```story
 type: PANEL_STANDARD
 art: jpm-fatigue-choice
 ```
-- VISUAL: Head in hands; a pause; then a small framed decision — one sticky note, one next step.
-- THO {draft}: I'm tired. What's the one thing I can actually move forward?
-- NAR {draft}: I break the problem down again. Progress is rarely as dramatic as the final slide.
+- VISUAL: Three beats in the same scene. Wide: Reginald at his desk, head in his hands. Close-up: the same pose, hands over his face. Then: he looks up, focused.
+- THO {draft}: Fourth sixty-hour week in a row. No rest.
+- DIA[Reginald] {draft}: Lock in. I can do this.
 - SKL {draft}: Problem decomposition, Persistence
-- NOTE: [EDIT: the specific blocker, if you want it named]
 
 ## Story C05C · From learning to explaining
 
@@ -389,10 +389,11 @@ art: jpm-fatigue-choice
 type: PANEL_EVIDENCE
 art: jpm-grafana-update
 ```
-- VISUAL: Left: a coworker leans over as Reginald wires their team's database into Grafana (safe mock dashboard). Right: Reginald presenting migration progress on a high-level stage board.
-- DIA[Coworker] {draft}: Can you show me how you got that into Grafana?
+- VISUAL: Left: a Grafana dashboard on a big wall screen — a line chart, a bar graph, a treemap and a pie chart, painted into the art with synthetic values — as a coworker asks Reginald how he syncs the database with all the widgets. Right: Reginald presenting migration progress on a high-level stage board.
+- DIA[Coworker] {draft}: How are you syncing the database with all these widgets?
 - NAR {draft}: Eventually I stop only asking questions. People start asking me how to see the data — and the next challenge is explaining it so they can decide.
-- SKL {draft}: Data visualisation, Technical communication
+- SKL {draft}: Data Visualisation, SQL, InfluxDB
+- NOTE: The dashboard widgets are generated as part of the image (your request), so changing them means regenerating this plate.
 
 ## Story C05D · Report day
 
@@ -403,8 +404,11 @@ art: jpm-grafana-update
 type: PANEL_SPLASH
 art: jpm-final-presentation
 ```
-- VISUAL: Reginald presenting lessons and outcomes to a panel; the screen unfolds into the milestones grid.
+- VISUAL: Reginald presenting what he learnt to a panel; the screen behind him shows the project update — 83% of the CEM workload migrated.
 - NAR {draft}: A year of questions becomes a report I have to stand behind.
+- DIA[Reginald] {draft}: I learnt to break a big problem into steps, and to make data clear enough for people to decide.
+- FAC {draft}: 83% of the CEM workload migrated during my internship
+- SKL {draft}: Jira, Stakeholder reporting
 
 ### Scene C05-S07 · Achievements & Milestones
 
@@ -412,11 +416,10 @@ art: jpm-final-presentation
 ```story
 type: PANEL_SELECTION
 layout: {desktop: 2x2, mobile: stack}
-portal: [testimonial-rahul]
 ```
 - NAR {draft}: These are the outcomes. The interesting part is what it takes to get there.
-- PORTAL {draft}: Read Rahul Varma's testimonial
-- NOTE: Four verified milestones → 2×2 grid. Add a fifth card only if a fifth real milestone exists.
+- PORTAL[testimonial-rahul] {draft}: Read Rahul Varma's testimonial
+- NOTE: Card frames, titles and text are code overlays; the image inside each card is generated.
 
 ##### Item ms-retrieval
 ```story
@@ -425,6 +428,7 @@ art: jpm-card-retrieval
 arc: jpm-data-retrieval
 skills: [Python, Parallel Computing]
 ```
+- VISUAL: A database on a computer screen; Reginald reading through the data.
 - SUB {draft}: Cut a data-retrieval process from about 4 hours to 30 seconds.
 - PORTAL {draft}: Optimised data retrieval from 4 hours to 30 seconds
 
@@ -435,6 +439,7 @@ art: jpm-card-visualisation
 arc: jpm-visualisation
 skills: [Data Visualisation, Influx DB]
 ```
+- VISUAL: Reginald presenting a widget-based dashboard during an online meeting.
 - SUB {draft}: Built a workload monitoring and visualisation tool to inform migration planning.
 - PORTAL {draft}: Built workload visualisations for migration decisions
 
@@ -445,6 +450,7 @@ art: jpm-card-migration
 arc: jpm-migration
 skills: [AWS, Data analytics]
 ```
+- VISUAL: Reginald running code in the office, with Farhan beside him.
 - SUB {draft}: Helped migrate trader reports and server workloads from legacy systems to AWS.
 - PORTAL {draft}: Migrated trading workloads to the cloud
 
@@ -455,8 +461,27 @@ art: jpm-card-multilob
 arc: jpm-multilob
 skills: [Technical communication, Stakeholder reporting]
 ```
+- VISUAL: Reginald talking a coworker from another team through his tool.
 - SUB {draft}: My tool was adopted across multiple lines of business; I supported and coordinated its rollout.
 - PORTAL {draft}: Supported a multi-line-of-business rollout
+
+## Story C05E · Graduation
+
+### Scene C05-S09 · Graduation
+
+#### Panel C05-S09-P01 · The diploma
+```story
+type: PANEL_SPLASH
+art: np-graduation
+data_ref: education:np
+```
+- VISUAL: Ngee Ann Polytechnic graduation ceremony, May 2025. Reginald in a graduation gown, on stage, receiving his certificate. An awards button opens a pop-up list.
+- NAR {draft}: A few weeks after the internship ends, I'm back at Ngee Ann for one last walk across a stage.
+- FAC {draft}: Diploma in Information Technology · Ngee Ann Polytechnic · May 2025
+- MODAL[Awards I received] {draft}: Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prize: Computing Mathematics (2022) · Module Prize: Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)
+- PORTAL[testimonial-dimuthu] {draft}: Read Dimuthu Makawita's testimonial
+- PORTAL[testimonial-victor] {draft}: Read Victor Lum's testimonial
+- NOTE: Placed here because graduation (May 2025) comes after the internship (Apr 2024 – Mar 2025), and it keeps the approved offer-call → CapitaSpring cut intact. Move the whole scene block if you'd rather it close the NP chapter.
 
 ---
 
@@ -479,17 +504,25 @@ data_ref: experience:saf
 type: PANEL_STANDARD
 art: guards-bmt
 ```
-- VISUAL: Brief BMT montage with Guards-related training; fatigue creeps in.
+- VISUAL: A page of six equal panels. (1) Context: a mono-Guards enlistment — heli-rappelling silhouette. (2) Running with his section in long-4 uniform, helmets and field packs, carrying SAR-21 rifles. (3) Push-ups on the parade square under a hot sun. (4) In the jungle on an outfield, aiming a SAR-21. (5) Fatigue setting in. (6) Coughing.
+- NAR {draft}: I enlist into a mono-Guards intake: an elite infantry unit trained in heli-rappelling and amphibious operations.
+- DIA[Sergeant] {draft}: Keep it tight! Nobody drops out!
+- THO {draft}: The parade square is hotter than the sun.
+- THO {draft}: Breathe. Front sight. Squeeze.
+- THO {draft}: Why am I this tired?
+- SFX {draft}: KOFF
 - NAR {draft}: I think I know the shape of the next chapter. Then my health changes the plan.
+- SKL {draft}: Resilience
 
 #### Panel C06-S01-P02 · Pneumonia, then a different route
 ```story
 type: PANEL_STANDARD
 art: guards-pneumonia-transition
 ```
-- VISUAL: Restrained and symbolic — a corridor that forks; one path closes, a side door opens. No hospital melodrama.
+- VISUAL: Two beats. First: a medical centre — Reginald with his head in his hands as the doctor tells him he has pneumonia. Second: posted out to HQ Guards — a corridor, one door lit red.
+- DIA[Doctor] {draft}: It's pneumonia. You're out of training.
 - NAR {draft}: Pneumonia takes me off the path I expected. I have to figure out what I can make of the new one.
-- NOTE: [EDIT: how much medical detail you want shown — currently just "pneumonia"]
+- FAC {draft}: Posted to HQ Guards
 
 ## Story C06B · A new lens
 
@@ -500,38 +533,41 @@ art: guards-pneumonia-transition
 type: PANEL_STANDARD
 art: guards-first-camera
 ```
-- VISUAL: Through a viewfinder, a monochrome scene snaps into a deliberate composition with a narrow red focus guide.
+- VISUAL: Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a camera and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.
+- DIA[Officer] {draft}: You're going to be our photographer.
+- THO {draft}: A photographer? Me?
 - NAR {draft}: A camera changes what I pay attention to. Suddenly the story is in the framing.
-- SKL {draft}: Photography, Lightroom
-- NOTE: [EDIT: your first camera assignment and why it mattered]
+- SKL {draft}: Photography, Lightroom, Photoshop
 
 ### Scene C06-S03 · Media team and AI
+```story
+storyboard: approved
+```
 
 #### Panel C06-S03-P01 · Leading the team
 ```story
 type: PANEL_STANDARD
 art: guards-media-team
-portal: [guards-media, testimonial-yap]
+portal: [testimonial-yap]   # pending letter: the arc stays hidden until it arrives
 ```
 - VISUAL: Wide split scene: a planning meeting with Yap Shi Hao (Head of Manpower, Guards Formation), then Reginald directing his media team's coverage of a parade.
 - DIA[Yap Shi Hao] {draft}: What do we need from the team for the parade?
 - NAR {draft}: The role grows from taking pictures to helping a team of nine deliver them.
 - FAC {draft}: Team Manager, Media & Design · team of 9 · Guards HQ social accounts · Recruitment Board
 - SKL {draft}: Team management, Project Management
-- PORTAL {draft}: Led media coverage for Guards HQ
+- PORTAL[guards-media] {draft}: Led media coverage for Guards HQ
 
 #### Panel C06-S03-P02 · AI Task Force
 ```story
 type: PANEL_EVIDENCE
 art: guards-ai-process
-portal: [guards-ai]
 data_ref: projects:grds
 ```
 - VISUAL: Illustrative diagram — caption drafting, event admin and daily-task automation, AI workshops, and a chatbot for Guards combatants. Labelled "illustrative workflow".
 - NAR {draft}: I also start looking for repetitive work we can make less repetitive.
 - FAC {draft}: Guards AI Task Force · chatbot for combatants (in progress)
 - SKL {draft}: Claude, Gemini
-- PORTAL {draft}: Built AI workflows for the Guards AI Task Force
+- PORTAL[guards-ai] {draft}: Built AI workflows for the Guards AI Task Force
 
 ## Story C06C · The rhythm outside work
 
@@ -540,23 +576,43 @@ data_ref: projects:grds
 #### Panel C06-S04-P01 · Daily-life board
 ```story
 type: PANEL_SELECTION
-layout: {desktop: 2+2, mobile: stack}
+layout: {desktop: 2+3, mobile: stack}
 interaction: staggered-slide-in, hover-expand, tap-expand
-portal: [market-city]
 ```
-- PORTAL {draft}: Started Market City, a spatial way to visualise markets
-- VISUAL: The board assembles from clock ticks. One compact experience — not four pinned scroll sequences.
+- VISUAL: Five cards. Row one is army life (managing the media team, AI task force); row two is his own time (equity trading, building tools, diving into hobbies).
 - NAR {draft}: The schedule changes. What I do with the hours around it changes too.
-- NOTE: This board replaces the old separate panels for trading (C06-S05), projects (C06-S06) and gym/cardistry (C06-S07). Media/AI moved up to C06-S03.
+- PORTAL[market-city] {draft}: Started Market City, a spatial way to visualise markets
+
+##### Item guards-life-media
+```story
+title: MANAGING THE MEDIA TEAM
+art: guards-card-media
+arc: guards-media
+skills: [Team management, Photoshop]
+```
+- VISUAL: Reginald directing his media team on a shoot.
+- SUB {draft}: Leading a team of nine across shoots, edits and Guards HQ's social accounts.
+- PORTAL {draft}: Led media coverage for Guards HQ
+
+##### Item guards-life-ai
+```story
+title: AI TASK FORCE
+art: guards-card-ai
+arc: guards-ai
+skills: [Claude, Prompt Engineering]
+```
+- VISUAL: Reginald working with a teammate, the two of them talking to an LLM chatbot on screen.
+- SUB {draft}: Building a chatbot for Guards combatants, one prompt and one test at a time.
+- PORTAL {draft}: Built AI workflows for the Guards AI Task Force
 
 ##### Item guards-life-trading
 ```story
-title: TRADING & MARKETS
+title: EQUITY TRADING
 art: guards-card-trading
 arc: trading-nebius
-skills: [Markets research, Risk management]
+skills: [Technical Analysis, Fundamental Analysis]
 ```
-- VISUAL: Commute podcasts → strategy videos → a trade-tracking spreadsheet; a red ticker ribbon flows from phone to home desk.
+- VISUAL: Reginald on his phone, analysing a stock.
 - SUB {draft}: I've traded since 2024. In NS I go deeper — documenting what I think will happen, and what actually does.
 - PORTAL {draft}: Developed a high-volatility strategy around Nebius
 
@@ -565,29 +621,21 @@ skills: [Markets research, Risk management]
 title: BUILDING TOOLS
 art: guards-card-building
 arc: imperium
-skills: [Claude & MCP, Python]
+skills: [Python, MCPs, Trade Automation]
 ```
-- VISUAL: Home desk at night: the Automated Trading Workflow running, Imperium and Market City sketches pinned beside it.
+- VISUAL: Reginald at his desktop at night, working on his tools.
 - SUB {draft}: I build an automated trading workflow — and start on Imperium and Market City, both still in progress.
 - PORTAL {draft}: Built an automated trading workflow
 
 ##### Item guards-life-discipline
 ```story
-title: DISCIPLINE & CREATIVITY
+title: DIVING INTO HOBBIES
 art: guards-card-discipline
 arc: guards-life
 ```
-- VISUAL: Two compact moments: gym progression; a hand lifting a card deck off a shelf after five years, then a flourish.
-- SUB {draft}: 60 kg to 75 kg in 12 months at the gym — and back to cardistry after a five-year break.
-- PORTAL {draft}: Rebuilt old habits and new ones
-
-##### Item guards-life-media
-```story
-title: THE CAMERA OFF-DUTY
-art: guards-card-media
-arc: guards-media
-```
-- SUB {edit}: [EDIT: keep this fourth card (personal photography), replace it, or delete it for a 3-card board]
+- VISUAL: Cover: a close-up of a card spring — cards arcing between two hands.
+- SUB {draft}: Back to cardistry after a five-year break — and 60 kg to 75 kg at the gym in 12 months.
+- PORTAL {draft}: Picked my hobbies back up
 
 ---
 
@@ -650,22 +698,21 @@ art: registudio-pricing
 ```story
 type: PANEL_STANDARD
 art: registudio-pipeline
-portal: [registudio-business]
 ```
 - VISUAL: Leads from freelance platforms, outreach and conversations flowing into an anonymised lead → meeting → proposal → client funnel. No phone numbers or names.
 - NAR {draft}: A business needs a repeatable way to find the right conversation, not just the occasional lucky introduction.
-- PORTAL {draft}: Built a lead-to-client process for RegiStudio
+- SKL {draft}: Sales pipeline, Process design
+- PORTAL[registudio-business] {draft}: Built a lead-to-client process for RegiStudio
 
 #### Panel C07-S05-P02 · Design Playground
 ```story
 type: PANEL_EVIDENCE
 art: registudio-design-playground
-portal: [design-playground]
 ```
 - VISUAL: One-off experiments snapping into reusable components; real components from the repo, not mock-ups.
 - NAR {draft}: I also need a way to build faster without making everything look the same.
-- SKL {draft}: Design systems, Process design
-- PORTAL {draft}: Built Design Playground to streamline delivery
+- SKL {draft}: Web Development, UI/UX · Figma, Design systems
+- PORTAL[design-playground] {draft}: Built Design Playground to streamline delivery
 - NOTE: [EDIT: what Design Playground does today, and any real time saved]
 
 ## Story C07D · What building a business teaches
@@ -1330,9 +1377,9 @@ art: arc-testimonial-keith-handover
 # Arc testimonial-dimuthu · Dimuthu Makawita
 ```story
 kind: testimonial
-parent: C04-S05-P02
+parent: C05-S09-P01
 title: A LETTER FROM DIMUTHU MAKAWITA
-portal: Read a testimonial from my NP mentor, Dimuthu Makawita
+portal: Read Dimuthu Makawita's testimonial
 data_ref: testimonials:dimuthu-makawita
 letter: dimuthu-makawita
 ```
@@ -1362,7 +1409,7 @@ art: arc-testimonial-dimuthu-handover
 # Arc testimonial-victor · Victor Lum
 ```story
 kind: testimonial
-parent: C04-S02-P01
+parent: C05-S09-P01
 title: A LETTER FROM VICTOR LUM
 portal: Read Victor Lum's testimonial
 letter: victor-lum

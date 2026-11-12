@@ -36,12 +36,12 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. The nav bar sits at the top; ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.",
+                      "text": "Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. A comic-style nav box sits at the top — one box split into CV, Tech, Finance and Life tabs by diagonal dividers tilted 17° clockwise; a hovered tab fills red and widens slightly. Ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.",
                       "status": "draft"
                     },
                     {
                       "type": "VISUAL",
-                      "text": "Scrolling pushes the camera from the upper body into a close-up of the face while the name lifts away.",
+                      "text": "On scroll the name first travels up with the page like normal content, then fades out; the camera pushes from the upper body into a close-up of the face. Everything keeps strong contrast: a darker crimson figure with bright rim lines, ivory name, bright red Chinese name with a dark outline, ivory nav box with ink text.",
                       "status": "draft"
                     },
                     {
@@ -300,13 +300,14 @@
                     },
                     {
                       "type": "SKL",
-                      "text": "Python, Data handling",
+                      "text": "Python, Pandas",
                       "status": "draft"
                     },
                     {
                       "type": "PORTAL",
                       "text": "Read Jovita Tang's testimonial",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "testimonial-jovita"
                     }
                   ]
                 },
@@ -384,6 +385,11 @@
                       "type": "FAC",
                       "text": "NRIC validator — solo build",
                       "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Python, Algorithms",
+                      "status": "draft"
                     }
                   ]
                 }
@@ -447,7 +453,8 @@
                     {
                       "type": "PORTAL",
                       "text": "Read Keith Wee's testimonial",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "testimonial-keith"
                     }
                   ]
                 }
@@ -502,6 +509,11 @@
                       "status": "draft"
                     },
                     {
+                      "type": "SKL",
+                      "text": "Algorithms",
+                      "status": "draft"
+                    },
+                    {
                       "type": "FAC",
                       "text": "DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)",
                       "status": "draft"
@@ -542,25 +554,19 @@
                 {
                   "kind": "panel",
                   "id": "C04-S01-P01",
-                  "label": "The workshop opens",
+                  "label": "Walking in",
                   "type": "PANEL_SPLASH",
                   "art": "np-workshop-open",
-                  "interaction": "evidence-drawer",
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: inside a lecture theatre for the module Programming 1. A small awards drawer in the corner expands on click.",
+                      "text": "Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: a full lecture theatre — rows of students, like a real lecture — for the module Computing Mathematics.",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
                       "text": "At Ngee Ann, I start putting the pieces together: code, design, users and deadlines.",
-                      "status": "draft"
-                    },
-                    {
-                      "type": "FAC",
-                      "text": "Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prizes: Computing Mathematics, Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)",
                       "status": "draft"
                     }
                   ]
@@ -571,10 +577,10 @@
                   "label": "Tea Shop to FRATS",
                   "type": "PANEL_STANDARD",
                   "art": "np-tea-shop-frats",
+                  "data_ref": "projects:frts",
                   "portal": [
                     "frats"
                   ],
-                  "data_ref": "projects:frts",
                   "status": "draft",
                   "copy": [
                     {
@@ -589,13 +595,14 @@
                     },
                     {
                       "type": "SKL",
-                      "text": "Computer vision, UX",
+                      "text": "Web Development, Computer Vision",
                       "status": "draft"
                     },
                     {
                       "type": "PORTAL",
                       "text": "Built a facial-recognition attendance system with AIDC",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "frats"
                     }
                   ]
                 }
@@ -621,16 +628,15 @@
                   "label": "Teaching the workshop",
                   "type": "PANEL_STANDARD",
                   "art": "np-overflow-workshop",
-                  "portal": [
-                    "overflow",
-                    "testimonial-victor"
-                  ],
                   "data_ref": "projects:pnlp",
+                  "portal": [
+                    "overflow"
+                  ],
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Reginald explaining a concept to peers; a partial Panel Party screen slides in at the side. Never implies he built the whole game.",
+                      "text": "Reginald teaching an Overflow workshop on Data Structures & Algorithms — hash maps on the slide behind him, students following on laptops.",
                       "status": "draft"
                     },
                     {
@@ -645,18 +651,14 @@
                     },
                     {
                       "type": "SKL",
-                      "text": "Teaching, Game design",
+                      "text": "Teaching, Algorithms",
                       "status": "draft"
                     },
                     {
                       "type": "PORTAL",
                       "text": "Led workshops and helped build Panel Party",
-                      "status": "draft"
-                    },
-                    {
-                      "type": "PORTAL",
-                      "text": "Read Victor Lum's testimonial",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "overflow"
                     }
                   ]
                 }
@@ -666,6 +668,7 @@
               "kind": "scene",
               "id": "C04-S03",
               "label": "Touch Young Arrows",
+              "storyboard": "approved",
               "status": "draft",
               "panels": [
                 {
@@ -690,9 +693,15 @@
                       "status": "draft"
                     },
                     {
+                      "type": "SKL",
+                      "text": "Mentoring",
+                      "status": "draft"
+                    },
+                    {
                       "type": "PORTAL",
                       "text": "Tutored and mentored children at Touch Young Arrows",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "tya"
                     }
                   ]
                 }
@@ -710,6 +719,7 @@
               "kind": "scene",
               "id": "C04-S05",
               "label": "The internship offer",
+              "storyboard": "approved",
               "status": "draft",
               "panels": [
                 {
@@ -749,9 +759,6 @@
                   "label": "The offer",
                   "type": "PANEL_SPLASH",
                   "art": "np-jpm-offer",
-                  "portal": [
-                    "testimonial-dimuthu"
-                  ],
                   "status": "draft",
                   "copy": [
                     {
@@ -768,11 +775,6 @@
                     {
                       "type": "NAR",
                       "text": "Then one call changes what the next year looks like.",
-                      "status": "draft"
-                    },
-                    {
-                      "type": "PORTAL",
-                      "text": "Read a testimonial from my NP mentor, Dimuthu Makawita",
                       "status": "draft"
                     }
                   ]
@@ -806,6 +808,7 @@
               "kind": "scene",
               "id": "C05-S01",
               "label": "CapitaSpring arrival",
+              "storyboard": "approved",
               "status": "draft",
               "panels": [
                 {
@@ -839,30 +842,36 @@
                 {
                   "kind": "panel",
                   "id": "C05-S02-P01",
-                  "label": "Conference room",
+                  "label": "Networking session",
                   "type": "PANEL_STANDARD",
                   "art": "jpm-conference-room",
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Interns around a conference table; Rahul turns to Reginald.",
+                      "text": "A networking session. Rahul and Reginald stand face to face, each holding a coffee as they talk; other interns mingle behind them.",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
-                      "text": "I meet the people I'll be learning alongside. Then the conversation turns to what I've built.",
+                      "text": "At a networking session, coffee in hand, I meet the people I'll be learning from.",
                       "status": "draft"
                     },
                     {
                       "type": "DIA",
-                      "text": "So — tell me about something you've built recently.",
+                      "text": "So, tell me about yourself.",
                       "status": "draft",
                       "speaker": "Rahul"
                     },
                     {
-                      "type": "THO",
-                      "text": "All right. Explain it clearly.",
+                      "type": "DIA",
+                      "text": "I work hard, and I keep people in the loop. You'll always know where things stand.",
+                      "status": "draft",
+                      "speaker": "Reginald"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Communication",
                       "status": "draft"
                     }
                   ]
@@ -891,7 +900,7 @@
                     },
                     {
                       "type": "DIA",
-                      "text": "We support FX Cash and FX Options. The plan is to move these workloads from our own servers to AWS.",
+                      "text": "Our project is to move these FX Cash and FX Options workloads from our own servers to AWS.",
                       "status": "draft",
                       "speaker": "Rahul"
                     },
@@ -907,7 +916,7 @@
                     },
                     {
                       "type": "SKL",
-                      "text": "AWS, Data analytics",
+                      "text": "AWS, Data Analytics",
                       "status": "draft"
                     }
                   ]
@@ -952,25 +961,26 @@
                 {
                   "kind": "panel",
                   "id": "C05-S04-P02",
-                  "label": "One next step",
+                  "label": "Lock in",
                   "type": "PANEL_STANDARD",
                   "art": "jpm-fatigue-choice",
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Head in hands; a pause; then a small framed decision — one sticky note, one next step.",
+                      "text": "Three beats in the same scene. Wide: Reginald at his desk, head in his hands. Close-up: the same pose, hands over his face. Then: he looks up, focused.",
                       "status": "draft"
                     },
                     {
                       "type": "THO",
-                      "text": "I'm tired. What's the one thing I can actually move forward?",
+                      "text": "Fourth sixty-hour week in a row. No rest.",
                       "status": "draft"
                     },
                     {
-                      "type": "NAR",
-                      "text": "I break the problem down again. Progress is rarely as dramatic as the final slide.",
-                      "status": "draft"
+                      "type": "DIA",
+                      "text": "Lock in. I can do this.",
+                      "status": "draft",
+                      "speaker": "Reginald"
                     },
                     {
                       "type": "SKL",
@@ -1005,12 +1015,12 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Left: a coworker leans over as Reginald wires their team's database into Grafana (safe mock dashboard). Right: Reginald presenting migration progress on a high-level stage board.",
+                      "text": "Left: a Grafana dashboard on a big wall screen — a line chart, a bar graph, a treemap and a pie chart, painted into the art with synthetic values — as a coworker asks Reginald how he syncs the database with all the widgets. Right: Reginald presenting migration progress on a high-level stage board.",
                       "status": "draft"
                     },
                     {
                       "type": "DIA",
-                      "text": "Can you show me how you got that into Grafana?",
+                      "text": "How are you syncing the database with all these widgets?",
                       "status": "draft",
                       "speaker": "Coworker"
                     },
@@ -1021,7 +1031,7 @@
                     },
                     {
                       "type": "SKL",
-                      "text": "Data visualisation, Technical communication",
+                      "text": "Data Visualisation, SQL, InfluxDB",
                       "status": "draft"
                     }
                   ]
@@ -1052,12 +1062,28 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Reginald presenting lessons and outcomes to a panel; the screen unfolds into the milestones grid.",
+                      "text": "Reginald presenting what he learnt to a panel; the screen behind him shows the project update — 83% of the CEM workload migrated.",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
                       "text": "A year of questions becomes a report I have to stand behind.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "I learnt to break a big problem into steps, and to make data clear enough for people to decide.",
+                      "status": "draft",
+                      "speaker": "Reginald"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "83% of the CEM workload migrated during my internship",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Jira, Stakeholder reporting",
                       "status": "draft"
                     }
                   ]
@@ -1092,7 +1118,8 @@
                     {
                       "type": "PORTAL",
                       "text": "Read Rahul Varma's testimonial",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "testimonial-rahul"
                     }
                   ],
                   "items": [
@@ -1109,6 +1136,11 @@
                       ],
                       "status": "draft",
                       "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "A database on a computer screen; Reginald reading through the data.",
+                          "status": "draft"
+                        },
                         {
                           "type": "SUB",
                           "text": "Cut a data-retrieval process from about 4 hours to 30 seconds.",
@@ -1135,6 +1167,11 @@
                       "status": "draft",
                       "copy": [
                         {
+                          "type": "VISUAL",
+                          "text": "Reginald presenting a widget-based dashboard during an online meeting.",
+                          "status": "draft"
+                        },
+                        {
                           "type": "SUB",
                           "text": "Built a workload monitoring and visualisation tool to inform migration planning.",
                           "status": "draft"
@@ -1159,6 +1196,11 @@
                       ],
                       "status": "draft",
                       "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Reginald running code in the office, with Farhan beside him.",
+                          "status": "draft"
+                        },
                         {
                           "type": "SUB",
                           "text": "Helped migrate trader reports and server workloads from legacy systems to AWS.",
@@ -1185,6 +1227,11 @@
                       "status": "draft",
                       "copy": [
                         {
+                          "type": "VISUAL",
+                          "text": "Reginald talking a coworker from another team through his tool.",
+                          "status": "draft"
+                        },
+                        {
                           "type": "SUB",
                           "text": "My tool was adopted across multiple lines of business; I supported and coordinated its rollout.",
                           "status": "draft"
@@ -1195,6 +1242,70 @@
                           "status": "draft"
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "story",
+          "id": "C05E",
+          "label": "Graduation",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "C05-S09",
+              "label": "Graduation",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "C05-S09-P01",
+                  "label": "The diploma",
+                  "type": "PANEL_SPLASH",
+                  "art": "np-graduation",
+                  "data_ref": "education:np",
+                  "portal": [
+                    "testimonial-dimuthu",
+                    "testimonial-victor"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Ngee Ann Polytechnic graduation ceremony, May 2025. Reginald in a graduation gown, on stage, receiving his certificate. An awards button opens a pop-up list.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "A few weeks after the internship ends, I'm back at Ngee Ann for one last walk across a stage.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Diploma in Information Technology · Ngee Ann Polytechnic · May 2025",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "MODAL",
+                      "text": "Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prize: Computing Mathematics (2022) · Module Prize: Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)",
+                      "status": "draft",
+                      "speaker": "Awards I received"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Read Dimuthu Makawita's testimonial",
+                      "status": "draft",
+                      "speaker": "testimonial-dimuthu"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Read Victor Lum's testimonial",
+                      "status": "draft",
+                      "speaker": "testimonial-victor"
                     }
                   ]
                 }
@@ -1239,12 +1350,48 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Brief BMT montage with Guards-related training; fatigue creeps in.",
+                      "text": "A page of six equal panels. (1) Context: a mono-Guards enlistment — heli-rappelling silhouette. (2) Running with his section in long-4 uniform, helmets and field packs, carrying SAR-21 rifles. (3) Push-ups on the parade square under a hot sun. (4) In the jungle on an outfield, aiming a SAR-21. (5) Fatigue setting in. (6) Coughing.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I enlist into a mono-Guards intake: an elite infantry unit trained in heli-rappelling and amphibious operations.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "Keep it tight! Nobody drops out!",
+                      "status": "draft",
+                      "speaker": "Sergeant"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "The parade square is hotter than the sun.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Breathe. Front sight. Squeeze.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "Why am I this tired?",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SFX",
+                      "text": "KOFF",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
                       "text": "I think I know the shape of the next chapter. Then my health changes the plan.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Resilience",
                       "status": "draft"
                     }
                   ]
@@ -1259,12 +1406,23 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Restrained and symbolic — a corridor that forks; one path closes, a side door opens. No hospital melodrama.",
+                      "text": "Two beats. First: a medical centre — Reginald with his head in his hands as the doctor tells him he has pneumonia. Second: posted out to HQ Guards — a corridor, one door lit red.",
                       "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "It's pneumonia. You're out of training.",
+                      "status": "draft",
+                      "speaker": "Doctor"
                     },
                     {
                       "type": "NAR",
                       "text": "Pneumonia takes me off the path I expected. I have to figure out what I can make of the new one.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Posted to HQ Guards",
                       "status": "draft"
                     }
                   ]
@@ -1295,7 +1453,18 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Through a viewfinder, a monochrome scene snaps into a deliberate composition with a narrow red focus guide.",
+                      "text": "Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a camera and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "DIA",
+                      "text": "You're going to be our photographer.",
+                      "status": "draft",
+                      "speaker": "Officer"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "A photographer? Me?",
                       "status": "draft"
                     },
                     {
@@ -1305,7 +1474,7 @@
                     },
                     {
                       "type": "SKL",
-                      "text": "Photography, Lightroom",
+                      "text": "Photography, Lightroom, Photoshop",
                       "status": "draft"
                     }
                   ]
@@ -1316,6 +1485,7 @@
               "kind": "scene",
               "id": "C06-S03",
               "label": "Media team and AI",
+              "storyboard": "approved",
               "status": "draft",
               "panels": [
                 {
@@ -1325,8 +1495,8 @@
                   "type": "PANEL_STANDARD",
                   "art": "guards-media-team",
                   "portal": [
-                    "guards-media",
-                    "testimonial-yap"
+                    "testimonial-yap",
+                    "guards-media"
                   ],
                   "status": "draft",
                   "copy": [
@@ -1359,7 +1529,8 @@
                     {
                       "type": "PORTAL",
                       "text": "Led media coverage for Guards HQ",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "guards-media"
                     }
                   ]
                 },
@@ -1369,10 +1540,10 @@
                   "label": "AI Task Force",
                   "type": "PANEL_EVIDENCE",
                   "art": "guards-ai-process",
+                  "data_ref": "projects:grds",
                   "portal": [
                     "guards-ai"
                   ],
-                  "data_ref": "projects:grds",
                   "status": "draft",
                   "copy": [
                     {
@@ -1398,7 +1569,8 @@
                     {
                       "type": "PORTAL",
                       "text": "Built AI workflows for the Guards AI Task Force",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "guards-ai"
                     }
                   ]
                 }
@@ -1424,7 +1596,7 @@
                   "label": "Daily-life board",
                   "type": "PANEL_SELECTION",
                   "layout": {
-                    "desktop": "2+2",
+                    "desktop": "2+3",
                     "mobile": "stack"
                   },
                   "interaction": "staggered-slide-in, hover-expand, tap-expand",
@@ -1434,38 +1606,99 @@
                   "status": "draft",
                   "copy": [
                     {
-                      "type": "PORTAL",
-                      "text": "Started Market City, a spatial way to visualise markets",
-                      "status": "draft"
-                    },
-                    {
                       "type": "VISUAL",
-                      "text": "The board assembles from clock ticks. One compact experience — not four pinned scroll sequences.",
+                      "text": "Five cards. Row one is army life (managing the media team, AI task force); row two is his own time (equity trading, building tools, diving into hobbies).",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
                       "text": "The schedule changes. What I do with the hours around it changes too.",
                       "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Started Market City, a spatial way to visualise markets",
+                      "status": "draft",
+                      "speaker": "market-city"
                     }
                   ],
                   "items": [
                     {
                       "kind": "item",
-                      "id": "guards-life-trading",
+                      "id": "guards-life-media",
                       "label": "",
-                      "title": "TRADING & MARKETS",
-                      "art": "guards-card-trading",
-                      "arc": "trading-nebius",
+                      "title": "MANAGING THE MEDIA TEAM",
+                      "art": "guards-card-media",
+                      "arc": "guards-media",
                       "skills": [
-                        "Markets research",
-                        "Risk management"
+                        "Team management",
+                        "Photoshop"
                       ],
                       "status": "draft",
                       "copy": [
                         {
                           "type": "VISUAL",
-                          "text": "Commute podcasts → strategy videos → a trade-tracking spreadsheet; a red ticker ribbon flows from phone to home desk.",
+                          "text": "Reginald directing his media team on a shoot.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "Leading a team of nine across shoots, edits and Guards HQ's social accounts.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Led media coverage for Guards HQ",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "guards-life-ai",
+                      "label": "",
+                      "title": "AI TASK FORCE",
+                      "art": "guards-card-ai",
+                      "arc": "guards-ai",
+                      "skills": [
+                        "Claude",
+                        "Prompt Engineering"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Reginald working with a teammate, the two of them talking to an LLM chatbot on screen.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "SUB",
+                          "text": "Building a chatbot for Guards combatants, one prompt and one test at a time.",
+                          "status": "draft"
+                        },
+                        {
+                          "type": "PORTAL",
+                          "text": "Built AI workflows for the Guards AI Task Force",
+                          "status": "draft"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "item",
+                      "id": "guards-life-trading",
+                      "label": "",
+                      "title": "EQUITY TRADING",
+                      "art": "guards-card-trading",
+                      "arc": "trading-nebius",
+                      "skills": [
+                        "Technical Analysis",
+                        "Fundamental Analysis"
+                      ],
+                      "status": "draft",
+                      "copy": [
+                        {
+                          "type": "VISUAL",
+                          "text": "Reginald on his phone, analysing a stock.",
                           "status": "draft"
                         },
                         {
@@ -1488,14 +1721,15 @@
                       "art": "guards-card-building",
                       "arc": "imperium",
                       "skills": [
-                        "Claude & MCP",
-                        "Python"
+                        "Python",
+                        "MCPs",
+                        "Trade Automation"
                       ],
                       "status": "draft",
                       "copy": [
                         {
                           "type": "VISUAL",
-                          "text": "Home desk at night: the Automated Trading Workflow running, Imperium and Market City sketches pinned beside it.",
+                          "text": "Reginald at his desktop at night, working on his tools.",
                           "status": "draft"
                         },
                         {
@@ -1514,41 +1748,25 @@
                       "kind": "item",
                       "id": "guards-life-discipline",
                       "label": "",
-                      "title": "DISCIPLINE & CREATIVITY",
+                      "title": "DIVING INTO HOBBIES",
                       "art": "guards-card-discipline",
                       "arc": "guards-life",
                       "status": "draft",
                       "copy": [
                         {
                           "type": "VISUAL",
-                          "text": "Two compact moments: gym progression; a hand lifting a card deck off a shelf after five years, then a flourish.",
+                          "text": "Cover: a close-up of a card spring — cards arcing between two hands.",
                           "status": "draft"
                         },
                         {
                           "type": "SUB",
-                          "text": "60 kg to 75 kg in 12 months at the gym — and back to cardistry after a five-year break.",
+                          "text": "Back to cardistry after a five-year break — and 60 kg to 75 kg at the gym in 12 months.",
                           "status": "draft"
                         },
                         {
                           "type": "PORTAL",
-                          "text": "Rebuilt old habits and new ones",
+                          "text": "Picked my hobbies back up",
                           "status": "draft"
-                        }
-                      ]
-                    },
-                    {
-                      "kind": "item",
-                      "id": "guards-life-media",
-                      "label": "",
-                      "title": "THE CAMERA OFF-DUTY",
-                      "art": "guards-card-media",
-                      "arc": "guards-media",
-                      "status": "draft",
-                      "copy": [
-                        {
-                          "type": "SUB",
-                          "text": "[EDIT: keep this fourth card (personal photography), replace it, or delete it for a 3-card board]",
-                          "status": "edit"
                         }
                       ]
                     }
@@ -1737,9 +1955,15 @@
                       "status": "draft"
                     },
                     {
+                      "type": "SKL",
+                      "text": "Sales pipeline, Process design",
+                      "status": "draft"
+                    },
+                    {
                       "type": "PORTAL",
                       "text": "Built a lead-to-client process for RegiStudio",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "registudio-business"
                     }
                   ]
                 },
@@ -1766,13 +1990,14 @@
                     },
                     {
                       "type": "SKL",
-                      "text": "Design systems, Process design",
+                      "text": "Web Development, UI/UX · Figma, Design systems",
                       "status": "draft"
                     },
                     {
                       "type": "PORTAL",
                       "text": "Built Design Playground to streamline delivery",
-                      "status": "draft"
+                      "status": "draft",
+                      "speaker": "design-playground"
                     }
                   ]
                 }
@@ -3343,9 +3568,9 @@
       "kind": "testimonial",
       "id": "testimonial-dimuthu",
       "label": "Dimuthu Makawita",
-      "parent": "C04-S05-P02",
+      "parent": "C05-S09-P01",
       "title": "A LETTER FROM DIMUTHU MAKAWITA",
-      "portal": "Read a testimonial from my NP mentor, Dimuthu Makawita",
+      "portal": "Read Dimuthu Makawita's testimonial",
       "data_ref": "testimonials:dimuthu-makawita",
       "letter": {
         "slug": "dimuthu-makawita",
@@ -3415,7 +3640,7 @@
       "kind": "testimonial",
       "id": "testimonial-victor",
       "label": "Victor Lum",
-      "parent": "C04-S02-P01",
+      "parent": "C05-S09-P01",
       "title": "A LETTER FROM VICTOR LUM",
       "portal": "Read Victor Lum's testimonial",
       "letter": {

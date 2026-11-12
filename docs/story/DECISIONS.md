@@ -3,6 +3,21 @@
 Resolved decisions. Newest first. The script (`docs/STORY-SCRIPT.md`) and `src/data/*.json`
 already reflect everything here.
 
+## 2026-11-12 — third review round, overlays, frames, references
+
+| Topic | Decision |
+|---|---|
+| Overlay editing | All overlays are edited in `docs/STORY-SCRIPT.md`; guide in `docs/story/OVERLAYS.md`, generated list in `OVERLAY-INDEX.md`. New syntax: `PORTAL[arc-slug]: label` (button to an arc) and `MODAL[Label]: a · b · c` (button opening a pop-up list). |
+| Panel frames | Drawn by Claude in code around every plate; plates are generated full-bleed with no border. |
+| Mobile + desktop | Every scene has both versions; the mobile one follows a single rule (whole frames, stacked captions) unless a storyboard defines its own. Viewable via the Desktop / Mobile toggle. |
+| Reference links | Web-searched public reference pages are listed per entry in `REFERENCES.md` (links only; nothing copied into the repo). |
+| Skill boxes | Added where a panel shows a skill with evidence (see OVERLAY-INDEX, "Skill chips"); selection cards show their skills when opened. |
+| Approved | C04-S03, C04-S05, C05-S01, C06-S03 (plus C02-S01 earlier). Moving the Dimuthu and Victor portals to graduation changed C04-S05's overlays only. |
+| Hero | Comic-style nav box (CV / Tech / Finance / Life, 17° dividers, hover fills red and widens); stronger contrast; the name scrolls up with the page before fading. On the site this nav replaces the pill nav inside Story. "CV" points to the Paper page until the CV mode exists. |
+| NP | Full lecture theatre, module Computing Mathematics; DSA (hash maps) workshop; new graduation scene `C05-S09` with the awards pop-up and both NP testimonials. Placed after the internship because graduation was May 2025 — move it if you prefer. |
+| JPMorganChase | Networking-session meeting with coffees and new dialogue; "Our project is to move…"; three-beat "Lock in" panel; Grafana dashboard painted into the image on a big screen; presentation shows 83% of CEM workload migrated (your figure); milestone cards get generated images. |
+| Guards | Six-panel training page (mono-Guards context, run, push-ups, outfield, fatigue, cough); pneumonia diagnosis then posting to HQ Guards; army office then the camera; five-card daily-life board (2 army + 3 personal). |
+
 ## 2026-11-11 — Story sample on the site, second review round
 
 | Topic | Decision |

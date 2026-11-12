@@ -1,5 +1,7 @@
 # Reference images needed
 
+> **Found online:** entries with a *links* line have public pages I found by web search (12 Nov 2026) that show the place. They are look-and-layout references only — third-party photos are never copied into the repo, traced or published.
+>
 > Built from the drafted storyboards (`docs/story/storyboards/`). Every drafted scene is covered
 > here or listed under *No reference needed*; `scripts/story/build.py` warns when one isn't.
 > The Storyboard Room shows each scene's references, and has a *References* page.
@@ -57,7 +59,7 @@
 - privacy: private — never in the repo
 - priority: 2
 - status: needed
-- scenes: C04-S01, C04-S02, C04-S03, C04-S05, A-OV-S02, A-TD-S01, A-TD-S02, A-TV-S01, A-TV-S02
+- scenes: C04-S01, C04-S02, C04-S03, C04-S05, C05-S09, A-OV-S02, A-TD-S01, A-TD-S02, A-TV-S01, A-TV-S02
 
 ## REF-YOU-INTERN · You as an intern (2024–25), office wear
 - kind: character
@@ -150,6 +152,7 @@
 - priority: 2
 - status: needed
 - scenes: C03-S01, C03-S05, A-TJ-S01
+- links: [SST official site](https://www.sst.edu.sg/) · [SST prospectus (Issuu)](https://issuu.com/sstsg/docs/sst_prospectus) · [SST Yearbook 2024 (Issuu)](https://issuu.com/avantgardemediaarts/docs/sst_yearbook_2024) · [Wikipedia — SST (campus photos)](https://en.wikipedia.org/wiki/School_of_Science_and_Technology,_Singapore)
 
 ## REF-L-SST-ACE · SST assembly hall / auditorium, and the ACE meeting room
 - kind: location
@@ -174,6 +177,7 @@
 - priority: 2
 - status: needed
 - scenes: C04-S01, C04-S02, A-TV-S01
+- links: [NP — facilities (auditoriums, lecture theatres)](https://www.np.edu.sg/about-np/facilities/others) · [NP — Smart Campus spaces](https://www.np.edu.sg/about-np/our-story/smart-campus/immersive-spaces) · [GovInsider — NP smart learning spaces](https://govinsider.asia/intl-en/article/singapore-polytechnics-announce-smart-learning-plans) · [Wikipedia — Ngee Ann Polytechnic (campus photos)](https://en.wikipedia.org/wiki/Ngee_Ann_Polytechnic)
 
 ## REF-L-NP-STAFFROOM · NP ICT staff room
 - kind: location
@@ -230,6 +234,7 @@
 - priority: 2
 - status: needed
 - scenes: C05-S01
+- links: [BIG — CapitaSpring project page](https://big.dk/projects/capitaspring-4630) · [Dezeen — view up the tower](https://www.dezeen.com/2022/09/27/big-carlo-ratti-associati-capitaspring-skyscraper-singapore/amp/) · [Architizer — exterior shots](https://architizer.com/projects/capitaspring) · [Archello](https://archello.com/project/capitaspring) · [CapitaLand design fact sheet (PDF)](https://www.capitaland.com/content/dam/capitaland-newsroom/International/2022/february/capitaspring-marks-completion/CapitaSpring_Design_Fact_Sheet.pdf)
 
 ## REF-L-JPM-OFFICE · Bank office interior (generic)
 - kind: location
@@ -246,6 +251,7 @@
 - priority: 2
 - status: needed
 - scenes: C06-S01
+- links: [Pioneer — enlistment day at the parade square (Jan 2026)](https://defencepioneer.sg/pioneer-articles/9jan26_news) · [Pioneer — new recruits (Jan 2024)](https://www.mindef.gov.sg/web/portal/pioneer/article/cover-article-detail/ops-and-training/2024-Q1/05jan24_news1) · [Pioneer — route march and parade square (Dec 2020)](https://mindef.gov.sg/web/portal/pioneer/article/cover-article-detail/ops-and-training/2020-Q4/10dec20_news1) · [Pioneer — a soldier's first 24 km](https://www.defencepioneer.sg/pioneer-articles/a-soldier's-first-24km)
 
 ## REF-L-GUARDS-HQ · Guards HQ media office / planning room
 - kind: location
@@ -270,6 +276,7 @@
 - priority: 2
 - status: needed
 - scenes: C07-S01
+- links: [Wikimedia Commons — Category: Raffles Place](https://commons.wikimedia.org/wiki/Category:Raffles_Place) · [Scenes in Singapore — Raffles Place](https://scenes-in-singapore.blogspot.com/2022/01/raffles-place.html) · [Rough Guides — Financial District](https://roughguides.com/singapore/financial-district)
 
 ## REF-L-GYM · Your gym
 - kind: location
@@ -294,6 +301,7 @@
 - priority: 2
 - status: needed
 - scenes: C08-S01, C08-S03
+- links: [Wikimedia Commons — Shaw Foundation Symphony Stage (CC BY-SA)](https://commons.wikimedia.org/wiki/File:Shaw_Foundation_Symphony_Stage_(133040).jpg) · [Wikipedia — Symphony Lake](https://en.wikipedia.org/wiki/Symphony_Lake_(Singapore)) · [Garden City Fund — the stage](https://www.gardencityfund.gov.sg/our-impact/shawfoundationss/) · [Time Out — Symphony in the Gardens](https://www.timeout.com/singapore/music/symphony-in-the-gardens)
 
 ## REF-L-FUTURE · Future glimpses (UK study, graduation, leadership, travel)
 - kind: location
@@ -302,6 +310,32 @@
 - priority: 2
 - status: not needed
 - scenes: C08-S02
+
+## REF-L-GUARDS-TRAINING · Guards training: heli-rappelling, section runs, jungle outfield
+- kind: location
+- source: public SAF / Pioneer photos for settings, poses and kit (long-4 uniform, helmet, field pack, SAR-21); your own photos if you have any you may share
+- privacy: public / published photos only — nothing from inside camp that isn't already public
+- priority: 2
+- status: needed
+- scenes: C06-S01
+- links: [Army — Guards formation](https://www.army.gov.sg/our-forces/formations/guards/) · [Pioneer — The making of a Guardsman](https://www.defencepioneer.sg/pioneer-articles/THE-MAKING-OF-A-GUARDSMAN) · [Pioneer — How NS made me conquer my fears](https://www.defencepioneer.sg/pioneer-articles/how-ns-made-me-conquer-my-fears) · [Pioneer — Down the line (rappelling)](https://www.defencepioneer.sg/pioneer-articles/13jan25_news1) · [Wikipedia — Guards (Singapore Army)](https://en.wikipedia.org/wiki/Guards_(Singapore_Army))
+
+## REF-L-ARMY-INTERIORS · Medical centre and an army office
+- kind: location
+- source: none — generic rooms (a camp medical centre with an X-ray lightbox; a plain office with a desk)
+- privacy: never real camp interiors
+- priority: 2
+- status: not needed
+- scenes: C06-S01, C06-S02
+
+## REF-L-NP-GRADUATION · NP graduation ceremony
+- kind: location
+- source: your own graduation photos (gown, stage, certificate moment); public NP graduation pages for the hall
+- privacy: your photos stay private; no other graduates' faces
+- priority: 2
+- status: needed
+- scenes: C05-S09
+- links: [NP — Graduation](https://www.np.edu.sg/graduation) · [NP — Graduation day](https://www.np.edu.sg/graduation/graduation-day) · [NP in the news — graduating with a bang](https://www.np.edu.sg/about-np/media/np-in-the-news/graduating-with-a-bang)
 
 # Props
 

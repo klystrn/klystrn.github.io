@@ -87,6 +87,11 @@ not publish; a deleted panel just disappears (don't reuse its ID).
 
 ## 3. Storyboards
 
+**Editing overlays** (narration, dialogue, buttons, pop-up lists, skills): see
+`docs/story/OVERLAYS.md`. **Draft lines I wrote for you to reword** in this round: your reply to
+Rahul (`C05-S02`), what you learnt (`C05-S06`), the six training-page lines (`C06-S01`), the
+doctor's and officer's lines (`C06-S01`, `C06-S02`), and the graduation narration (`C05-S09`).
+
 **See it on the site:** `https://reginaldtan.com/story` is a working sample of Story mode built
 from the script and storyboards (sketches stand in for art). Edit the script, run the build, push —
 the sample updates.

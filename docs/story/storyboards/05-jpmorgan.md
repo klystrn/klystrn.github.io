@@ -19,22 +19,26 @@ cap NAR 4 76 30
 crop mobile 34 0 32 100
 
 ## Panel C05-S02-P01
-shot: Medium-wide across the table → Rahul turns to Reginald
-camera: Static; slight rack of focus from the interns to Rahul
-scroll: Narration first, Rahul's question second, Reginald's thought last
+shot: Medium two-shot · standing face to face, coffees in hand
+camera: Static; background interns in soft focus
+scroll: Narration first, Rahul's question, then Reginald's answer
 transition: Cut to the desk
-mobile: Crop to Rahul and Reginald; other interns drop out
+mobile: Full frame; captions stack under the image
 tags: GENERATE LATER, NEEDS PERMISSION (Rahul's likeness — or stylise)
+note: Review (11 Nov) applied — a networking session: you and Rahul standing face to face, each holding a coffee. He asks you to tell him about yourself; you answer about being hardworking and communicative.
+
 frame 16:9
-box 10 58 80 10 "conference table"
-screen 34 6 32 24 "wall screen"
-fig 16 78 40 sit r young faint
-fig 34 78 40 sit r young faint
-fig 62 78 44 sit l adult "Rahul"
-fig 82 78 40 sit l young "Reginald"
-cap NAR 2 6 28
-cap DIA 50 6 32 tail=63,36
-cap THO 76 86 22 tail=82,44
+floor 82
+box 4 30 16 26 "coffee bar"
+fig 40 92 62 hold r adult "Rahul (coffee)"
+fig 60 92 60 hold l young "Reginald (coffee)"
+fig 26 90 40 stand r young faint
+fig 84 90 42 stand l young faint
+fig 94 90 40 stand l young faint
+cap NAR 2 5 24
+cap DIA 28 5 26 1 tail=40,36
+cap DIA 62 8 34 2 tail=60,38
+cap SKL 72 82 24
 
 ## Panel C05-S03-P01
 shot: Medium two-shot at a desk + graphic overlay
@@ -80,34 +84,49 @@ label 54 8 "night"
 cap NAR 26 80 48
 
 ## Panel C05-S04-P02
-shot: Close medium → insert of one sticky note
-camera: Push-in; then cut to the insert
-scroll: Head in hands → pause → the sticky note appears red
+shot: Three beats, same scene · wide at the desk → close-up, hands over face → eyes up, focused
+camera: Each beat pushes closer; the last one holds
+scroll: Wide → close-up with the thought → the focused line lands last
 transition: Cut to a brighter office (Grafana)
-mobile: Stacked
+mobile: Frames stack; captions under each image
 tags: GENERATE LATER
+note: Review (11 Nov) applied — head in hands at the desk, then a close-up of the same pose with the "fourth 60-hour week" thought, then you focusing: "Lock in. I can do this."
+
 frame 4:3 head in hands
 dark 0 0 100 100
 box 6 72 88 6 "desk"
-fig 50 96 70 slump r young "Reginald"
-cap THO 6 6 50
-frame 4:3 one next step
-box 20 20 60 50 "ONE NEXT STEP" red code
-cap NAR 6 80 88
+screen 60 40 24 24 ""
+fig 38 96 60 slump r young "Reginald"
+frame 4:3 close-up
+dark 0 0 100 100
+fig 50 100 104 silhouette f young "close-up: hands over face"
+cap THO 6 5 74 1
+frame 4:3 lock in
+dark 0 0 100 100
+fig 50 100 96 bust f young "eyes up, focused"
+cap DIA 34 5 62 1 tail=50,30
+cap SKL 4 84 60
 
 ## Panel C05-S05-P01
-shot: Split · over-the-shoulder at a desk (left) / presenting to a board (right)
+shot: Split · wide at a wall-mounted dashboard (left) / presenting to a board (right)
 camera: Static
-scroll: Left first with the coworker's question; right slides in with the narration
+scroll: Dashboard first with the coworker's question; right frame slides in with the narration
 transition: Cut to a presentation room
-mobile: Stacked
-tags: GENERATE LATER, PLACEHOLDER (safe mock dashboard)
-frame 4:3 Grafana
-screen 10 10 54 46 "dashboard (mock)" red
-chart 14 18 46 30 red
-fig 36 96 54 sit r young "Reginald"
-fig 74 96 58 lean l young "coworker" faint
-cap DIA 52 4 40 tail=68,42
+mobile: Frames stack; captions under each image
+tags: GENERATE LATER
+note: Review (11 Nov) applied — the Grafana dashboard is on a big screen and is part of the generated image (not a code overlay), with a line chart, bar graph, treemap and pie chart. Values in the image stay synthetic.
+
+frame 16:9 the wall dashboard
+box 4 6 62 62 "Grafana on the big screen"
+box 7 14 27 22 "line chart"
+box 36 14 27 22 "bar graph"
+box 7 40 27 24 "treemap"
+disc 49 52 6
+label 41 66 "pie chart"
+fig 76 96 54 point l young "Reginald"
+fig 90 96 52 stand l young "coworker"
+cap DIA 56 4 40 tail=90,46
+cap SKL 4 76 44
 frame 4:3 the update
 box 8 10 60 40 "stages: ▢▢▣▢" dash code
 fig 78 96 60 present l young "Reginald"
@@ -117,19 +136,23 @@ cap NAR 4 58 56
 
 ## Panel C05-S06-P01
 shot: Wide splash · low angle from the panel's side of the room
-camera: Slow push toward the screen; the screen begins to fold into a 2×2 grid
-scroll: Narration; the screen splits into four tiles that become the milestone grid
+camera: Slow push toward the screen; the 83% counts up
+scroll: Narration; Reginald's line; the 83% lands; then the screen folds into the milestone grid
 transition: Direct into C05-S07-P01
-mobile: Crop to Reginald and the screen
+mobile: Full frame; captions stack under the image
 tags: GENERATE LATER
+note: Review (11 Nov) applied — you say what you learnt, and the screen shows the project update: 83% of the CEM workload migrated. The figure on the screen is a code overlay so it stays editable.
+
 frame 16:9
-box 34 8 46 40 "screen"
-line 57 8 57 48 red code
-line 34 28 80 28 red code
-fig 26 86 56 present r young "Reginald"
+box 36 8 46 42 "PROJECT UPDATE"
+text 59 28 13 "83%" red center
+fig 26 88 56 present r young "Reginald"
 fig 74 100 34 back l adult faint
-fig 86 100 34 back l adult faint
-cap NAR 4 6 26
+fig 88 100 34 back l adult faint
+cap NAR 2 4 26
+cap DIA 2 28 28 tail=26,40
+cap FAC 40 40 38
+cap SKL 60 60 30
 
 ## Panel C05-S07-P01
 shot: 2×2 selection grid
@@ -137,7 +160,8 @@ camera: Static; tiles flip in one by one
 scroll: Short sticky: four tiles at 0/20/40/60%, release at 90%
 transition: Hover/focus widens a tile and un-crops it; tap on mobile
 mobile: One column of four; tap expands
-tags: GENERATE LATER, PLACEHOLDER (stylised, non-sensitive imagery)
+tags: GENERATE LATER
+note: Review (11 Nov) applied — card frames, titles and text are code overlays; the image inside each card is generated (see each card below).
 frame 16:9
 text 50 6 4 "ACHIEVEMENTS & MILESTONES" ink center
 card 6 11 43 34 "OPTIMISED DATA RETRIEVAL" red
@@ -148,45 +172,64 @@ cap NAR 4 83 56
 cap PORTAL 62 83 36
 
 ## Item ms-retrieval
-shot: Graphic · a long hourglass collapsing into a stopwatch
-tags: PLACEHOLDER
+shot: Over-the-shoulder · a database on screen
+tags: GENERATE LATER
 frame 4:3 crop
-box 20 14 18 60 "4 h" dash code
-arrow 40 44 60 44 red code
-disc 74 44 12 code
-label 70 64 "30 s"
-cap SUB 6 84 88
+dark 0 0 100 100
+screen 30 12 62 52 "database tables"
+fig 18 100 62 bust r young "Reginald"
+cap SUB 6 78 88
 
 ## Item ms-visualisation
-shot: Graphic · server racks becoming a heat-map
-tags: PLACEHOLDER
+shot: Screen-in-screen · presenting a dashboard in an online meeting
+tags: GENERATE LATER
 frame 4:3 crop
-box 8 16 18 60 "rack" code
-box 28 16 18 60 "rack" code
-arrow 48 46 58 46 red code
-chart 60 20 34 50 red
-cap SUB 6 84 88
+screen 6 8 88 60 "online meeting"
+box 10 16 52 46 "widget dashboard"
+fig 78 60 30 bust f young "Reginald"
+cap SUB 6 78 88
 
 ## Item ms-migration
-shot: Graphic · boxes lifting into a cloud shape
-tags: PLACEHOLDER
+shot: Medium · running code at the desk with Farhan
+tags: GENERATE LATER, NEEDS PERMISSION (Farhan from behind or stylised)
 frame 4:3 crop
-box 10 56 20 16 "on-prem" code
-box 34 60 20 12 "on-prem" code
-arrow 30 54 58 26 red code
-disc 72 24 14 code
-label 66 44 "AWS"
-cap SUB 6 84 88
+box 6 68 88 5 "desk"
+screen 40 38 22 24 "terminal"
+fig 30 96 50 type r young "Reginald"
+fig 74 96 54 lean l young "Farhan" faint
+cap SUB 6 4 88
 
 ## Item ms-multilob
-shot: Graphic · one tool radiating to several team desks
-tags: PLACEHOLDER
+shot: Medium two-shot · talking a coworker through the tool
+tags: GENERATE LATER
 frame 4:3 crop
-screen 38 30 24 20 "tool" red code
-arrow 50 50 20 70 code
-arrow 50 50 50 74 code
-arrow 50 50 80 70 code
-label 12 78 "rates"
-label 42 80 "FX"
-label 74 78 "commodities"
-cap SUB 6 88 88
+fig 34 96 64 present r young "Reginald"
+fig 68 96 62 stand l adult "coworker" faint
+screen 44 30 14 16 ""
+cap SUB 6 4 88
+
+## Panel C05-S09-P01
+shot: Wide splash · on stage, receiving the certificate
+camera: Slow push toward the handshake; warm light
+scroll: Stage first; narration; fact; then the awards button and the two testimonial portals
+transition: Chapter separator: GUARDS FORMATION
+mobile: Full frame; captions and buttons stack under the image
+tags: GENERATE LATER, REAL EVIDENCE (your graduation photos for the gown and hall)
+refs: Your graduation photos; NP Convention Centre stage
+note: New scene (review, 11 Nov) — graduation in a gown, receiving your certificate. The awards button opens a pop-up list; Dimuthu Makawita's and Victor Lum's testimonials open from here.
+
+frame 16:9
+floor 72
+box 30 5 40 16 "Ngee Ann Polytechnic · Graduation 2025"
+fig 42 70 46 hold r young "Reginald (gown)"
+paper 47 40 7 8 "" red
+fig 58 70 46 present l adult "presenter" faint
+fig 14 98 24 back r adult faint
+fig 30 98 24 back r adult faint
+fig 70 98 24 back l adult faint
+fig 86 98 24 back l adult faint
+cap NAR 2 4 25
+cap MODAL 2 46 24
+cap PORTAL 74 5 24 1
+cap PORTAL 74 30 24 2
+cap FAC 30 78 40

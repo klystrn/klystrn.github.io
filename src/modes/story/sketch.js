@@ -51,7 +51,7 @@ function lineFor(panel, type, n) {
 }
 
 const GUIDE_ELS = new Set(['crop', 'label', 'vp']);
-const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list']);
+const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav']);
 function layerOf(tok) {
   const k = tok[0];
   if (GUIDE_ELS.has(k) || (k === 'arrow' && !tok.includes('code'))) return 'guide';
@@ -169,6 +169,21 @@ function renderFrame(frame, panel, key, layer = 'all') {
         const tail = words.find((w) => w.startsWith('tail='));
         const tp = tail ? tail.slice(5).split(',').map(Number) : null;
         drawCaption(g, tok[1], X(nums[0]), Y(nums[1]), X(nums[2]), lineFor(panel, tok[1], nums[3]), W, H, tp ? [X(tp[0]), Y(tp[1])] : null);
+        break;
+      }
+      case 'nav': {
+        const tabs = (label || 'CV|Tech|Finance|Life').split('|');
+        const x0 = X(a), y0 = Y(b), w = X(c), h = Y(d), slant = Math.tan(17 * Math.PI / 180) * h;
+        el('rect', { x: x0 + 5, y: y0 + 5, width: w, height: h, fill: '#050505' }, g);
+        el('rect', { x: x0, y: y0, width: w, height: h, fill: '#efe9dc', stroke: '#050505', 'stroke-width': 4 }, g);
+        tabs.forEach((t, i) => {
+          const tx = x0 + (w * i) / tabs.length, tw = w / tabs.length;
+          if (i === 1) el('polygon', { points: `${tx + slant / 2},${y0} ${tx + tw + slant / 2},${y0} ${tx + tw - slant / 2},${y0 + h} ${tx - slant / 2},${y0 + h}`, fill: '#b3121f' }, g);
+          if (i) el('line', { x1: tx + slant / 2, y1: y0, x2: tx - slant / 2, y2: y0 + h, stroke: '#050505', 'stroke-width': 3.5 }, g);
+          const tt = el('text', { x: tx + tw / 2, y: y0 + h / 2, fill: i === 1 ? '#fff' : '#050505', 'font-family': 'Archivo, Arial Narrow, sans-serif', 'font-weight': 800, 'font-stretch': '80%',
+            'font-size': Math.min(h * .5, tw / 5.2), 'text-anchor': 'middle', 'dominant-baseline': 'central', 'letter-spacing': 1.5 }, g);
+          tt.textContent = t.toUpperCase();
+        });
         break;
       }
       case 'list': {
@@ -302,8 +317,14 @@ function drawCaption(g, type, x, y, w, line, W, H, tail) {
   if (tail && (type === 'DIA' || type === 'THO')) fo.dataset.tail = tail.join(',');
   const div = document.createElement('div');
   div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
-  const text = line ? line.x : `(no ${type} line in the script)`;
-  const who = line && line.s ? `<b style="display:block;font:700 15px var(--display);font-stretch:80%;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">${esc(line.s)}</b>` : '';
+  div.style.cssText = 'width:100%';
+  div.innerHTML = capMarkup(type, line);
+  fo.appendChild(div);
+}
+
+function capMarkup(type, line) {
+  const text = line ? (type === 'MODAL' ? `${line.s || 'Open list'} ▸` : line.x) : `(no ${type} line in the script)`;
+  const who = line && line.s && type !== 'PORTAL' && type !== 'MODAL' ? `<b style="display:block;font:700 15px var(--display);font-stretch:80%;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">${esc(line.s)}</b>` : '';
   const base = 'font:20px/1.32 "Hanken Grotesk",Arial,sans-serif;color:#1d1b19;padding:10px 14px;display:inline-block;max-width:100%;';
   const styles = {
     NAR: base + 'background:#fbf7ee;border:2px solid #1d1b19;border-left:7px solid #b3121f;',
@@ -313,12 +334,51 @@ function drawCaption(g, type, x, y, w, line, W, H, tail) {
     SUB: base + 'background:#fbf7ee;border:2px solid #1d1b19;',
     SKL: base + 'background:#f6f1e6;border:1.5px solid #1f7a78;color:#1f7a78;font:15px/1.3 "IBM Plex Mono",monospace;border-radius:999px;',
     PORTAL: base + 'background:#fff;border:2.5px solid #b3121f;color:#b3121f;font-weight:600;border-radius:4px;',
+    MODAL: base + 'background:#1d1b19;color:#f6f1e6;border:2.5px solid #1d1b19;font-weight:600;border-radius:999px;',
     SFX: 'font:900 54px/1 Archivo,Arial Narrow,sans-serif;font-stretch:70%;color:#b3121f;letter-spacing:.04em;transform:rotate(-6deg);display:inline-block;',
   };
-  div.style.cssText = 'width:100%';
   const inner = type === 'PORTAL' ? `${markEdits(text)} &rarr;` : markEdits(text);
-  div.innerHTML = `<div style='${styles[type] || base}'>${who}${inner}</div>`;
-  fo.appendChild(div);
+  const hint = type === 'PORTAL' && line && line.s ? `<small style="display:block;font:11px 'IBM Plex Mono',monospace;color:#6b645a;font-weight:400">button → arc: ${esc(line.s)}</small>`
+    : type === 'MODAL' && line ? `<small style="display:block;font:11px 'IBM Plex Mono',monospace;color:#cfc8ba;font-weight:400">button → pop-up list (${line.x.split(' · ').length} items)</small>` : '';
+  return `<div data-cap="${type}" style='${styles[type] || base}'>${who}${inner}${hint}</div>`;
+}
+
+// Lines the storyboard hasn't placed on a frame: they sit in the gutter under the panel.
+function leftovers(p, variant) {
+  const used = new Set();
+  for (const fr of variant.frames) for (const t of fr.els) if (t[0] === 'cap') { const n = t.slice(2).filter((v) => /^-?\d+(\.\d+)?$/.test(v)); used.add(`${t[1]}-${n[3] ? Number(n[3]) : 1}`); }
+  const count = {}, out = [];
+  for (const l of p.copy || []) {
+    if (['VISUAL', 'ALT'].includes(l.t)) continue;
+    count[l.t] = (count[l.t] || 0) + 1;
+    if (!used.has(`${l.t}-${count[l.t]}`)) out.push([l.t, l]);
+  }
+  return out;
+}
+function capList(pairs, cls) {
+  const d = document.createElement('div'); d.className = cls;
+  d.innerHTML = pairs.map(([t, l]) => `<div class="capwrap">${capMarkup(t, l)}</div>`).join('');
+  return d;
+}
+function capsOf(p, fr) {
+  return fr.els.filter((t) => t[0] === 'cap').map((t) => { const n = t.slice(2).filter((v) => /^-?\d+(\.\d+)?$/.test(v)).map(Number); return [t[1], lineFor(p, t[1], n[3])]; }).filter(([, l]) => l);
+}
+// What a phone shows: every frame whole (scaled, never cropped), captions stacked under it.
+function phoneMock(p, variant) {
+  const ph = document.createElement('div'); ph.className = 'phone'; const svgs = [];
+  const add = (fr, owner, key) => { const s = renderFrame(fr, owner, key, 'story'); ph.appendChild(s); svgs.push(s); };
+  if (p.type === 'PANEL_SELECTION' && (p.items || []).length) {
+    p.items.forEach((it, i) => {
+      const c = document.createElement('div'); c.className = 'pcard' + (i === 0 ? ' on' : '');
+      c.innerHTML = `<b>${esc(it.title || it.id)}</b><span>${i === 0 ? 'tapped open' : 'tap to open'}</span>`;
+      ph.appendChild(c);
+      if (i === 0 && it.board) { const frs = it.board.variants[0].frames; add(frs[frs.length - 1], it, it.id + '-m'); ph.appendChild(capList((it.copy || []).filter((l) => ['SUB', 'NAR', 'PORTAL'].includes(l.t)).map((l) => [l.t, l]), 'pcaps')); }
+    });
+  } else {
+    variant.frames.forEach((fr, i) => { add(fr, p, `${p.id}-m-${i}`); const cs = capsOf(p, fr); if (cs.length) ph.appendChild(capList(cs, 'pcaps')); });
+  }
+  const rest = leftovers(p, variant); if (rest.length) ph.appendChild(capList(rest, 'pcaps'));
+  return { el: ph, svgs };
 }
 
 

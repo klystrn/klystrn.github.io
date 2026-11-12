@@ -49,6 +49,14 @@ contradict `src/data/*.json`.
 9. **Copy budget.** ≤ 45 words of NAR/THO/DIA per scene; main path ≤ 42 panels. If an edit breaks
    the budget, propose moving detail into an arc rather than silently cutting the user's words.
 
+## Overlays
+
+All readable/clickable content is a code overlay edited in `docs/STORY-SCRIPT.md` (user guide:
+`docs/story/OVERLAYS.md`). Types: NAR, DIA[Name], THO, FAC, SKL, SFX, SUB, `PORTAL[arc-slug]`
+(button to an arc), `MODAL[Label]: a · b · c` (button opening a pop-up list). The panel frame is
+also code. Never ask for an image regeneration to change an overlay. `OVERLAY-INDEX.md` is
+generated — don't edit it.
+
 ## Storyboards
 
 - Every scene needs a storyboard before any asset generation; generation for a scene is allowed

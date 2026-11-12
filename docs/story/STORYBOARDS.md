@@ -15,6 +15,7 @@ Every panel is built from layers, so text and UI never have to be generated (or 
 | Layer | Made by | Contains |
 |---|---|---|
 | **Plate** | Higgsfield, from an approved batch | Characters, places, props, light. **No text, lettering, speech balloons, captions, logos or on-screen UI** — screens are blank (or softly lit) so code can fill them. |
+| **Panel frame** | Claude, in code | The inked border around every image. Plates are generated **full-bleed with no border**; the website draws a hand-inked frame over them (heavier on splash panels, teal keyline on evidence panels), so frames stay consistent and can be restyled without regenerating art. |
 | **Evidence** | Your real files | Screenshots, certificates, letters — placed as-is (`real` flag). |
 | **Code overlays** | Claude, in HTML/CSS/SVG | Narration, thought and speech balloons (with tails), fact boxes, skills, portals, SFX lettering, titles and the Chinese name, nav bar, selection cards, charts, trade logs, to-do lists, diagrams, red lines and highlights (`code` flag or an overlay element). |
 | Guides | Storyboard only | Crop boxes, pencil notes, motion arrows, perspective lines — never shipped. |
@@ -28,6 +29,14 @@ into a Higgsfield batch.
 
 **Caption safe zones:** the `cap` boxes in each storyboard are the areas a plate must keep calm
 (no faces or key action underneath). They're passed into every generation prompt.
+
+## Desktop and mobile versions
+
+Every scene has both. The **desktop** version is what the storyboard file draws. The **mobile**
+version is derived by one rule the website also follows — each frame shown whole, captions stacked
+underneath in script order, selection cards stacked and opened by tap — unless the storyboard has
+its own `variant Mobile` (the hero and the Present selector do). Use the **Desktop / Mobile**
+toggle in the Storyboard Room to see either version of any scene.
 
 ## Frame edges and phones
 
@@ -113,7 +122,8 @@ crop mobile 30 0 40 100
 | `line X1 Y1 X2 Y2` | plain line |
 | `wash X Y W H` / `dark X Y W H` | red flood / black flood |
 | `text X Y SIZE "TEXT"` | on-screen typography; SIZE = % of frame height; flags `red ivory ink center` |
-| `cap TYPE X Y W [N] [tail=X,Y]` | caption box filled from the script (NAR, THO, DIA, FAC, SFX, SUB, PORTAL, SKL); N = which line of that type (1 = first); `tail=` points a speech/thought balloon at the speaker |
+| `nav X Y W H "A\|B\|C"` | comic-style nav box with 17° dividers (code overlay) |
+| `cap TYPE X Y W [N] [tail=X,Y]` | caption box filled from the script (NAR, THO, DIA, FAC, SFX, SUB, PORTAL, MODAL, SKL); N = which line of that type (1 = first); `tail=` points a speech/thought balloon at the speaker |
 | `list X Y W ["TITLE"] "a\|b\|c"` | code-drawn checklist / log (to-do lists, trade logs) |
 | `crop NAME X Y W H` | dashed crop guide (mobile crop, card crop, full) |
 | `label X Y "text"` | pencil annotation |

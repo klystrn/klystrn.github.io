@@ -142,6 +142,16 @@ textarea { width: 100%; min-height: 64px; border: 1px solid var(--line); border-
 .layer-tabs .lbl { font: 11px var(--mono); color: var(--muted); margin-right: 2px }
 .layer-tabs button { border: 1px dashed var(--line); background: transparent; border-radius: 4px; padding: 3px 9px; font-size: 12px; cursor: pointer }
 .layer-tabs button[aria-pressed="true"] { border-style: solid; border-color: var(--teal); color: var(--teal); font-weight: 600 }
+.phone { width: min(320px, 100%); border: 2px solid var(--ink); border-radius: 22px; padding: 14px 10px 18px; background: var(--night); display: grid; gap: 10px }
+.phone > svg { width: 100%; height: auto; display: block; background: var(--paper); border: 2px solid #050505 }
+.pcaps, .gutter { display: flex; flex-direction: column; gap: 6px; align-items: flex-start }
+.gutter { flex: 1 1 100%; flex-direction: row; flex-wrap: wrap; align-items: center; padding: 8px 10px; border: 1px dashed var(--line); border-radius: 6px }
+.gutter .lbl { font: 11px var(--mono); color: var(--muted); margin-right: 4px }
+.phone .capwrap > div, .gutter .capwrap > div { font-size: 13px !important }
+.phone .capwrap > div[data-cap="SFX"] { font-size: 30px !important }
+.pcard { background: var(--paper); color: #1d1b19; border: 2px solid #050505; padding: 8px 10px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px }
+.pcard b { font: 800 14px var(--display); font-stretch: 78% } .pcard span { font: 10px var(--mono); color: #6b645a }
+.pcard.on { border-color: var(--crimson) }
 .plate { font: 600 11px var(--mono); padding: 4px 8px; border-radius: 4px; border: 1px solid currentColor }
 .plate.generate { color: var(--crimson) } .plate.code { color: var(--teal) } .plate.evidence { color: var(--gold) }
 .refs { display: grid; gap: 8px }
@@ -248,7 +258,7 @@ function lineFor(panel, type, n) {
 }
 
 const GUIDE_ELS = new Set(['crop', 'label', 'vp']);
-const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list']);
+const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav']);
 function layerOf(tok) {
   const k = tok[0];
   if (GUIDE_ELS.has(k) || (k === 'arrow' && !tok.includes('code'))) return 'guide';
@@ -366,6 +376,21 @@ function renderFrame(frame, panel, key, layer = 'all') {
         const tail = words.find((w) => w.startsWith('tail='));
         const tp = tail ? tail.slice(5).split(',').map(Number) : null;
         drawCaption(g, tok[1], X(nums[0]), Y(nums[1]), X(nums[2]), lineFor(panel, tok[1], nums[3]), W, H, tp ? [X(tp[0]), Y(tp[1])] : null);
+        break;
+      }
+      case 'nav': {
+        const tabs = (label || 'CV|Tech|Finance|Life').split('|');
+        const x0 = X(a), y0 = Y(b), w = X(c), h = Y(d), slant = Math.tan(17 * Math.PI / 180) * h;
+        el('rect', { x: x0 + 5, y: y0 + 5, width: w, height: h, fill: '#050505' }, g);
+        el('rect', { x: x0, y: y0, width: w, height: h, fill: '#efe9dc', stroke: '#050505', 'stroke-width': 4 }, g);
+        tabs.forEach((t, i) => {
+          const tx = x0 + (w * i) / tabs.length, tw = w / tabs.length;
+          if (i === 1) el('polygon', { points: `${tx + slant / 2},${y0} ${tx + tw + slant / 2},${y0} ${tx + tw - slant / 2},${y0 + h} ${tx - slant / 2},${y0 + h}`, fill: '#b3121f' }, g);
+          if (i) el('line', { x1: tx + slant / 2, y1: y0, x2: tx - slant / 2, y2: y0 + h, stroke: '#050505', 'stroke-width': 3.5 }, g);
+          const tt = el('text', { x: tx + tw / 2, y: y0 + h / 2, fill: i === 1 ? '#fff' : '#050505', 'font-family': 'Archivo, Arial Narrow, sans-serif', 'font-weight': 800, 'font-stretch': '80%',
+            'font-size': Math.min(h * .5, tw / 5.2), 'text-anchor': 'middle', 'dominant-baseline': 'central', 'letter-spacing': 1.5 }, g);
+          tt.textContent = t.toUpperCase();
+        });
         break;
       }
       case 'list': {
@@ -499,8 +524,14 @@ function drawCaption(g, type, x, y, w, line, W, H, tail) {
   if (tail && (type === 'DIA' || type === 'THO')) fo.dataset.tail = tail.join(',');
   const div = document.createElement('div');
   div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
-  const text = line ? line.x : `(no ${type} line in the script)`;
-  const who = line && line.s ? `<b style="display:block;font:700 15px var(--display);font-stretch:80%;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">${esc(line.s)}</b>` : '';
+  div.style.cssText = 'width:100%';
+  div.innerHTML = capMarkup(type, line);
+  fo.appendChild(div);
+}
+
+function capMarkup(type, line) {
+  const text = line ? (type === 'MODAL' ? `${line.s || 'Open list'} ▸` : line.x) : `(no ${type} line in the script)`;
+  const who = line && line.s && type !== 'PORTAL' && type !== 'MODAL' ? `<b style="display:block;font:700 15px var(--display);font-stretch:80%;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">${esc(line.s)}</b>` : '';
   const base = 'font:20px/1.32 "Hanken Grotesk",Arial,sans-serif;color:#1d1b19;padding:10px 14px;display:inline-block;max-width:100%;';
   const styles = {
     NAR: base + 'background:#fbf7ee;border:2px solid #1d1b19;border-left:7px solid #b3121f;',
@@ -510,12 +541,51 @@ function drawCaption(g, type, x, y, w, line, W, H, tail) {
     SUB: base + 'background:#fbf7ee;border:2px solid #1d1b19;',
     SKL: base + 'background:#f6f1e6;border:1.5px solid #1f7a78;color:#1f7a78;font:15px/1.3 "IBM Plex Mono",monospace;border-radius:999px;',
     PORTAL: base + 'background:#fff;border:2.5px solid #b3121f;color:#b3121f;font-weight:600;border-radius:4px;',
+    MODAL: base + 'background:#1d1b19;color:#f6f1e6;border:2.5px solid #1d1b19;font-weight:600;border-radius:999px;',
     SFX: 'font:900 54px/1 Archivo,Arial Narrow,sans-serif;font-stretch:70%;color:#b3121f;letter-spacing:.04em;transform:rotate(-6deg);display:inline-block;',
   };
-  div.style.cssText = 'width:100%';
   const inner = type === 'PORTAL' ? `${markEdits(text)} &rarr;` : markEdits(text);
-  div.innerHTML = `<div style='${styles[type] || base}'>${who}${inner}</div>`;
-  fo.appendChild(div);
+  const hint = type === 'PORTAL' && line && line.s ? `<small style="display:block;font:11px 'IBM Plex Mono',monospace;color:#6b645a;font-weight:400">button → arc: ${esc(line.s)}</small>`
+    : type === 'MODAL' && line ? `<small style="display:block;font:11px 'IBM Plex Mono',monospace;color:#cfc8ba;font-weight:400">button → pop-up list (${line.x.split(' · ').length} items)</small>` : '';
+  return `<div data-cap="${type}" style='${styles[type] || base}'>${who}${inner}${hint}</div>`;
+}
+
+// Lines the storyboard hasn't placed on a frame: they sit in the gutter under the panel.
+function leftovers(p, variant) {
+  const used = new Set();
+  for (const fr of variant.frames) for (const t of fr.els) if (t[0] === 'cap') { const n = t.slice(2).filter((v) => /^-?\d+(\.\d+)?$/.test(v)); used.add(`${t[1]}-${n[3] ? Number(n[3]) : 1}`); }
+  const count = {}, out = [];
+  for (const l of p.copy || []) {
+    if (['VISUAL', 'ALT'].includes(l.t)) continue;
+    count[l.t] = (count[l.t] || 0) + 1;
+    if (!used.has(`${l.t}-${count[l.t]}`)) out.push([l.t, l]);
+  }
+  return out;
+}
+function capList(pairs, cls) {
+  const d = document.createElement('div'); d.className = cls;
+  d.innerHTML = pairs.map(([t, l]) => `<div class="capwrap">${capMarkup(t, l)}</div>`).join('');
+  return d;
+}
+function capsOf(p, fr) {
+  return fr.els.filter((t) => t[0] === 'cap').map((t) => { const n = t.slice(2).filter((v) => /^-?\d+(\.\d+)?$/.test(v)).map(Number); return [t[1], lineFor(p, t[1], n[3])]; }).filter(([, l]) => l);
+}
+// What a phone shows: every frame whole (scaled, never cropped), captions stacked under it.
+function phoneMock(p, variant) {
+  const ph = document.createElement('div'); ph.className = 'phone'; const svgs = [];
+  const add = (fr, owner, key) => { const s = renderFrame(fr, owner, key, 'story'); ph.appendChild(s); svgs.push(s); };
+  if (p.type === 'PANEL_SELECTION' && (p.items || []).length) {
+    p.items.forEach((it, i) => {
+      const c = document.createElement('div'); c.className = 'pcard' + (i === 0 ? ' on' : '');
+      c.innerHTML = `<b>${esc(it.title || it.id)}</b><span>${i === 0 ? 'tapped open' : 'tap to open'}</span>`;
+      ph.appendChild(c);
+      if (i === 0 && it.board) { const frs = it.board.variants[0].frames; add(frs[frs.length - 1], it, it.id + '-m'); ph.appendChild(capList((it.copy || []).filter((l) => ['SUB', 'NAR', 'PORTAL'].includes(l.t)).map((l) => [l.t, l]), 'pcaps')); }
+    });
+  } else {
+    variant.frames.forEach((fr, i) => { add(fr, p, `${p.id}-m-${i}`); const cs = capsOf(p, fr); if (cs.length) ph.appendChild(capList(cs, 'pcaps')); });
+  }
+  const rest = leftovers(p, variant); if (rest.length) ph.appendChild(capList(rest, 'pcaps'));
+  return { el: ph, svgs };
 }
 
 // ---- views --------------------------------------------------------------
@@ -548,6 +618,7 @@ function pickerHTML(current) {
 }
 
 let filter = null;
+let viewMode = 'desktop';
 function overview() {
   const counts = {}; for (const s of scenes) { const st = effective(s).status; counts[st] = (counts[st] || 0) + 1; }
   let html = pickerHTML('');
@@ -608,6 +679,7 @@ function refHTML(r) {
     <div class="meta">${esc(r.source || '')}</div>
     ${r.privacy ? `<div class="meta">Privacy: ${esc(r.privacy)}</div>` : ''}
     ${r.notes ? `<div class="meta">${esc(r.notes)}</div>` : ''}
+    ${(r.links || []).length ? `<div class="meta">Found online: ${r.links.map((l) => `<a href="${esc(l.u)}" target="_blank" rel="noopener">${esc(l.t)}</a>`).join(' · ')}</div>` : ''}
     <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="chip ${esc((r.status || '').split(' ')[0])}">${esc(r.status || '')}</span>${r.priority ? `<span class="chip tag">priority ${esc(r.priority)}</span>` : ''}<span class="scenes">${(r.scenes || []).map((x) => `<a href="#${x}">${x}</a>`).join('')}</span></div></div>`;
 }
 
@@ -642,6 +714,7 @@ function sceneView(id) {
   html += `<header class="scene-head"><div><div class="eyebrow">${g.kind === 'arc' ? `Arc · ${esc(g.id)}${g.parent ? ` · returns to ${esc(g.parent)}` : ''}` : `Chapter ${esc(g.order)} · ${esc(g.title)}${g.years && g.years !== 'none' ? ' · ' + esc(g.years) : ''}`} · ${s.id}</div>
     <h1>${esc(s.label)}</h1></div><span class="chip ${e.status}">${LABEL[e.status]}</span></header>`;
   html += reviewHTML(s, e, review);
+  html += `<div class="layer-tabs" role="group" aria-label="Device"><span class="lbl">Version</span><button data-view="desktop" aria-pressed="${viewMode === 'desktop'}">Desktop</button><button data-view="mobile" aria-pressed="${viewMode === 'mobile'}">Mobile</button><span class="note">${viewMode === 'mobile' ? 'Phones show every frame whole, with captions stacked underneath.' : 'Desktop places captions on the frame; they may sit on its edge.'}</span></div>`;
   if (!s.panels.some((p) => p.board)) html += `<div class="empty">${s.status === 'waiting' ? 'Waiting on script edits before this scene can be storyboarded. Fill the <b>[EDIT: …]</b> gaps below in docs/STORY-SCRIPT.md.' : 'Not storyboarded yet.'}</div>`;
   html += s.panels.map((p) => panelHTML(p, s.id, false)).join('');
   const sref = REFS.filter((r) => (r.scenes || []).includes(s.id));
@@ -652,10 +725,17 @@ function sceneView(id) {
   view.querySelectorAll('.variants').forEach((v) => {
     const p = findPanel(s, v.dataset.panel);
     let cur = 0, layer = 'all';
+    const mobileIdx = p.board.variants.findIndex((x) => /mobile/i.test(x.label || ''));
     const show = (i) => {
       cur = i;
       const box = v.querySelector('.frames'); box.innerHTML = '';
-      for (const [fi, fr] of p.board.variants[i].frames.entries()) {
+      const variant = p.board.variants[i];
+      if (viewMode === 'mobile' && !/mobile/i.test(variant.label || '')) {
+        const m = phoneMock(p, variant); box.appendChild(m.el); m.svgs.forEach(fitFrame);
+        v.querySelectorAll('[role=tab]').forEach((t) => t.setAttribute('aria-selected', String(Number(t.dataset.v) === i)));
+        return;
+      }
+      for (const [fi, fr] of variant.frames.entries()) {
         const fig = document.createElement('figure');
         const [aw, ah] = fr.aspect.split(':').map(Number);
         fig.className = 'frame' + (ah > aw ? ' tall' : '');
@@ -665,6 +745,8 @@ function sceneView(id) {
         box.appendChild(fig);
         fitFrame(svg);
       }
+      const rest = leftovers(p, variant);
+      if (rest.length && layer !== 'art') { const gtr = capList(rest, 'gutter'); gtr.insertAdjacentHTML('afterbegin', '<span class="lbl">Under the panel</span>'); box.appendChild(gtr); }
       v.querySelectorAll('[role=tab]').forEach((t) => t.setAttribute('aria-selected', String(Number(t.dataset.v) === i)));
     };
     v.querySelectorAll('[role=tab]').forEach((t) => t.addEventListener('click', () => show(Number(t.dataset.v))));
@@ -673,8 +755,9 @@ function sceneView(id) {
       v.querySelectorAll('[data-layer]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       show(cur);
     }));
-    show(0);
+    show(viewMode === 'mobile' && mobileIdx >= 0 ? mobileIdx : 0);
   });
+  view.querySelectorAll('[data-view]').forEach((b) => b.addEventListener('click', () => { viewMode = b.dataset.view; const y = scrollY; sceneView(id); scrollTo(0, y); }));
   wireReview(s);
   wirePicker();
 }
