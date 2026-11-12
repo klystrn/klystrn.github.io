@@ -22,7 +22,7 @@ conditional in Future Plans.
 | # | Slug | Title | Years | Category |
 |---|---|---|---|---|
 | 1 | `opening` | REGINALD TAN / 陈彦杰 (nav bar above; upper-body silhouette, scroll zoom to close-up) | — | — |
-| 2 | `present` | WHAT I'M DOING NOW | — | — |
+| 2 | `present` | PRESENT DAY | — | — |
 | 3 | `sst` | SCHOOL OF SCIENCE & TECHNOLOGY | 2018–2021 | education |
 | 4 | `np` | NGEE ANN POLYTECHNIC | 2022–2025 | education |
 | 5 | `jpmorgan` | JPMorganChase | 2024–2025 | career |

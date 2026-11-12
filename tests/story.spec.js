@@ -82,7 +82,7 @@ test('Ducky turns yellow when found, and the watch shows its story', async ({ pa
 
 test('finding every Ducky says "I like Ducks!"', async ({ page }) => {
   await page.goto('/');
-  await page.evaluate(() => localStorage.setItem('story-ducky-v1', JSON.stringify(['opening', 'present', 'sst', 'np', 'jpmorgan', 'guards', 'registudio'])));
+  await page.evaluate(() => localStorage.setItem('story-ducky-v1', JSON.stringify(['present', 'sst', 'np', 'jpmorgan', 'guards', 'registudio'])));
   await page.goto('/story/chapter/future');
   const duck = page.locator('#C08-S01-P01 .st-ducky');
   await duck.scrollIntoViewIfNeeded();
@@ -107,9 +107,56 @@ test('a portal opens its side story and returns to the panel it came from', asyn
   await portal.click();
   await expect(page).toHaveURL(/\/story\/arc\/frats$/);
   await expect(page.locator('.st-title.arc h2')).toHaveText('FRATS');
+  const before = await page.evaluate(() => JSON.parse(sessionStorage.getItem('story-return-v1')).y);
   await page.locator('.st-back').first().click();
   await expect(page).toHaveURL(/\/story\/chapter\/np#C04-S01-P02$/);
   await expect(page.locator('#C04-S01-P02')).toBeInViewport();
+  await page.waitForTimeout(600);
+  const after = await page.evaluate(() => scrollY);
+  expect(Math.abs(after - before), 'returns to the exact spot the reader left').toBeLessThan(4);
+});
+
+test('panels slide in as you scroll down and back out as you scroll up', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/story/chapter/np');
+  await page.waitForTimeout(700);  // let the deep link settle first
+  const frame = page.locator('#C04-S02-P01 .st-frame').first();
+  const e = () => frame.evaluate((el) => Number(getComputedStyle(el).getPropertyValue('--e')));
+  const top = await page.locator('#C04-S02-P01').evaluate((el) => el.getBoundingClientRect().top + scrollY);
+  await page.evaluate((y) => scrollTo({ top: y - innerHeight * 0.4, behavior: 'instant' }), top);
+  await page.waitForTimeout(200);
+  expect(await e(), 'on screen: fully in').toBeGreaterThan(0.95);
+  await page.evaluate((y) => scrollTo({ top: y - innerHeight * 1.05, behavior: 'instant' }), top);
+  await page.waitForTimeout(200);
+  expect(await e(), 'scrolled back up: slid back out').toBeLessThan(0.2);
+});
+
+test('captions never sit on a face, an on-screen board or each other', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/story');
+  await readThrough(page);
+  const bad = await page.evaluate(() => {
+    const out = [];
+    const over = (a, b) => a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1;
+    for (const caps of document.querySelectorAll('.st-frame > .st-caps, .st-plate > .st-caps')) {
+      const boxes = [...caps.querySelectorAll(':scope > .st-capbox')].map((b) => [b.textContent.slice(0, 24), b.getBoundingClientRect()]);
+      const solids = [...caps.querySelectorAll(':scope > .st-subject')].map((s) => s.getBoundingClientRect());
+      boxes.forEach(([t, r], i) => {
+        if (solids.some((s) => over(r, s))) out.push(`covers a subject: ${t}`);
+        boxes.slice(i + 1).forEach(([u, q]) => { if (over(r, q)) out.push(`overlap: ${t} / ${u}`); });
+      });
+    }
+    return out;
+  });
+  expect(bad).toEqual([]);
+});
+
+test('footer: copy-email is an icon button', async ({ page }) => {
+  await page.goto('/');
+  const btn = page.locator('.st-copy');
+  await btn.scrollIntoViewIfNeeded();
+  await expect(btn).toHaveAttribute('aria-label', 'Copy email address');
+  await expect(btn.locator('svg')).toBeVisible();
 });
 
 test('selection cards expand by tap and by keyboard', async ({ page }) => {

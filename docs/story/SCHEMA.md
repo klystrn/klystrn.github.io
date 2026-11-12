@@ -90,7 +90,7 @@ PREFIX[speaker] {status}: text
 | `SKL` | skills sidecar (1–3 items, comma separated) | yes |
 | `SFX` | hand-lettered sound effect | yes |
 | `PORTAL[arc-slug]` | button to a side story, past-tense label | yes |
-| `MODAL[Button label]` | button that opens a pop-up list; items separated by ` · ` | yes |
+| `MODAL[Button label]` | button that opens a pop-up list; items separated by ` \| ` | yes |
 | `ALT` | image alt text | yes (screen readers) |
 | `VISUAL` | what the art shows | no — production note |
 | `NOTE` | editorial/production note | no |

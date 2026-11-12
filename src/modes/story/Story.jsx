@@ -6,7 +6,7 @@ import payload from '../../story/storyboards.json';
 import compiled from '../../story/story.json';
 import media from '../../story/media.json';
 import identity from '../../data/identity.json';
-import { renderFrame, fitFrame, zoneOf } from './sketch.js';
+import { renderFrame, fitFrame, zoneOf, duckySVG } from './sketch.js';
 import { DuckyProvider, Ducky, WatchSpot } from './eggs.jsx';
 import { trackEvent } from '../../lib/analytics';
 
@@ -32,11 +32,14 @@ const WATCHES = Object.fromEntries((payload.watches || []).map((w) => [w.id, w])
 const PANEL_CHAPTER = {};
 for (const c of CHAPTERS) for (const s of c.scenes) for (const p of s.panels) PANEL_CHAPTER[p.id] = c.id;
 
+const tidy = (s) => String(s || '').replace(/\s+·\s+/g, ', ').replace(/\s*—\s*/g, ', ');
 const isOpen = (line) => line && line.st !== 'edit' && !line.x.includes('[EDIT');
 const reduceMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const NUM = /^-?\d+(\.\d+)?$/;
 const nums = (tok) => tok.slice(1).filter((t) => NUM.test(t)).map(Number);
 const PHONE = '(max-width: 760px)';
+const clamp = (v, a = 0, b = 1) => Math.min(Math.max(v, a), b);
+const RETURN_KEY = 'story-return-v1';
 
 /* First and last sighting of each watch along the main story, in reading order. */
 const WATCH_SPOTS = (() => {
@@ -84,16 +87,47 @@ function Sketch({ frame, panel, id, layer = 'story', cover = false, label }) {
   return <div className={`st-sketch${cover ? ' cover' : ''}`} ref={ref} role="img" aria-label={label || 'Storyboard sketch'} />;
 }
 
-function useReveal() {
-  const ref = useRef(null);
-  const [seen, setSeen] = useState(false);
-  useEffect(() => {
-    if (reduceMotion() || typeof IntersectionObserver !== 'function') { setSeen(true); return undefined; }
-    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { setSeen(true); io.disconnect(); } }, { rootMargin: '0px 0px -12% 0px' });
-    if (ref.current) io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-  return [ref, seen];
+/*
+ * Scroll-linked motion, reversible: every frame/card slides in from the left
+ * as you scroll down and slides back out to the left as you scroll up (--e,
+ * 0 → 1); art and captions drift at different speeds for parallax (--par).
+ * Captions fade in once a panel is mostly on screen and out again when you
+ * scroll back above it (class .in, with hysteresis so it doesn't flicker).
+ */
+function useScrollFx(dep) {
+  useLayoutEffect(() => {
+    const panels = () => document.querySelectorAll('.story .st-panel');
+    if (reduceMotion()) { panels().forEach((p) => p.classList.add('in')); return undefined; }
+    let raf = 0;
+    const tick = () => {
+      raf = 0;
+      const vh = innerHeight;
+      for (const p of panels()) {
+        const r = p.getBoundingClientRect();
+        if (r.bottom < -vh * 0.5 || r.top > vh * 1.5) { if (r.top > vh) p.classList.remove('in'); continue; }
+        const e = clamp((vh - r.top) / (vh * 0.5));
+        if (e > 0.5) p.classList.add('in'); else if (e < 0.2) p.classList.remove('in');
+        p.style.setProperty('--par', clamp((r.top + r.height / 2 - vh / 2) / vh, -1, 1).toFixed(3));
+        const lock = p.querySelector('.st-lock');
+        if (lock) {
+          const lr = lock.getBoundingClientRect();
+          const q = lr.top > 0 ? -lr.top / vh : clamp(-lr.top / Math.max(lr.height - vh, 1));
+          lock.style.setProperty('--q', q.toFixed(3));
+          lock.querySelectorAll('.st-card').forEach((c, i) => c.style.setProperty('--e', clamp((q + 0.25 - i * 0.22) / 0.2).toFixed(3)));
+          continue;
+        }
+        p.querySelectorAll('.st-frame, .st-card').forEach((f, k) => {
+          const fr = f.getBoundingClientRect();
+          f.style.setProperty('--e', clamp((vh - fr.top) / (vh * 0.42) - (k % 4) * 0.1).toFixed(3));
+        });
+      }
+    };
+    const on = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    tick();
+    addEventListener('scroll', on, { passive: true });
+    addEventListener('resize', on);
+    return () => { removeEventListener('scroll', on); removeEventListener('resize', on); cancelAnimationFrame(raf); };
+  }, [dep]);
 }
 
 /* ---- overlays ----------------------------------------------------------- */
@@ -105,9 +139,15 @@ function portalFor(panel, n) {
 
 function PortalLink({ slug, children, from }) {
   const arc = ARCS[slug];
+  const location = useLocation();
   if (!arc || arc.status === 'hold') return <span className="st-cap PORTAL off">{children}</span>;
+  const remember = () => {
+    // Back from the side story returns to this exact spot (panel + scroll position).
+    try { sessionStorage.setItem(RETURN_KEY, JSON.stringify({ arc: slug, path: location.pathname, panel: from, y: Math.round(scrollY) })); } catch { /* private mode */ }
+    trackEvent('portal_open', { arc: slug });
+  };
   return (
-    <Link className="st-cap PORTAL" to={`/story/arc/${slug}`} state={{ from }} onClick={() => trackEvent('portal_open', { arc: slug })}>
+    <Link className="st-cap PORTAL" to={`/story/arc/${slug}`} state={{ from }} onClick={remember}>
       {children} <span aria-hidden="true">→</span>
     </Link>
   );
@@ -153,7 +193,7 @@ function InkFrame({ seed }) {
 
 function CaptionBody({ type, line, panel, n }) {
   if (type === 'PORTAL') return <PortalLink slug={line.s || portalFor(panel, n)} from={panel.id}>{line.x}</PortalLink>;
-  if (type === 'MODAL') return <Modal label={line.s || 'Open list'} items={line.x.split(' · ').map((v) => v.trim()).filter(Boolean)} />;
+  if (type === 'MODAL') return <Modal label={line.s || 'Open list'} items={line.x.split(/\s+[|·]\s+/).map((v) => v.trim()).filter(Boolean)} />;
   if (type === 'SKL') return <ul className="st-cap SKL" aria-label="Skills">{line.x.split(',').map((s) => <li key={s}>{s.trim()}</li>)}</ul>;
   return (
     <p className={`st-cap ${type}`}>
@@ -181,34 +221,105 @@ function Eggs({ frame, owner, fi, chapter }) {
   return out;
 }
 
-/* Keep phone captions that sit inside a frame inside it, without overlapping. */
-function useFitInside(ref, active) {
-  useLayoutEffect(() => {
-    if (!active || !ref.current) return undefined;
-    const fit = () => {
-      const fig = ref.current; if (!fig) return;
-      const W = fig.clientWidth, H = fig.querySelector('.st-sketch')?.clientHeight || fig.clientHeight;
-      let floor = 4;
-      const boxes = [...fig.querySelectorAll('.st-capbox.in')].sort((a, b) => a.offsetTop - b.offsetTop);
-      for (const b of boxes) {
-        b.style.transform = '';
-        const left = Math.min(Math.max(b.offsetLeft, 4), Math.max(4, W - b.offsetWidth - 4));
-        const top = Math.max(b.offsetTop, floor, 4);
-        b.style.transform = `translate(${left - b.offsetLeft}px, ${top - b.offsetTop}px)`;
-        floor = top + b.offsetHeight + 4;
+/*
+ * Subjects: the faces of the main (non-faint) figures and any on-screen
+ * content (boards, big numbers). Captions must never cover them. Positions
+ * are in % of the frame, derived from the storyboard so they follow the art.
+ */
+const HEAD = { sit: 0.84, type: 0.84, bench: 0.83, slump: 0.68, seated: 0.84 };
+function subjectsOf(frame) {
+  const [aw, ah] = frame.aspect.split(':').map(Number);
+  const k = ah / aw;  // % of height → % of width
+  const out = [];
+  for (const tok of frame.els) {
+    const n = nums(tok);
+    if (tok[0] === 'fig' && !tok.includes('faint')) {
+      const [x, y, h] = n;
+      if (tok.includes('bust') || tok.includes('silhouette')) continue;
+      const pose = tok.find((t) => HEAD[t]);
+      const cy = y - h * (HEAD[pose] || 0.94), ry = h * 0.1, rx = Math.max(ry * k * 1.2, 2.5);
+      out.push({ kind: 'face', x: x - rx, y: cy - ry, w: rx * 2, h: ry * 2.2 });
+    } else if (tok[0] === 'board') {
+      out.push({ kind: 'board', x: n[0], y: n[1], w: n[2], h: n[3] });
+    }
+  }
+  return out;
+}
+
+/* Move captions the least distance needed so none covers a subject or another caption. */
+function avoid(root, boxes, pad = 4, stackDown = false) {
+  if (!root) return;
+  const R = root.getBoundingClientRect();
+  if (!R.width) return;
+  const solids = [...root.querySelectorAll(':scope > .st-caps > .st-subject')].map((s) => s.getBoundingClientRect());
+  const placed = [];
+  const hit = (a) => [...solids, ...placed].some((b) => a.left < b.right + pad && a.right > b.left - pad && a.top < b.bottom + pad && a.bottom > b.top - pad);
+  const slack = 0.035 * R.width;
+  const inside = (a) => a.left >= R.left - slack && a.right <= R.right + slack && a.top >= R.top - slack && a.bottom <= R.bottom + slack;
+  for (const b of boxes) {
+    b.style.translate = '';
+    const r0 = b.getBoundingClientRect();
+    const at = (dx, dy) => ({ left: r0.left + dx, right: r0.right + dx, top: r0.top + dy, bottom: r0.bottom + dy });
+    let best = [0, 0];
+    if (hit(at(0, 0)) || (stackDown && !inside(at(0, 0)))) {
+      best = null;
+      const step = Math.max(6, R.height / 60);
+      search: for (let d = 1; d <= 40; d++) {
+        const s = d * step;
+        const cands = stackDown ? [[0, s], [0, -s], [-s, 0], [s, 0]] : [[0, -s], [0, s], [-s, 0], [s, 0], [-s, -s], [s, -s], [-s, s], [s, s]];
+        for (const [dx, dy] of cands) { const a = at(dx, dy); if (inside(a) && !hit(a)) { best = [dx, dy]; break search; } }
       }
-      void H;
-    };
-    fit();
-    const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(fit) : null;
-    ro?.observe(ref.current);
+      best ||= [0, 0];
+    }
+    if (best[0] || best[1]) b.style.translate = `${best[0]}px ${best[1]}px`;
+    placed.push(at(...best));
+  }
+}
+
+function useAvoid(ref, deps) {
+  useLayoutEffect(() => {
+    const root = ref.current;
+    if (!root) return undefined;
+    const run = () => avoid(root, [...root.querySelectorAll(':scope > .st-caps > .st-capbox')]);
+    run();
+    const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(run) : null;
+    ro?.observe(root);
+    document.fonts?.ready?.then(run);
     return () => ro?.disconnect();
-  });
+  }, deps);  // eslint-disable-line react-hooks/exhaustive-deps
+}
+
+function Subjects({ frame }) {
+  return subjectsOf(frame).map((s, i) => (
+    <i key={i} className={`st-subject ${s.kind}`} aria-hidden="true" style={{ left: `${s.x}%`, top: `${s.y}%`, width: `${s.w}%`, height: `${s.h}%` }} />
+  ));
+}
+
+/* Viewfinder: the scene pans gently behind a fixed viewfinder, following the cursor. */
+function useViewfinder(on) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!on || !el || reduceMotion()) return undefined;
+    const move = (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', clamp(((e.clientX - r.left) / r.width) * 2 - 1, -1, 1).toFixed(3));
+      el.style.setProperty('--my', clamp(((e.clientY - r.top) / r.height) * 2 - 1, -1, 1).toFixed(3));
+    };
+    const reset = () => { el.style.setProperty('--mx', 0); el.style.setProperty('--my', 0); };
+    el.addEventListener('pointermove', move);
+    el.addEventListener('pointerleave', reset);
+    return () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerleave', reset); };
+  }, [on]);
+  return ref;
 }
 
 function Frame({ frame, panel, id, fi, visual, phone, chapter }) {
   const [aw, ah] = frame.aspect.split(':').map(Number);
   const ref = useRef(null);
+  const vf = panel.interaction === 'viewfinder';
+  const vfRef = useViewfinder(vf);
+  const page = panel.size === 'page';
   const placed = [];
   for (const tok of frame.els) {
     if (tok[0] !== 'cap') continue;
@@ -217,7 +328,16 @@ function Frame({ frame, panel, id, fi, visual, phone, chapter }) {
     if (!isOpen(line)) continue;
     placed.push({ type: tok[1], x, y, w, n, line, key: `${tok[1]}-${n}` });
   }
-  useFitInside(ref, phone);
+  const deskRef = useRef(null);
+  useAvoid(phone ? ref : deskRef, [phone, frame]);
+  const plate = (
+    vf ? (
+      <div className="st-vf" ref={vfRef}>
+        <div className="st-vfart"><Sketch frame={frame} panel={panel} id={id} layer="art" label={visual} /></div>
+        <div className="st-vffx"><Sketch frame={frame} panel={panel} id={`${id}-fx`} layer="fx" label="" /></div>
+      </div>
+    ) : <Sketch frame={frame} panel={panel} id={id} label={visual} />
+  );
   const box = (c, i, cls = '', style = {}) => (
     <div key={c.key} className={`st-capbox ${cls}`} style={{ '--i': i, ...style }}>
       <CaptionBody type={c.type} line={c.line} panel={panel} n={c.n} />
@@ -225,15 +345,16 @@ function Frame({ frame, panel, id, fi, visual, phone, chapter }) {
   );
   if (!phone) {
     return (
-      <figure className="st-frame" style={{ '--ar': `${aw} / ${ah}`, flex: `${aw / ah} 1 0` }}>
-        <Sketch frame={frame} panel={panel} id={id} label={visual} />
+      <figure className="st-frame" ref={deskRef} style={{ '--ar': `${aw} / ${ah}`, flex: `${aw / ah} 1 0`, ...(page ? { maxWidth: `calc(92svh * ${(aw / ah).toFixed(4)})` } : {}) }}>
+        {plate}
         <InkFrame seed={id} />
         <div className="st-caps">
+          <Subjects frame={frame} />
           {placed.map((c, i) => box(c, i, [c.x <= 6 && 'edge-l', c.x + c.w >= 94 && 'edge-r', c.y <= 8 && 'edge-t'].filter(Boolean).join(' '),
             { '--x': `${c.x}%`, '--y': `${c.y}%`, '--w': `${c.w}%` }))}
           <Eggs frame={frame} owner={panel} fi={fi} chapter={chapter} />
         </div>
-        {frame.label && <figcaption className="st-framelabel">{frame.label}</figcaption>}
+        {frame.label && <figcaption className="st-framelabel">{tidy(frame.label)}</figcaption>}
       </figure>
     );
   }
@@ -245,16 +366,17 @@ function Frame({ frame, panel, id, fi, visual, phone, chapter }) {
     <figure className="st-frame phone" style={{ '--ar': `${aw} / ${ah}` }}>
       {top.length > 0 && <div className="st-edge top">{top.map((c, i) => box(c, i))}</div>}
       <div className="st-plate" ref={ref}>
-        <Sketch frame={frame} panel={panel} id={id} label={visual} />
+        {plate}
         <InkFrame seed={id} />
         <div className="st-caps">
+          <Subjects frame={frame} />
           {inside.map((c, i) => box(c, i, 'in', { '--x': `${Math.min(c.x, 96 - Math.max(c.w, 58))}%`, '--y': `${c.y}%`, '--w': `${Math.max(c.w, 58)}%` }))}
           <Eggs frame={frame} owner={panel} fi={fi} chapter={chapter} />
         </div>
       </div>
       {bottom.length > 0 && <div className="st-edge bottom">{bottom.map((c, i) => box(c, i))}</div>}
       {outside.length > 0 && <div className="st-out">{outside.map((c, i) => box(c, i))}</div>}
-      {frame.label && <figcaption className="st-framelabel">{frame.label}</figcaption>}
+      {frame.label && <figcaption className="st-framelabel">{tidy(frame.label)}</figcaption>}
     </figure>
   );
 }
@@ -281,12 +403,12 @@ function Panel({ panel, chapter }) {
 }
 
 function PlainPanel({ panel, chapter }) {
-  const [ref, seen] = useReveal();
   const phone = useIsPhone();
   const visual = linesOf(panel, 'VISUAL').map((l) => l.x).join(' ');
   const frames = panel.board?.variants?.[0]?.frames || [];
+  const cls = ['st-panel', panel.type || '', `n${frames.length}`, panel.size === 'page' && 'page', panel.layout, panel.interaction].filter(Boolean).join(' ');
   return (
-    <article id={panel.id} ref={ref} className={`st-panel ${panel.type || ''} ${seen ? 'in' : ''} n${frames.length}`}>
+    <article id={panel.id} className={cls}>
       {frames.length ? (
         <div className="st-frames">
           {frames.map((f, i) => <Frame key={i} fi={i} frame={f} panel={panel} id={`${panel.id}-0-${i}`} visual={visual} phone={phone} chapter={chapter} />)}
@@ -300,11 +422,11 @@ function PlainPanel({ panel, chapter }) {
 }
 
 function Selection({ panel, chapter }) {
-  const [ref, seen] = useReveal();
+  const phone = useIsPhone();
   const items = panel.items.filter((i) => i.board && isOpen(linesOf(i, 'SUB')[0] || { st: 'draft', x: '' }));
   const [open, setOpen] = useState(null);
-  return (
-    <article id={panel.id} ref={ref} className={`st-panel st-select ${seen ? 'in' : ''}`} style={{ '--n': items.length }}>
+  const locked = !phone && items.length === 3;  // Present Day: the page pauses on the three panels
+  const cards = (
       <div className={`st-cards c${items.length}`} onMouseLeave={() => setOpen(null)}>
         {items.map((it, i) => {
           const frames = it.board.variants[0].frames;
@@ -330,7 +452,7 @@ function Selection({ panel, chapter }) {
                   <Eggs frame={full} owner={it} fi={fullIdx} chapter={chapter} />
                 </span>
               )}
-              <div className="st-carddetail" id={`card-${it.id}`}>
+              <div className="st-carddetail" id={`card-${it.id}`} aria-hidden={!on}>
                 {sub && <p className="st-cap SUB">{sub.x}</p>}
                 {nar && <p className="st-cap NAR">{nar.x}</p>}
                 {Array.isArray(it.skills) && it.skills.length > 0 && (
@@ -342,6 +464,10 @@ function Selection({ panel, chapter }) {
           );
         })}
       </div>
+  );
+  return (
+    <article id={panel.id} className={`st-panel st-select${locked ? ' locked' : ''}`} style={{ '--n': items.length }}>
+      {locked ? <div className="st-lock"><div className="st-stage">{cards}</div></div> : cards}
       <Leftovers panel={panel} frames={[]} />
     </article>
   );
@@ -412,13 +538,26 @@ function Gallery({ panel }) {
   );
 }
 
-/* ---- hero -------------------------------------------------------------------- */
+/* ---- hero ------------------------------------------------------------------- */
+/*
+ * Scroll 1: push in from the upper body to the face (--z). Scroll 2: the
+ * picture splits along three diagonal cuts that slide apart (--c), the
+ * three-cut transition into Present Day. Both reverse when you scroll up.
+ * On a mouse, the cursor becomes a spotlight that recolours the name under it.
+ */
+// cut lines in % of the picture: (49,0)→(41,100) and (58,0)→(50,100), so both cross the face in the close-up
+const CUTS = [[49, 41], [58, 50]];
+const SHARDS = [`polygon(0 0, ${CUTS[0][0]}% 0, ${CUTS[0][1]}% 100%, 0 100%)`, `polygon(${CUTS[0][0]}% 0, ${CUTS[1][0]}% 0, ${CUTS[1][1]}% 100%, ${CUTS[0][1]}% 100%)`, `polygon(${CUTS[1][0]}% 0, 100% 0, 100% 100%, ${CUTS[1][1]}% 100%)`];
 function Hero({ chapter }) {
   const panel = chapter.scenes[0].panels[0];
+  const cut = chapter.scenes.flatMap((s) => s.panels).find((p) => p.type === 'PANEL_TRANSITION');
+  const cutLine = cut && linesOf(cut, 'NAR').find(isOpen);
   const variants = panel.board?.variants || [];
   const desk = variants[0]?.frames[0];
   const phoneFrame = (variants.find((v) => /mobile/i.test(v.label)) || variants[0])?.frames[0];
   const ref = useRef(null);
+  const pin = useRef(null);
+  const name = useRef(null);
   const [docked, setDocked] = useState(false);
   useEffect(() => {
     let raf = 0;
@@ -428,7 +567,10 @@ function Hero({ chapter }) {
       const el = ref.current;
       if (!el || reduceMotion()) return;
       const r = el.getBoundingClientRect();
-      el.style.setProperty('--p', Math.min(Math.max(-r.top / Math.max(r.height - innerHeight, 1), 0), 1).toFixed(4));
+      const p = clamp(-r.top / Math.max(r.height - innerHeight, 1));
+      el.style.setProperty('--p', p.toFixed(4));
+      el.style.setProperty('--z', clamp(p / 0.5).toFixed(4));
+      el.style.setProperty('--c', clamp((p - 0.56) / 0.36).toFixed(4));
     };
     const on = () => { if (!raf) raf = requestAnimationFrame(tick); };
     tick();
@@ -436,7 +578,41 @@ function Hero({ chapter }) {
     addEventListener('resize', on);
     return () => { removeEventListener('scroll', on); removeEventListener('resize', on); cancelAnimationFrame(raf); };
   }, []);
+  useEffect(() => {
+    const el = pin.current;
+    if (!el || typeof matchMedia !== 'function' || !matchMedia('(hover: hover) and (pointer: fine)').matches) return undefined;
+    const move = (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--sx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--sy', `${e.clientY - r.top}px`);
+      const n = name.current?.getBoundingClientRect();
+      if (n) { name.current.style.setProperty('--lx', `${e.clientX - n.left}px`); name.current.style.setProperty('--ly', `${e.clientY - n.top}px`); }
+      el.classList.add('lit');
+    };
+    const out = () => el.classList.remove('lit');
+    el.addEventListener('pointermove', move);
+    el.addEventListener('pointerleave', out);
+    return () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerleave', out); };
+  }, []);
   const [first, ...rest] = chapter.title.split(' ');
+  const fig = (frame, key) => (
+    <>
+      {SHARDS.map((clip, i) => (
+        <div key={i} className={`st-shard s${i}`} style={{ clipPath: clip }}>
+          <Sketch frame={frame} panel={panel} id={`${key}-${i}`} layer="art" cover label={i ? '' : 'Red silhouette of Reginald Tan, arms folded'} />
+        </div>
+      ))}
+      <svg className="st-cuts" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        {CUTS.map(([a, b]) => <line key={a} x1={a} y1="0" x2={b} y2="100" />)}
+      </svg>
+    </>
+  );
+  const nameText = (
+    <>
+      <span className="st-latin"><span>{first}</span> <span>{rest.join(' ')}</span></span>
+      <span className="st-cjk" lang="zh-Hans">陈彦杰</span>
+    </>
+  );
   return (
     <header className="st-hero" id={`ch-${chapter.id}`} ref={ref} data-chapter={chapter.id}>
       <nav className={`st-nav ${docked ? 'docked' : ''}`} aria-label="Portfolio modes">
@@ -445,14 +621,16 @@ function Hero({ chapter }) {
         <Link to="/finance"><span>Finance</span></Link>
         <Link to="/life"><span>Life</span></Link>
       </nav>
-      <div className="st-heropin">
-        <div className="st-herofig desk">{desk && <Sketch frame={desk} panel={panel} id="hero-d" layer="art" cover label="Red silhouette of Reginald Tan, arms folded" />}</div>
-        <div className="st-herofig phone">{phoneFrame && <Sketch frame={phoneFrame} panel={panel} id="hero-m" layer="art" cover label="Red silhouette of Reginald Tan, arms folded" />}</div>
-        <h1 className="st-name">
-          <span className="st-latin"><span>{first}</span> <span>{rest.join(' ')}</span></span>
-          <span className="st-cjk" lang="zh-Hans">陈彦杰</span>
+      <div className="st-heropin" ref={pin}>
+        <div className="st-herofig desk">{desk && fig(desk, 'hero-d')}</div>
+        <div className="st-herofig phone">{phoneFrame && fig(phoneFrame, 'hero-m')}</div>
+        <h1 className="st-name" ref={name}>
+          {nameText}
+          <span className="st-lit" aria-hidden="true">{nameText}</span>
         </h1>
         <p className="st-cue">Scroll to begin</p>
+        {cutLine && <p className="st-cap NAR st-cutline">{cutLine.x}</p>}
+        <span className="st-spot" aria-hidden="true" />
       </div>
     </header>
   );
@@ -467,11 +645,11 @@ function Chapter({ chapter, index }) {
         <header className="st-title" id={`ch-${chapter.id}`}>
           <span className="st-no">Chapter {String(index + 1).padStart(2, '0')}</span>
           <h2 id={`h-${chapter.id}`}>{chapter.title}</h2>
-          {meta.length > 0 && <p>{meta.join(' · ')}</p>}
+          {meta.length > 0 && <p className="st-meta">{meta.map((m) => <span key={m}>{m}</span>)}</p>}
         </header>
       )}
       {chapter.scenes.flatMap((s) => s.panels)
-        .filter((p) => p.type !== 'TITLE_HERO')
+        .filter((p) => p.type !== 'TITLE_HERO' && !(index === 0 && p.type === 'PANEL_TRANSITION'))
         .map((p) => <Panel key={p.id} panel={p} chapter={chapter.id} />)}
     </section>
   );
@@ -495,9 +673,12 @@ function Arc({ slug }) {
   useEffect(() => { scrollTo(0, 0); }, [slug]);
   if (!arc) return <div className="st-arc"><header className="st-title"><h2>Side story not found</h2><p><Link to="/">Back to the story</Link></p></header></div>;
   const parent = arc.parent;
-  const back = `/story/chapter/${PANEL_CHAPTER[parent] || 'opening'}#${parent}`;
+  let ret = null;
+  try { ret = JSON.parse(sessionStorage.getItem(RETURN_KEY) || 'null'); } catch { /* ignore */ }
+  if (ret && ret.arc !== slug) ret = null;
+  const back = ret ? `${ret.path}#${ret.panel}` : `/story/chapter/${PANEL_CHAPTER[parent] || 'opening'}#${parent}`;
   const letter = LETTERS[slug];
-  const BackLink = () => <Link className="st-back" to={back} state={{ from: location.pathname }}>← Return to the story</Link>;
+  const BackLink = () => <Link className="st-back" to={back} state={{ from: location.pathname, y: ret?.y }}>← Return to the story</Link>;
   return (
     <div className="st-arc">
       <header className="st-title arc">
@@ -525,8 +706,8 @@ function EndFooter() {
   const c = identity.contact;
   const [copied, setCopied] = useState('');
   const copy = async () => {
-    try { await navigator.clipboard.writeText(c.email); setCopied('Copied'); trackEvent('contact_click', { via: 'story_copy_email' }); }
-    catch { setCopied('Select and copy the address'); }
+    try { await navigator.clipboard.writeText(c.email); setCopied('Email copied'); trackEvent('contact_click', { via: 'story_copy_email' }); }
+    catch { setCopied('Select the address to copy it'); }
     setTimeout(() => setCopied(''), 2200);
   };
   return (
@@ -534,16 +715,25 @@ function EndFooter() {
       <p className="st-endtitle">Thank you for reading.</p>
       <div className="st-contact">
         <span className="st-email"><span>{c.email}</span>
-          <button type="button" onClick={copy}>{copied || 'Copy email'}</button>
+          <button type="button" className="st-copy" onClick={copy} aria-label={copied || 'Copy email address'} title={copied || 'Copy email address'}>
+            {copied === 'Email copied' ? (
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5" /><path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3" /></svg>
+            )}
+          </button>
         </span>
         <a href={c.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href={c.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         <a className="cv" href={c.cvUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('resume_download', { via: 'story' })}>CV (PDF)</a>
       </div>
+      <p className="st-sr" role="status">{copied}</p>
       <p className="st-try">Try the same career as a terminal and as a room you can explore:
-        {' '}<Link to="/tech">Tech mode</Link> · <Link to="/life">Life mode</Link>
-        <span className="st-tryalt"> · or the classic <Link to="/paper">Paper portfolio</Link></span>
+        {' '}<Link to="/tech">Tech mode</Link> or <Link to="/life">Life mode</Link>.
+        <span className="st-tryalt"> Or the classic <Link to="/paper">Paper portfolio</Link>.</span>
       </p>
+      <p className="st-preview" role="note">Storyboard edition: sketches stand in for the final art</p>
+      <span className="st-endducky" aria-hidden="true" dangerouslySetInnerHTML={{ __html: duckySVG(true) }} />
     </footer>
   );
 }
@@ -555,13 +745,19 @@ export default function Story() {
 
   useEffect(() => {
     if (arc) return undefined;
+    const y = location.state?.y;
     const target = location.hash ? decodeURIComponent(location.hash.slice(1)) : chapter ? `ch-${chapter}` : null;
-    if (!target) return undefined;
-    const t = setTimeout(() => {
-      document.getElementById(target)?.scrollIntoView({ behavior: 'auto', block: location.hash ? 'center' : 'start' });
-    }, 80);
-    return () => clearTimeout(t);
-  }, [chapter, arc, location.hash, location.key]);
+    if (!target && typeof y !== 'number') return undefined;
+    const go = () => {
+      if (typeof y === 'number') scrollTo({ top: y, behavior: 'instant' });
+      else document.getElementById(target)?.scrollIntoView({ behavior: 'instant', block: location.hash ? 'center' : 'start' });
+    };
+    // run again once fonts and lazy layout settle, so the spot doesn't drift
+    const ts = [80, 400].map((ms) => setTimeout(go, ms));
+    return () => ts.forEach(clearTimeout);
+  }, [chapter, arc, location.hash, location.key]);  // eslint-disable-line react-hooks/exhaustive-deps
+
+  useScrollFx(arc || 'main');
 
   useEffect(() => {
     if (arc || typeof IntersectionObserver !== 'function') return undefined;
@@ -588,7 +784,6 @@ export default function Story() {
             <Rail active={active} />
           </>
         )}
-        <p className="st-preview" role="note">Storyboard edition · sketches stand in for the final art</p>
       </div>
     </DuckyProvider>
   );

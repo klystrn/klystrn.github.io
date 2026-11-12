@@ -95,7 +95,7 @@ tags: GENERATE LATER
 note: Review (12 Nov, round 5) applied: the viewfinder is now its own page-sized panel and reacts to the cursor. The focus box, grid and readouts are code overlays; the photo plate is generated wider than the frame so it can pan.
 frame 16:9 through the viewfinder
 dark 0 0 100 100
-box 6 8 88 84 ""
+box 6 8 88 84 "" code
 line 6 50 94 50 faint code
 line 50 8 50 92 faint code
 box 42 36 16 26 "" red code

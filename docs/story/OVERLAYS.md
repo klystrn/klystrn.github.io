@@ -32,7 +32,7 @@ position.
 | `SFX: WORD` | Big hand-lettered sound effect | e.g. `RING`, `TICK` |
 | `SUB: text` | Subtitle on a selection card | Only inside `##### Item` blocks |
 | `PORTAL[arc-slug]: label` | **Button to a side story (arc)** | `arc-slug` is the arc's name from its `# Arc <slug>` heading; label in past tense |
-| `MODAL[Button label]: item · item · item` | **Button that opens a pop-up list** | Items separated by ` · ` (e.g. the awards list) |
+| `MODAL[Button label]: item \| item \| item` | **Button that opens a pop-up list** | Items separated by ` \| ` (e.g. the awards list) |
 | `VISUAL: text` | Nothing on screen | Describes the artwork; becomes the image's alt text |
 | `NOTE: text` | Nothing on screen | A note to yourself or Claude |
 
@@ -45,7 +45,7 @@ Status after the type: `{draft}` (default), `{approved}` (final — only you set
 - **Change who speaks:** edit the name in `DIA[...]`.
 - **Turn narration into speech (or back):** change `NAR` to `DIA[Name]` (or the reverse).
 - **Add a button to a side story:** add `- PORTAL[arc-slug] {draft}: What I did` to the panel.
-- **Add a pop-up list:** add `- MODAL[Button label] {draft}: first · second · third`.
+- **Add a pop-up list:** add `- MODAL[Button label] {draft}: first | second | third`.
 - **Remove an overlay:** delete its line.
 - **Selection cards:** each card is a `##### Item` block with `title:`, a `SUB` line and
   optionally `skills: [A, B]` and `arc: arc-slug` (the card's button destination).

@@ -53,7 +53,7 @@ contradict `src/data/*.json`.
 
 All readable/clickable content is a code overlay edited in `docs/STORY-SCRIPT.md` (user guide:
 `docs/story/OVERLAYS.md`). Types: NAR, DIA[Name], THO, FAC, SKL, SFX, SUB, `PORTAL[arc-slug]`
-(button to an arc), `MODAL[Label]: a · b · c` (button opening a pop-up list). The panel frame is
+(button to an arc), `MODAL[Label]: a | b | c` (button opening a pop-up list). No ` · ` separators or em-dashes in visible copy. The panel frame is
 also code. Never ask for an image regeneration to change an overlay. `OVERLAY-INDEX.md` is
 generated — don't edit it.
 

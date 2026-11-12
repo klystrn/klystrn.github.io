@@ -8,6 +8,7 @@ transition: The fracture (P02)
 mobile: Name, Chinese name and cue sit higher (name around 55–68% of the screen); the figure is smaller so more of the upper body shows
 tags: GENERATE LATER, NEEDS PERMISSION (your photos for the silhouette)
 refs: REF-HERO-02 (title over black, red CJK over the name)
+note: Fifth review (12 Nov) applied: no glow on the Chinese name; on a mouse the cursor is a spotlight that recolours the name under it (REGINALD TAN turns red, 陈彦杰 turns ivory); on mobile the figure is larger and higher, with the whole head above the name, and the push-in centres on the face.
 note: Fourth review (12 Nov) applied — the nav box is smaller and softer so the name leads; it docks to the right side shortly after scrolling begins; the Chinese name has a dark outline and a pale halo so it reads over the silhouette; on mobile everything is raised and more of the upper body shows.
 note: Earlier reviews — taller figure with the face clear of the name, wide-spaced Chinese name, head straight, collared work shirt, nav box with 17° dividers.
 
@@ -40,15 +41,15 @@ variant Mobile
 frame 9:16 mobile
 dark 0 0 100 100
 nav 14 2 72 3.5 "CV|Tech|Finance|Life"
-fig 50 100 58 bust f adult red detail fold
-text 50 56 11 "REGINALD" ivory center
-text 50 68 11 "TAN" ivory center
-text 50 62 3.6 "陈彦杰" red center wide
-label 28 84 "SCROLL TO BEGIN"
+fig 50 100 90 bust f adult red detail fold
+text 50 68 10 "REGINALD" ivory center
+text 50 79 10 "TAN" ivory center
+text 50 73.5 3.4 "陈彦杰" red center wide
+label 28 90 "SCROLL TO BEGIN"
 
 ## Panel C01-S01-P02
 shot: Graphic transition · straight-on
-camera: Silhouette splits along three diagonal cuts that slide apart (CSS clip-path, no video needed)
+camera: Built into the hero: after the push-in, the close-up splits along three diagonal cuts that slide apart (CSS clip-path, no video needed); the next thing you see is Present Day
 scroll: Tied to scroll over ~0.6 viewport; reversible when scrolling back up
 transition: The three shards become the three Present cards in Chapter 2
 mobile: Cuts become horizontal bands instead of diagonals

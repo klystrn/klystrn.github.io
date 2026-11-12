@@ -41,11 +41,11 @@ mobile: Crop to the face lit by the screen and the red line
 tags: GENERATE LATER, REAL EVIDENCE (your home trading setup for layout)
 refs: Your desk and monitor layout; synthetic charts and trade log — no real balances, order IDs or tickers
 note: Screen contents (charts, trade-log rows) are code overlays on blank screens, so they can change without regenerating the plate.
-frame 3:4 card crop
+frame 9:16 card crop (tall, cropped to the screen)
 dark 0 0 100 100
-screen 30 20 66 44 "chart" red
-chart 34 26 58 32 red
-fig 22 100 70 bust r adult "Reginald"
+screen 8 12 84 30 "chart" red
+chart 12 17 76 22 red
+fig 50 100 50 bust r adult "Reginald"
 frame 16:9 full (hover) · home trader setup
 dark 0 0 100 100
 box 4 62 92 4 "desk"
@@ -65,10 +65,11 @@ shot: Medium-wide · high angle over a planning desk
 mobile: Crop to the to-do list and hands
 tags: GENERATE LATER
 refs: Client names and logos never visible; the to-do items are code overlays you can edit any time
-frame 3:4 card crop
-paper 8 6 56 46 ""
-list 12 10 48 "TO-DO" "Reply to new lead|Send proposal v2|Invoice: site build|Post case study"
-fig 72 100 62 sit l adult "Reginald"
+frame 9:16 card crop (tall, cropped to the screen)
+paper 8 6 84 36 ""
+list 14 9 72 "TO-DO" "Reply to new lead|Send proposal v2|Invoice: site build|Post case study"
+box 4 70 92 3 "desk"
+fig 50 96 44 sit l adult "Reginald"
 frame 16:9 full (hover)
 box 4 70 92 4 "desk"
 paper 6 8 32 56 ""
@@ -84,9 +85,9 @@ shot: Medium · eye level · camera raised to the eye
 mobile: Crop to the camera, face and red focus point
 tags: GENERATE LATER
 refs: Guards HQ media setting; your own photos for the camera and uniform
-frame 3:4 card crop
-fig 50 100 76 hold f adult "Reginald"
-box 42 26 16 10 "camera" red
+frame 9:16 card crop (tall, cropped to the screen)
+fig 50 96 70 hold f adult "Reginald"
+box 40 30 20 8 "camera" red
 frame 16:9 full (hover)
 floor 78
 box 4 40 24 30 "shot list board" dash

@@ -125,7 +125,7 @@ crop mobile 30 0 40 100
 | `tree X Y H` | tree / foliage |
 | `phone X Y` | handset |
 | `disc X Y R` | circle motif (moon, sun, red disc) |
-| `fig X Y H pose [l\|r\|f] [teen\|young\|adult\|old] "label"` | figure; X,Y = feet, H = height. Poses: `stand walk sit type slump point present hold fold lean bust silhouette back bench` |
+| `fig X Y H pose [l\|r\|f] [teen\|young\|adult\|old] "label"` | figure; X,Y = feet, H = height. Poses: `stand walk sit type slump point present hold fold lean bust silhouette back bench ponder seated` (`ponder`: hand on chin; `seated`: audience member seen from behind) |
 | `arrow X1 Y1 X2 Y2 "label"` | motion or camera move |
 | `line X1 Y1 X2 Y2` | plain line |
 | `wash X Y W H` / `dark X Y W H` | red flood / black flood |
@@ -133,6 +133,7 @@ crop mobile 30 0 40 100
 | `nav X Y W H "A\|B\|C"` | comic-style nav box with 17° dividers (code overlay) |
 | `cap TYPE X Y W [N] [tail=X,Y]` | caption box filled from the script (NAR, THO, DIA, FAC, SFX, SUB, PORTAL, MODAL, SKL); N = which line of that type (1 = first); `tail=` points a speech/thought balloon at the speaker |
 | `list X Y W ["TITLE"] "a\|b\|c"` | code-drawn checklist / log (to-do lists, trade logs) |
+| `board X Y W H ["TITLE"] "line\|line" [light] [mono]` | genuine content on a screen, slide or whiteboard (code overlay; text shrinks to fit). Use it wherever a concept is being taught or presented. Captions never cover a board. |
 | `watch X Y <watch-id>` | where a watch sits on the wrist (ids in `docs/story/WATCHES.md`); the first and last sighting of each watch get the hover easter egg |
 | `ducky X Y H [show=0.5]` | where Ducky hides (one per chapter); X,Y = bottom-centre of the visible part, H = Ducky's full height, `show` = how much of Ducky peeks out from the top |
 | `crop NAME X Y W H` | dashed crop guide (mobile crop, card crop, full) |

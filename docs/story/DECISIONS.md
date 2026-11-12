@@ -3,6 +3,22 @@
 Resolved decisions. Newest first. The script (`docs/STORY-SCRIPT.md`) and `src/data/*.json`
 already reflect everything here.
 
+## 2026-11-12 — fifth round: motion, layout and copy
+
+| Topic | Decision |
+|---|---|
+| Motion | Panels and cards slide in from the left as you scroll down and back out as you scroll up (scroll-linked, reversible); art and captions move at different speeds (parallax). Reduced-motion users get static panels. |
+| Text | Every caption is optional: remove a line in the script and its box disappears; captions move automatically so they never cover a face, on-screen content or each other (checked by a test). No ` · ` separators or em-dashes in visible text; pop-up list items are now separated by ` \| `. |
+| Screens | Lectures, workshops and presentations show real content on the screen (`board` element): implication truth rule in Computing Mathematics, a hash-map example, the locationX plan, the ACE talk, the CEM project update. |
+| Side stories | Return takes you back to the exact spot you left. |
+| Hero | No glow on 陈彦杰; on a mouse the cursor is a spotlight that recolours the name; the push-in ends in the three-cut transition straight into Present Day (the separate fracture panel and its Ducky are gone, so there are 7 Duckies). Mobile figure larger and higher, head always above the name. |
+| Present Day | Title "PRESENT DAY"; three full-width, taller cards; no skills or narration; scroll pauses on the cards; window/pondering placeholder replaces the code window (awaiting approval). C02-S01 approval withdrawn. |
+| SST / NP | Taekwondo portal: "Earned my 3rd Dan Black Belt in Taekwondo". Lecture audience seated. |
+| JPM / Guards | Card hover no longer reflows (details slide up over the card). KOFF → COUGH. The viewfinder is its own page-sized panel `C06-S02-P02` that pans with the cursor; the army-photography portal moved with it. |
+| RegiStudio | RING stays on one line. |
+| Future / footer | Four glimpses in 2 × 2; new page-sized splash of you small on a bench, back to us, in a large park, fading into the footer. Footer: copy-email is an icon button; a small Ducky peeks from the bottom-right (not part of the hunt). |
+| Open | Skill bubbles may move outside panels (ask again near the end). CV mode will have a light/dark switch (you'll share the transition). |
+
 ## 2026-11-12 — launch on reginaldtan.com, easter eggs, photo storage
 
 | Topic | Decision |
