@@ -134,6 +134,19 @@ textarea { width: 100%; min-height: 64px; border: 1px solid var(--line); border-
 .copy li { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; font-size: 14px }
 .copy .t { font: 11px/1.35 var(--mono); color: var(--muted); padding-top: 2px; overflow-wrap: anywhere }
 .copy .x.edit { color: var(--warn) }
+.ledit { margin-top: 12px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; background: var(--surface) }
+.ledit > summary { cursor: pointer; font-weight: 600; display: flex; gap: 8px; align-items: center; flex-wrap: wrap }
+.ledit[open] > summary { margin-bottom: 8px }
+.lrows { display: grid; gap: 8px; margin: 8px 0 }
+.lrow { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 8px; align-items: start }
+.lrow.has-s .t { grid-row: 1 / 3 } .lrow.has-s .l-s { grid-column: 2; grid-row: 1 } .lrow.has-s .l-del { grid-column: 3; grid-row: 1 } .lrow.has-s .l-x { grid-column: 2 / 4; grid-row: 2 }
+.lrow .t { font: 11px/1.35 var(--mono); color: var(--muted); padding-top: 8px }
+.lrow textarea, .lrow input[type=text] { width: 100%; box-sizing: border-box; font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink) }
+.lrow textarea { min-height: 40px; resize: vertical }
+.lrow.del textarea, .lrow.del input[type=text] { text-decoration: line-through; opacity: .55 }
+.lrow .l-del { font-size: 12.5px; white-space: nowrap; padding-top: 7px }
+.ledit .l-note { width: 100%; box-sizing: border-box; min-height: 48px; margin-top: 4px; font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink) }
+@media (max-width: 640px) { .lrow { grid-template-columns: 1fr auto } .lrow .t { grid-column: 1 / 3; padding-top: 0 } .lrow.has-s .t { grid-row: auto } .lrow .l-x, .lrow.has-s .l-x { grid-column: 1 / 3; grid-row: auto } .lrow.has-s .l-s { grid-column: 1; grid-row: auto } .lrow.has-s .l-del { grid-column: 2; grid-row: auto } }
 .edit-mark { background: var(--warn-soft); color: var(--warn); border-radius: 3px; padding: 0 3px }
 .tags { display: flex; flex-wrap: wrap; gap: 6px }
 .items { display: grid; gap: 18px; padding-left: 14px; border-left: 2px dashed var(--line) }
@@ -234,8 +247,12 @@ let dbState = 'loading';   // loading | ready | unavailable | slow
 let canWrite = null;
 
 function effective(s) {
-  if (s.status === 'approved' || s.status === 'revise') return { status: s.status, source: 'script' };
   const r = reviews[s.id];
+  // Withdrawing an approval here overrides `storyboard: approved` in the script until Claude syncs it.
+  if (r && s.status === 'approved' && r.status === 'revise') return { status: 'revise', source: 'viewer', stale: false, withdrew: true };
+  if (r && s.status === 'approved' && r.status === 'withdrawn') return { status: 'drafted', source: 'viewer', withdrew: true };
+  if (s.status === 'approved' || s.status === 'revise') return { status: s.status, source: 'script' };
+  if (r && r.status === 'withdrawn') return { status: s.status, source: 'script' };
   if (r && (r.status === 'approved' || r.status === 'revise')) return { status: r.status, source: 'viewer', stale: r.hash !== s.hash };
   if (r && r.status === 'addressed') return { status: s.status, source: 'script', addressed: r };
   return { status: s.status, source: 'script' };
@@ -764,7 +781,62 @@ function panelHTML(p, sceneId, isItem) {
     ${b.tags ? `<div class="tags">${b.tags.map((t) => `<span class="chip tag ${tagClass(t)}">${esc(t)}</span>`).join('')}</div>` : ''}` : '';
   const items = (p.items || []).length ? `<div class="items">${p.items.map((i) => panelHTML(i, sceneId, true)).join('')}</div>` : '';
   return `<section class="panel" id="p-${p.id}">${head}<div class="panel-body"><div>${sketch}</div><div class="spec">${spec}
-    ${visual ? `<dl><dt>visual</dt><dd>${visual}</dd></dl>` : ''}${copyHTML ? `<div><div class="eyebrow">Script lines (live from the script)</div>${copyHTML}</div>` : ''}</div></div>${items}</section>`;
+    ${visual ? `<dl><dt>visual</dt><dd>${visual}</dd></dl>` : ''}${copyHTML ? `<div><div class="eyebrow">Script lines (live from the script)</div>${copyHTML}</div>` : ''}${linesEditorHTML(p, sceneId)}</div></div>${items}</section>`;
+}
+
+// ---- storyline editing ----------------------------------------------------
+// Edits are saved in the `reviews` collection as `script-<panel id>` docs
+// ({kind: 'script', status: 'pending' | 'applied', lines, note}); Claude writes them
+// into docs/STORY-SCRIPT.md on "sync storyboard reviews".
+const LINE_TYPES = ['NAR', 'THO', 'DIA', 'FAC', 'SUB', 'SFX', 'SKL', 'PORTAL', 'MODAL'];
+const WITH_S = { DIA: 'Speaker', PORTAL: 'Side story (slug)', MODAL: 'Button label' };
+const editKey = (pid) => 'script-' + pid;
+function lineRowHTML(l) {
+  const hasS = WITH_S[l.t];
+  return `<div class="lrow${hasS ? ' has-s' : ''}${l.del ? ' del' : ''}" data-t="${esc(l.t)}" data-o="${l.o ?? ''}"><span class="t">${esc(l.t)}</span>${hasS ? `<input type="text" class="l-s" value="${esc(l.s || '')}" placeholder="${hasS}" aria-label="${hasS}">` : ''}<textarea class="l-x" rows="2" aria-label="${esc(l.t)} text">${esc(l.x || '')}</textarea><label class="l-del"><input type="checkbox" ${l.del ? 'checked' : ''}> Remove</label></div>`;
+}
+function linesEditorHTML(p, sceneId) {
+  const saved = reviews[editKey(p.id)];
+  const pending = saved && saved.status === 'pending';
+  const lines = pending ? saved.lines : (p.copy || []).filter((l) => !['VISUAL', 'ALT', 'NOTE'].includes(l.t)).map((l, o) => ({ t: l.t, s: l.s || '', x: l.x, o }));
+  const disabled = dbState !== 'ready' || canWrite === false ? 'disabled' : '';
+  return `<details class="ledit" data-panel="${esc(p.id)}" data-scene="${esc(sceneId)}"${pending ? ' open' : ''}><summary>Edit storyline${pending ? ' <span class="chip revise">edits waiting for sync</span>' : ''}${saved && saved.status === 'applied' ? ' <span class="chip approved">your last edits are in the script</span>' : ''}</summary>
+    <p class="note">Change the words, remove a line, or add one. Saved edits wait here until you ask Claude to “sync storyboard reviews”; the website then resizes, moves or drops the boxes to fit.</p>
+    <div class="lrows">${lines.map(lineRowHTML).join('')}</div>
+    <div class="review-row"><select class="l-newtype" aria-label="Type of line to add">${LINE_TYPES.map((x) => `<option>${x}</option>`).join('')}</select><button class="btn l-add" type="button">Add a line</button></div>
+    <label class="note">Note for Claude (optional)<textarea class="l-note">${esc((pending && saved.note) || '')}</textarea></label>
+    <div class="review-row"><button class="btn primary l-save" type="button" ${disabled}>Save storyline edits</button>${pending ? `<button class="btn l-discard" type="button" ${disabled}>Discard my edits</button>` : ''}<span class="note l-msg" role="status"></span></div>${disabled ? dbNote() : ''}</details>`;
+}
+function wireLineEditors(s) {
+  view.querySelectorAll('.ledit').forEach((box) => {
+    const msg = box.querySelector('.l-msg');
+    const mark = () => { dirty = true; msg.textContent = 'Unsaved'; };
+    const wireRow = (row) => {
+      row.querySelectorAll('textarea,input').forEach((f) => f.addEventListener('input', mark));
+      row.querySelector('.l-del input').addEventListener('change', (e) => { row.classList.toggle('del', e.target.checked); mark(); });
+    };
+    box.querySelectorAll('.lrow').forEach(wireRow);
+    box.querySelector('.l-note').addEventListener('input', mark);
+    box.querySelector('.l-add').addEventListener('click', () => {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = lineRowHTML({ t: box.querySelector('.l-newtype').value, s: '', x: '' });
+      const row = tmp.firstElementChild; box.querySelector('.lrows').appendChild(row); wireRow(row); mark(); row.querySelector('.l-x').focus();
+    });
+    box.querySelector('.l-save').addEventListener('click', async () => {
+      if (!db) return;
+      const lines = [...box.querySelectorAll('.lrow')].map((r) => ({ t: r.dataset.t, s: r.querySelector('.l-s')?.value.trim() || '', x: r.querySelector('.l-x').value.trim(),
+        del: r.querySelector('.l-del input').checked, o: r.dataset.o === '' ? null : Number(r.dataset.o) }));
+      msg.textContent = 'Saving…';
+      try {
+        await db.collection('reviews').doc(editKey(box.dataset.panel)).set({ kind: 'script', scene: box.dataset.scene, panel: box.dataset.panel, status: 'pending', lines,
+          note: box.querySelector('.l-note').value.trim(), hash: s.hash, at: new Date().toISOString() });
+        dirty = false; msg.textContent = 'Saved. Ask Claude to sync.';
+      } catch (err) { msg.textContent = err && err.code === 'permission_denied' ? 'Only the owner and editors can save edits.' : 'Couldn’t save. Try again in a moment.'; }
+    });
+    box.querySelector('.l-discard')?.addEventListener('click', async () => {
+      try { await db.collection('reviews').doc(editKey(box.dataset.panel)).delete(); dirty = false; } catch { msg.textContent = 'Couldn’t discard.'; }
+    });
+  });
 }
 
 function refHTML(r) {
@@ -1086,6 +1158,7 @@ function sceneView(id) {
   });
   view.querySelectorAll('[data-view]').forEach((b) => b.addEventListener('click', () => { viewMode = b.dataset.view; const y = scrollY; sceneView(id); scrollTo(0, y); }));
   wireReview(s);
+  wireLineEditors(s);
   wirePicker();
 }
 
@@ -1095,7 +1168,9 @@ function reviewHTML(s, e, review) {
   review = review || null;
   const drafted = s.panels.some((p) => p.board);
   let state = '';
-  if (e.source === 'script' && (e.status === 'approved' || e.status === 'revise')) state = `<p class="note">Set in the script (<code>storyboard: ${e.status}</code>).</p>`;
+  const approved = e.status === 'approved';
+  if (e.withdrew) { state = `<p class="note warn">You withdrew the approval here${review?.at ? ' on ' + esc(new Date(review.at).toLocaleDateString()) : ''}${review?.status === 'revise' ? ' and asked for changes' : ''}. Ask Claude to “sync storyboard reviews” to reopen the scene in the script.</p>${review?.note ? `<p>“${esc(review.note)}”</p>` : ''}`; }
+  else if (e.source === 'script' && (e.status === 'approved' || e.status === 'revise')) state = `<p class="note">Set in the script (<code>storyboard: ${e.status}</code>).${approved ? ' Changed your mind? Withdraw the approval below.' : ''}</p>`;
   else if (review && review.status === 'addressed') { state = `<p class="note">Your change request from ${esc(new Date(review.at).toLocaleDateString())} was applied${review.addressedAt ? ' on ' + esc(new Date(review.addressedAt).toLocaleDateString()) : ''}. Review the new version below.</p>${review.note ? `<p class="note">You asked: “${esc(review.note)}”</p>` : ''}${review.reply ? `<p>What changed: ${esc(review.reply)}</p>` : ''}`; review = null; }
   else if (review) state = `<p class="note ${review.hash !== s.hash ? 'warn' : ''}">${review.status === 'approved' ? 'Approved' : 'Changes requested'} here${review.at ? ' on ' + esc(new Date(review.at).toLocaleDateString()) : ''}${review.hash !== s.hash ? ' — the storyboard or script changed since then, so check it again' : ''}. Ask Claude to “sync storyboard reviews” to write this into the script.</p>${review.note ? `<p>“${esc(review.note)}”</p>` : ''}`;
   if (!drafted) return `<div class="review"><strong>Review</strong>${state || '<p class="note">Nothing to review yet.</p>'}</div>`;
@@ -1104,7 +1179,9 @@ function reviewHTML(s, e, review) {
   return `<div class="review"><strong>Review this storyboard</strong>${state}
     <label for="review-note" class="note">Notes for Claude (optional — what to change)</label>
     <textarea id="review-note" placeholder="e.g. Move the narration to the bottom; make Reginald smaller in frame 2">${esc(review?.note || '')}</textarea>
-    <div class="review-row"><button class="btn primary" id="approve" ${disabled}>Approve storyboard</button><button class="btn" id="revise" ${disabled}>Request changes</button>${review ? `<button class="btn" id="clear" ${disabled}>Clear my review</button>` : ''}<span class="note" id="review-msg" role="status"></span></div>${why}</div>`;
+    <div class="review-row">${approved
+      ? `<button class="btn primary" id="revise" ${disabled}>Withdraw approval and request changes</button><button class="btn" id="withdraw" ${disabled}>Withdraw approval only</button>`
+      : `<button class="btn primary" id="approve" ${disabled}>Approve storyboard</button><button class="btn" id="revise" ${disabled}>Request changes</button>`}${review && !e.withdrew && review.status !== 'addressed' ? `<button class="btn" id="clear" ${disabled}>Clear my review</button>` : ''}${e.withdrew ? `<button class="btn" id="clear" ${disabled}>Undo: keep it approved</button>` : ''}<span class="note" id="review-msg" role="status"></span></div>${why}</div>`;
 }
 
 let db = null;
@@ -1116,11 +1193,12 @@ function wireReview(s) {
     msg.textContent = 'Saving…';
     try {
       await db.collection('reviews').doc(s.id).set({ status, note, hash: s.hash, at: new Date().toISOString() });
-      msg.textContent = status === 'approved' ? 'Approved.' : 'Change request saved.';
+      msg.textContent = status === 'approved' ? 'Approved.' : status === 'withdrawn' ? 'Approval withdrawn.' : 'Change request saved.';
     } catch (err) { msg.textContent = err && err.code === 'permission_denied' ? 'Only the owner and editors can save reviews.' : 'Couldn’t save. Try again in a moment.'; }
   };
   document.getElementById('approve')?.addEventListener('click', () => save('approved'));
   document.getElementById('revise')?.addEventListener('click', () => save('revise'));
+  document.getElementById('withdraw')?.addEventListener('click', () => save('withdrawn'));
   document.getElementById('clear')?.addEventListener('click', async () => {
     try { await db.collection('reviews').doc(s.id).delete(); msg.textContent = 'Cleared.'; } catch { msg.textContent = 'Couldn’t clear it.'; }
   });
@@ -1170,7 +1248,9 @@ function rerender() {
   const note = document.getElementById('review-note');
   const draft = note ? note.value : null, focused = document.activeElement === note;
   const y = window.scrollY;
+  const openEditors = [...view.querySelectorAll('.ledit[open]')].map((d) => d.dataset.panel);
   route();
+  openEditors.forEach((pid) => view.querySelector(`.ledit[data-panel="${CSS.escape(pid)}"]`)?.setAttribute('open', ''));
   const n2 = document.getElementById('review-note');
   if (n2 && draft !== null) { n2.value = draft; if (focused) n2.focus(); }
   window.scrollTo(0, y);
