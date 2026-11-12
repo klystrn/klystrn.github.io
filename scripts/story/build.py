@@ -30,8 +30,8 @@ DATA = os.path.join(ROOT, 'src', 'data')
 LEVEL = {'Chapter': 1, 'Arc': 1, 'Story': 2, 'Scene': 3, 'Panel': 4, 'Item': 5}
 PARENT_KIND = {'Story': ('Chapter', 'Arc'), 'Scene': ('Story',), 'Panel': ('Scene',), 'Item': ('Panel',)}
 PANEL_TYPES = {'TITLE_HERO', 'TITLE_CHAPTER', 'PANEL_SPLASH', 'PANEL_STANDARD', 'PANEL_SELECTION',
-               'PANEL_EVIDENCE', 'PANEL_TESTIMONIAL', 'PANEL_TRANSITION'}
-ARC_KINDS = {'project', 'daily-life', 'achievement', 'testimonial'}
+               'PANEL_EVIDENCE', 'PANEL_TESTIMONIAL', 'PANEL_TRANSITION', 'PANEL_PHOTO', 'PANEL_GALLERY'}
+ARC_KINDS = {'project', 'daily-life', 'achievement', 'testimonial', 'gallery'}
 NODE_STATUS = {'draft', 'approved', 'hold'}
 LINE_STATUS = {'draft', 'approved', 'edit'}
 PUBLISHED = {'NAR', 'THO', 'DIA', 'SUB', 'FAC', 'SKL', 'SFX', 'PORTAL', 'MODAL', 'ALT'}

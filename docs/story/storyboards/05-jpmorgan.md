@@ -32,6 +32,7 @@ floor 82
 box 4 30 16 26 "coffee bar"
 fig 40 92 62 hold r adult "Rahul (coffee)"
 fig 60 92 60 hold l young "Reginald (coffee)"
+watch 57 45 tissot-prx
 fig 26 90 40 stand r young faint
 fig 84 90 42 stand l young faint
 fig 94 90 40 stand l young faint
@@ -77,6 +78,7 @@ screen 14 42 16 18 ""
 fig 26 90 50 type r young "9 am"
 dark 50 0 50 100
 screen 64 42 16 18 "" red
+ducky 76 42 10 show=0.45
 fig 76 90 50 type r young "1 am"
 line 50 0 50 100
 label 4 8 "day"
@@ -222,6 +224,7 @@ frame 16:9
 floor 72
 box 30 5 40 16 "Ngee Ann Polytechnic · Graduation 2025"
 fig 42 70 46 hold r young "Reginald (gown)"
+watch 44 35 tissot-prx
 paper 47 40 7 8 "" red
 fig 58 70 46 present l adult "presenter" faint
 fig 14 98 24 back r adult faint

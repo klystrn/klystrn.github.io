@@ -61,7 +61,16 @@ future event).
 ## 3. Panel types
 
 `TITLE_HERO` · `TITLE_CHAPTER` · `PANEL_SPLASH` · `PANEL_STANDARD` · `PANEL_SELECTION` ·
-`PANEL_EVIDENCE` · `PANEL_TESTIMONIAL` · `PANEL_TRANSITION`
+`PANEL_EVIDENCE` · `PANEL_TESTIMONIAL` · `PANEL_TRANSITION` · `PANEL_PHOTO` · `PANEL_GALLERY`
+
+- **`PANEL_PHOTO`** (Photo Scene): one of your photos, redrawn in the comic style with people
+  converted too. Meta `photo: <photo-id>` (from `media/story/index.json`). Clicking it ripples
+  between the comic version and your original. Until a comic version is approved and generated,
+  the site shows a code-made comic stand-in of the original.
+- **`PANEL_GALLERY`**: your own photos, unedited, with captions. Meta `gallery: <name>`
+  (e.g. `army`). Used by the `army-photography` arc.
+
+Arc kinds: `project` · `daily-life` · `achievement` · `testimonial` · `gallery`.
 
 ## 4. Copy lines
 

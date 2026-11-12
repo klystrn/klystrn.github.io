@@ -45,24 +45,58 @@ for (const [name, width, height] of SIZES) {
   });
 }
 
-test('on a phone, captions stack under whole frames instead of overlapping them', async ({ page }) => {
+test('on a phone, frames stay whole: speech inside, narration on the border, buttons below', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 800 });
-  await page.goto('/story/chapter/sst');
-  const frame = page.locator('#C03-S01-P01 .st-frame').first();
-  await frame.scrollIntoViewIfNeeded();
-  const sketch = await frame.locator('.st-sketch').boundingBox();
-  const cap = await frame.locator('.st-capbox').first().boundingBox();
-  expect(cap.y, 'caption sits below the image').toBeGreaterThanOrEqual(sketch.y + sketch.height - 1);
-  // the frame keeps its full 16:9 shape — scaled down, not cropped
-  expect(sketch.width / sketch.height).toBeCloseTo(16 / 9, 1);
+  await page.goto('/story/chapter/jpmorgan');
+  const panel = page.locator('#C05-S02-P01');
+  await panel.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(400);
+  const plate = await panel.locator('.st-plate .st-sketch').boundingBox();
+  expect(plate.width / plate.height, 'the frame is scaled, not cropped').toBeCloseTo(16 / 9, 1);
+  for (const b of await panel.locator('.st-capbox.in').all()) {
+    const r = await b.boundingBox();
+    expect(r.x).toBeGreaterThanOrEqual(plate.x - 1);
+    expect(r.x + r.width).toBeLessThanOrEqual(plate.x + plate.width + 1);
+    expect(r.y).toBeGreaterThanOrEqual(plate.y - 1);
+  }
+  const nar = await panel.locator('.st-edge .NAR').boundingBox();
+  expect(nar.y + nar.height, 'narration overlaps the top border').toBeGreaterThan(plate.y);
+  expect(nar.y, 'narration starts above the frame').toBeLessThan(plate.y);
+  const skl = await panel.locator('.st-out .SKL').boundingBox();
+  expect(skl.y, 'skills sit below the frame').toBeGreaterThanOrEqual(plate.y + plate.height - 1);
 });
 
-test('chapter deep link lands on that chapter; Paper is still the home page', async ({ page }) => {
+test('Ducky turns yellow when found, and the watch shows its story', async ({ page }) => {
+  await page.goto('/story/chapter/sst');
+  const duck = page.locator('#C03-S01-P01 .st-ducky');
+  await duck.scrollIntoViewIfNeeded();
+  await duck.click();
+  await expect(duck).toHaveClass(/found/);
+  await expect(page.locator('.st-ducktoast')).toContainText('Ducky 1 of');
+  await page.goto('/story/chapter/jpmorgan');
+  const watch = page.locator('#C05-S02-P01 .st-watchbtn');
+  await watch.scrollIntoViewIfNeeded();
+  await watch.hover();
+  await expect(page.locator('#C05-S02-P01 .st-watchcard')).toContainText('Tissot PRX');
+});
+
+test('finding every Ducky says "I like Ducks!"', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => localStorage.setItem('story-ducky-v1', JSON.stringify(['opening', 'present', 'sst', 'np', 'jpmorgan', 'guards', 'registudio'])));
+  await page.goto('/story/chapter/future');
+  const duck = page.locator('#C08-S01-P01 .st-ducky');
+  await duck.scrollIntoViewIfNeeded();
+  await duck.click();
+  await expect(page.locator('.st-duckbubble')).toHaveText('I like Ducks!');
+});
+
+test('chapter deep link lands on that chapter; Story is home and Paper lives at /paper', async ({ page }) => {
   await page.goto('/story/chapter/jpmorgan');
   await expect(page.locator('#ch-jpmorgan h2')).toBeInViewport();
   await expect(page.locator('#ch-jpmorgan h2')).toHaveText('JPMorganChase');
   await page.goto('/');
-  await expect(page.locator('.story')).toHaveCount(0);
+  await expect(page.locator('.st-name')).toBeVisible();
+  await page.goto('/paper');
   await expect(page.locator('.lede')).toBeVisible();
 });
 

@@ -36,12 +36,12 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. A comic-style nav box sits at the top — one box split into CV, Tech, Finance and Life tabs by diagonal dividers tilted 17° clockwise; a hovered tab fills red and widens slightly. Ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.",
+                      "text": "Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. A small, soft comic-style nav box sits at the top — CV, Tech, Finance and Life split by diagonal dividers tilted 17° clockwise; a hovered tab fills red and widens slightly. Shortly after scrolling starts it shrinks into a dock on the right side, clear of the figure. Ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.",
                       "status": "draft"
                     },
                     {
                       "type": "VISUAL",
-                      "text": "On scroll the name first travels up with the page like normal content, then fades out; the camera pushes from the upper body into a close-up of the face. Everything keeps strong contrast: a darker crimson figure with bright rim lines, ivory name, bright red Chinese name with a dark outline, ivory nav box with ink text.",
+                      "text": "On scroll the name first travels up with the page like normal content, then fades out; the camera pushes from the upper body into a close-up of the face. Everything keeps strong contrast: a darker crimson figure with bright rim lines, ivory name, and a bright red Chinese name with a dark outline and a pale halo so it stays readable over the silhouette. On phones the name and cue sit higher and more of the upper body shows.",
                       "status": "draft"
                     },
                     {
@@ -199,7 +199,7 @@
                       "copy": [
                         {
                           "type": "VISUAL",
-                          "text": "Current Reginald with a camera in a media-planning setting at Guards HQ.",
+                          "text": "Current Reginald with his Sony A7S in a media-planning setting at Guards HQ.",
                           "status": "draft"
                         },
                         {
@@ -481,6 +481,9 @@
                   "type": "PANEL_EVIDENCE",
                   "art": "sst-drct",
                   "data_ref": "awards:DrCT International, Bronze",
+                  "portal": [
+                    "taekwondo"
+                  ],
                   "status": "draft",
                   "copy": [
                     {
@@ -512,6 +515,12 @@
                       "type": "SKL",
                       "text": "Algorithms",
                       "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "Trained in Taekwondo to a 3rd Dan black belt",
+                      "status": "draft",
+                      "speaker": "taekwondo"
                     },
                     {
                       "type": "FAC",
@@ -732,7 +741,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Reginald at his home computer desk. The room drains to grey; only the phone notification is red.",
+                      "text": "Reginald at his home computer desk. The room drains to grey; only the notification on his phone (a Google Pixel 8) is red.",
                       "status": "draft"
                     },
                     {
@@ -1449,11 +1458,14 @@
                   "label": "First frame",
                   "type": "PANEL_STANDARD",
                   "art": "guards-first-camera",
+                  "portal": [
+                    "army-photography"
+                  ],
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a camera and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.",
+                      "text": "Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a Sony A7S and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.",
                       "status": "draft"
                     },
                     {
@@ -1476,6 +1488,12 @@
                       "type": "SKL",
                       "text": "Photography, Lightroom, Photoshop",
                       "status": "draft"
+                    },
+                    {
+                      "type": "PORTAL",
+                      "text": "See my favourite photos from behind the camera",
+                      "status": "draft",
+                      "speaker": "army-photography"
                     }
                   ]
                 }
@@ -1698,7 +1716,7 @@
                       "copy": [
                         {
                           "type": "VISUAL",
-                          "text": "Reginald on his phone, analysing a stock.",
+                          "text": "Reginald on his phone (a Google Pixel 10 Pro), analysing a stock.",
                           "status": "draft"
                         },
                         {
@@ -1812,7 +1830,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Reginald walking through Singapore city streets; phone lights up with a red line.",
+                      "text": "Reginald walking through Singapore city streets; his phone (a Google Pixel 10 Pro) lights up with a red line.",
                       "status": "draft"
                     },
                     {
@@ -2115,12 +2133,37 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Ink-wash glimpses: studying and working in the UK, a graduation, senior leadership, cities and nature. No real university logos or certificates.",
+                      "text": "Four imagined glimpses. (1) Walking through Hyde Park, London — living there. (2) A large hall: Reginald in graduation attire receiving a degree as people clap, seen from an audience member's seat, his name on the screen; no school name anywhere. (3) As a managing director at the head of a table, presenting to a meeting, seen from the far end. (4) Under aurora skies in Finland, glass igloos glowing behind him.",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
-                      "text": "I hope I keep learning, see the world, build things that matter, and grow into responsibility I can be proud of.",
+                      "text": "From a classroom in Clementi to a trading desk at CapitaSpring, every chapter so far has been practice for the next one.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I imagine mornings in London, crossing Hyde Park on the way to class.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I imagine my name on the screen of a great hall, and the applause after the years of work.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "I imagine leading the room as a managing director — answering the kind of questions I used to ask.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "And I imagine standing under the aurora in Finland, counting the places the work has taken me.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "THO",
+                      "text": "From Singapore to the Arctic Circle. Not bad.",
                       "status": "draft"
                     },
                     {
@@ -3412,6 +3455,174 @@
         }
       ],
       "route": "/story/arc/jpm-multilob"
+    },
+    {
+      "kind": "achievement",
+      "id": "taekwondo",
+      "label": "Taekwondo",
+      "parent": "C03-S03-P01",
+      "title": "TAEKWONDO",
+      "portal": "Trained in Taekwondo to a 3rd Dan black belt",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-TKD",
+          "label": "From podiums to 3rd Dan",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-TKD-S01",
+              "label": "First podiums",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TKD-S01-P01",
+                  "label": "On the mat",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-taekwondo-mat",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "A competition mat under hall lights; teenage Reginald in his dobok mid-kick, a referee's arm raised.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Before I write my first line of Python, I learn what it takes to keep getting up.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "First Place, Singapore National Games (2018) · Second Place, Singapore Youth Olympic Festival (2018)",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "SKL",
+                      "text": "Discipline",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-TKD-S02",
+              "label": "Colours",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TKD-S02-P01",
+                  "label": "A second podium, and colours",
+                  "type": "PANEL_STANDARD",
+                  "art": "arc-taekwondo-colours",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Two beats: a second-place podium, medal in hand; then the Colours Award certificate.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "Second Place, Singapore National Taekwondo Championships and NSG Championships (2019) · Colours Award, Singapore School Sports Council (2019)",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "Second place twice in a year teaches me more than winning would have.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "scene",
+              "id": "A-TKD-S03",
+              "label": "Third Dan",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-TKD-S03-P01",
+                  "label": "The black belt",
+                  "type": "PANEL_SPLASH",
+                  "art": "arc-taekwondo-third-dan",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "Reginald tying a black belt embroidered with three bars; a grading hall behind him.",
+                      "status": "draft"
+                    },
+                    {
+                      "type": "FAC",
+                      "text": "3rd Dan black belt — [EDIT: year and grading body]",
+                      "status": "edit"
+                    },
+                    {
+                      "type": "NAR",
+                      "text": "[EDIT: what reaching 3rd Dan meant to you]",
+                      "status": "edit"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/taekwondo"
+    },
+    {
+      "kind": "gallery",
+      "id": "army-photography",
+      "label": "Through my viewfinder",
+      "parent": "C06-S02-P01",
+      "title": "THROUGH MY VIEWFINDER",
+      "portal": "See my favourite photos from behind the camera",
+      "status": "draft",
+      "stories": [
+        {
+          "kind": "story",
+          "id": "A-AP",
+          "label": "Favourite frames",
+          "status": "draft",
+          "scenes": [
+            {
+              "kind": "scene",
+              "id": "A-AP-S01",
+              "label": "The gallery",
+              "status": "draft",
+              "panels": [
+                {
+                  "kind": "panel",
+                  "id": "A-AP-S01-P01",
+                  "label": "Favourite frames",
+                  "type": "PANEL_GALLERY",
+                  "art": "arc-army-photography-gallery",
+                  "gallery": "army",
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "NAR",
+                      "text": "Some of my favourite frames since I picked up the camera. Unedited, straight off the card.",
+                      "status": "draft"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "route": "/story/arc/army-photography"
     },
     {
       "kind": "testimonial",

@@ -20,6 +20,7 @@ fig 22 78 30 sit r teen "classmate" faint
 fig 56 80 34 type r teen "Reginald"
 screen 62 54 13 12 "laptop" red
 fig 84 78 30 sit l teen "classmate" faint
+ducky 92 68 8
 cap NAR 62 5 36
 cap THO 66 30 28 tail=58,50
 crop mobile 40 0 40 100

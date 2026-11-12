@@ -32,11 +32,19 @@ into a Higgsfield batch.
 
 ## Desktop and mobile versions
 
-Every scene has both. The **desktop** version is what the storyboard file draws. The **mobile**
-version is derived by one rule the website also follows — each frame shown whole, captions stacked
-underneath in script order, selection cards stacked and opened by tap — unless the storyboard has
-its own `variant Mobile` (the hero and the Present selector do). Use the **Desktop / Mobile**
-toggle in the Storyboard Room to see either version of any scene.
+Every scene has both, built from **the same generated pictures and the same code overlays** — the
+phone version only re-places the overlays:
+
+| Overlay | Desktop | Phone |
+|---|---|---|
+| Speech (`DIA`), thoughts (`THO`), sound effects (`SFX`) | at the storyboard position | **inside the frame**, near the same spot, made a little wider, nudged so they never overlap or leave the frame |
+| Narration (`NAR`), facts (`FAC`) | at the storyboard position | **on the frame border** — straddling the top edge (if placed in the top half) or the bottom edge |
+| Arc buttons (`PORTAL`), pop-up buttons (`MODAL`), skills (`SKL`), card subtitles (`SUB`) | at the storyboard position | **below the frame** |
+| Watches, Ducky | on the picture | on the picture |
+
+Frames are always shown whole on phones (scaled, never cropped). A storyboard can still define its
+own `variant Mobile` (the hero and the Present selector do). The **Desktop / Mobile** toggle in the
+Storyboard Room shows either version of any scene.
 
 ## Frame edges and phones
 
@@ -125,6 +133,8 @@ crop mobile 30 0 40 100
 | `nav X Y W H "A\|B\|C"` | comic-style nav box with 17° dividers (code overlay) |
 | `cap TYPE X Y W [N] [tail=X,Y]` | caption box filled from the script (NAR, THO, DIA, FAC, SFX, SUB, PORTAL, MODAL, SKL); N = which line of that type (1 = first); `tail=` points a speech/thought balloon at the speaker |
 | `list X Y W ["TITLE"] "a\|b\|c"` | code-drawn checklist / log (to-do lists, trade logs) |
+| `watch X Y <watch-id>` | where a watch sits on the wrist (ids in `docs/story/WATCHES.md`); the first and last sighting of each watch get the hover easter egg |
+| `ducky X Y H [show=0.5]` | where Ducky hides (one per chapter); X,Y = bottom-centre of the visible part, H = Ducky's full height, `show` = how much of Ducky peeks out from the top |
 | `crop NAME X Y W H` | dashed crop guide (mobile crop, card crop, full) |
 | `label X Y "text"` | pencil annotation |
 

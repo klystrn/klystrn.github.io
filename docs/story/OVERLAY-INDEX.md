@@ -52,6 +52,7 @@
 | `C03-S03-P01` | Thought |  | Brute force is too slow. What repeats? Break it into smaller steps. | On the art | draft |
 | `C03-S03-P01` | Thought |  | Bronze. I'll take it. | On the art | draft |
 | `C03-S03-P01` | Skill chips |  | Algorithms | Under the panel | draft |
+| `C03-S03-P01` | Button → side story | taekwondo | Trained in Taekwondo to a 3rd Dan black belt | Under the panel | draft |
 | `C03-S03-P01` | Fact box |  | DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021) | On the art | draft |
 
 ## Chapter `np` · NGEE ANN POLYTECHNIC
@@ -134,6 +135,7 @@
 | `C06-S02-P01` | Thought |  | A photographer? Me? | On the art | draft |
 | `C06-S02-P01` | Narration |  | A camera changes what I pay attention to. Suddenly the story is in the framing. | On the art | draft |
 | `C06-S02-P01` | Skill chips |  | Photography, Lightroom, Photoshop | On the art | draft |
+| `C06-S02-P01` | Button → side story | army-photography | See my favourite photos from behind the camera | On the art | draft |
 | `C06-S03-P01` | Dialogue | Yap Shi Hao | What do we need from the team for the parade? | On the art | draft |
 | `C06-S03-P01` | Narration |  | The role grows from taking pictures to helping a team of nine deliver them. | On the art | draft |
 | `C06-S03-P01` | Fact box |  | Team Manager, Media & Design · team of 9 · Guards HQ social accounts · Recruitment Board | On the art | draft |
@@ -184,7 +186,12 @@
 | `C08-S01-P01` | Fact box |  | AN IMAGINED FUTURE | On the art | approved |
 | `C08-S01-P01` | Narration |  | Sometimes I imagine myself years from now, sitting somewhere quiet, looking back. | On the art | draft |
 | `C08-S01-P01` | Thought |  | Did I make the most of the chances I had? | On the art | draft |
-| `C08-S02-P01` | Narration |  | I hope I keep learning, see the world, build things that matter, and grow into responsibility I can be proud of. | On the art | draft |
+| `C08-S02-P01` | Narration |  | From a classroom in Clementi to a trading desk at CapitaSpring, every chapter so far has been practice for the next one. | On the art | draft |
+| `C08-S02-P01` | Narration |  | I imagine mornings in London, crossing Hyde Park on the way to class. | On the art | draft |
+| `C08-S02-P01` | Narration |  | I imagine my name on the screen of a great hall, and the applause after the years of work. | On the art | draft |
+| `C08-S02-P01` | Narration |  | I imagine leading the room as a managing director — answering the kind of questions I used to ask. | On the art | draft |
+| `C08-S02-P01` | Narration |  | And I imagine standing under the aurora in Finland, counting the places the work has taken me. | On the art | draft |
+| `C08-S02-P01` | Thought |  | From Singapore to the Arctic Circle. Not bad. | On the art | draft |
 | `C08-S02-P01` | Fact box |  | A future I'm working toward — not a record of what's happened. | On the art | approved |
 | `C08-S03-P01` | Narration |  | For now, the next page is still being written. | On the art | draft |
 | `C08-S03-P01` | Fact box |  | THANK YOU FOR READING. | On the art | approved |
@@ -317,6 +324,24 @@
 |---|---|---|---|---|---|
 | `A-JL-S01-P01` | Fact box |  | Adopted across lines of business such as commodities and rates; I supported and coordinated the rollout as subject-matter expert. | On the art | draft |
 | `A-JL-S01-P01` | Narration |  | The tool stops being mine the moment other teams rely on it. | On the art | draft |
+
+## Arc `taekwondo` · TAEKWONDO
+
+| Panel | Type | Who / target | Text | Desktop position | Status |
+|---|---|---|---|---|---|
+| `A-TKD-S01-P01` | Narration |  | Before I write my first line of Python, I learn what it takes to keep getting up. | On the art | draft |
+| `A-TKD-S01-P01` | Fact box |  | First Place, Singapore National Games (2018) · Second Place, Singapore Youth Olympic Festival (2018) | On the art | draft |
+| `A-TKD-S01-P01` | Skill chips |  | Discipline | On the art | draft |
+| `A-TKD-S02-P01` | Fact box |  | Second Place, Singapore National Taekwondo Championships and NSG Championships (2019) · Colours Award, Singapore School Sports Council (2019) | On the art | draft |
+| `A-TKD-S02-P01` | Narration |  | Second place twice in a year teaches me more than winning would have. | On the art | draft |
+| `A-TKD-S03-P01` | Fact box |  | 3rd Dan black belt — [EDIT: year and grading body] | Under the panel | edit |
+| `A-TKD-S03-P01` | Narration |  | [EDIT: what reaching 3rd Dan meant to you] | Under the panel | edit |
+
+## Arc `army-photography` · THROUGH MY VIEWFINDER
+
+| Panel | Type | Who / target | Text | Desktop position | Status |
+|---|---|---|---|---|---|
+| `A-AP-S01-P01` | Narration |  | Some of my favourite frames since I picked up the camera. Unedited, straight off the card. | On the art | draft |
 
 ## Arc `testimonial-jovita` · A LETTER FROM JOVITA TANG
 

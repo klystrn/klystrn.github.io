@@ -4,7 +4,7 @@ const year = new Date().getFullYear();
 
 test.describe('content derivation', () => {
   test('"years" stat tiles are derived from start years, not hand-typed', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/paper');
     await page.locator('.stats').scrollIntoViewIfNeeded(); // tiles count up from 0 once visible
     const tile = (label) => page.locator('.stat', { hasText: label }).locator('.n');
     await expect(tile('years writing code')).toHaveText(String(year - 2018));
@@ -12,7 +12,7 @@ test.describe('content derivation', () => {
   });
 
   test('prose that repeats those numbers agrees with the tiles and has no unresolved tokens', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/paper');
     const lede = await page.locator('.lede').textContent();
     expect(lede).not.toMatch(/[{}]/);
     const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',

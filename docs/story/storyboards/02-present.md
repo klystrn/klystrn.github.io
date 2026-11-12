@@ -118,5 +118,6 @@ card 60 14 20 72 ""
 arrow 14 50 22 50
 arrow 86 50 78 50
 screen 30 20 40 50 "one code window"
+ducky 66 20 10
 fig 50 96 34 stand f teen "younger Reginald" faint
 cap NAR 22 84 56

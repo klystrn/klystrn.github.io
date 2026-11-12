@@ -3,6 +3,22 @@
 Resolved decisions. Newest first. The script (`docs/STORY-SCRIPT.md`) and `src/data/*.json`
 already reflect everything here.
 
+## 2026-11-12 — launch on reginaldtan.com, easter eggs, photo storage
+
+| Topic | Decision |
+|---|---|
+| Launch | Story (storyboard edition) is the home page at `/`. Paper moved to `/paper` and stays until the CV mode replaces it; old `/?project=` and `/?xp=` links redirect to `/paper`. `/story/…` deep links still work. |
+| Phone layout | Same generated pictures and overlays as desktop. Speech/thoughts/SFX inside the frame, narration/facts on the border, buttons/skills below. |
+| Gear | Camera: Sony A7S. Phone: Google Pixel 8 (JPM era), Google Pixel 10 Pro (now). |
+| Taekwondo | New arc `taekwondo` (results from Jovita Tang's letter; 3rd Dan year to fill), linked from the end of the SST chapter. |
+| Photo Scenes | New panel type `PANEL_PHOTO`: your photo converted to the comic style, ripple toggle to the original. |
+| Photo storage | Originals live untouched in the Storyboard Room's private asset storage. Photos featured on the site (photo scenes, army gallery) are committed to `media/story/` at full quality with location metadata removed losslessly; the site serves WebP copies (q90, 2400 px). Reference photos of people never go into the repo. |
+| Watches | Easter egg on the first and last sighting of each watch (PRX at JPM, Murph in NS, FiftySix at RegiStudio; NP watch to confirm). No watch in the training montage. |
+| Army photography | New gallery arc `army-photography`, reached from the viewfinder in C06-S02; photos shown unedited. |
+| Ducky | Hidden once per chapter as a code overlay; click to turn yellow; all eight → "I like Ducks!". |
+| Storyboard Room | New pages: Reference library (paste/drop/choose, label, instructions, You by year 2018–2026), Characters (editable details, per-era rows for you), Photo scenes, Army photos. |
+| Reviews | Applied: hero (smaller, softer nav that docks right; Chinese name contrast; phone layout raised), future glimpses (London, the hall, MD, Finnish aurora; more narration), footer (email copy, LinkedIn, GitHub, CV PDF, Tech/Life prompt). |
+
 ## 2026-11-12 — third review round, overlays, frames, references
 
 | Topic | Decision |

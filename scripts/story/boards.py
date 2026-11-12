@@ -22,7 +22,7 @@ FIELDS = {'shot', 'camera', 'scroll', 'transition', 'mobile', 'tags', 'refs', 'n
 ELEMENTS = {
     'floor': 1, 'vp': 2, 'box': 4, 'screen': 4, 'chart': 4, 'card': 4, 'building': 4,
     'fig': 3, 'phone': 2, 'disc': 3, 'arrow': 4, 'line': 4, 'wash': 4, 'dark': 4,
-    'text': 3, 'cap': 3, 'list': 3, 'nav': 4, 'crop': 4, 'label': 2, 'paper': 4, 'tree': 3,
+    'text': 3, 'cap': 3, 'list': 3, 'nav': 4, 'watch': 2, 'ducky': 3, 'crop': 4, 'label': 2, 'paper': 4, 'tree': 3,
 }
 CAP_TYPES = {'NAR', 'THO', 'DIA', 'FAC', 'SFX', 'SUB', 'PORTAL', 'SKL', 'MODAL'}
 POSES = {'stand', 'walk', 'sit', 'type', 'slump', 'point', 'present', 'hold', 'fold', 'bust',
@@ -30,12 +30,14 @@ POSES = {'stand', 'walk', 'sit', 'type', 'slump', 'point', 'present', 'hold', 'f
 FLAGS = {'red', 'dash', 'fill', 'ivory', 'ink', 'center', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old',
          'faint', 'bold'}
 REFS_MD = os.path.join(ROOT, 'docs', 'story', 'REFERENCES.md')
+WATCHES_MD = os.path.join(ROOT, 'docs', 'story', 'WATCHES.md')
+WATCH_IDS = set()
 MANIFEST = os.path.join(ROOT, 'public', 'story', 'manifest.json')
 # Layer model (docs/story/STORYBOARDS.md): what a generated plate must contain vs what code draws.
 GUIDE_ELS = {'crop', 'label', 'vp'}                 # storyboard annotations, never shipped
-OVERLAY_ELS = {'cap', 'text', 'card', 'chart', 'list', 'nav'}      # always drawn in code (HTML/CSS/SVG)
+OVERLAY_ELS = {'cap', 'text', 'card', 'chart', 'list', 'nav', 'watch', 'ducky'}      # always drawn in code (HTML/CSS/SVG)
 REF_KINDS = {'character', 'person', 'location', 'prop', 'evidence', 'style'}
-FLAGS.update({'code', 'detail', 'real', 'wide'})
+FLAGS.update({'code', 'detail', 'real', 'wide', 'vertical'})
 SKETCH_JS = os.path.join(ROOT, 'src', 'modes', 'story', 'sketch.js')
 STORY_BOARDS_JSON = os.path.join(ROOT, 'src', 'story', 'storyboards.json')
 ASPECT_RE = re.compile(r'^\d+(?:\.\d+)?:\d+(?:\.\d+)?$')
@@ -240,6 +242,19 @@ def check_frame(nid, where, fr, node, rep):
             left = x - width / 2 if 'center' in tok else x
             if left < -0.5 or left + width > 100.5 or not inside(y):
                 out(f'{k} "{label}" runs past the edge (≈{width:.0f}% wide)')
+        elif k == 'watch':
+            x, y = n[:2]
+            if not (inside(x) and inside(y)):
+                out('watch hotspot outside the frame')
+            wid = next((t for t in tok[1:] if not NUM_RE.match(t)), None)
+            if wid not in WATCH_IDS:
+                rep.err(where, f'{nid}: watch {wid!r} is not in docs/story/WATCHES.md')
+        elif k == 'ducky':
+            x, y, h = n[:3]
+            show = next((float(t[5:]) for t in tok if t.startswith('show=')), 1.0)
+            half = h * 0.45 * H / 1000
+            if x - half < -0.01 or x + half > 100.01 or y > 100.01 or y - h * show < -0.01:
+                out(f'Ducky at {x:g},{y:g} crosses the edge')
         elif k == 'list':
             x, y, w = n[:3]
             strs = [t for t in tok[1:] if not NUM_RE.match(t) and t not in FLAGS]
@@ -316,7 +331,27 @@ def parse_refs(by_id, scene_ids, rep):
     return refs, none_scenes
 
 
+def parse_watches():
+    out = []
+    if not os.path.exists(WATCHES_MD):
+        return out
+    cur = None
+    for line in open(WATCHES_MD, encoding='utf-8').read().split('\n'):
+        m = re.match(r'^##\s+Watch\s+([a-z0-9-]+)\s+·\s+(.+)$', line.strip())
+        if m:
+            cur = {'id': m.group(1), 'name': m.group(2)}
+            out.append(cur)
+            continue
+        m = re.match(r'^-\s+(era|look|comment|last):\s*(.*)$', line.strip())
+        if cur and m:
+            cur[m.group(1)] = m.group(2)
+    return out
+
+
 def run(roots, by_id, rep, write=True):
+    watches = parse_watches()
+    WATCH_IDS.clear()
+    WATCH_IDS.update(w['id'] for w in watches)
     boards = parse_boards(rep)
     for nid, b in boards.items():
         node = by_id.get(nid)
@@ -350,7 +385,7 @@ def run(roots, by_id, rep, write=True):
         groups.append({'root': root, 'scenes': scenes})
     if write:
         write_status(groups, counts)
-        write_viewer(groups, boards, refs, none_scenes)
+        write_viewer(groups, boards, refs, none_scenes, watches)
         sync_plates(by_id, boards)
         write_overlay_index(groups, boards)
     return counts
@@ -449,6 +484,7 @@ def notes(node):
 def panel_json(p, boards):
     b = boards.get(p['id'])
     out = {'id': p['id'], 'label': p['label'], 'type': p['meta'].get('type'), 'art': p['meta'].get('art'),
+           'gallery': p['meta'].get('gallery'), 'photo': p['meta'].get('photo'),
            'status': p['meta'].get('status', 'draft'), 'portal': p['meta'].get('portal'),
            'copy': copy_lines(p), 'notes': notes(p)}
     if p['kind'] == 'Item':
@@ -465,7 +501,7 @@ def panel_json(p, boards):
     return out
 
 
-def write_viewer(groups, boards, refs=(), none_scenes=()):
+def write_viewer(groups, boards, refs=(), none_scenes=(), watches=()):
     data = []
     for g in groups:
         r = g['root']
@@ -484,7 +520,8 @@ def write_viewer(groups, boards, refs=(), none_scenes=()):
     tpl = open(VIEWER_TPL, encoding='utf-8').read()
     payload = {'groups': data, 'refs': [{k: r.get(k) for k in ('id', 'name', 'kind', 'source', 'status', 'privacy',
                                                                   'priority', 'notes', 'scenes', 'section', 'links')} for r in refs],
-               'noRefScenes': sorted(none_scenes)}
+               'noRefScenes': sorted(none_scenes),
+               'watches': [w for w in watches if '[EDIT' not in w.get('comment', '[EDIT')]}
     blob = json.dumps(payload, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
     open(VIEWER_OUT, 'w', encoding='utf-8').write(tpl.replace('/*__STORY_DATA__*/null', blob))
     # The website's Story mode reads the same data and shares the sketch renderer with the viewer.
@@ -495,4 +532,4 @@ def write_viewer(groups, boards, refs=(), none_scenes=()):
         '// GENERATED by scripts/story/build.py from docs/story/viewer/template.html — do not edit.\n'
         '// Draws storyboard frames as pencil sketches (placeholders until final art exists).\n'
         "const esc = (s) => String(s ?? '').replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' }[c]));\n"
-        'const markEdits = esc;\n' + tpl[a:b] + '\nexport { renderFrame, fitFrame, layerOf, lineFor };\n')
+        'const markEdits = esc;\n' + tpl[a:b] + '\nexport { renderFrame, fitFrame, layerOf, lineFor, duckySVG, zoneOf };\n')

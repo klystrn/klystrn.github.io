@@ -2,6 +2,8 @@
 
 > **Found online:** entries with a *links* line have public pages I found by web search (12 Nov 2026) that show the place. They are look-and-layout references only — third-party photos are never copied into the repo, traced or published.
 >
+> **Upload your photos in the Storyboard Room** (Reference library page): paste or drop them onto the matching entry, label them and add instructions. Photos of you by year (2018–2026) have their own slots.
+>
 > Built from the drafted storyboards (`docs/story/storyboards/`). Every drafted scene is covered
 > here or listed under *No reference needed*; `scripts/story/build.py` warns when one isn't.
 > The Storyboard Room shows each scene's references, and has a *References* page.
@@ -51,7 +53,7 @@
 - privacy: private — never in the repo
 - priority: 2
 - status: needed
-- scenes: C02-S01, C03-S01, C03-S05, C03-S02, C03-S03, A-TJ-S01, A-TJ-S02, A-TK-S01, A-TK-S02
+- scenes: C02-S01, C03-S01, C03-S05, C03-S02, C03-S03, A-TJ-S01, A-TJ-S02, A-TK-S01, A-TK-S02, A-TKD-S01, A-TKD-S02
 
 ## REF-YOU-NP · You at NP (2022–25)
 - kind: character
@@ -303,9 +305,9 @@
 - scenes: C08-S01, C08-S03
 - links: [Wikimedia Commons — Shaw Foundation Symphony Stage (CC BY-SA)](https://commons.wikimedia.org/wiki/File:Shaw_Foundation_Symphony_Stage_(133040).jpg) · [Wikipedia — Symphony Lake](https://en.wikipedia.org/wiki/Symphony_Lake_(Singapore)) · [Garden City Fund — the stage](https://www.gardencityfund.gov.sg/our-impact/shawfoundationss/) · [Time Out — Symphony in the Gardens](https://www.timeout.com/singapore/music/symphony-in-the-gardens)
 
-## REF-L-FUTURE · Future glimpses (UK study, graduation, leadership, travel)
+## REF-L-FUTURE · Future glimpses — the hall and the boardroom
 - kind: location
-- source: none — generic, no real university crests or logos
+- source: none — a generic grand hall (no school name or crest) and a generic boardroom
 - privacy: n/a
 - priority: 2
 - status: not needed
@@ -337,23 +339,50 @@
 - scenes: C05-S09
 - links: [NP — Graduation](https://www.np.edu.sg/graduation) · [NP — Graduation day](https://www.np.edu.sg/graduation/graduation-day) · [NP in the news — graduating with a bang](https://www.np.edu.sg/about-np/media/np-in-the-news/graduating-with-a-bang)
 
+## REF-L-HYDE-PARK · Hyde Park, London
+- kind: location
+- source: public photos of Hyde Park paths (the Serpentine, tree-lined walks)
+- privacy: public
+- priority: 3
+- status: needed
+- scenes: C08-S02
+- links: [The Royal Parks](https://www.royalparks.org.uk/?page=0) · [Wikipedia — Hyde Park, London](https://en.wikipedia.org/wiki/Hyde_Park,_London) · [Parks & Gardens — Hyde Park](https://www.parksandgardens.org/places/hyde-park)
+
+## REF-L-FINLAND-IGLOOS · Glass igloos under the aurora, Finnish Lapland
+- kind: location
+- source: public photos of glass igloo resorts under the northern lights
+- privacy: public
+- priority: 3
+- status: needed
+- scenes: C08-S02
+- links: [My Modern Met — glass igloos under the northern lights](https://mymodernmet.com/glass-igloos-northern-lights-views) · [Mental Floss — glass igloos](https://www.mentalfloss.com/article/73305/gaze-northern-lights-one-these-glass-igloos) · [Finding the Universe — Kakslauttanen review](https://www.findingtheuniverse.com/kakslauttanen-arctic-resort-finland-review/)
+
+## REF-L-TKD · Taekwondo competition hall and grading
+- kind: location
+- source: your own photos from competitions and gradings (2018 onwards)
+- privacy: no other competitors' faces
+- priority: 3
+- status: needed
+- scenes: A-TKD-S01, A-TKD-S02
+
 # Props
 
-## REF-PR-CAMERA · Your camera
+## REF-PR-CAMERA · Your camera — Sony A7S
 - kind: prop
-- source: photos of the camera body and lens you use for Guards media work
+- source: photos of your Sony A7S body and the lens you use most (front, top, held up to the eye)
 - privacy: fine
 - priority: 1
 - status: needed
 - scenes: C02-S01, C06-S02, C06-S03
+- links: [Sony α7S (ILCE-7S) product page](https://stg.partners.sony.com.my/products/ilce-7s) · [Imaging Resource — Sony A7S](https://imaging-resource.com/camera-reviews/sony/a7s) · [AlphaShooters — A7S](https://www.alphashooters.com/cameras/a7s/)
 
-## REF-PR-PHONE · Your phones
+## REF-PR-PHONE · Your phones — Google Pixel 8 (JPM era) and Google Pixel 10 Pro (now)
 - kind: prop
-- source: the phone you had at the JPM call (2023–24) and your current phone
+- source: a photo of each phone (colour and case as you had them); the Pixel 8 for the JPM call and internship, the Pixel 10 Pro for NS, RegiStudio and trading
 - privacy: fine (screens are code overlays)
 - priority: 2
 - status: needed
-- scenes: C04-S05, C07-S01, A-NB-S01
+- scenes: C04-S05, C06-S04, C07-S01, A-NB-S01
 
 ## REF-PR-CARDS · Your card deck
 - kind: prop
@@ -362,6 +391,44 @@
 - priority: 3
 - status: needed
 - scenes: C06-S04, A-GL-S01
+
+## REF-PR-WATCH-PRX · Tissot PRX Powermatic 80 (rose gold and white)
+- kind: prop
+- source: photos of your own watch on the wrist and flat (dial close-up for the waffle pattern)
+- privacy: fine
+- priority: 2
+- status: needed
+- scenes: C05-S02, C05-S04, C05-S05, C05-S06, C05-S09
+- notes: Confirm size and reference — the closest public listing is a 40 mm steel case with rose-gold bezel and white textured dial (ref. T137.407.21.031.00).
+- links: [Watches of Switzerland — PRX, white dial, rose-gold bezel](https://www.watchesofswitzerland.com/collections/watches/products/tissot-prx-t1374072103100-17361287) · [Gear Patrol — PRX waffle dial](https://www.gearpatrol.com/watches/tissot-prx-40-mother-of-pearl/) · [Swatch Group — PRX Powermatic 80](https://www.swatchgroup.com/en/services/archive/2021/tissot-prx-powermatic-80)
+
+## REF-PR-WATCH-MURPH · Hamilton Khaki Field Murph
+- kind: prop
+- source: photos of your own watch on the wrist; a close-up of the seconds hand
+- privacy: fine
+- priority: 2
+- status: needed
+- scenes: C06-S02, C06-S04
+- notes: The Morse-code "Eureka" seconds hand is on the 42 mm model; the 38 mm has a plain seconds hand. Confirm which you have.
+- links: [Hamilton — Khaki Field Murph 38 mm](https://www.hamiltonwatch.com/en-gr/h70405130-khaki-field-murph-auto.html) · [Monochrome — Murph 38 mm review](https://monochrome-watches.com/hands-on-review-hamilton-khaki-field-murph-38mm-specs-price/)
+
+## REF-PR-WATCH-FIFTYSIX · Vacheron Constantin FiftySix (4600E/000A-B487)
+- kind: prop
+- source: photos of your own watch on the wrist; the open caseback with the Maltese cross
+- privacy: fine
+- priority: 2
+- status: needed
+- scenes: C07-S01, C07-S07
+- links: [Vacheron Constantin — FiftySix 4600E/000A-B487](https://www.vacheron-constantin.com/sg/en/collections/fiftysix/4600e-000a-b487.html)
+
+## REF-PR-DUCKY · Ducky
+- kind: prop
+- source: your photos of Ducky (two sent in chat on 12 Nov — paste them into Ducky's slot in the Storyboard Room so they're stored)
+- privacy: fine
+- priority: 2
+- status: needed
+- scenes: C01-S01, C02-S01, C03-S01, C04-S01, C05-S04, C06-S02, C07-S03, C08-S01
+- notes: Pale butter-yellow plush chick, black bead eyes, small orange beak, stubby wings, round orange feet; sits in a palm. One cut-out of Ducky is generated once and reused in every chapter as a code overlay (so it can turn yellow when found).
 
 # Real evidence (shown as-is, not generated)
 
@@ -468,6 +535,22 @@
 - priority: 3
 - status: received
 - scenes: A-TJ-S02, A-TK-S02, A-TD-S02, A-TV-S02, A-TR-S02
+
+## REF-E-TKD · Taekwondo results and certificates
+- kind: evidence
+- source: Colours Award certificate (2019), competition results, your 3rd Dan certificate
+- privacy: crop out IDs
+- priority: 3
+- status: needed
+- scenes: A-TKD-S02
+
+## REF-E-ARMY-PHOTOS · Your favourite army photographs
+- kind: evidence
+- source: your own photos as a military photographer, unedited — upload them with captions on the Army photos page
+- privacy: published/approved photos only; stored in the repo at full quality (location metadata removed)
+- priority: 2
+- status: needed
+- scenes: A-AP-S01
 
 # Style
 

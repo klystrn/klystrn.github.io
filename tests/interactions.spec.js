@@ -59,7 +59,7 @@ test.describe('watch mode', () => {
 
 test.describe('skills constellation', () => {
   test('keyboard focus + arrow keys move the highlight cursor', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/paper');
     await page.locator('#skills').scrollIntoViewIfNeeded();
     // Scroll-jack the pinned zoom range until settled.
     for (let i = 0; i < 40; i++) {
@@ -79,14 +79,14 @@ test.describe('skills constellation', () => {
 
 test.describe('nav tooltips', () => {
   test('hovering a mode button reveals its explanation', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/paper');
     await page.locator('.mode-btn:has-text("Tech")').hover();
     const tip = page.locator('.mode-btn:has-text("Tech") .nav-tip');
     await expect(tip).toHaveCSS('opacity', '1');
   });
 
   test('"Professional" has no tooltip of its own', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/paper');
     const count = await page.locator('.tab-btn', { hasText: 'Professional' }).locator('.nav-tip').count();
     expect(count).toBe(0);
   });
@@ -98,8 +98,9 @@ test.describe('deep links', () => {
     await expect(page.locator('.det-sym')).toHaveText('$TCS');
   });
 
-  test('Paper opens a project modal from ?project=', async ({ page }) => {
+  test('Paper opens a project modal from ?project= (old home-page links redirect to /paper)', async ({ page }) => {
     await page.goto('/?project=ATW');
+    await expect(page).toHaveURL(/\/paper\?project=ATW$/);
     await expect(page.locator('.pj-modal.open h3')).toHaveText('Automated Trading Workflow');
   });
 

@@ -15,6 +15,7 @@ building 22 10 12 60 ""
 building 80 0 18 70 ""
 floor 80
 fig 54 92 40 hold r adult "Reginald"
+watch 56 58 vc-fiftysix
 phone 58 62 red
 cap NAR 4 76 36
 cap SFX 62 50 10
@@ -50,6 +51,7 @@ fig 80 96 44 slump l adult "Reginald"
 cap THO 4 4 60
 frame 4:3 repriced
 box 8 8 84 52 "segments · scope · value" dash code
+ducky 84 8 10 show=0.45
 fig 50 96 56 point l adult "Reginald"
 cap NAR 4 64 60
 
@@ -102,6 +104,8 @@ mobile: Same
 tags: GENERATE LATER
 frame 16:9
 paper 20 20 60 60 "notebook"
+watch 30 76 vc-fiftysix
+label 34 90 "wrist + FiftySix, closing the notebook"
 line 50 20 50 80
 wash 50 20 30 60
 fig 50 100 40 bust f adult "Reginald" faint

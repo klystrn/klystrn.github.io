@@ -509,3 +509,4 @@ body[data-mode="finance"] :focus-visible{outline-color:#5aa2ff}
 @media(max-width:1100px){
   :root[data-theme="dark"] .mv-rail{background:rgba(28,30,34,.92)}
 }
+.pill a.brand{text-decoration:none;color:inherit}

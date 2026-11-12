@@ -79,8 +79,10 @@ note: Review (11 Nov) applied — first an army office where you're told you'll 
 
 frame 4:3 army office
 box 8 62 56 6 "desk"
+ducky 12 62 9 show=0.7
 fig 28 86 46 sit r adult "officer" faint
 fig 72 94 58 stand l young "Reginald"
+watch 70 63 hamilton-murph
 cap DIA 4 4 60 tail=30,42
 cap THO 56 22 40 tail=72,38
 frame 16:9 through the viewfinder
@@ -89,6 +91,7 @@ box 6 8 88 84 ""
 line 6 50 94 50 faint code
 line 50 8 50 92 faint code
 box 42 36 16 26 "" red code
+cap PORTAL 60 14 30
 fig 50 80 50 stand f adult "subject" faint
 cap NAR 8 74 40
 cap SKL 62 80 32
@@ -205,5 +208,6 @@ frame 4:3 cover
 box 6 70 88 5 "desk"
 screen 36 22 30 32 "LLM chatbot"
 fig 26 96 54 type r adult "Reginald"
+watch 34 64 hamilton-murph
 fig 78 96 56 lean l adult "teammate" faint
 cap SUB 6 78 88

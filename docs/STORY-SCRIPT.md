@@ -34,8 +34,8 @@ type: TITLE_HERO
 art: hero-silhouette
 interaction: pointer-parallax
 ```
-- VISUAL: Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. A comic-style nav box sits at the top — one box split into CV, Tech, Finance and Life tabs by diagonal dividers tilted 17° clockwise; a hovered tab fills red and widens slightly. Ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.
-- VISUAL: On scroll the name first travels up with the page like normal content, then fades out; the camera pushes from the upper body into a close-up of the face. Everything keeps strong contrast: a darker crimson figure with bright rim lines, ivory name, bright red Chinese name with a dark outline, ivory nav box with ink text.
+- VISUAL: Black screen; red rim light reveals current-age Reginald, upper body in a collared button-up work shirt, arms folded and head facing fully straight to camera (not tilted), as a crimson silhouette with visible body detail (collar, folded forearms, shirt folds, jaw) rather than one flat shade. A small, soft comic-style nav box sits at the top — CV, Tech, Finance and Life split by diagonal dividers tilted 17° clockwise; a hovered tab fills red and widens slightly. Shortly after scrolling starts it shrinks into a dock on the right side, clear of the figure. Ivory `REGINALD TAN` lands very large; a smaller, widely letter-spaced red `陈彦杰` overlaps the centre of the Latin letters. The figure is tall in frame so the face sits clear above the name, which crosses the chest.
+- VISUAL: On scroll the name first travels up with the page like normal content, then fades out; the camera pushes from the upper body into a close-up of the face. Everything keeps strong contrast: a darker crimson figure with bright rim lines, ivory name, and a bright red Chinese name with a dark outline and a pale halo so it stays readable over the silhouette. On phones the name and cue sit higher and more of the upper body shows.
 - ALT {draft}: A red silhouette of Reginald Tan on black, under his name in English and Chinese.
 - NOTE: No narration, awards or job titles in the hero. The `PORTFOLIO` eyebrow is replaced by the nav bar (review, 11 Nov). Pointer moves a red glint 1–2°; touch gets a static frame. CJK font subset to the three glyphs. One-line name on desktop, two lines on mobile.
 
@@ -105,7 +105,7 @@ art: present-ns
 arc: guards-media
 skills: [Team management, Visual storytelling]
 ```
-- VISUAL: Current Reginald with a camera in a media-planning setting at Guards HQ.
+- VISUAL: Current Reginald with his Sony A7S in a media-planning setting at Guards HQ.
 - SUB {draft}: Team Manager, Media & Design at Guards HQ — leading a team of 9, and on the AI Task Force.
 - NAR {draft}: And there's a part of my day that doesn't run on my own schedule.
 - PORTAL {draft}: Led a media team of 9 at Guards HQ
@@ -206,6 +206,7 @@ data_ref: awards:DrCT International, Bronze
 - THO {draft}: Brute force is too slow. What repeats? Break it into smaller steps.
 - THO {draft}: Bronze. I'll take it.
 - SKL {draft}: Algorithms
+- PORTAL[taekwondo] {draft}: Trained in Taekwondo to a 3rd Dan black belt
 - FAC {draft}: DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)
 - NOTE: Use a scan of the real certificate, not generated award text.
 
@@ -287,7 +288,7 @@ storyboard: approved
 type: PANEL_STANDARD
 art: np-jpm-call
 ```
-- VISUAL: Reginald at his home computer desk. The room drains to grey; only the phone notification is red.
+- VISUAL: Reginald at his home computer desk. The room drains to grey; only the notification on his phone (a Google Pixel 8) is red.
 - SFX {draft}: RING
 - THO {draft}: Wait. Is this the call I think it is?
 - DIA[Caller] {edit}: Hi Reginald — I'm calling from J.P. Morgan about your internship application.
@@ -533,11 +534,13 @@ art: guards-pneumonia-transition
 type: PANEL_STANDARD
 art: guards-first-camera
 ```
-- VISUAL: Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a camera and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.
+- VISUAL: Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a Sony A7S and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.
 - DIA[Officer] {draft}: You're going to be our photographer.
 - THO {draft}: A photographer? Me?
 - NAR {draft}: A camera changes what I pay attention to. Suddenly the story is in the framing.
 - SKL {draft}: Photography, Lightroom, Photoshop
+- PORTAL[army-photography] {draft}: See my favourite photos from behind the camera
+- NOTE: Easter egg — the portal sits on the viewfinder.
 
 ### Scene C06-S03 · Media team and AI
 ```story
@@ -612,7 +615,7 @@ art: guards-card-trading
 arc: trading-nebius
 skills: [Technical Analysis, Fundamental Analysis]
 ```
-- VISUAL: Reginald on his phone, analysing a stock.
+- VISUAL: Reginald on his phone (a Google Pixel 10 Pro), analysing a stock.
 - SUB {draft}: I've traded since 2024. In NS I go deeper — documenting what I think will happen, and what actually does.
 - PORTAL {draft}: Developed a high-volatility strategy around Nebius
 
@@ -657,7 +660,7 @@ category: running a business
 type: PANEL_STANDARD
 art: registudio-friend-call
 ```
-- VISUAL: Reginald walking through Singapore city streets; phone lights up with a red line.
+- VISUAL: Reginald walking through Singapore city streets; his phone (a Google Pixel 10 Pro) lights up with a red line.
 - NAR {draft}: Meanwhile, still in NS, I start trying to turn building into a real service.
 - SFX {draft}: RING
 - DIA[Friend] {draft}: I know someone who needs a website. You keen?
@@ -760,8 +763,13 @@ art: future-bench
 type: PANEL_STANDARD
 art: future-glimpses
 ```
-- VISUAL: Ink-wash glimpses: studying and working in the UK, a graduation, senior leadership, cities and nature. No real university logos or certificates.
-- NAR {draft}: I hope I keep learning, see the world, build things that matter, and grow into responsibility I can be proud of.
+- VISUAL: Four imagined glimpses. (1) Walking through Hyde Park, London — living there. (2) A large hall: Reginald in graduation attire receiving a degree as people clap, seen from an audience member's seat, his name on the screen; no school name anywhere. (3) As a managing director at the head of a table, presenting to a meeting, seen from the far end. (4) Under aurora skies in Finland, glass igloos glowing behind him.
+- NAR {draft}: From a classroom in Clementi to a trading desk at CapitaSpring, every chapter so far has been practice for the next one.
+- NAR {draft}: I imagine mornings in London, crossing Hyde Park on the way to class.
+- NAR {draft}: I imagine my name on the screen of a great hall, and the applause after the years of work.
+- NAR {draft}: I imagine leading the room as a managing director — answering the kind of questions I used to ask.
+- NAR {draft}: And I imagine standing under the aurora in Finland, counting the places the work has taken me.
+- THO {draft}: From Singapore to the Arctic Circle. Not bad.
 - FAC {approved}: A future I'm working toward — not a record of what's happened.
 
 ### Scene C08-S03 · The fade
@@ -775,7 +783,7 @@ interaction: cta-links
 - VISUAL: Old Reginald lets out a satisfied breath; camera pulls back; colour fades to black.
 - NAR {draft}: For now, the next page is still being written.
 - FAC {approved}: THANK YOU FOR READING.
-- NOTE: CTAs (real links): Contact Me · LinkedIn · GitHub · Explore Projects · View Interactive CV · Download Résumé.
+- NOTE: Footer (code, from src/data/identity.json): email address with a copy button · LinkedIn · GitHub · CV (opens the PDF) · a prompt to try the Tech and Life modes too.
 
 ---
 ---
@@ -1306,6 +1314,75 @@ art: arc-jpm-multilob
 ```
 - FAC {draft}: Adopted across lines of business such as commodities and rates; I supported and coordinated the rollout as subject-matter expert.
 - NAR {draft}: The tool stops being mine the moment other teams rely on it.
+
+---
+
+# Arc taekwondo · Taekwondo
+```story
+kind: achievement
+parent: C03-S03-P01
+title: TAEKWONDO
+portal: Trained in Taekwondo to a 3rd Dan black belt
+```
+
+## Story A-TKD · From podiums to 3rd Dan
+
+### Scene A-TKD-S01 · First podiums
+
+#### Panel A-TKD-S01-P01 · On the mat
+```story
+type: PANEL_STANDARD
+art: arc-taekwondo-mat
+```
+- VISUAL: A competition mat under hall lights; teenage Reginald in his dobok mid-kick, a referee's arm raised.
+- NAR {draft}: Before I write my first line of Python, I learn what it takes to keep getting up.
+- FAC {draft}: First Place, Singapore National Games (2018) · Second Place, Singapore Youth Olympic Festival (2018)
+- SKL {draft}: Discipline
+
+### Scene A-TKD-S02 · Colours
+
+#### Panel A-TKD-S02-P01 · A second podium, and colours
+```story
+type: PANEL_STANDARD
+art: arc-taekwondo-colours
+```
+- VISUAL: Two beats: a second-place podium, medal in hand; then the Colours Award certificate.
+- FAC {draft}: Second Place, Singapore National Taekwondo Championships and NSG Championships (2019) · Colours Award, Singapore School Sports Council (2019)
+- NAR {draft}: Second place twice in a year teaches me more than winning would have.
+
+### Scene A-TKD-S03 · Third Dan
+
+#### Panel A-TKD-S03-P01 · The black belt
+```story
+type: PANEL_SPLASH
+art: arc-taekwondo-third-dan
+```
+- VISUAL: Reginald tying a black belt embroidered with three bars; a grading hall behind him.
+- FAC {edit}: 3rd Dan black belt — [EDIT: year and grading body]
+- NAR {edit}: [EDIT: what reaching 3rd Dan meant to you]
+
+---
+
+# Arc army-photography · Through my viewfinder
+```story
+kind: gallery
+parent: C06-S02-P01
+title: THROUGH MY VIEWFINDER
+portal: See my favourite photos from behind the camera
+```
+
+## Story A-AP · Favourite frames
+
+### Scene A-AP-S01 · The gallery
+
+#### Panel A-AP-S01-P01 · Favourite frames
+```story
+type: PANEL_GALLERY
+art: arc-army-photography-gallery
+gallery: army
+```
+- NAR {draft}: Some of my favourite frames since I picked up the camera. Unedited, straight off the card.
+- NOTE: Photos and captions are added in the Storyboard Room (Army photos page) and stored in the repo at full quality. They are shown as-is, not converted to comic style.
 
 ---
 

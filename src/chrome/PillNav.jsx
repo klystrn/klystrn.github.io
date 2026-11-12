@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMode } from './ModeContext';
 
 // Touch has no hover, so the CSS-only reveal above never fires there. A
@@ -113,7 +114,7 @@ export default function PillNav() {
   return (
     <nav className="nav-wrap" aria-label="Primary">
       <div className="pill">
-        <span className="brand" title="Reginald">R.</span>
+        <Link className="brand" to="/" title="Back to the story" aria-label="Reginald Tan — back to the story">R.</Link>
         <button className={`tab-btn ${life ? '' : 'on'}`} onClick={() => setMode('paper')}>
           Professional
         </button>

@@ -1,6 +1,34 @@
 {
   "version": 1,
   "assets": {
+    "arc-army-photography-gallery": {
+      "scene_ids": [
+        "A-AP-S01-P01"
+      ],
+      "kind": "image",
+      "description": "",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null,
+      "plate": "evidence"
+    },
     "arc-design-playground-demo": {
       "scene_ids": [
         "A-DP-S02-P01"
@@ -875,6 +903,89 @@
       },
       "motion": null,
       "plate": "code"
+    },
+    "arc-taekwondo-colours": {
+      "scene_ids": [
+        "A-TKD-S02-P01"
+      ],
+      "kind": "image",
+      "description": "Two beats: a second-place podium, medal in hand; then the Colours Award certificate.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null,
+      "plate": "generate"
+    },
+    "arc-taekwondo-mat": {
+      "scene_ids": [
+        "A-TKD-S01-P01"
+      ],
+      "kind": "image",
+      "description": "A competition mat under hall lights; teenage Reginald in his dobok mid-kick, a referee's arm raised.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null,
+      "plate": "generate"
+    },
+    "arc-taekwondo-third-dan": {
+      "scene_ids": [
+        "A-TKD-S03-P01"
+      ],
+      "kind": "image",
+      "description": "Reginald tying a black belt embroidered with three bars; a grading hall behind him.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null
     },
     "arc-testimonial-dimuthu-handover": {
       "scene_ids": [

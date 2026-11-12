@@ -2,7 +2,8 @@
 
 Personal portfolio: one canonical dataset, three renderers.
 
-- **Paper** (`/`) — light editorial scroll site
+- **Story** (`/`) — cinematic autobiographical comic (storyboard edition)
+- **Paper** (`/paper`) — light editorial scroll site (to be replaced by a CV mode)
 - **Tech** (`/tech`) — dark IDE simulation with a working terminal
 - **Finance** (`/finance`) — dark brokerage terminal with watchlist + charts
 - **Life** (`/life`) — a photorealistic room render with interactive hotspots (photography,
@@ -34,11 +35,12 @@ differently, but it must not contradict them. `scripts/story/build.py` warns whe
 - Working docs, edit list and plan: `docs/story/`
 - Claude skill: `.claude/skills/portfolio-story-content-update/`
 
-A **preview** of Story mode is live at `/story` (also `/story/chapter/<slug>` and
-`/story/arc/<slug>`): it renders the script and storyboards with pencil sketches standing in for
-final art. It is not linked from the nav and is marked `noindex`. The only external dependency of
-Story mode is image/video generation for the art; every caption, card, title and scroll effect is
-code in `src/modes/story/`. `/` stays Paper until Story launch is explicitly approved.
+**Story mode is the home page** (`/`, storyboard edition — pencil sketches stand in for the
+final art). Chapter and side-story deep links: `/story/chapter/<slug>`, `/story/arc/<slug>`.
+**Paper** lives at `/paper` until the CV mode replaces it; old `/?project=` and `/?xp=` links
+redirect there. The only external dependency of Story mode is image/video generation for the
+art; every caption, button, frame, easter egg and scroll effect is code in `src/modes/story/`.
+Photos featured on the site are kept in `media/story/` (see its README).
 
 ## Develop
 

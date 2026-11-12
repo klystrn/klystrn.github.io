@@ -343,3 +343,56 @@ box 52 14 40 58 "art: price per inch" code
 box 60 30 20 20 "" code
 text 80 70 6 "CONCEPT" red center
 cap NAR 4 82 60
+
+## Panel A-TKD-S01-P01
+shot: Wide · a competition mat under hall lights, mid-kick
+camera: Freeze-frame on the kick; speed lines
+scroll: Narration, then the kick, then the results
+transition: Cut to the podium
+mobile: Full frame, captions in/on/around it
+tags: GENERATE LATER, REAL EVIDENCE (your competition photos, if any)
+refs: Your Taekwondo photos from 2018–2019; results from Jovita Tang's letter
+frame 16:9
+floor 74
+box 14 70 72 6 "mat" faint
+fig 40 88 44 point r teen "Reginald (dobok)"
+fig 66 88 42 stand l teen "opponent" faint
+fig 86 80 34 point l adult "referee" faint
+cap NAR 2 4 34
+cap FAC 40 4 58
+cap SKL 2 86 30
+
+## Panel A-TKD-S02-P01
+shot: Two beats · podium → Colours Award certificate
+camera: Static
+scroll: Podium first; certificate slides in
+transition: Cut to the black belt
+mobile: Frames stack, captions in/on/around each
+tags: GENERATE LATER, REAL EVIDENCE (Colours Award certificate)
+frame 4:3 second place
+box 10 60 26 20 "1" faint
+box 36 52 28 28 "" faint
+box 64 66 26 14 "3" faint
+fig 24 60 30 stand f teen faint
+fig 50 52 30 hold f teen "Reginald (medal)" 
+cap NAR 4 4 92
+frame 4:3 colours
+paper 20 10 60 60 "Colours Award" real
+cap FAC 4 76 92
+
+## Panel A-AP-S01-P01
+shot: Gallery · a grid of your own photos, unedited
+camera: Static; tap a photo to open it full size with its caption
+scroll: Photos fade in row by row
+transition: Return to chapter
+mobile: One column; tap to open full size
+tags: REAL EVIDENCE (your army photography — shown unedited, not converted)
+note: Easter egg reached from the viewfinder in C06-S02. Photos and captions come from the Army photos page in the Storyboard Room and are stored in the repo at full quality.
+frame 16:9
+cap NAR 2 2 60
+box 2 18 31 36 "photo" real
+box 35 18 31 36 "photo" real
+box 68 18 30 36 "photo" real
+box 2 58 31 36 "photo" real
+box 35 58 31 36 "photo" real
+box 68 58 30 36 "photo" real

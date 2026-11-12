@@ -9,9 +9,9 @@
 |---|---|
 | Approved | 5 |
 | Changes requested | 0 |
-| Drafted — awaiting your review | 46 |
+| Drafted — awaiting your review | 49 |
 | Partly drafted | 0 |
-| Waiting on script edits | 18 |
+| Waiting on script edits | 19 |
 | Not started | 0 |
 
 ## Chapter `opening` · REGINALD TAN
@@ -186,6 +186,20 @@
 | Scene | | Panels | Storyboard |
 |---|---|---|---|
 | `A-JL-S01` | Adoption | 1 | Drafted — awaiting your review |
+
+## Arc `taekwondo` · TAEKWONDO
+
+| Scene | | Panels | Storyboard |
+|---|---|---|---|
+| `A-TKD-S01` | First podiums | 1 | Drafted — awaiting your review |
+| `A-TKD-S02` | Colours | 1 | Drafted — awaiting your review |
+| `A-TKD-S03` | Third Dan | 1 | Waiting on script edits |
+
+## Arc `army-photography` · THROUGH MY VIEWFINDER
+
+| Scene | | Panels | Storyboard |
+|---|---|---|---|
+| `A-AP-S01` | The gallery | 1 | Drafted — awaiting your review |
 
 ## Arc `testimonial-jovita` · A LETTER FROM JOVITA TANG
 

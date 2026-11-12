@@ -59,7 +59,7 @@ Main path: **37 panels** (budget 30–42). 20 arcs: `frats`, `overflow`, `tya`, 
 | **E0** Placeholder | Inert `/story/*` Coming Soon route; `/` untouched; tests | "Start placeholder" |
 | **E** Story build | Reviewable PRs: compiler in CI → components with dev placeholders → nav (dock, rail, deep links, scroll ownership, per-route OG stubs) → chapters → arcs → a11y/perf/analytics | Each PR reviewed |
 | **F** CV | Semantic A4 HTML viewer, zoom/pan, hotspots, print CSS, separate ATS PDF | CV approved |
-| **G** Launch | Paper → `/paper`; redirect `/?project=` and `/?xp=`; re-point tests; sitemap | Explicit launch go |
+| **G** Launch | **Done 12 Nov 2026 (storyboard edition):** Story at `/`, Paper at `/paper`, old links redirected, tests re-pointed | — |
 
 ### Batch approval form (Phases C and D — shown before anything runs)
 Batch ID and scene/arc IDs (each with an **approved storyboard**) · purpose and art IDs (only `plate: generate`) · **clean-plate rule: no text, balloons, captions, logos or on-screen UI; caption safe zones from the storyboard** · model, mode, expected credits / cap · exact

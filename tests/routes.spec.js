@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const ROUTES = ['/', '/tech', '/finance', '/life', '/life/photography', '/life/cards', '/life/watch',
+const ROUTES = ['/', '/paper', '/tech', '/finance', '/life', '/life/photography', '/life/cards', '/life/watch',
   '/story', '/story/chapter/sst', '/story/arc/overflow'];
 
 for (const route of ROUTES) {

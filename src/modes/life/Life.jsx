@@ -25,7 +25,7 @@ const SPOTS = [
   { id: 'trophy',   x: 19, y: 21, route: null,                theme: '#241a12' },
   { id: 'cards',    x: 19, y: 38, route: '/life/cards',       theme: '#7d1620' },
   { id: 'camera',   x: 19, y: 51, route: '/life/photography', theme: '#171a1f' },
-  { id: 'work',     x: 40, y: 41, route: '/',                 theme: '#141821' },
+  { id: 'work',     x: 40, y: 41, route: '/paper',                 theme: '#141821' },
   { id: 'watch',    x: 79, y: 50, route: '/life/watch',       theme: '#0c0d10' },
 ];
 

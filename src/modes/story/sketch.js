@@ -51,7 +51,17 @@ function lineFor(panel, type, n) {
 }
 
 const GUIDE_ELS = new Set(['crop', 'label', 'vp']);
-const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav']);
+const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav', 'ducky']);
+// Phone layout: which captions sit inside the frame, which straddle its border, which go outside.
+const ZONE = { DIA: 'in', THO: 'in', SFX: 'in', NAR: 'edge', FAC: 'edge', PORTAL: 'out', MODAL: 'out', SKL: 'out', SUB: 'out' };
+const zoneOf = (t) => ZONE[t] || 'out';
+
+// Ducky, drawn in code from Reginald's photos: pale butter-yellow plush chick, black bead eyes,
+// small orange beak, stubby wings, round orange feet. Grey when hidden, yellow once found.
+function duckySVG(found) {
+  const body = found ? '#f6e7a1' : '#a9a49a', shade = found ? '#e9d47c' : '#8f8a80', beak = found ? '#f2a03b' : '#7d776d';
+  return `<svg viewBox="0 0 100 112" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="78" rx="34" ry="28" fill="${body}" stroke="#4a4237" stroke-width="2.5"/><ellipse cx="50" cy="38" rx="27" ry="26" fill="${body}" stroke="#4a4237" stroke-width="2.5"/><path d="M18 64 q-12 -4 -8 -18 q10 2 14 12z" fill="${shade}" stroke="#4a4237" stroke-width="2"/><path d="M82 64 q12 -4 8 -18 q-10 2 -14 12z" fill="${shade}" stroke="#4a4237" stroke-width="2"/><ellipse cx="50" cy="47" rx="8" ry="5" fill="${beak}" stroke="#4a4237" stroke-width="1.6"/><circle cx="39" cy="36" r="3.4" fill="#17130f"/><circle cx="61" cy="36" r="3.4" fill="#17130f"/><ellipse cx="33" cy="102" rx="12" ry="8" fill="${beak}" stroke="#4a4237" stroke-width="2"/><ellipse cx="67" cy="102" rx="12" ry="8" fill="${beak}" stroke="#4a4237" stroke-width="2"/></svg>`;
+}
 function layerOf(tok) {
   const k = tok[0];
   if (GUIDE_ELS.has(k) || (k === 'arrow' && !tok.includes('code'))) return 'guide';
@@ -59,7 +69,7 @@ function layerOf(tok) {
   if (tok.includes('real')) return 'evidence';
   return 'art';
 }
-const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']), story: new Set(['art', 'overlay', 'evidence']) };
+const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']), story: new Set(['art', 'overlay', 'evidence']), mobile: new Set(['art', 'overlay', 'evidence']) };
 
 function renderFrame(frame, panel, key, layer = 'all') {
   const [aw, ah] = frame.aspect.split(':').map(Number);
@@ -78,13 +88,25 @@ function renderFrame(frame, panel, key, layer = 'all') {
   for (const tok of frame.els) {
     const k = tok[0];
     const lay = layerOf(tok);
-    if (layer === 'story' && k === 'cap') continue;  // the website draws captions as real HTML
-    if (show && !show.has(lay)) { if (k === 'dark' && layer === 'overlay') { /* keep tone hint */ } else continue; }
+    if (layer === 'story' && (k === 'cap' || k === 'ducky')) continue;  // the website draws these as real HTML
+    if (layer === 'mobile' && k === 'cap' && zoneOf(tok[1]) !== 'in') continue;  // edge/outside captions are HTML around the frame
     const nums = tok.slice(1).filter((t) => /^-?\d+(\.\d+)?$/.test(t)).map(Number);
     const words = tok.slice(1).filter((t) => !/^-?\d+(\.\d+)?$/.test(t));
     const flags = new Set(words);
-    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'code', 'real', 'detail', 'wide', 'fold', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !w.startsWith('tail=') && !(k === 'cap' && w === tok[1]));
+    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'code', 'real', 'detail', 'wide', 'fold', 'vertical', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !w.startsWith('tail=') && !(k === 'cap' && w === tok[1]));
     const [a, b, c, d] = nums;
+    if (k === 'watch') { if (layer !== 'overlay') { const wx = X(a), wy = Y(b); el('circle', { cx: wx, cy: wy, r: 9, fill: '#d9d2c3', stroke: '#1d1b19', 'stroke-width': 2.5 }, g); el('line', { x1: wx, y1: wy, x2: wx, y2: wy - 5, stroke: '#1d1b19', 'stroke-width': 1.6 }, g); el('line', { x1: wx, y1: wy, x2: wx + 4, y2: wy, stroke: '#1d1b19', 'stroke-width': 1.6 }, g); if (layer === 'all') hand(g, wx + 12, wy - 10, 'watch', { fill: '#9a7420', size: 20 }); } continue; }
+    if (k === 'ducky') {
+      if (layer === 'art') continue;
+      const show = Number((tok.find((t) => t.startsWith('show=')) || 'show=1').slice(5));
+      const hpx = Y(c), wpx = hpx * 0.9, top = Y(b) - hpx * show;
+      const cid = `dk-${key.replace(/[^\w-]/g, '')}-${a}-${b}`;
+      const defs = el('defs', {}, g); const cp = el('clipPath', { id: cid }, defs); el('rect', { x: X(a) - wpx / 2 - 4, y: top, width: wpx + 8, height: hpx * show }, cp);
+      const img = el('image', { href: 'data:image/svg+xml;utf8,' + encodeURIComponent(duckySVG(false)), x: X(a) - wpx / 2, y: top, width: wpx, height: hpx, 'clip-path': `url(#${cid})`, opacity: .9 }, g);
+      if (layer === 'all') hand(g, X(a) + wpx / 2 + 4, top + 14, 'Ducky', { fill: '#9a7420', size: 20 });
+      continue;
+    }
+    if (show && !show.has(lay)) { if (k === 'dark' && layer === 'overlay') { /* keep tone hint */ } else continue; }
     const dark = (x, y) => inDark(x, y);
     const ink = (x, y) => (flags.has('red') ? C.red : dark(x, y) ? C.light : C.pencil);
     const base = { r, w: flags.has('faint') ? 1.4 : 2.2, dash: flags.has('dash') };
@@ -168,7 +190,9 @@ function renderFrame(frame, panel, key, layer = 'all') {
       case 'cap': {
         const tail = words.find((w) => w.startsWith('tail='));
         const tp = tail ? tail.slice(5).split(',').map(Number) : null;
-        drawCaption(g, tok[1], X(nums[0]), Y(nums[1]), X(nums[2]), lineFor(panel, tok[1], nums[3]), W, H, tp ? [X(tp[0]), Y(tp[1])] : null);
+        const mob = layer === 'mobile';
+        const cw = mob ? Math.max(nums[2], 62) : nums[2], cx = mob ? Math.min(nums[0], 98 - cw) : nums[0];
+        drawCaption(g, tok[1], X(Math.max(cx, 2)), Y(nums[1]), X(cw), lineFor(panel, tok[1], nums[3]), W, H, tp ? [X(tp[0]), Y(tp[1])] : null, mob ? 2.3 : 1);
         break;
       }
       case 'nav': {
@@ -312,13 +336,15 @@ function drawDetail(g, x, y, h, pose, facing) {
   }
 }
 
-function drawCaption(g, type, x, y, w, line, W, H, tail) {
+function drawCaption(g, type, x, y, w, line, W, H, tail, scale = 1) {
   const fo = el('foreignObject', { x, y, width: w, height: H, 'data-fit': 'cap' }, g);
   if (tail && (type === 'DIA' || type === 'THO')) fo.dataset.tail = tail.join(',');
   const div = document.createElement('div');
   div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
   div.style.cssText = 'width:100%';
-  div.innerHTML = capMarkup(type, line);
+  let html = capMarkup(type, line);
+  if (scale !== 1) html = html.replace(/(\d+(?:\.\d+)?)px/g, (m, n) => `${(Number(n) * scale).toFixed(1)}px`);
+  div.innerHTML = html;
   fo.appendChild(div);
 }
 
@@ -375,11 +401,20 @@ function phoneMock(p, variant) {
       if (i === 0 && it.board) { const frs = it.board.variants[0].frames; add(frs[frs.length - 1], it, it.id + '-m'); ph.appendChild(capList((it.copy || []).filter((l) => ['SUB', 'NAR', 'PORTAL'].includes(l.t)).map((l) => [l.t, l]), 'pcaps')); }
     });
   } else {
-    variant.frames.forEach((fr, i) => { add(fr, p, `${p.id}-m-${i}`); const cs = capsOf(p, fr); if (cs.length) ph.appendChild(capList(cs, 'pcaps')); });
+    variant.frames.forEach((fr, i) => {
+      const cs = capsOf(p, fr);
+      const edge = cs.filter(([t]) => zoneOf(t) === 'edge'), out = cs.filter(([t]) => zoneOf(t) === 'out');
+      const capY = (t) => { const tok = fr.els.find((e) => e[0] === 'cap' && e[1] === t); return tok ? Number(tok.slice(2).filter((v) => /^-?\d/.test(v))[1]) : 0; };
+      const top = edge.filter(([t]) => capY(t) < 50), bottom = edge.filter(([t]) => capY(t) >= 50);
+      if (top.length) ph.appendChild(capList(top, 'pedge top'));
+      const s = renderFrame(fr, p, `${p.id}-m-${i}`, 'mobile'); ph.appendChild(s); svgs.push(s);
+      if (bottom.length) ph.appendChild(capList(bottom, 'pedge bottom'));
+      if (out.length) ph.appendChild(capList(out, 'pcaps'));
+    });
   }
   const rest = leftovers(p, variant); if (rest.length) ph.appendChild(capList(rest, 'pcaps'));
   return { el: ph, svgs };
 }
 
 
-export { renderFrame, fitFrame, layerOf, lineFor };
+export { renderFrame, fitFrame, layerOf, lineFor, duckySVG, zoneOf };

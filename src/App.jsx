@@ -3,7 +3,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { ModeProvider } from './chrome/ModeContext';
 import PillNav from './chrome/PillNav';
 import Toast from './chrome/Toast';
-import Paper from './modes/paper/Paper';
 import NotFound from './modes/NotFound';
 import { initAnalytics, trackPageview } from './lib/analytics';
 
@@ -11,13 +10,14 @@ import { initAnalytics, trackPageview } from './lib/analytics';
 // lenses are route-split so a first-time visit only ships the editorial
 // bundle; Tech/Finance/Life (and Life's sub-pages) load on demand when the
 // visitor actually switches lenses.
+const Paper = lazy(() => import('./modes/paper/Paper'));
 const Tech = lazy(() => import('./modes/tech/Tech'));
 const Finance = lazy(() => import('./modes/finance/Finance'));
 const Life = lazy(() => import('./modes/life/Life'));
 const Photography = lazy(() => import('./modes/life/Photography'));
 const WatchStory = lazy(() => import('./modes/life/WatchStory'));
 const CardGame = lazy(() => import('./modes/life/CardGame'));
-// Story mode preview: unlinked from the nav until launch is approved.
+// Story mode is the home page; Paper stays at /paper until the CV mode replaces it.
 const Story = lazy(() => import('./modes/story/Story'));
 
 function Analytics() {
@@ -38,7 +38,8 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         <Suspense fallback={<div className="route-loading" aria-live="polite">Loading…</div>}>
           <Routes>
-            <Route path="/" element={<Paper />} />
+            <Route path="/" element={<Story />} />
+            <Route path="/paper" element={<Paper />} />
             <Route path="/tech" element={<Tech />} />
             <Route path="/finance" element={<Finance />} />
             <Route path="/life" element={<Life />} />

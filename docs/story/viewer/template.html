@@ -144,6 +144,8 @@ textarea { width: 100%; min-height: 64px; border: 1px solid var(--line); border-
 .layer-tabs button[aria-pressed="true"] { border-style: solid; border-color: var(--teal); color: var(--teal); font-weight: 600 }
 .phone { width: min(320px, 100%); border: 2px solid var(--ink); border-radius: 22px; padding: 14px 10px 18px; background: var(--night); display: grid; gap: 10px }
 .phone > svg { width: 100%; height: auto; display: block; background: var(--paper); border: 2px solid #050505 }
+.pedge { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; position: relative; z-index: 2; padding: 0 8px }
+.pedge.top { margin-bottom: -16px } .pedge.bottom { margin-top: -16px }
 .pcaps, .gutter { display: flex; flex-direction: column; gap: 6px; align-items: flex-start }
 .gutter { flex: 1 1 100%; flex-direction: row; flex-wrap: wrap; align-items: center; padding: 8px 10px; border: 1px dashed var(--line); border-radius: 6px }
 .gutter .lbl { font: 11px var(--mono); color: var(--muted); margin-right: 4px }
@@ -152,6 +154,36 @@ textarea { width: 100%; min-height: 64px; border: 1px solid var(--line); border-
 .pcard { background: var(--paper); color: #1d1b19; border: 2px solid #050505; padding: 8px 10px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px }
 .pcard b { font: 800 14px var(--display); font-stretch: 78% } .pcard span { font: 10px var(--mono); color: #6b645a }
 .pcard.on { border-color: var(--crimson) }
+.studio-tabs { display: flex; flex-wrap: wrap; gap: 6px } .studio-tabs .btn.on { border-color: var(--ink); background: var(--ink); color: var(--bg) }
+.btn.small { padding: 5px 10px; font-size: 12.5px }
+.dz { border: 2px dashed var(--line); border-radius: 8px; padding: 12px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; cursor: pointer; background: var(--surface) }
+.dz b { font-size: 14px } .dz > span:first-of-type { font-size: 12.5px; color: var(--muted) }
+.dz.on { border-color: var(--crimson); border-style: solid; box-shadow: inset 0 0 0 1px var(--crimson) }
+.dz.over { background: var(--crimson-soft) }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 12px; margin-top: 10px }
+.tiles.wide { grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)) }
+.tile { margin: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); overflow: hidden; display: grid }
+.tileimgs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); background: var(--night) }
+.tileimgs img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--night) }
+.tile figcaption { display: grid; gap: 6px; padding: 10px; font-size: 13px }
+.tile label { display: grid; gap: 3px; font-size: 12px; color: var(--muted) }
+.tile input, .tile textarea, .tile select, .charform input, .charform textarea, .eras input, #newchar { font: inherit; font-size: 13.5px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 6px 8px; min-width: 0 }
+.tile .meta { font: 11px var(--mono); color: var(--muted); overflow-wrap: anywhere }
+.tilebtns { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.ripplebox { position: relative; cursor: pointer; overflow: hidden }
+.ripplebox img { position: absolute; inset: 0; height: 100%; object-fit: cover } .ripplebox img.base { position: static }
+.ripplebox .standin { filter: grayscale(1) contrast(1.7) brightness(1.06) }
+.ripplebox .rip { clip-path: circle(0 at var(--rx) var(--ry)); animation: rip .8s cubic-bezier(.4, 0, .2, 1) forwards }
+@keyframes rip { to { clip-path: circle(150% at var(--rx) var(--ry)) } }
+.ripplebox .rtag { position: absolute; left: 6px; bottom: 6px; font: 10.5px var(--mono); background: rgba(0, 0, 0, .7); color: #fff; padding: 2px 6px }
+.years { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 14px }
+.yearcol h3 { margin: 0 0 6px; font: 800 20px var(--display); font-stretch: 80% }
+.refwrap { display: grid; gap: 8px; padding-bottom: 14px; border-bottom: 1px dashed var(--line) }
+.charform { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 10px }
+.charform label { display: grid; gap: 3px; font-size: 12px; color: var(--muted) }
+.eras input { width: 100%; min-width: 110px }
+.charphotos { display: flex; flex-wrap: wrap; gap: 6px } .charphotos img { width: 76px; height: 76px; object-fit: cover; border-radius: 4px; display: block }
+@media (prefers-reduced-motion: reduce) { .ripplebox .rip { animation-duration: .01s } }
 .plate { font: 600 11px var(--mono); padding: 4px 8px; border-radius: 4px; border: 1px solid currentColor }
 .plate.generate { color: var(--crimson) } .plate.code { color: var(--teal) } .plate.evidence { color: var(--gold) }
 .refs { display: grid; gap: 8px }
@@ -258,7 +290,17 @@ function lineFor(panel, type, n) {
 }
 
 const GUIDE_ELS = new Set(['crop', 'label', 'vp']);
-const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav']);
+const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav', 'ducky']);
+// Phone layout: which captions sit inside the frame, which straddle its border, which go outside.
+const ZONE = { DIA: 'in', THO: 'in', SFX: 'in', NAR: 'edge', FAC: 'edge', PORTAL: 'out', MODAL: 'out', SKL: 'out', SUB: 'out' };
+const zoneOf = (t) => ZONE[t] || 'out';
+
+// Ducky, drawn in code from Reginald's photos: pale butter-yellow plush chick, black bead eyes,
+// small orange beak, stubby wings, round orange feet. Grey when hidden, yellow once found.
+function duckySVG(found) {
+  const body = found ? '#f6e7a1' : '#a9a49a', shade = found ? '#e9d47c' : '#8f8a80', beak = found ? '#f2a03b' : '#7d776d';
+  return `<svg viewBox="0 0 100 112" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="78" rx="34" ry="28" fill="${body}" stroke="#4a4237" stroke-width="2.5"/><ellipse cx="50" cy="38" rx="27" ry="26" fill="${body}" stroke="#4a4237" stroke-width="2.5"/><path d="M18 64 q-12 -4 -8 -18 q10 2 14 12z" fill="${shade}" stroke="#4a4237" stroke-width="2"/><path d="M82 64 q12 -4 8 -18 q-10 2 -14 12z" fill="${shade}" stroke="#4a4237" stroke-width="2"/><ellipse cx="50" cy="47" rx="8" ry="5" fill="${beak}" stroke="#4a4237" stroke-width="1.6"/><circle cx="39" cy="36" r="3.4" fill="#17130f"/><circle cx="61" cy="36" r="3.4" fill="#17130f"/><ellipse cx="33" cy="102" rx="12" ry="8" fill="${beak}" stroke="#4a4237" stroke-width="2"/><ellipse cx="67" cy="102" rx="12" ry="8" fill="${beak}" stroke="#4a4237" stroke-width="2"/></svg>`;
+}
 function layerOf(tok) {
   const k = tok[0];
   if (GUIDE_ELS.has(k) || (k === 'arrow' && !tok.includes('code'))) return 'guide';
@@ -266,7 +308,7 @@ function layerOf(tok) {
   if (tok.includes('real')) return 'evidence';
   return 'art';
 }
-const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']), story: new Set(['art', 'overlay', 'evidence']) };
+const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']), story: new Set(['art', 'overlay', 'evidence']), mobile: new Set(['art', 'overlay', 'evidence']) };
 
 function renderFrame(frame, panel, key, layer = 'all') {
   const [aw, ah] = frame.aspect.split(':').map(Number);
@@ -285,13 +327,25 @@ function renderFrame(frame, panel, key, layer = 'all') {
   for (const tok of frame.els) {
     const k = tok[0];
     const lay = layerOf(tok);
-    if (layer === 'story' && k === 'cap') continue;  // the website draws captions as real HTML
-    if (show && !show.has(lay)) { if (k === 'dark' && layer === 'overlay') { /* keep tone hint */ } else continue; }
+    if (layer === 'story' && (k === 'cap' || k === 'ducky')) continue;  // the website draws these as real HTML
+    if (layer === 'mobile' && k === 'cap' && zoneOf(tok[1]) !== 'in') continue;  // edge/outside captions are HTML around the frame
     const nums = tok.slice(1).filter((t) => /^-?\d+(\.\d+)?$/.test(t)).map(Number);
     const words = tok.slice(1).filter((t) => !/^-?\d+(\.\d+)?$/.test(t));
     const flags = new Set(words);
-    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'code', 'real', 'detail', 'wide', 'fold', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !w.startsWith('tail=') && !(k === 'cap' && w === tok[1]));
+    const label = words.find((w) => !['red', 'dash', 'fill', 'ivory', 'ink', 'center', 'faint', 'bold', 'code', 'real', 'detail', 'wide', 'fold', 'vertical', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old', ...Object.keys(POSES), 'silhouette', 'bust'].includes(w) && !w.startsWith('tail=') && !(k === 'cap' && w === tok[1]));
     const [a, b, c, d] = nums;
+    if (k === 'watch') { if (layer !== 'overlay') { const wx = X(a), wy = Y(b); el('circle', { cx: wx, cy: wy, r: 9, fill: '#d9d2c3', stroke: '#1d1b19', 'stroke-width': 2.5 }, g); el('line', { x1: wx, y1: wy, x2: wx, y2: wy - 5, stroke: '#1d1b19', 'stroke-width': 1.6 }, g); el('line', { x1: wx, y1: wy, x2: wx + 4, y2: wy, stroke: '#1d1b19', 'stroke-width': 1.6 }, g); if (layer === 'all') hand(g, wx + 12, wy - 10, 'watch', { fill: '#9a7420', size: 20 }); } continue; }
+    if (k === 'ducky') {
+      if (layer === 'art') continue;
+      const show = Number((tok.find((t) => t.startsWith('show=')) || 'show=1').slice(5));
+      const hpx = Y(c), wpx = hpx * 0.9, top = Y(b) - hpx * show;
+      const cid = `dk-${key.replace(/[^\w-]/g, '')}-${a}-${b}`;
+      const defs = el('defs', {}, g); const cp = el('clipPath', { id: cid }, defs); el('rect', { x: X(a) - wpx / 2 - 4, y: top, width: wpx + 8, height: hpx * show }, cp);
+      const img = el('image', { href: 'data:image/svg+xml;utf8,' + encodeURIComponent(duckySVG(false)), x: X(a) - wpx / 2, y: top, width: wpx, height: hpx, 'clip-path': `url(#${cid})`, opacity: .9 }, g);
+      if (layer === 'all') hand(g, X(a) + wpx / 2 + 4, top + 14, 'Ducky', { fill: '#9a7420', size: 20 });
+      continue;
+    }
+    if (show && !show.has(lay)) { if (k === 'dark' && layer === 'overlay') { /* keep tone hint */ } else continue; }
     const dark = (x, y) => inDark(x, y);
     const ink = (x, y) => (flags.has('red') ? C.red : dark(x, y) ? C.light : C.pencil);
     const base = { r, w: flags.has('faint') ? 1.4 : 2.2, dash: flags.has('dash') };
@@ -375,7 +429,9 @@ function renderFrame(frame, panel, key, layer = 'all') {
       case 'cap': {
         const tail = words.find((w) => w.startsWith('tail='));
         const tp = tail ? tail.slice(5).split(',').map(Number) : null;
-        drawCaption(g, tok[1], X(nums[0]), Y(nums[1]), X(nums[2]), lineFor(panel, tok[1], nums[3]), W, H, tp ? [X(tp[0]), Y(tp[1])] : null);
+        const mob = layer === 'mobile';
+        const cw = mob ? Math.max(nums[2], 62) : nums[2], cx = mob ? Math.min(nums[0], 98 - cw) : nums[0];
+        drawCaption(g, tok[1], X(Math.max(cx, 2)), Y(nums[1]), X(cw), lineFor(panel, tok[1], nums[3]), W, H, tp ? [X(tp[0]), Y(tp[1])] : null, mob ? 2.3 : 1);
         break;
       }
       case 'nav': {
@@ -519,13 +575,15 @@ function drawDetail(g, x, y, h, pose, facing) {
   }
 }
 
-function drawCaption(g, type, x, y, w, line, W, H, tail) {
+function drawCaption(g, type, x, y, w, line, W, H, tail, scale = 1) {
   const fo = el('foreignObject', { x, y, width: w, height: H, 'data-fit': 'cap' }, g);
   if (tail && (type === 'DIA' || type === 'THO')) fo.dataset.tail = tail.join(',');
   const div = document.createElement('div');
   div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
   div.style.cssText = 'width:100%';
-  div.innerHTML = capMarkup(type, line);
+  let html = capMarkup(type, line);
+  if (scale !== 1) html = html.replace(/(\d+(?:\.\d+)?)px/g, (m, n) => `${(Number(n) * scale).toFixed(1)}px`);
+  div.innerHTML = html;
   fo.appendChild(div);
 }
 
@@ -582,7 +640,16 @@ function phoneMock(p, variant) {
       if (i === 0 && it.board) { const frs = it.board.variants[0].frames; add(frs[frs.length - 1], it, it.id + '-m'); ph.appendChild(capList((it.copy || []).filter((l) => ['SUB', 'NAR', 'PORTAL'].includes(l.t)).map((l) => [l.t, l]), 'pcaps')); }
     });
   } else {
-    variant.frames.forEach((fr, i) => { add(fr, p, `${p.id}-m-${i}`); const cs = capsOf(p, fr); if (cs.length) ph.appendChild(capList(cs, 'pcaps')); });
+    variant.frames.forEach((fr, i) => {
+      const cs = capsOf(p, fr);
+      const edge = cs.filter(([t]) => zoneOf(t) === 'edge'), out = cs.filter(([t]) => zoneOf(t) === 'out');
+      const capY = (t) => { const tok = fr.els.find((e) => e[0] === 'cap' && e[1] === t); return tok ? Number(tok.slice(2).filter((v) => /^-?\d/.test(v))[1]) : 0; };
+      const top = edge.filter(([t]) => capY(t) < 50), bottom = edge.filter(([t]) => capY(t) >= 50);
+      if (top.length) ph.appendChild(capList(top, 'pedge top'));
+      const s = renderFrame(fr, p, `${p.id}-m-${i}`, 'mobile'); ph.appendChild(s); svgs.push(s);
+      if (bottom.length) ph.appendChild(capList(bottom, 'pedge bottom'));
+      if (out.length) ph.appendChild(capList(out, 'pcaps'));
+    });
   }
   const rest = leftovers(p, variant); if (rest.length) ph.appendChild(capList(rest, 'pcaps'));
   return { el: ph, svgs };
@@ -593,7 +660,7 @@ const side = document.getElementById('side');
 const view = document.getElementById('view');
 
 function sideHTML() {
-  let html = `<a class="brand" href="#"><b>Storyboard Room</b><span>Reginald Tan · Story mode</span></a><a class="scene-link" href="#references" data-id="references"><span class="dot drafted"></span><span>Reference images<span class="id">${REFS.filter((r) => r.status === 'needed').length} still needed</span></span></a>`;
+  let html = `<a class="brand" href="#"><b>Storyboard Room</b><span>Reginald Tan · Story mode</span></a><div class="divider">Your material</div>${Object.entries(STUDIO).map(([k, v]) => `<a class="scene-link" href="#${k}" data-id="${k}"><span class="dot drafted"></span><span>${v}<span class="id">${k === 'references' ? REFS.filter((r) => r.status === 'needed').length + ' still needed' : k === 'characters' ? Object.keys(characters).length + ' characters' : Object.values(images).filter((d) => d.purpose === (k === 'photo-scenes' ? 'photo-scene' : 'gallery')).length + ' photos'}</span></span></a>`).join('')}<div class="divider">Story</div>`;
   let arcsStarted = false;
   for (const g of DATA) {
     if (g.kind === 'arc' && !arcsStarted) { html += `<div class="divider">Side stories (arcs)</div>`; arcsStarted = true; }
@@ -608,7 +675,7 @@ function sideHTML() {
 }
 
 function pickerHTML(current) {
-  let html = `<label class="picker"><span class="eyebrow">Jump to a scene</span><select id="scene-picker"><option value="">Overview — all scenes</option><option value="references" ${current === 'references' ? 'selected' : ''}>Reference images</option>`;
+  let html = `<label class="picker"><span class="eyebrow">Jump to a scene</span><select id="scene-picker"><option value="">Overview — all scenes</option>${Object.entries(STUDIO).map(([k, v]) => `<option value="${k}" ${current === k ? 'selected' : ''}>${v}</option>`).join('')}`;
   for (const g of DATA) {
     html += `<optgroup label="${esc((g.kind === 'arc' ? 'Arc · ' : '') + (g.title || g.id))}">`;
     for (const s of g.scenes) html += `<option value="${s.id}" ${s.id === current ? 'selected' : ''}>${s.id} · ${esc(s.label)} — ${LABEL[effective(s).status]}</option>`;
@@ -683,23 +750,257 @@ function refHTML(r) {
     <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center"><span class="chip ${esc((r.status || '').split(' ')[0])}">${esc(r.status || '')}</span>${r.priority ? `<span class="chip tag">priority ${esc(r.priority)}</span>` : ''}<span class="scenes">${(r.scenes || []).map((x) => `<a href="#${x}">${x}</a>`).join('')}</span></div></div>`;
 }
 
-let refFilter = 'all';
-function refsView() {
-  let html = pickerHTML('');
-  html += `<div class="nav-row"><a class="btn" href="#">← Overview</a></div>`;
-  html += `<header><div class="eyebrow">docs/story/REFERENCES.md · ${REFS.length} references</div><h1>Reference images</h1>
-    <p class="lede">What to collect before generating anything, built from the drafted storyboards. Photos of you and other people stay out of the public repo — keep them in a private folder named by reference ID. Arcs still waiting on script edits are listed under Pending.</p></header>`;
-  const counts = { needed: 0, received: 0, 'not needed': 0 }; for (const r of REFS) counts[r.status] = (counts[r.status] || 0) + 1;
-  html += `<div class="ref-filter" role="group" aria-label="Filter references">${['all', 'needed', 'received', 'not needed'].map((k) => `<button class="btn" data-rf="${k}" aria-pressed="${refFilter === k}" style="${refFilter === k ? 'border-color:var(--ink)' : ''}">${k === 'all' ? 'All' : k[0].toUpperCase() + k.slice(1)} (${k === 'all' ? REFS.length : counts[k] || 0})</button>`).join('')}</div>`;
+// ---- studio pages: reference library, characters, photo scenes, army photos ----------------
+// Photos are stored as ORIGINAL files in this artifact's private asset storage (never
+// re-encoded). Each photo's label, notes and purpose live in the `images` collection.
+let assetsApi = null;
+let images = {};          // id -> doc
+let characters = {};      // id -> doc
+let activeTarget = null;  // where a paste goes: { meta, key, label }
+let dirty = false;        // a form has unsaved typing — hold re-renders
+let pendingRender = false;
+const YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+const MAX_BYTES = 20 * 1024 * 1024;
+const blobUrl = (id) => '/_blob/' + id;
+const STUDIO = { references: 'Reference library', characters: 'Characters', 'photo-scenes': 'Photo scenes', 'army-photos': 'Army photos' };
+
+function studioNav(cur) {
+  return `<div class="nav-row"><a class="btn" href="#">← Overview</a><span class="studio-tabs">${Object.entries(STUDIO).map(([k, v]) =>
+    `<a class="btn ${k === cur ? 'on' : ''}" href="#${k}">${v}</a>`).join(' ')}</span></div>`;
+}
+function storeNote() {
+  if (!db) return `<p class="note warn">Saving isn't available in this view (open the artifact on claude.ai while signed in).</p>`;
+  if (!assetsApi) return `<p class="note warn">Only the artifact's owner and editors can upload. You can still read everything here.</p>`;
+  return '';
+}
+function targetKey(meta) { return [meta.purpose, meta.ref || '', meta.year || '', meta.scene || '', meta.gallery || ''].join('|'); }
+function imagesFor(meta) {
+  return Object.entries(images).filter(([, d]) => d.purpose === meta.purpose && (meta.ref ? d.ref === meta.ref : true)
+    && (meta.scene ? d.scene === meta.scene : true) && (meta.gallery ? d.gallery === meta.gallery : true))
+    .sort((a, b) => (a[1].order ?? 0) - (b[1].order ?? 0) || String(a[1].at).localeCompare(String(b[1].at)));
+}
+
+async function imageSize(file) {
+  try { const bmp = await createImageBitmap(file); const s = { w: bmp.width, h: bmp.height }; bmp.close?.(); return s; } catch { return { w: null, h: null }; }
+}
+async function uploadFiles(files, meta, msgEl) {
+  if (!assetsApi || !db) { if (msgEl) msgEl.textContent = 'Uploading needs the owner or an editor, signed in on claude.ai.'; return; }
+  const list = [...files].filter((f) => f && /^image\//.test(f.type));
+  if (!list.length) { if (msgEl) msgEl.textContent = 'That wasn’t an image. Paste, drop or choose JPEG or PNG photos.'; return; }
+  let done = 0;
+  for (const f of list) {
+    if (f.size > MAX_BYTES) { if (msgEl) msgEl.textContent = `${f.name} is over 20 MB — export a smaller JPEG and try again.`; continue; }
+    if (msgEl) msgEl.textContent = `Uploading ${done + 1} of ${list.length}…`;
+    try {
+      const r = await assetsApi.upload(f);
+      const size = await imageSize(f);
+      const order = imagesFor(meta).length + done;
+      await db.collection('images').doc(r.id).set({ ...meta, asset: r.id, name: f.name || 'pasted image', type: f.type, size: f.size, ...size,
+        label: meta.defaultLabel || '', note: '', order, at: new Date().toISOString() });
+      done += 1;
+    } catch (err) {
+      if (msgEl) msgEl.textContent = err && err.code === 'not_granted' ? 'Only the owner and editors can upload.' : err && err.code === 'unsupported_type' ? `${f.name}: that file type isn't accepted — use JPEG or PNG.` : 'Upload failed. Try again in a moment.';
+    }
+  }
+  if (msgEl && done) msgEl.textContent = `Saved ${done} photo${done > 1 ? 's' : ''} (original files, untouched).`;
+}
+
+function dropZone(meta, title, hint) {
+  const key = targetKey(meta);
+  const on = activeTarget && activeTarget.key === key;
+  return `<div class="dz ${on ? 'on' : ''}" tabindex="0" role="button" aria-pressed="${on}" data-key="${esc(key)}" data-meta='${esc(JSON.stringify(meta))}'>
+    <b>${esc(title)}</b><span>${on ? 'Ready — press Ctrl/Cmd + V to paste here, or drop files' : esc(hint || 'Click, then paste (Ctrl/Cmd + V) · or drop photos · or')}</span>
+    <label class="btn small">Choose photos<input type="file" accept="image/*" multiple hidden></label>
+    <span class="note dzmsg" role="status"></span></div>`;
+}
+
+function tileHTML(id, d, opts = {}) {
+  const photoScene = d.purpose === 'photo-scene';
+  return `<figure class="tile" data-id="${esc(id)}">
+    <div class="tileimgs">
+      <a href="${blobUrl(d.asset)}" target="_blank" rel="noopener"><img src="${blobUrl(d.asset)}" alt="${esc(d.label || d.name || 'photo')}" loading="lazy"></a>
+      ${photoScene ? `<div class="ripplebox" data-orig="${blobUrl(d.asset)}" data-comic="${d.comic ? blobUrl(d.comic) : ''}" tabindex="0" role="button" aria-label="Preview the comic ↔ original ripple">
+        <img class="base ${d.comic ? '' : 'standin'}" src="${d.comic ? blobUrl(d.comic) : blobUrl(d.asset)}" alt=""><span class="rtag">${d.comic ? 'Comic version · click for original' : 'Stand-in comic look · click to ripple'}</span></div>` : ''}
+    </div>
+    <figcaption>
+      <span class="meta">${esc(d.name || '')} · ${d.w && d.h ? `${d.w}×${d.h}` : ''} · ${d.size ? (d.size / 1048576).toFixed(1) + ' MB' : ''}${d.year ? ' · ' + d.year : ''}</span>
+      <label>${opts.captionLabel || 'Label — what is this?'}<input class="f-label" value="${esc(d.label || '')}" placeholder="${opts.captionLabel ? 'Caption shown under the photo' : 'e.g. 2019, front-facing, natural light'}"></label>
+      ${opts.noNote ? '' : `<label>Comments / instructions<textarea class="f-note" rows="2" placeholder="e.g. Use for face shape; ignore the hair colour here">${esc(d.note || '')}</textarea></label>`}
+      ${d.purpose === 'reference' ? `<label>Belongs to<select class="f-ref">${refOptions(d.ref)}</select></label>` : ''}
+      ${d.purpose === 'reference' && String(d.ref || '').startsWith('REF-YOU') ? `<label>Year<select class="f-year"><option value="">—</option>${YEARS.map((y) => `<option ${Number(d.year) === y ? 'selected' : ''}>${y}</option>`).join('')}</select></label>` : ''}
+      ${photoScene ? `<label class="btn small">${d.comic ? 'Replace comic version' : 'Add comic version'}<input type="file" class="f-comic" accept="image/*" hidden></label>` : ''}
+      ${opts.order ? `<label>Order<input class="f-order" type="number" value="${Number(d.order) || 0}" style="width:5em"></label>` : ''}
+      <span class="tilebtns"><button class="btn small primary t-save" ${assetsApi ? '' : 'disabled'}>Save</button><button class="btn small t-del" ${assetsApi ? '' : 'disabled'}>Delete</button><span class="note t-msg" role="status"></span></span>
+    </figcaption></figure>`;
+}
+function refOptions(cur) {
+  const opts = [['OTHER', 'Anything else'], ...YEARS.map((y) => [`REF-YOU-${y}`, `You — ${y}`]), ...REFS.map((r) => [r.id, `${r.id} · ${r.name}`])];
+  return opts.map(([v, t]) => `<option value="${esc(v)}" ${v === cur ? 'selected' : ''}>${esc(t)}</option>`).join('');
+}
+
+function wireStudio(root) {
+  root.querySelectorAll('.dz').forEach((z) => {
+    const meta = JSON.parse(z.dataset.meta);
+    const activate = () => { activeTarget = { meta, key: z.dataset.key }; root.querySelectorAll('.dz').forEach((x) => { x.classList.toggle('on', x === z); x.setAttribute('aria-pressed', String(x === z)); x.querySelector('span').textContent = x === z ? 'Ready — press Ctrl/Cmd + V to paste here, or drop files' : 'Click, then paste (Ctrl/Cmd + V) · or drop photos · or'; }); };
+    z.addEventListener('click', (e) => { if (!e.target.closest('label')) activate(); });
+    z.addEventListener('focus', activate);
+    z.addEventListener('dragover', (e) => { e.preventDefault(); z.classList.add('over'); });
+    z.addEventListener('dragleave', () => z.classList.remove('over'));
+    z.addEventListener('drop', (e) => { e.preventDefault(); z.classList.remove('over'); activate(); uploadFiles(e.dataTransfer.files, meta, z.querySelector('.dzmsg')); });
+    z.querySelector('input[type=file]').addEventListener('change', (e) => { activate(); uploadFiles(e.target.files, meta, z.querySelector('.dzmsg')); e.target.value = ''; });
+  });
+  root.querySelectorAll('.tile').forEach((t) => {
+    const id = t.dataset.id;
+    const msg = t.querySelector('.t-msg');
+    t.querySelectorAll('input:not([type=file]),textarea,select').forEach((f) => f.addEventListener('input', () => { dirty = true; msg.textContent = 'Unsaved'; }));
+    t.querySelector('.t-save')?.addEventListener('click', async () => {
+      const patch = { label: t.querySelector('.f-label')?.value.trim() ?? '', updated: new Date().toISOString() };
+      const n = t.querySelector('.f-note'); if (n) patch.note = n.value.trim();
+      const r = t.querySelector('.f-ref'); if (r) patch.ref = r.value;
+      const y = t.querySelector('.f-year'); if (y) patch.year = y.value ? Number(y.value) : null;
+      const o = t.querySelector('.f-order'); if (o) patch.order = Number(o.value) || 0;
+      try { await db.collection('images').doc(id).update(patch); dirty = false; msg.textContent = 'Saved'; } catch { msg.textContent = 'Couldn’t save — try again.'; }
+    });
+    t.querySelector('.t-del')?.addEventListener('click', async () => {
+      if (t.dataset.confirm !== '1') { t.dataset.confirm = '1'; msg.textContent = 'Click Delete again to remove this photo for good.'; return; }
+      const d = images[id];
+      try { await db.collection('images').doc(id).delete(); if (d?.asset) await assetsApi.delete(d.asset).catch(() => {}); if (d?.comic) await assetsApi.delete(d.comic).catch(() => {}); } catch { msg.textContent = 'Couldn’t delete.'; }
+    });
+    t.querySelector('.f-comic')?.addEventListener('change', async (e) => {
+      const f = e.target.files[0]; if (!f) return;
+      msg.textContent = 'Uploading comic version…';
+      try { const r = await assetsApi.upload(f); await db.collection('images').doc(id).update({ comic: r.id, comicName: f.name }); msg.textContent = 'Comic version saved'; }
+      catch { msg.textContent = 'Upload failed.'; }
+    });
+    const rb = t.querySelector('.ripplebox');
+    if (rb) {
+      let showingOrig = false;
+      const flip = (e) => {
+        const r = rb.getBoundingClientRect();
+        const x = e && e.clientX ? e.clientX - r.left : r.width / 2, y = e && e.clientY ? e.clientY - r.top : r.height / 2;
+        const next = !showingOrig;
+        const img = document.createElement('img');
+        img.className = 'rip' + (!next && !rb.dataset.comic ? ' standin' : '');
+        img.src = next ? rb.dataset.orig : (rb.dataset.comic || rb.dataset.orig);
+        img.style.setProperty('--rx', x + 'px'); img.style.setProperty('--ry', y + 'px');
+        rb.appendChild(img);
+        img.addEventListener('animationend', () => { const base = rb.querySelector('.base'); base.src = img.src; base.classList.toggle('standin', img.classList.contains('standin')); img.remove(); showingOrig = next; rb.querySelector('.rtag').textContent = next ? 'Original photo · click for comic' : (rb.dataset.comic ? 'Comic version · click for original' : 'Stand-in comic look · click to ripple'); });
+      };
+      rb.addEventListener('click', flip); rb.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+    }
+  });
+}
+
+document.addEventListener('paste', (e) => {
+  if (!activeTarget) return;
+  if (/INPUT|TEXTAREA/.test(document.activeElement?.tagName || '') && !(e.clipboardData?.files || []).length) return;
+  const files = [...(e.clipboardData?.files || [])];
+  if (!files.length) return;
+  e.preventDefault();
+  const z = view.querySelector(`.dz[data-key="${CSS.escape(activeTarget.key)}"]`);
+  uploadFiles(files, activeTarget.meta, z?.querySelector('.dzmsg'));
+});
+
+function libraryView() {
+  let html = pickerHTML('references') + studioNav('references');
+  html += `<header><div class="eyebrow">docs/story/REFERENCES.md · ${REFS.length} references</div><h1>Reference library</h1>
+    <p class="lede">Paste, drop or choose photos onto the entry they belong to, label them and add instructions. Files are kept exactly as uploaded in this artifact's private storage — nothing is compressed. Photos of you and other people never go into the public repo; Claude reads them from here when preparing a generation batch (only with your approval).</p>
+    <p class="note">Tip: dropping or choosing files keeps the original file byte-for-byte. Pasting from some apps sends a re-encoded copy, so drop or choose originals where quality matters.</p></header>`;
+  html += storeNote();
+  html += `<section class="panel"><div class="panel-head"><h2>You, by year</h2><span class="note">2018 → 2026 · several photos per year: front, three-quarter, profile, full body</span></div><div class="years">`;
+  for (const y of YEARS) {
+    const meta = { purpose: 'reference', ref: `REF-YOU-${y}`, year: y, defaultLabel: `${y}` };
+    html += `<div class="yearcol"><h3>${y}</h3>${dropZone(meta, `Photos of you, ${y}`)}<div class="tiles">${imagesFor(meta).map(([id, d]) => tileHTML(id, d)).join('')}</div></div>`;
+  }
+  html += `</div></section>`;
   const sections = [...new Set(REFS.map((r) => r.section))];
   for (const sec of sections) {
-    const rows = REFS.filter((r) => r.section === sec && (refFilter === 'all' || r.status === refFilter));
-    if (!rows.length) continue;
-    html += `<section class="panel"><div class="panel-head"><h2>${esc(sec)}</h2></div><div class="refs">${rows.map(refHTML).join('')}</div></section>`;
+    const rows = REFS.filter((r) => r.section === sec);
+    html += `<section class="panel"><div class="panel-head"><h2>${esc(sec)}</h2></div><div class="refs">`;
+    for (const r of rows) {
+      const meta = { purpose: 'reference', ref: r.id };
+      const imgs = imagesFor(meta);
+      html += `<div class="refwrap">${refHTML(r)}${r.status === 'not needed' && !imgs.length ? '' : dropZone(meta, `Add photos for ${r.id}`)}<div class="tiles">${imgs.map(([id, d]) => tileHTML(id, d)).join('')}</div></div>`;
+    }
+    html += `</div></section>`;
   }
+  const other = { purpose: 'reference', ref: 'OTHER' };
+  html += `<section class="panel"><div class="panel-head"><h2>Anything else</h2></div>${dropZone(other, 'Photos that don’t fit an entry yet')}<div class="tiles">${imagesFor(other).map(([id, d]) => tileHTML(id, d)).join('')}</div></section>`;
   view.innerHTML = html;
-  view.querySelectorAll('[data-rf]').forEach((b) => b.addEventListener('click', () => { refFilter = b.dataset.rf; refsView(); }));
+  wireStudio(view); wirePicker();
+}
+
+const CHAR_FIELDS = [['role', 'Role in the story'], ['height', 'Height'], ['build', 'Build'], ['skin', 'Skin tone'], ['face', 'Face shape / features'],
+  ['hair_colour', 'Hair colour'], ['hair_style', 'Hair style'], ['eyes', 'Eye colour'], ['glasses', 'Glasses'], ['facial_hair', 'Facial hair'],
+  ['wardrobe', 'Usual clothes'], ['accessories', 'Accessories (watch, phone, camera…)'], ['likeness', 'Likeness permission'], ['notes', 'Notes / instructions for the artist']];
+const ERA_FIELDS = [['hair', 'Hair'], ['glasses', 'Glasses'], ['wardrobe', 'Clothes'], ['watch', 'Watch'], ['phone', 'Phone'], ['other', 'Other']];
+
+function charCard(id, c) {
+  const eras = c.eras || [];
+  const linked = Object.entries(images).filter(([, d]) => d.purpose === 'reference' && (c.refs || []).some((r) => d.ref === r || (r === 'REF-YOU' && String(d.ref || '').startsWith('REF-YOU'))));
+  return `<section class="panel charcard" data-id="${esc(id)}">
+    <div class="panel-head"><h2>${esc(c.name || id)}</h2>${c.refs?.length ? `<span class="ptype">${esc(c.refs.join(' · '))}</span>` : ''}</div>
+    <div class="charform">${[['name', 'Name'], ...CHAR_FIELDS].map(([k, t]) => `<label>${t}${k === 'notes' ? `<textarea data-f="${k}" rows="3">${esc(c[k] || '')}</textarea>` : `<input data-f="${k}" value="${esc(c[k] || '')}">`}</label>`).join('')}</div>
+    ${eras.length ? `<div class="table-wrap"><table class="eras"><thead><tr><th>Era</th>${ERA_FIELDS.map(([, t]) => `<th>${t}</th>`).join('')}</tr></thead><tbody>${eras.map((e, i) => `<tr data-i="${i}"><td><b>${esc(e.era)}</b>${e.when ? `<br><span class="note">${esc(e.when)}</span>` : ''}</td>${ERA_FIELDS.map(([k]) => `<td><input data-e="${k}" value="${esc(e[k] || '')}"></td>`).join('')}</tr>`).join('')}</tbody></table></div>` : ''}
+    ${linked.length ? `<div class="charphotos">${linked.slice(0, 18).map(([, d]) => `<a href="${blobUrl(d.asset)}" target="_blank" rel="noopener" title="${esc(d.label || d.ref)}"><img src="${blobUrl(d.asset)}" alt="${esc(d.label || 'reference')}" loading="lazy"></a>`).join('')}</div>` : `<p class="note">No photos linked yet — add them in the Reference library (${esc((c.refs || []).join(', ') || 'no reference IDs')}).</p>`}
+    <div class="review-row"><button class="btn primary c-save" ${db && canWrite !== false ? '' : 'disabled'}>Save ${esc(c.name || id)}</button><span class="note c-msg" role="status"></span></div>
+  </section>`;
+}
+function charactersView() {
+  let html = pickerHTML('characters') + studioNav('characters');
+  html += `<header><div class="eyebrow">${Object.keys(characters).length} characters</div><h1>Characters</h1>
+    <p class="lede">Each character's look, for the character bible and every generation prompt. Edit any field and press Save. Your own entry has a row per era for hair, glasses, clothes, watch and phone.</p></header>`;
+  html += db ? '' : storeNote();
+  const order = ['reginald', 'ducky'];
+  const ids = Object.keys(characters).sort((a, b) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99) || a.localeCompare(b));
+  html += ids.length ? ids.map((id) => charCard(id, characters[id])).join('') : `<div class="empty">No characters yet — Claude adds the starting set.</div>`;
+  html += `<section class="panel"><div class="panel-head"><h2>Add a character</h2></div><div class="review-row"><input id="newchar" placeholder="Name"><button class="btn" id="addchar" ${db ? '' : 'disabled'}>Add</button><span class="note" id="addmsg"></span></div></section>`;
+  view.innerHTML = html;
+  view.querySelectorAll('.charcard').forEach((card) => {
+    const id = card.dataset.id, msg = card.querySelector('.c-msg');
+    card.querySelectorAll('input,textarea').forEach((f) => f.addEventListener('input', () => { dirty = true; msg.textContent = 'Unsaved'; }));
+    card.querySelector('.c-save').addEventListener('click', async () => {
+      const c = JSON.parse(JSON.stringify(characters[id] || {}));
+      card.querySelectorAll('[data-f]').forEach((f) => { c[f.dataset.f] = f.value.trim(); });
+      card.querySelectorAll('tr[data-i]').forEach((tr) => { const e = c.eras[Number(tr.dataset.i)]; tr.querySelectorAll('[data-e]').forEach((f) => { e[f.dataset.e] = f.value.trim(); }); });
+      c.updated = new Date().toISOString();
+      try { await db.collection('characters').doc(id).set(c); dirty = false; msg.textContent = 'Saved'; } catch { msg.textContent = 'Couldn’t save — only the owner and editors can.'; }
+    });
+  });
+  view.querySelector('#addchar')?.addEventListener('click', async () => {
+    const name = view.querySelector('#newchar').value.trim(); if (!name) return;
+    const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'character';
+    try { await db.collection('characters').doc(id).set({ name, refs: [], updated: new Date().toISOString() }); } catch { view.querySelector('#addmsg').textContent = 'Couldn’t add.'; }
+  });
   wirePicker();
+}
+
+let photoScene = '';
+function photoScenesView() {
+  let html = pickerHTML('photo-scenes') + studioNav('photo-scenes');
+  html += `<header><div class="eyebrow">Panel type PANEL_PHOTO</div><h1>Photo scenes</h1>
+    <p class="lede">A photo scene is a panel made from one of your photos, redrawn in the comic style — people included. On the site, clicking it ripples between the comic version and your original. Pick the scene, add the photo, and describe what it should show. The original is kept untouched here; when you ask Claude to sync, it goes into the repo at full quality (location data removed), and the comic version is generated only after you approve that batch. You can also add a comic version yourself.</p></header>`;
+  html += storeNote();
+  html += `<label class="picker" style="display:grid"><span class="eyebrow">Scene this photo belongs to</span><select id="ps-scene"><option value="">Choose a scene…</option>${scenes.map((s) => `<option value="${s.id}" ${s.id === photoScene ? 'selected' : ''}>${s.id} · ${esc(s.label)}</option>`).join('')}</select></label>`;
+  if (photoScene) html += dropZone({ purpose: 'photo-scene', scene: photoScene }, `Add a photo for ${photoScene}`);
+  const all = Object.entries(images).filter(([, d]) => d.purpose === 'photo-scene');
+  const byScene = {}; for (const [id, d] of all) (byScene[d.scene] ||= []).push([id, d]);
+  html += Object.keys(byScene).length ? Object.entries(byScene).map(([sid, list]) => `<section class="panel"><div class="panel-head"><h2>${esc(sid)} · ${esc(byId[sid]?.label || '')}</h2></div><div class="tiles wide">${list.map(([id, d]) => tileHTML(id, d)).join('')}</div></section>`).join('')
+    : `<div class="empty">No photo scenes yet.</div>`;
+  view.innerHTML = html;
+  view.querySelector('#ps-scene').addEventListener('change', (e) => { photoScene = e.target.value; photoScenesView(); });
+  wireStudio(view); wirePicker();
+}
+
+function armyView() {
+  let html = pickerHTML('army-photos') + studioNav('army-photos');
+  html += `<header><div class="eyebrow">Arc army-photography · reached from the viewfinder in C06-S02</div><h1>Army photos</h1>
+    <p class="lede">Your favourite photos since becoming a military photographer, shown on the site unedited (not converted to comic style). Add photos and captions here; when you ask Claude to sync, they go into the repo at full quality with location data removed. Only add photos that are cleared for publication.</p></header>`;
+  html += storeNote();
+  const meta = { purpose: 'gallery', gallery: 'army' };
+  html += dropZone(meta, 'Add army photos') + `<div class="tiles wide">${imagesFor(meta).map(([id, d]) => tileHTML(id, d, { captionLabel: 'Caption', order: true, noNote: false })).join('')}</div>`;
+  view.innerHTML = html;
+  wireStudio(view); wirePicker();
 }
 
 function sceneView(id) {
@@ -808,9 +1109,10 @@ function route() {
   const id = decodeURIComponent(location.hash.slice(1));
   side.innerHTML = sideHTML();
   side.querySelectorAll('.scene-link').forEach((a) => { if (a.dataset.id === id) { a.setAttribute('aria-current', 'page'); } });
-  if (id === 'references') refsView(); else if (id && byId[id]) sceneView(id); else overview();
+  if (id === 'references') libraryView(); else if (id === 'characters') charactersView(); else if (id === 'photo-scenes') photoScenesView(); else if (id === 'army-photos') armyView(); else if (id && byId[id]) sceneView(id); else overview();
 }
-window.addEventListener('hashchange', () => { route(); window.scrollTo(0, 0); });
+window.addEventListener('hashchange', () => { dirty = false; route(); window.scrollTo(0, 0); });
+document.addEventListener('focusout', () => setTimeout(() => { if (pendingRender && !dirty) rerender(); }, 0));
 route();
 const cur = side.querySelector('[aria-current="page"]'); if (cur) cur.scrollIntoView({ block: 'center' });
 
@@ -824,6 +1126,9 @@ const cur = side.querySelector('[aria-current="page"]'); if (cur) cur.scrollInto
     const user = await window.claude.use('user');
     canWrite = user ? await user.can('data.write').then((v) => v !== false).catch(() => null) : null;
     if (user) { try { canWrite = (await user.canEdit()) || (await user.isOwner()); } catch { /* keep */ } }
+    assetsApi = await window.claude.use('assets').catch(() => null);
+    db.collection('images').onSnapshot((snap) => { images = {}; for (const d of snap.docs) if (d.exists) images[d.id] = d.data(); rerender(); }, () => {});
+    db.collection('characters').onSnapshot((snap) => { characters = {}; for (const d of snap.docs) if (d.exists) characters[d.id] = d.data(); rerender(); }, () => {});
     db.collection('reviews').onSnapshot((snap) => {
       reviews = {}; for (const d of snap.docs) if (d.exists) reviews[d.id] = d.data();
       if (!snap.metadata.fromCache) { clearTimeout(timer); dbState = 'ready'; } else if (dbState === 'loading') dbState = 'ready';
@@ -833,6 +1138,9 @@ const cur = side.querySelector('[aria-current="page"]'); if (cur) cur.scrollInto
 })();
 
 function rerender() {
+  const ae = document.activeElement;
+  if (dirty || (ae && view.contains(ae) && /INPUT|TEXTAREA|SELECT/.test(ae.tagName) && ae.id !== 'review-note')) { pendingRender = true; return; }
+  pendingRender = false;
   const note = document.getElementById('review-note');
   const draft = note ? note.value : null, focused = document.activeElement === note;
   const y = window.scrollY;

@@ -59,6 +59,14 @@ Status after the type: `{draft}` (default), `{approved}` (final — only you set
 - **Phones:** every frame is shown whole and all of its overlays stack underneath, in script order.
 - The two views of every panel are in the Storyboard Room (Desktop / Mobile toggle).
 
+## Easter eggs (also code)
+
+- **Watches** — comments live in [`WATCHES.md`](WATCHES.md); where each watch sits is set in the
+  storyboards (`watch X Y <id>`). The first and last sighting of each watch get a shadowy shimmer
+  and a comment card on hover or tap.
+- **Ducky** — one per chapter (`ducky X Y H show=…` in the storyboards). Grey and camouflaged until
+  clicked, then yellow; finding all of them shows "I like Ducks!".
+
 ## What is *not* an overlay
 
 Only the picture inside the frame is generated. The **panel frame itself** (the inked border) is

@@ -4,8 +4,8 @@ import { trackEvent } from '../lib/analytics';
 
 const ModeContext = createContext(null);
 
-const PATH_TO_MODE = { '/': 'paper', '/tech': 'tech', '/finance': 'finance', '/life': 'life' };
-const MODE_TO_PATH = { paper: '/', tech: '/tech', finance: '/finance', life: '/life', story: '/story' };
+const PATH_TO_MODE = { '/': 'story', '/paper': 'paper', '/tech': 'tech', '/finance': 'finance', '/life': 'life' };
+const MODE_TO_PATH = { paper: '/paper', tech: '/tech', finance: '/finance', life: '/life', story: '/' };
 
 const THEME_KEY = 'theme';
 
@@ -19,8 +19,8 @@ export function ModeProvider({ children }) {
   const navigate = useNavigate();
   // /life and its sub-pages (/life/photography, /life/watch, /life/cards) all
   // resolve to the 'life' lens so the nav tab stays active and chrome consistent.
-  // /story and its chapter/arc deep links all resolve to the 'story' mode (a
-  // preview route for now — Paper stays the default at '/').
+  // '/' is Story (the home page); /story and its chapter/arc deep links are
+  // Story too. Paper lives at /paper until the CV mode replaces it.
   const mode = location.pathname.startsWith('/life')
     ? 'life'
     : location.pathname === '/story' || location.pathname.startsWith('/story/')
