@@ -61,13 +61,16 @@ test.describe('skills constellation', () => {
   test('keyboard focus + arrow keys move the highlight cursor', async ({ page }) => {
     await page.goto('/paper');
     await page.locator('#skills').scrollIntoViewIfNeeded();
-    // Scroll-jack the pinned zoom range until settled.
-    for (let i = 0; i < 40; i++) {
-      const op = await page.locator('.cn-node.leaf').first().evaluate((el) => parseFloat(getComputedStyle(el).opacity));
-      if (op > 0.95) break;
+    // Scroll through the pinned zoom range until the graph reports itself
+    // settled — it only becomes a Tab stop (tabindex="0") and only accepts
+    // arrow keys once the zoom has fully finished.
+    const graph = page.locator('#constel');
+    for (let i = 0; i < 60; i++) {
+      if ((await graph.getAttribute('tabindex')) === '0') break;
       await page.mouse.wheel(0, 250);
       await page.waitForTimeout(60);
     }
+    await expect(graph).toHaveAttribute('tabindex', '0');
     await page.locator('#constel').focus();
     await expect(page.locator('#constel')).toBeFocused();
     const before = await page.locator('.sk-caption').textContent();
