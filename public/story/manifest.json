@@ -1713,6 +1713,34 @@
       "motion": null,
       "plate": "generate"
     },
+    "guards-viewfinder": {
+      "scene_ids": [
+        "C06-S02-P02"
+      ],
+      "kind": "image",
+      "description": "A page-sized view through the viewfinder of his Sony A7S: a monochrome scene snaps into a deliberate composition with a narrow red focus guide. The viewfinder drifts slightly with the cursor, as if you're looking through the screen yourself.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null,
+      "plate": "generate"
+    },
     "hero-fracture": {
       "scene_ids": [
         "C01-S01-P02"
@@ -2307,6 +2335,34 @@
       ],
       "kind": "image",
       "description": "Current Reginald with a camera in a media-planning setting at Guards HQ.",
+      "character_age": null,
+      "status": "pending",
+      "rights": "not_reviewed",
+      "subjects": [],
+      "references": [],
+      "model": null,
+      "prompt": null,
+      "cost": null,
+      "hosting": "repo",
+      "variants": {
+        "desktop": {
+          "crop": null,
+          "full": null
+        },
+        "mobile": {
+          "crop": null,
+          "full": null
+        }
+      },
+      "motion": null,
+      "plate": "generate"
+    },
+    "present-ponder": {
+      "scene_ids": [
+        "C02-S01-P04"
+      ],
+      "kind": "image",
+      "description": "PLACEHOLDER (awaiting your approval). Reginald in a collared work shirt stands at a floor-to-ceiling window high above the city at dusk, seen from behind at three-quarters, one hand at his chin, pondering the skyline. Calm, professional, ready for what's next. As you scroll on, the colour drains to monochrome for the flashback.",
       "character_age": null,
       "status": "pending",
       "rights": "not_reviewed",

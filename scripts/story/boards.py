@@ -22,11 +22,11 @@ FIELDS = {'shot', 'camera', 'scroll', 'transition', 'mobile', 'tags', 'refs', 'n
 ELEMENTS = {
     'floor': 1, 'vp': 2, 'box': 4, 'screen': 4, 'chart': 4, 'card': 4, 'building': 4,
     'fig': 3, 'phone': 2, 'disc': 3, 'arrow': 4, 'line': 4, 'wash': 4, 'dark': 4,
-    'text': 3, 'cap': 3, 'list': 3, 'nav': 4, 'watch': 2, 'ducky': 3, 'crop': 4, 'label': 2, 'paper': 4, 'tree': 3,
+    'text': 3, 'cap': 3, 'list': 3, 'nav': 4, 'watch': 2, 'ducky': 3, 'crop': 4, 'label': 2, 'paper': 4, 'tree': 3, 'board': 4,
 }
 CAP_TYPES = {'NAR', 'THO', 'DIA', 'FAC', 'SFX', 'SUB', 'PORTAL', 'SKL', 'MODAL'}
 POSES = {'stand', 'walk', 'sit', 'type', 'slump', 'point', 'present', 'hold', 'fold', 'bust',
-         'silhouette', 'back', 'bench', 'lean'}
+         'silhouette', 'back', 'bench', 'lean', 'ponder', 'seated'}
 FLAGS = {'red', 'dash', 'fill', 'ivory', 'ink', 'center', 'l', 'r', 'f', 'teen', 'young', 'adult', 'old',
          'faint', 'bold'}
 REFS_MD = os.path.join(ROOT, 'docs', 'story', 'REFERENCES.md')
@@ -35,9 +35,9 @@ WATCH_IDS = set()
 MANIFEST = os.path.join(ROOT, 'public', 'story', 'manifest.json')
 # Layer model (docs/story/STORYBOARDS.md): what a generated plate must contain vs what code draws.
 GUIDE_ELS = {'crop', 'label', 'vp'}                 # storyboard annotations, never shipped
-OVERLAY_ELS = {'cap', 'text', 'card', 'chart', 'list', 'nav', 'watch', 'ducky'}      # always drawn in code (HTML/CSS/SVG)
+OVERLAY_ELS = {'cap', 'text', 'card', 'chart', 'list', 'nav', 'watch', 'ducky', 'board'}      # always drawn in code (HTML/CSS/SVG)
 REF_KINDS = {'character', 'person', 'location', 'prop', 'evidence', 'style'}
-FLAGS.update({'code', 'detail', 'real', 'wide', 'vertical'})
+FLAGS.update({'code', 'detail', 'real', 'wide', 'vertical', 'light', 'mono'})
 SKETCH_JS = os.path.join(ROOT, 'src', 'modes', 'story', 'sketch.js')
 STORY_BOARDS_JSON = os.path.join(ROOT, 'src', 'story', 'storyboards.json')
 ASPECT_RE = re.compile(r'^\d+(?:\.\d+)?:\d+(?:\.\d+)?$')
@@ -203,7 +203,7 @@ def check_frame(nid, where, fr, node, rep):
     caps = []
     for tok in fr['els']:
         k, n = tok[0], nums_of(tok)
-        if k in ('box', 'screen', 'chart', 'card', 'building', 'paper', 'wash', 'dark', 'crop', 'nav'):
+        if k in ('box', 'screen', 'chart', 'card', 'building', 'paper', 'wash', 'dark', 'crop', 'nav', 'board'):
             x, y, w, h = n[:4]
             if x < 0 or y < 0 or x + w > 100.01 or y + h > 100.01:
                 out(f'{k} at {x:g},{y:g} size {w:g}×{h:g} crosses the edge')
@@ -485,6 +485,7 @@ def panel_json(p, boards):
     b = boards.get(p['id'])
     out = {'id': p['id'], 'label': p['label'], 'type': p['meta'].get('type'), 'art': p['meta'].get('art'),
            'gallery': p['meta'].get('gallery'), 'photo': p['meta'].get('photo'),
+           'size': p['meta'].get('size'), 'layout': p['meta'].get('layout') if isinstance(p['meta'].get('layout'), str) else None, 'interaction': p['meta'].get('interaction'),
            'status': p['meta'].get('status', 'draft'), 'portal': p['meta'].get('portal'),
            'copy': copy_lines(p), 'notes': notes(p)}
     if p['kind'] == 'Item':

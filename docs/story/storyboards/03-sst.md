@@ -37,9 +37,7 @@ refs: locationX code/screens
 note: Review (11 Nov) applied — the board and screen make clear this is locationX, a planner for the National School Games.
 
 frame 16:9
-box 5 8 54 46 "locationX · National School Games planner"
-line 11 30 40 30 red code
-label 11 42 "venues → schools → time slots"
+board 5 8 54 46 "locationX: NSG PLANNER" "1. teachers enter venues|2. venues → schools|3. schools → time slots|4. clash? swap slot, re-check" light
 screen 66 32 26 22 "locationX" real
 fig 20 96 54 back r teen "friend" faint
 fig 40 96 58 point l teen "Reginald"
@@ -88,7 +86,7 @@ fig 82 92 44 stand l teen faint
 cap FAC 4 72 92 1
 frame 16:9 assembly talk · join ACE
 floor 60
-box 32 5 36 26 "slide: JOIN ACE"
+board 32 5 36 26 "JOIN ACE" "Lead a project that matters|Relay For Life 2020: 129 of us|Sign up at the back"
 fig 50 58 30 present r teen "Reginald"
 fig 14 98 30 back r teen faint
 fig 28 98 30 back r teen faint

@@ -7,9 +7,9 @@
 
 | Status | Scenes |
 |---|---|
-| Approved | 5 |
+| Approved | 4 |
 | Changes requested | 0 |
-| Drafted — awaiting your review | 49 |
+| Drafted — awaiting your review | 50 |
 | Partly drafted | 0 |
 | Waiting on script edits | 19 |
 | Not started | 0 |
@@ -20,11 +20,11 @@
 |---|---|---|---|
 | `C01-S01` | Silhouette / identity | 2 | Drafted — awaiting your review |
 
-## Chapter `present` · WHAT I'M DOING NOW
+## Chapter `present` · PRESENT DAY
 
 | Scene | | Panels | Storyboard |
 |---|---|---|---|
-| `C02-S01` | A life in three panels | 2 | Approved |
+| `C02-S01` | A life in three panels | 2 | Drafted — awaiting your review |
 
 ## Chapter `sst` · SCHOOL OF SCIENCE & TECHNOLOGY
 
@@ -62,7 +62,7 @@
 | Scene | | Panels | Storyboard |
 |---|---|---|---|
 | `C06-S01` | BMT to a new posting | 2 | Drafted — awaiting your review |
-| `C06-S02` | Picking up the camera | 1 | Drafted — awaiting your review |
+| `C06-S02` | Picking up the camera | 2 | Drafted — awaiting your review |
 | `C06-S03` | Media team and AI | 2 | Approved |
 | `C06-S04` | Daily life | 1 | Drafted — awaiting your review |
 

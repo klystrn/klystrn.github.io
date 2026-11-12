@@ -28,6 +28,7 @@ scroll: Opening narration first; then London → the hall → the boardroom → 
 transition: Back to the bench, wider
 mobile: One frame at a time, each with its line
 tags: GENERATE LATER, REAL EVIDENCE (public references for Hyde Park and Finnish glass igloos)
+note: Review (12 Nov, round 5) applied: the four glimpses sit in a 2 × 2 grid.
 note: Review (12 Nov) applied — more narration about what you've done; Hyde Park in London; a degree in a large hall seen from the audience, your name on the screen, no school name; leading a meeting as managing director, seen from the far end of the table; aurora over Finland with glass igloos behind you.
 frame 4:3 walking through Hyde Park, London
 floor 78
@@ -52,7 +53,7 @@ box 26 48 48 30 "long table"
 fig 50 46 26 present f adult "Reginald (MD)"
 fig 18 96 34 back r adult faint
 fig 82 96 34 back l adult faint
-box 34 4 32 18 "slides"
+board 30 4 40 20 "FY PLAN" "Grow where clients already are|Hire for judgement|Keep it simple"
 cap NAR 4 80 92 4
 frame 4:3 the aurora, Finland
 dark 0 0 100 100
@@ -65,23 +66,23 @@ cap THO 50 6 46 tail=68,56
 cap FAC 4 86 92
 
 ## Panel C08-S03-P01
-shot: Pull-back wide → fade to black → footer
-camera: Camera pulls back; colour drains; black
-scroll: Narration on the fade; THANK YOU FOR READING on black; the footer links appear
-transition: End of story
-mobile: Same; footer buttons stack
-tags: GENERATE LATER (pull-back frame), PLACEHOLDER (footer is HTML)
-note: Review (12 Nov) applied — the footer has your email with a copy button, LinkedIn, GitHub, your CV (opens the PDF) and a prompt to try the Tech and Life modes. All of it is code, read from the portfolio's contact data.
-frame 16:9 last image
+shot: Page-sized extreme wide from behind · a tiny figure on a park bench, the park and sunset filling the page
+camera: Very slow pull back; colour fades as you scroll; the page transitions straight into the footer (no frame)
+scroll: Wide park first; the narration lands; then it fades down into the footer
+transition: Fade to the footer (Thank you for reading lives there)
+mobile: Same composition, taller crop; the figure stays small
+tags: GENERATE LATER (wide park plate)
+note: Review (12 Nov, round 5) applied: no footer frame; the four glimpses lead into a page-sized panel of you on a bench seen from behind, small against a large park. The footer follows as its own section.
+frame 16:9
+wash 0 0 100 54
+disc 70 40 9 red
 floor 70
-fig 50 74 14 bench r old faint
-cap NAR 30 82 40
-frame 16:9 footer
-dark 0 0 100 100
-cap FAC 30 10 40
-box 14 40 40 9 "reginald.h.tan@gmail.com  [Copy]" code
-box 58 40 12 9 "LinkedIn" code
-box 72 40 12 9 "GitHub" code
-box 14 54 18 9 "CV (PDF)" red code
-label 14 76 "Try the Tech and Life modes too →"
-
+tree 8 70 30
+tree 18 70 30
+tree 88 70 32
+tree 76 70 26
+line 0 88 40 72 faint
+line 100 92 60 72 faint
+box 46 78 8 1.6 "" faint
+fig 50 80 7 bench back adult "Reginald (imagined)"
+cap NAR 30 80 40

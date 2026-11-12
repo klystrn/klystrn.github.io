@@ -146,7 +146,7 @@ tags: GENERATE LATER
 note: Review (11 Nov) applied — you say what you learnt, and the screen shows the project update: 83% of the CEM workload migrated. The figure on the screen is a code overlay so it stays editable.
 
 frame 16:9
-box 36 8 46 42 "PROJECT UPDATE"
+board 36 8 46 42 "PROJECT UPDATE: CEM ON AWS" " | | | |of the CEM workload migrated|next: the remaining services"
 text 59 28 13 "83%" red center
 fig 26 88 56 present r young "Reginald"
 fig 74 100 34 back l adult faint

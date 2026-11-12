@@ -50,10 +50,10 @@ art: hero-fracture
 
 ---
 
-# Chapter present · WHAT I'M DOING NOW
+# Chapter present · PRESENT DAY
 ```story
 order: 2
-title: WHAT I'M DOING NOW
+title: PRESENT DAY
 title_type: TITLE_CHAPTER
 years: none
 category: none
@@ -62,9 +62,6 @@ category: none
 ## Story C02A · Three directions at once
 
 ### Scene C02-S01 · A life in three panels
-```story
-storyboard: approved
-```
 
 #### Panel C02-S01-P01 · Present selector
 ```story
@@ -79,11 +76,9 @@ interaction: staggered-slide-in, hover-expand, tap-expand
 title: ACTIVE TRADING
 art: present-trading
 arc: trading-nebius
-skills: [Markets research, Risk management]
 ```
 - VISUAL: Current Reginald at his home trading setup — several monitors with charts and a trade-log screen (synthetic data); one red decision line; no balances or order IDs.
-- SUB {draft}: Trading since 2024 — now a disciplined process for volatile, AI-linked equities: research, risk decisions and review.
-- NAR {draft}: At the market, I have to decide what the evidence is actually telling me.
+- SUB {draft}: Trading since 2024, now a disciplined process for volatile, AI-linked equities: research, risk decisions and review.
 - PORTAL {draft}: Developed a high-volatility trading strategy
 
 ##### Item present-registudio
@@ -91,11 +86,9 @@ skills: [Markets research, Risk management]
 title: RUNNING REGISTUDIO
 art: present-registudio
 arc: registudio-business
-skills: [Client discovery, Pricing strategy]
 ```
 - VISUAL: Desk with a to-do list for the business (leads, proposals, invoices, site builds), proposal drafts and sketches; clients anonymous.
-- SUB {draft}: Building a web-services business — finding the right clients, defining an offer, learning to price and deliver.
-- NAR {draft}: When it's my own business, a finished site is only part of the work.
+- SUB {draft}: Building a web-services business: finding the right clients, defining an offer, learning to price and deliver.
 - PORTAL {draft}: Built a web-services business from the ground up
 
 ##### Item present-ns
@@ -103,19 +96,18 @@ skills: [Client discovery, Pricing strategy]
 title: SERVING NS
 art: present-ns
 arc: guards-media
-skills: [Team management, Visual storytelling]
 ```
 - VISUAL: Current Reginald with his Sony A7S in a media-planning setting at Guards HQ.
-- SUB {draft}: Team Manager, Media & Design at Guards HQ — leading a team of 9, and on the AI Task Force.
-- NAR {draft}: And there's a part of my day that doesn't run on my own schedule.
+- SUB {draft}: Team Manager, Media & Design at Guards HQ, leading a team of 9 and serving on the AI Task Force.
 - PORTAL {draft}: Led a media team of 9 at Guards HQ
 
-#### Panel C02-S01-P04 · Into the past
+#### Panel C02-S01-P04 · What's next
 ```story
-type: PANEL_TRANSITION
-art: present-merge
+type: PANEL_SPLASH
+art: present-ponder
+size: page
 ```
-- VISUAL: The three cards slide together into one notebook/code window; red drains to monochrome as a younger Reginald appears.
+- VISUAL: PLACEHOLDER (awaiting your approval). Reginald in a collared work shirt stands at a floor-to-ceiling window high above the city at dusk, seen from behind at three-quarters, one hand at his chin, pondering the skyline. Calm, professional, ready for what's next. As you scroll on, the colour drains to monochrome for the flashback.
 - NAR {draft}: None of this begins here. To explain how I got here, I have to go back.
 
 ---
@@ -154,8 +146,8 @@ interaction: hover-reveal
 ```
 - VISUAL: Reginald and friends at a whiteboard and laptop, building locationX — clearly labelled as a planner for the National School Games (venues, schools, time slots on the board).
 - NAR {draft}: With friends, we solve problems we can see around us.
-- FAC {draft}: locationX — a planner for the National School Games, built with friends (2021)
-- DIA[Friend] {draft}: Wait — what if the teachers just enter the venues first?
+- FAC {draft}: locationX: a planner for the National School Games, built with friends (2021)
+- DIA[Friend] {draft}: Wait, what if the teachers just enter the venues first?
 - SKL {draft}: Python, Algorithms
 - NOTE: Hover the red-marked algorithm for a one-line explanation.
 
@@ -169,7 +161,7 @@ art: sst-nric-validator
 - VISUAL: Reginald at a desk with his laptop; friends sitting and standing around him, shocked that the algorithm can tell a valid NRIC number from a fake one. Dummy numbers only on screen.
 - NAR {draft}: Then I build one on my own, and show them.
 - DIA[Friend] {draft}: Hold on. It knows that one's fake?
-- FAC {draft}: NRIC validator — solo build
+- FAC {draft}: NRIC validator: a solo build
 - SKL {draft}: Python, Algorithms
 - NOTE: [EDIT: year of the NRIC validator, and one sentence on what it checked]
 
@@ -185,8 +177,8 @@ art: sst-ace-drive
 - VISUAL: Two beats. First: working with the Singapore Cancer Society — Reginald and the SCS@ACE team signing up volunteers for Relay For Life 2020. Second: the ACE Recruitment Drive — Reginald on stage giving an assembly talk, recruiting students to become ACE leaders. Students anonymous.
 - NAR {draft}: As an ACE leader, an idea only matters if I can get people to act on it.
 - THO {draft}: The code can be right. The plan still has to work with people.
-- FAC {draft}: Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target
-- FAC {draft}: Overall-in-charge, ACE Recruitment Drive — recruiting and interviewing new student leaders
+- FAC {draft}: Overall-in-charge, SCS@ACE (2020): 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target
+- FAC {draft}: Overall-in-charge, ACE Recruitment Drive: recruiting and interviewing new student leaders
 - SKL {draft}: Leadership, Recruitment
 - PORTAL[testimonial-keith] {draft}: Read Keith Wee's testimonial
 
@@ -206,8 +198,8 @@ data_ref: awards:DrCT International, Bronze
 - THO {draft}: Brute force is too slow. What repeats? Break it into smaller steps.
 - THO {draft}: Bronze. I'll take it.
 - SKL {draft}: Algorithms
-- PORTAL[taekwondo] {draft}: Trained in Taekwondo to a 3rd Dan black belt
-- FAC {draft}: DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)
+- PORTAL[taekwondo] {draft}: Earned my 3rd Dan Black Belt in Taekwondo
+- FAC {draft}: DrCT International (Design Thinking with Robotics and Computational Thinking): Bronze, 2021
 - NOTE: Use a scan of the real certificate, not generated award text.
 
 ---
@@ -231,7 +223,7 @@ data_ref: education:np
 type: PANEL_SPLASH
 art: np-workshop-open
 ```
-- VISUAL: Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: a full lecture theatre — rows of students, like a real lecture — for the module Computing Mathematics.
+- VISUAL: Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: a full lecture theatre for the module Computing Mathematics, rows of students seated, the lecturer working through real content on the screen.
 - NAR {draft}: At Ngee Ann, I start putting the pieces together: code, design, users and deadlines.
 
 #### Panel C04-S01-P02 · Tea Shop to FRATS
@@ -257,7 +249,7 @@ data_ref: projects:pnlp
 ```
 - VISUAL: Reginald teaching an Overflow workshop on Data Structures & Algorithms — hash maps on the slide behind him, students following on laptops.
 - NAR {draft}: Explaining something forces me to learn it twice: once for myself, once for everyone else.
-- FAC {draft}: Head Secretary, Overflow · 16 workshops taught
+- FAC {draft}: Head Secretary of Overflow, 16 workshops taught
 - SKL {draft}: Teaching, Algorithms
 - PORTAL[overflow] {draft}: Led workshops and helped build Panel Party
 
@@ -291,7 +283,7 @@ art: np-jpm-call
 - VISUAL: Reginald at his home computer desk. The room drains to grey; only the notification on his phone (a Google Pixel 8) is red.
 - SFX {draft}: RING
 - THO {draft}: Wait. Is this the call I think it is?
-- DIA[Caller] {edit}: Hi Reginald — I'm calling from J.P. Morgan about your internship application.
+- DIA[Caller] {edit}: Hi Reginald, I'm calling from J.P. Morgan about your internship application.
 - NOTE: Dramatised. [EDIT: rough month/year of the call, and how you actually reacted]
 
 #### Panel C04-S05-P02 · The offer
@@ -354,7 +346,7 @@ data_ref: projects:athn
 - VISUAL: Rahul brings Reginald to a desk beside Farhan, a fellow intern. Overlay: an abstract red route from on-premise boxes to cloud shapes — never a real architecture diagram.
 - DIA[Rahul] {draft}: Our project is to move these FX Cash and FX Options workloads from our own servers to AWS.
 - NAR {draft}: The problem isn't just moving work. It's knowing what to move, why, and what the data says.
-- FAC {draft}: Currencies & Emerging Markets · Athena · Corporate & Investment Bank
+- FAC {draft}: Currencies & Emerging Markets, Athena, Corporate & Investment Bank
 - SKL {draft}: AWS, Data Analytics
 
 ## Story C05B · The hard stretch
@@ -392,7 +384,7 @@ art: jpm-grafana-update
 ```
 - VISUAL: Left: a Grafana dashboard on a big wall screen — a line chart, a bar graph, a treemap and a pie chart, painted into the art with synthetic values — as a coworker asks Reginald how he syncs the database with all the widgets. Right: Reginald presenting migration progress on a high-level stage board.
 - DIA[Coworker] {draft}: How are you syncing the database with all these widgets?
-- NAR {draft}: Eventually I stop only asking questions. People start asking me how to see the data — and the next challenge is explaining it so they can decide.
+- NAR {draft}: Eventually I stop only asking questions. People start asking me how to see the data, and the next challenge is explaining it so they can decide.
 - SKL {draft}: Data Visualisation, SQL, InfluxDB
 - NOTE: The dashboard widgets are generated as part of the image (your request), so changing them means regenerating this plate.
 
@@ -478,8 +470,8 @@ data_ref: education:np
 ```
 - VISUAL: Ngee Ann Polytechnic graduation ceremony, May 2025. Reginald in a graduation gown, on stage, receiving his certificate. An awards button opens a pop-up list.
 - NAR {draft}: A few weeks after the internship ends, I'm back at Ngee Ann for one last walk across a stage.
-- FAC {draft}: Diploma in Information Technology · Ngee Ann Polytechnic · May 2025
-- MODAL[Awards I received] {draft}: Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prize: Computing Mathematics (2022) · Module Prize: Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)
+- FAC {draft}: Diploma in Information Technology, Ngee Ann Polytechnic, May 2025
+- MODAL[Awards I received] {draft}: Ngee Ann Scholarship (2022–2024) | Director's List (2022, 2023) | 2nd Most Outstanding Performance (2022) | Module Prize: Computing Mathematics (2022) | Module Prize: Design Principles (2022) | Edusave Certificate of Academic Achievement (2023, 2025)
 - PORTAL[testimonial-dimuthu] {draft}: Read Dimuthu Makawita's testimonial
 - PORTAL[testimonial-victor] {draft}: Read Victor Lum's testimonial
 - NOTE: Placed here because graduation (May 2025) comes after the internship (Apr 2024 – Mar 2025), and it keeps the approved offer-call → CapitaSpring cut intact. Move the whole scene block if you'd rather it close the NP chapter.
@@ -511,7 +503,7 @@ art: guards-bmt
 - THO {draft}: The parade square is hotter than the sun.
 - THO {draft}: Breathe. Front sight. Squeeze.
 - THO {draft}: Why am I this tired?
-- SFX {draft}: KOFF
+- SFX {draft}: COUGH
 - NAR {draft}: I think I know the shape of the next chapter. Then my health changes the plan.
 - SKL {draft}: Resilience
 
@@ -529,18 +521,27 @@ art: guards-pneumonia-transition
 
 ### Scene C06-S02 · Picking up the camera
 
-#### Panel C06-S02-P01 · First frame
+#### Panel C06-S02-P01 · You're our photographer
 ```story
 type: PANEL_STANDARD
 art: guards-first-camera
 ```
-- VISUAL: Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a Sony A7S and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.
+- VISUAL: An army office. Reginald is told he's going to be the photographer.
 - DIA[Officer] {draft}: You're going to be our photographer.
 - THO {draft}: A photographer? Me?
+
+#### Panel C06-S02-P02 · Through the viewfinder
+```story
+type: PANEL_SPLASH
+art: guards-viewfinder
+size: page
+interaction: viewfinder
+```
+- VISUAL: A page-sized view through the viewfinder of his Sony A7S: a monochrome scene snaps into a deliberate composition with a narrow red focus guide. The viewfinder drifts slightly with the cursor, as if you're looking through the screen yourself.
 - NAR {draft}: A camera changes what I pay attention to. Suddenly the story is in the framing.
 - SKL {draft}: Photography, Lightroom, Photoshop
 - PORTAL[army-photography] {draft}: See my favourite photos from behind the camera
-- NOTE: Easter egg — the portal sits on the viewfinder.
+- NOTE: Easter egg: the portal sits on the viewfinder.
 
 ### Scene C06-S03 · Media team and AI
 ```story
@@ -556,7 +557,7 @@ portal: [testimonial-yap]   # pending letter: the arc stays hidden until it arri
 - VISUAL: Wide split scene: a planning meeting with Yap Shi Hao (Head of Manpower, Guards Formation), then Reginald directing his media team's coverage of a parade.
 - DIA[Yap Shi Hao] {draft}: What do we need from the team for the parade?
 - NAR {draft}: The role grows from taking pictures to helping a team of nine deliver them.
-- FAC {draft}: Team Manager, Media & Design · team of 9 · Guards HQ social accounts · Recruitment Board
+- FAC {draft}: Team Manager, Media & Design, leading a team of 9, running Guards HQ's social accounts, Recruitment Board
 - SKL {draft}: Team management, Project Management
 - PORTAL[guards-media] {draft}: Led media coverage for Guards HQ
 
@@ -568,7 +569,7 @@ data_ref: projects:grds
 ```
 - VISUAL: Illustrative diagram — caption drafting, event admin and daily-task automation, AI workshops, and a chatbot for Guards combatants. Labelled "illustrative workflow".
 - NAR {draft}: I also start looking for repetitive work we can make less repetitive.
-- FAC {draft}: Guards AI Task Force · chatbot for combatants (in progress)
+- FAC {draft}: Guards AI Task Force: a chatbot for combatants (in progress)
 - SKL {draft}: Claude, Gemini
 - PORTAL[guards-ai] {draft}: Built AI workflows for the Guards AI Task Force
 
@@ -616,7 +617,7 @@ arc: trading-nebius
 skills: [Technical Analysis, Fundamental Analysis]
 ```
 - VISUAL: Reginald on his phone (a Google Pixel 10 Pro), analysing a stock.
-- SUB {draft}: I've traded since 2024. In NS I go deeper — documenting what I think will happen, and what actually does.
+- SUB {draft}: I've traded since 2024. In NS I go deeper, documenting what I think will happen, and what actually does.
 - PORTAL {draft}: Developed a high-volatility strategy around Nebius
 
 ##### Item guards-life-building
@@ -627,7 +628,7 @@ arc: imperium
 skills: [Python, MCPs, Trade Automation]
 ```
 - VISUAL: Reginald at his desktop at night, working on his tools.
-- SUB {draft}: I build an automated trading workflow — and start on Imperium and Market City, both still in progress.
+- SUB {draft}: I build an automated trading workflow and start on Imperium and Market City, both still in progress.
 - PORTAL {draft}: Built an automated trading workflow
 
 ##### Item guards-life-discipline
@@ -637,7 +638,7 @@ art: guards-card-discipline
 arc: guards-life
 ```
 - VISUAL: Cover: a close-up of a card spring — cards arcing between two hands.
-- SUB {draft}: Back to cardistry after a five-year break — and 60 kg to 75 kg at the gym in 12 months.
+- SUB {draft}: Back to cardistry after a five-year break, and 60 kg to 75 kg at the gym in 12 months.
 - PORTAL {draft}: Picked my hobbies back up
 
 ---
@@ -675,7 +676,7 @@ art: registudio-first-call
 ```
 - VISUAL: Generic video-call UI; Reginald listening more than talking. Client anonymous.
 - NAR {draft}: It isn't the code that gets me the first chance. I have to make somebody confident I understand their problem.
-- FAC {edit}: First client secured — [EDIT: month/year]
+- FAC {edit}: First client secured: [EDIT: month/year]
 - SKL {draft}: Client discovery, Pitching
 
 ## Story C07B · A pricing lesson
@@ -762,28 +763,28 @@ art: future-bench
 ```story
 type: PANEL_STANDARD
 art: future-glimpses
+layout: grid2
 ```
 - VISUAL: Four imagined glimpses. (1) Walking through Hyde Park, London — living there. (2) A large hall: Reginald in graduation attire receiving a degree as people clap, seen from an audience member's seat, his name on the screen; no school name anywhere. (3) As a managing director at the head of a table, presenting to a meeting, seen from the far end. (4) Under aurora skies in Finland, glass igloos glowing behind him.
 - NAR {draft}: From a classroom in Clementi to a trading desk at CapitaSpring, every chapter so far has been practice for the next one.
 - NAR {draft}: I imagine mornings in London, crossing Hyde Park on the way to class.
 - NAR {draft}: I imagine my name on the screen of a great hall, and the applause after the years of work.
-- NAR {draft}: I imagine leading the room as a managing director — answering the kind of questions I used to ask.
+- NAR {draft}: I imagine leading the room as a managing director, answering the kind of questions I used to ask.
 - NAR {draft}: And I imagine standing under the aurora in Finland, counting the places the work has taken me.
 - THO {draft}: From Singapore to the Arctic Circle. Not bad.
-- FAC {approved}: A future I'm working toward — not a record of what's happened.
+- FAC {approved}: A future I'm working toward, not a record of what's happened.
 
 ### Scene C08-S03 · The fade
 
-#### Panel C08-S03-P01 · Thank you for reading
+#### Panel C08-S03-P01 · The park
 ```story
 type: PANEL_SPLASH
 art: future-fade
-interaction: cta-links
+size: page
 ```
-- VISUAL: Old Reginald lets out a satisfied breath; camera pulls back; colour fades to black.
+- VISUAL: A page-sized wide shot from behind: the older, imagined Reginald sits small on a park bench, his back to us, looking out over a large park at sunset. The scenery fills the page; he takes up very little of it. Colour slowly fades to black as you scroll into the footer.
 - NAR {draft}: For now, the next page is still being written.
-- FAC {approved}: THANK YOU FOR READING.
-- NOTE: Footer (code, from src/data/identity.json): email address with a copy button · LinkedIn · GitHub · CV (opens the PDF) · a prompt to try the Tech and Life modes too.
+- NOTE: The footer follows as its own section (Thank you for reading, contact links). The old "THANK YOU FOR READING." fact line moved into the footer.
 
 ---
 ---
@@ -824,7 +825,7 @@ art: arc-frats-build
 type: PANEL_STANDARD
 art: arc-frats-failure
 ```
-- NAR {edit}: [EDIT: one real technical problem — lighting, accuracy, data, performance or privacy — and how you handled it]
+- NAR {edit}: [EDIT: one real technical problem (lighting, accuracy, data, performance or privacy) and how you handled it]
 
 ### Scene A-FR-S03 · Demo and outcome
 
@@ -861,7 +862,7 @@ art: arc-overflow-planning
 ```
 - VISUAL: Lesson plans, attendee lists, a room being set up.
 - NAR {draft}: As Head Secretary, half the job happens before anyone walks into the room.
-- FAC {draft}: 16 workshops · Vue.js · DSA bootcamp · Portfolio with Figma & Web Dev
+- FAC {draft}: 16 workshops, including Vue.js, a DSA bootcamp, and Portfolio with Figma & Web Dev
 
 ### Scene A-OV-S02 · Open House
 
@@ -947,7 +948,7 @@ art: arc-nebius-price-path
 interaction: illustrative-chart
 ```
 - VISUAL: Illustrative price path labelled "illustrative" with two red markers: entry and exit.
-- FAC {edit}: Nebius (NBIS) — entered at about $90, exited at about $299 [EDIT: entry and exit month/year; confirm ticker]
+- FAC {edit}: Nebius (NBIS): entered at about $90, exited at about $299 [EDIT: entry and exit month/year; confirm ticker]
 - NAR {draft}: Holding through the volatility is the hard part. The plan has to be written down before the price moves.
 - NOTE: No investment advice, no portfolio size or P&L.
 
@@ -958,7 +959,7 @@ interaction: illustrative-chart
 type: PANEL_STANDARD
 art: arc-nebius-lessons
 ```
-- NAR {edit}: [EDIT: one real lesson — a changed thesis or a call you got wrong]
+- NAR {edit}: [EDIT: one real lesson: a changed thesis or a call you got wrong]
 
 ---
 
@@ -1060,7 +1061,7 @@ type: PANEL_STANDARD
 art: arc-guards-media-brief
 ```
 - NAR {draft}: Nine people, one event, and a shot list that has to survive contact with reality.
-- FAC {draft}: Team of 9 · media and design for army exercises and events · Guards HQ Facebook and Instagram
+- FAC {draft}: A team of 9 covering media and design for army exercises and events, plus Guards HQ's Facebook and Instagram
 
 #### Panel A-GM-S01-P02 · Coverage
 ```story
@@ -1098,7 +1099,7 @@ art: arc-guards-ai-workflows
 type: PANEL_STANDARD
 art: arc-guards-ai-chatbot
 ```
-- FAC {draft}: An army chatbot for Guards combatants — in progress.
+- FAC {draft}: An army chatbot for Guards combatants, in progress.
 - NAR {draft}: The goal isn't a clever demo. It's something a soldier actually uses.
 
 ---
@@ -1241,7 +1242,7 @@ art: arc-jpm-retrieval-problem
 type: PANEL_EVIDENCE
 art: arc-jpm-retrieval-result
 ```
-- NAR {edit}: [EDIT: the change you made — e.g. parallelising, caching, a better query]
+- NAR {edit}: [EDIT: the change you made, e.g. parallelising, caching, a better query]
 - FAC {draft}: ~4 hours → ~30 seconds
 - SKL {draft}: Python, Parallel Computing
 
@@ -1322,7 +1323,7 @@ art: arc-jpm-multilob
 kind: achievement
 parent: C03-S03-P01
 title: TAEKWONDO
-portal: Trained in Taekwondo to a 3rd Dan black belt
+portal: Earned my 3rd Dan Black Belt in Taekwondo
 ```
 
 ## Story A-TKD · From podiums to 3rd Dan
@@ -1336,7 +1337,7 @@ art: arc-taekwondo-mat
 ```
 - VISUAL: A competition mat under hall lights; teenage Reginald in his dobok mid-kick, a referee's arm raised.
 - NAR {draft}: Before I write my first line of Python, I learn what it takes to keep getting up.
-- FAC {draft}: First Place, Singapore National Games (2018) · Second Place, Singapore Youth Olympic Festival (2018)
+- FAC {draft}: First Place, Singapore National Games (2018); Second Place, Singapore Youth Olympic Festival (2018)
 - SKL {draft}: Discipline
 
 ### Scene A-TKD-S02 · Colours
@@ -1347,7 +1348,7 @@ type: PANEL_STANDARD
 art: arc-taekwondo-colours
 ```
 - VISUAL: Two beats: a second-place podium, medal in hand; then the Colours Award certificate.
-- FAC {draft}: Second Place, Singapore National Taekwondo Championships and NSG Championships (2019) · Colours Award, Singapore School Sports Council (2019)
+- FAC {draft}: Second Place, Singapore National Taekwondo Championships and NSG Championships (2019); Colours Award, Singapore School Sports Council (2019)
 - NAR {draft}: Second place twice in a year teaches me more than winning would have.
 
 ### Scene A-TKD-S03 · Third Dan
@@ -1358,7 +1359,7 @@ type: PANEL_SPLASH
 art: arc-taekwondo-third-dan
 ```
 - VISUAL: Reginald tying a black belt embroidered with three bars; a grading hall behind him.
-- FAC {edit}: 3rd Dan black belt — [EDIT: year and grading body]
+- FAC {edit}: 3rd Dan black belt: [EDIT: year and grading body]
 - NAR {edit}: [EDIT: what reaching 3rd Dan meant to you]
 
 ---
@@ -1366,7 +1367,7 @@ art: arc-taekwondo-third-dan
 # Arc army-photography · Through my viewfinder
 ```story
 kind: gallery
-parent: C06-S02-P01
+parent: C06-S02-P02
 title: THROUGH MY VIEWFINDER
 portal: See my favourite photos from behind the camera
 ```
@@ -1502,7 +1503,7 @@ type: PANEL_STANDARD
 art: arc-testimonial-victor-advisor
 ```
 - VISUAL: An NP ICT corridor or consultation room; NP-age Reginald with his advisor, a stack of workshop slides between them.
-- NAR {draft}: For three years, one advisor keeps track of the whole picture — the internship, the workshops, the rest.
+- NAR {draft}: For three years, one advisor keeps track of the whole picture: the internship, the workshops, the rest.
 
 ### Scene A-TV-S02 · The letter
 
@@ -1551,7 +1552,7 @@ art: arc-testimonial-rahul-handover
 kind: testimonial
 parent: C06-S03-P01
 title: A LETTER FROM YAP SHI HAO
-portal: Coming soon — a testimonial from Guards Formation
+portal: Coming soon: a testimonial from Guards Formation
 letter: yap-shi-hao
 status: hold
 ```
@@ -1567,5 +1568,5 @@ art: arc-testimonial-yap-teaser
 status: hold
 ```
 - VISUAL: Concept only — 2027 parade square, Singapore flag, Reginald in uniform, Yap Shi Hao (Head of Manpower, Guards Formation) nearby. Shown as a "coming soon" teaser; no letter handed over.
-- FAC {draft}: Testimonial pending — coming in 2027.
+- FAC {draft}: Testimonial pending, coming in 2027.
 - NOTE: ORD (2027) hasn't happened. Stays `hold` until the real letter arrives.

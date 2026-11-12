@@ -10,20 +10,17 @@
 |---|---|---|---|---|---|
 | `C01-S01-P02` | Narration |  | If you ask what I'm doing, the answer changes with the hour. | On the art | edit |
 
-## Chapter `present` · WHAT I'M DOING NOW
+## Chapter `present` · PRESENT DAY
 
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
-| `present-trading` | Card subtitle |  | Trading since 2024 — now a disciplined process for volatile, AI-linked equities: research, risk decisions and review. | On the art | draft |
-| `present-trading` | Narration |  | At the market, I have to decide what the evidence is actually telling me. | On the art | draft |
+| `present-trading` | Card subtitle |  | Trading since 2024, now a disciplined process for volatile, AI-linked equities: research, risk decisions and review. | On the art | draft |
 | `present-trading` | Button → side story | trading-nebius | Developed a high-volatility trading strategy | On the card | draft |
-| `present-registudio` | Card subtitle |  | Building a web-services business — finding the right clients, defining an offer, learning to price and deliver. | On the art | draft |
-| `present-registudio` | Narration |  | When it's my own business, a finished site is only part of the work. | On the art | draft |
+| `present-registudio` | Card subtitle |  | Building a web-services business: finding the right clients, defining an offer, learning to price and deliver. | On the art | draft |
 | `present-registudio` | Button → side story | registudio-business | Built a web-services business from the ground up | On the card | draft |
-| `present-ns` | Card subtitle |  | Team Manager, Media & Design at Guards HQ — leading a team of 9, and on the AI Task Force. | On the art | draft |
-| `present-ns` | Narration |  | And there's a part of my day that doesn't run on my own schedule. | On the art | draft |
+| `present-ns` | Card subtitle |  | Team Manager, Media & Design at Guards HQ, leading a team of 9 and serving on the AI Task Force. | On the art | draft |
 | `present-ns` | Button → side story | guards-media | Led a media team of 9 at Guards HQ | On the card | draft |
-| `C02-S01-P04` | Narration |  | None of this begins here. To explain how I got here, I have to go back. | On the art | draft |
+| `C02-S01-P04` | Narration |  | None of this begins here. To explain how I got here, I have to go back. | Under the panel | draft |
 
 ## Chapter `sst` · SCHOOL OF SCIENCE & TECHNOLOGY
 
@@ -34,17 +31,17 @@
 | `C03-S01-P01` | Skill chips |  | Python, Pandas | Under the panel | draft |
 | `C03-S01-P01` | Button → side story | testimonial-jovita | Read Jovita Tang's testimonial | Under the panel | draft |
 | `C03-S01-P02` | Narration |  | With friends, we solve problems we can see around us. | On the art | draft |
-| `C03-S01-P02` | Fact box |  | locationX — a planner for the National School Games, built with friends (2021) | On the art | draft |
-| `C03-S01-P02` | Dialogue | Friend | Wait — what if the teachers just enter the venues first? | On the art | draft |
+| `C03-S01-P02` | Fact box |  | locationX: a planner for the National School Games, built with friends (2021) | On the art | draft |
+| `C03-S01-P02` | Dialogue | Friend | Wait, what if the teachers just enter the venues first? | On the art | draft |
 | `C03-S01-P02` | Skill chips |  | Python, Algorithms | Under the panel | draft |
 | `C03-S05-P01` | Narration |  | Then I build one on my own, and show them. | On the art | draft |
 | `C03-S05-P01` | Dialogue | Friend | Hold on. It knows that one's fake? | On the art | draft |
-| `C03-S05-P01` | Fact box |  | NRIC validator — solo build | On the art | draft |
+| `C03-S05-P01` | Fact box |  | NRIC validator: a solo build | On the art | draft |
 | `C03-S05-P01` | Skill chips |  | Python, Algorithms | Under the panel | draft |
 | `C03-S02-P01` | Narration |  | As an ACE leader, an idea only matters if I can get people to act on it. | On the art | draft |
 | `C03-S02-P01` | Thought |  | The code can be right. The plan still has to work with people. | On the art | draft |
-| `C03-S02-P01` | Fact box |  | Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target | On the art | draft |
-| `C03-S02-P01` | Fact box |  | Overall-in-charge, ACE Recruitment Drive — recruiting and interviewing new student leaders | On the art | draft |
+| `C03-S02-P01` | Fact box |  | Overall-in-charge, SCS@ACE (2020): 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target | On the art | draft |
+| `C03-S02-P01` | Fact box |  | Overall-in-charge, ACE Recruitment Drive: recruiting and interviewing new student leaders | On the art | draft |
 | `C03-S02-P01` | Skill chips |  | Leadership, Recruitment | Under the panel | draft |
 | `C03-S02-P01` | Button → side story | testimonial-keith | Read Keith Wee's testimonial | Under the panel | draft |
 | `C03-S03-P01` | Narration |  | Some challenges are quieter. A screen, a clock, and a question I don't know yet. | On the art | draft |
@@ -52,8 +49,8 @@
 | `C03-S03-P01` | Thought |  | Brute force is too slow. What repeats? Break it into smaller steps. | On the art | draft |
 | `C03-S03-P01` | Thought |  | Bronze. I'll take it. | On the art | draft |
 | `C03-S03-P01` | Skill chips |  | Algorithms | Under the panel | draft |
-| `C03-S03-P01` | Button → side story | taekwondo | Trained in Taekwondo to a 3rd Dan black belt | Under the panel | draft |
-| `C03-S03-P01` | Fact box |  | DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021) | On the art | draft |
+| `C03-S03-P01` | Button → side story | taekwondo | Earned my 3rd Dan Black Belt in Taekwondo | Under the panel | draft |
+| `C03-S03-P01` | Fact box |  | DrCT International (Design Thinking with Robotics and Computational Thinking): Bronze, 2021 | On the art | draft |
 
 ## Chapter `np` · NGEE ANN POLYTECHNIC
 
@@ -64,7 +61,7 @@
 | `C04-S01-P02` | Skill chips |  | Web Development, Computer Vision | On the art | draft |
 | `C04-S01-P02` | Button → side story | frats | Built a facial-recognition attendance system with AIDC | On the art | draft |
 | `C04-S02-P01` | Narration |  | Explaining something forces me to learn it twice: once for myself, once for everyone else. | On the art | draft |
-| `C04-S02-P01` | Fact box |  | Head Secretary, Overflow · 16 workshops taught | On the art | draft |
+| `C04-S02-P01` | Fact box |  | Head Secretary of Overflow, 16 workshops taught | On the art | draft |
 | `C04-S02-P01` | Skill chips |  | Teaching, Algorithms | On the art | draft |
 | `C04-S02-P01` | Button → side story | overflow | Led workshops and helped build Panel Party | On the art | draft |
 | `C04-S03-P01` | Narration |  | Some lessons aren't about technology at all. They're about being patient enough to make something understandable. | On the art | draft |
@@ -72,7 +69,7 @@
 | `C04-S03-P01` | Button → side story | tya | Tutored and mentored children at Touch Young Arrows | On the art | draft |
 | `C04-S05-P01` | Sound effect |  | RING | On the art | draft |
 | `C04-S05-P01` | Thought |  | Wait. Is this the call I think it is? | On the art | draft |
-| `C04-S05-P01` | Dialogue | Caller | Hi Reginald — I'm calling from J.P. Morgan about your internship application. | On the art | edit |
+| `C04-S05-P01` | Dialogue | Caller | Hi Reginald, I'm calling from J.P. Morgan about your internship application. | On the art | edit |
 | `C04-S05-P02` | Dialogue | Caller | We'd like to offer you the internship. | On the art | draft |
 | `C04-S05-P02` | Narration |  | Then one call changes what the next year looks like. | On the art | draft |
 
@@ -87,14 +84,14 @@
 | `C05-S02-P01` | Skill chips |  | Communication | On the art | draft |
 | `C05-S03-P01` | Dialogue | Rahul | Our project is to move these FX Cash and FX Options workloads from our own servers to AWS. | On the art | draft |
 | `C05-S03-P01` | Narration |  | The problem isn't just moving work. It's knowing what to move, why, and what the data says. | On the art | draft |
-| `C05-S03-P01` | Fact box |  | Currencies & Emerging Markets · Athena · Corporate & Investment Bank | Under the panel | draft |
+| `C05-S03-P01` | Fact box |  | Currencies & Emerging Markets, Athena, Corporate & Investment Bank | Under the panel | draft |
 | `C05-S03-P01` | Skill chips |  | AWS, Data Analytics | Under the panel | draft |
 | `C05-S04-P01` | Narration |  | The work takes longer than I expect. Some nights I keep looking at the same problem from a different angle. | On the art | draft |
 | `C05-S04-P02` | Thought |  | Fourth sixty-hour week in a row. No rest. | On the art | draft |
 | `C05-S04-P02` | Dialogue | Reginald | Lock in. I can do this. | On the art | draft |
 | `C05-S04-P02` | Skill chips |  | Problem decomposition, Persistence | On the art | draft |
 | `C05-S05-P01` | Dialogue | Coworker | How are you syncing the database with all these widgets? | On the art | draft |
-| `C05-S05-P01` | Narration |  | Eventually I stop only asking questions. People start asking me how to see the data — and the next challenge is explaining it so they can decide. | On the art | draft |
+| `C05-S05-P01` | Narration |  | Eventually I stop only asking questions. People start asking me how to see the data, and the next challenge is explaining it so they can decide. | On the art | draft |
 | `C05-S05-P01` | Skill chips |  | Data Visualisation, SQL, InfluxDB | On the art | draft |
 | `C05-S06-P01` | Narration |  | A year of questions becomes a report I have to stand behind. | On the art | draft |
 | `C05-S06-P01` | Dialogue | Reginald | I learnt to break a big problem into steps, and to make data clear enough for people to decide. | On the art | draft |
@@ -111,8 +108,8 @@
 | `ms-multilob` | Card subtitle |  | My tool was adopted across multiple lines of business; I supported and coordinated its rollout. | On the art | draft |
 | `ms-multilob` | Button → side story | jpm-multilob | Supported a multi-line-of-business rollout | On the card | draft |
 | `C05-S09-P01` | Narration |  | A few weeks after the internship ends, I'm back at Ngee Ann for one last walk across a stage. | On the art | draft |
-| `C05-S09-P01` | Fact box |  | Diploma in Information Technology · Ngee Ann Polytechnic · May 2025 | On the art | draft |
-| `C05-S09-P01` | Button → pop-up list | Awards I received | Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prize: Computing Mathematics (2022) · Module Prize: Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025) | On the art | draft |
+| `C05-S09-P01` | Fact box |  | Diploma in Information Technology, Ngee Ann Polytechnic, May 2025 | On the art | draft |
+| `C05-S09-P01` | Button → pop-up list | Awards I received | Ngee Ann Scholarship (2022–2024) \| Director's List (2022, 2023) \| 2nd Most Outstanding Performance (2022) \| Module Prize: Computing Mathematics (2022) \| Module Prize: Design Principles (2022) \| Edusave Certificate of Academic Achievement (2023, 2025) | On the art | draft |
 | `C05-S09-P01` | Button → side story | testimonial-dimuthu | Read Dimuthu Makawita's testimonial | On the art | draft |
 | `C05-S09-P01` | Button → side story | testimonial-victor | Read Victor Lum's testimonial | On the art | draft |
 
@@ -125,7 +122,7 @@
 | `C06-S01-P01` | Thought |  | The parade square is hotter than the sun. | On the art | draft |
 | `C06-S01-P01` | Thought |  | Breathe. Front sight. Squeeze. | On the art | draft |
 | `C06-S01-P01` | Thought |  | Why am I this tired? | On the art | draft |
-| `C06-S01-P01` | Sound effect |  | KOFF | On the art | draft |
+| `C06-S01-P01` | Sound effect |  | COUGH | On the art | draft |
 | `C06-S01-P01` | Narration |  | I think I know the shape of the next chapter. Then my health changes the plan. | On the art | draft |
 | `C06-S01-P01` | Skill chips |  | Resilience | Under the panel | draft |
 | `C06-S01-P02` | Dialogue | Doctor | It's pneumonia. You're out of training. | On the art | draft |
@@ -133,16 +130,16 @@
 | `C06-S01-P02` | Fact box |  | Posted to HQ Guards | On the art | draft |
 | `C06-S02-P01` | Dialogue | Officer | You're going to be our photographer. | On the art | draft |
 | `C06-S02-P01` | Thought |  | A photographer? Me? | On the art | draft |
-| `C06-S02-P01` | Narration |  | A camera changes what I pay attention to. Suddenly the story is in the framing. | On the art | draft |
-| `C06-S02-P01` | Skill chips |  | Photography, Lightroom, Photoshop | On the art | draft |
-| `C06-S02-P01` | Button → side story | army-photography | See my favourite photos from behind the camera | On the art | draft |
+| `C06-S02-P02` | Narration |  | A camera changes what I pay attention to. Suddenly the story is in the framing. | On the art | draft |
+| `C06-S02-P02` | Skill chips |  | Photography, Lightroom, Photoshop | On the art | draft |
+| `C06-S02-P02` | Button → side story | army-photography | See my favourite photos from behind the camera | On the art | draft |
 | `C06-S03-P01` | Dialogue | Yap Shi Hao | What do we need from the team for the parade? | On the art | draft |
 | `C06-S03-P01` | Narration |  | The role grows from taking pictures to helping a team of nine deliver them. | On the art | draft |
-| `C06-S03-P01` | Fact box |  | Team Manager, Media & Design · team of 9 · Guards HQ social accounts · Recruitment Board | On the art | draft |
+| `C06-S03-P01` | Fact box |  | Team Manager, Media & Design, leading a team of 9, running Guards HQ's social accounts, Recruitment Board | On the art | draft |
 | `C06-S03-P01` | Skill chips |  | Team management, Project Management | Under the panel | draft |
 | `C06-S03-P01` | Button → side story | guards-media | Led media coverage for Guards HQ | Under the panel | draft |
 | `C06-S03-P02` | Narration |  | I also start looking for repetitive work we can make less repetitive. | On the art | draft |
-| `C06-S03-P02` | Fact box |  | Guards AI Task Force · chatbot for combatants (in progress) | On the art | draft |
+| `C06-S03-P02` | Fact box |  | Guards AI Task Force: a chatbot for combatants (in progress) | On the art | draft |
 | `C06-S03-P02` | Skill chips |  | Claude, Gemini | Under the panel | draft |
 | `C06-S03-P02` | Button → side story | guards-ai | Built AI workflows for the Guards AI Task Force | Under the panel | draft |
 | `C06-S04-P01` | Narration |  | The schedule changes. What I do with the hours around it changes too. | On the art | draft |
@@ -151,11 +148,11 @@
 | `guards-life-media` | Button → side story | guards-media | Led media coverage for Guards HQ | On the card | draft |
 | `guards-life-ai` | Card subtitle |  | Building a chatbot for Guards combatants, one prompt and one test at a time. | On the art | draft |
 | `guards-life-ai` | Button → side story | guards-ai | Built AI workflows for the Guards AI Task Force | On the card | draft |
-| `guards-life-trading` | Card subtitle |  | I've traded since 2024. In NS I go deeper — documenting what I think will happen, and what actually does. | On the art | draft |
+| `guards-life-trading` | Card subtitle |  | I've traded since 2024. In NS I go deeper, documenting what I think will happen, and what actually does. | On the art | draft |
 | `guards-life-trading` | Button → side story | trading-nebius | Developed a high-volatility strategy around Nebius | On the card | draft |
-| `guards-life-building` | Card subtitle |  | I build an automated trading workflow — and start on Imperium and Market City, both still in progress. | On the art | draft |
+| `guards-life-building` | Card subtitle |  | I build an automated trading workflow and start on Imperium and Market City, both still in progress. | On the art | draft |
 | `guards-life-building` | Button → side story | imperium | Built an automated trading workflow | On the card | draft |
-| `guards-life-discipline` | Card subtitle |  | Back to cardistry after a five-year break — and 60 kg to 75 kg at the gym in 12 months. | On the art | draft |
+| `guards-life-discipline` | Card subtitle |  | Back to cardistry after a five-year break, and 60 kg to 75 kg at the gym in 12 months. | On the art | draft |
 | `guards-life-discipline` | Button → side story | guards-life | Picked my hobbies back up | On the card | draft |
 
 ## Chapter `registudio` · REGISTUDIO
@@ -166,7 +163,7 @@
 | `C07-S01-P01` | Sound effect |  | RING | On the art | draft |
 | `C07-S01-P01` | Dialogue | Friend | I know someone who needs a website. You keen? | On the art | draft |
 | `C07-S02-P01` | Narration |  | It isn't the code that gets me the first chance. I have to make somebody confident I understand their problem. | On the art | draft |
-| `C07-S02-P01` | Fact box |  | First client secured — [EDIT: month/year] | On the art | edit |
+| `C07-S02-P01` | Fact box |  | First client secured: [EDIT: month/year] | On the art | edit |
 | `C07-S02-P01` | Skill chips |  | Client discovery, Pitching | Under the panel | draft |
 | `C07-S03-P01` | Thought |  | Great. I may have priced myself out of my own pitch. | On the art | draft |
 | `C07-S03-P01` | Narration |  | I priced for the market I saw online, not the client in front of me. So I learn to price around value, scope and the people I actually serve. | On the art | draft |
@@ -189,12 +186,11 @@
 | `C08-S02-P01` | Narration |  | From a classroom in Clementi to a trading desk at CapitaSpring, every chapter so far has been practice for the next one. | On the art | draft |
 | `C08-S02-P01` | Narration |  | I imagine mornings in London, crossing Hyde Park on the way to class. | On the art | draft |
 | `C08-S02-P01` | Narration |  | I imagine my name on the screen of a great hall, and the applause after the years of work. | On the art | draft |
-| `C08-S02-P01` | Narration |  | I imagine leading the room as a managing director — answering the kind of questions I used to ask. | On the art | draft |
+| `C08-S02-P01` | Narration |  | I imagine leading the room as a managing director, answering the kind of questions I used to ask. | On the art | draft |
 | `C08-S02-P01` | Narration |  | And I imagine standing under the aurora in Finland, counting the places the work has taken me. | On the art | draft |
 | `C08-S02-P01` | Thought |  | From Singapore to the Arctic Circle. Not bad. | On the art | draft |
-| `C08-S02-P01` | Fact box |  | A future I'm working toward — not a record of what's happened. | On the art | approved |
+| `C08-S02-P01` | Fact box |  | A future I'm working toward, not a record of what's happened. | On the art | approved |
 | `C08-S03-P01` | Narration |  | For now, the next page is still being written. | On the art | draft |
-| `C08-S03-P01` | Fact box |  | THANK YOU FOR READING. | On the art | approved |
 
 ## Arc `frats` · FRATS
 
@@ -202,7 +198,7 @@
 |---|---|---|---|---|---|
 | `A-FR-S01-P01` | Narration |  | We need more than a model that recognises a face. We need a workflow people can actually use. | On the art | draft |
 | `A-FR-S02-P01` | Narration |  | [EDIT: the modules you personally built] | Under the panel | edit |
-| `A-FR-S02-P02` | Narration |  | [EDIT: one real technical problem — lighting, accuracy, data, performance or privacy — and how you handled it] | Under the panel | edit |
+| `A-FR-S02-P02` | Narration |  | [EDIT: one real technical problem (lighting, accuracy, data, performance or privacy) and how you handled it] | Under the panel | edit |
 | `A-FR-S03-P01` | Fact box |  | Delivered to AIDC, a biometrics security company in Indonesia (2024), mentored by an AIDC technical manager. | Under the panel | draft |
 | `A-FR-S03-P01` | Narration |  | [EDIT: result and what you learnt] | Under the panel | edit |
 | `A-FR-S03-P01` | Skill chips |  | Computer vision, Python | Under the panel | draft |
@@ -212,7 +208,7 @@
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
 | `A-OV-S01-P01` | Narration |  | As Head Secretary, half the job happens before anyone walks into the room. | On the art | draft |
-| `A-OV-S01-P01` | Fact box |  | 16 workshops · Vue.js · DSA bootcamp · Portfolio with Figma & Web Dev | On the art | draft |
+| `A-OV-S01-P01` | Fact box |  | 16 workshops, including Vue.js, a DSA bootcamp, and Portfolio with Figma & Web Dev | On the art | draft |
 | `A-OV-S02-P01` | Fact box |  | I built sprite movement and collision detection for the team's game. | On the art | draft |
 | `A-OV-S02-P01` | Narration |  | Technical knowledge gets clearer when I have to teach it. | On the art | draft |
 | `A-OV-S02-P01` | Skill chips |  | JavaScript, Collision detection | Under the panel | draft |
@@ -231,9 +227,9 @@
 |---|---|---|---|---|---|
 | `A-NB-S01-P01` | Narration |  | I've been trading since 2024. Podcasts and research pull me toward a volatile corner of AI infrastructure. | On the art | draft |
 | `A-NB-S02-P01` | Narration |  | [EDIT: your actual entry criteria and risk rules, in 2–3 short lines] | Under the panel | edit |
-| `A-NB-S03-P01` | Fact box |  | Nebius (NBIS) — entered at about $90, exited at about $299 [EDIT: entry and exit month/year; confirm ticker] | Under the panel | edit |
+| `A-NB-S03-P01` | Fact box |  | Nebius (NBIS): entered at about $90, exited at about $299 [EDIT: entry and exit month/year; confirm ticker] | Under the panel | edit |
 | `A-NB-S03-P01` | Narration |  | Holding through the volatility is the hard part. The plan has to be written down before the price moves. | Under the panel | draft |
-| `A-NB-S04-P01` | Narration |  | [EDIT: one real lesson — a changed thesis or a call you got wrong] | Under the panel | edit |
+| `A-NB-S04-P01` | Narration |  | [EDIT: one real lesson: a changed thesis or a call you got wrong] | Under the panel | edit |
 
 ## Arc `imperium` · IMPERIUM
 
@@ -258,7 +254,7 @@
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
 | `A-GM-S01-P01` | Narration |  | Nine people, one event, and a shot list that has to survive contact with reality. | Under the panel | draft |
-| `A-GM-S01-P01` | Fact box |  | Team of 9 · media and design for army exercises and events · Guards HQ Facebook and Instagram | Under the panel | draft |
+| `A-GM-S01-P01` | Fact box |  | A team of 9 covering media and design for army exercises and events, plus Guards HQ's Facebook and Instagram | Under the panel | draft |
 | `A-GM-S01-P02` | Narration |  | [EDIT: one leadership lesson from running the team] | Under the panel | edit |
 
 ## Arc `guards-ai` · AI TASK FORCE
@@ -266,7 +262,7 @@
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
 | `A-GA-S01-P01` | Narration |  | [EDIT: the workflow you're proudest of and what it saved] | Under the panel | edit |
-| `A-GA-S01-P02` | Fact box |  | An army chatbot for Guards combatants — in progress. | Under the panel | draft |
+| `A-GA-S01-P02` | Fact box |  | An army chatbot for Guards combatants, in progress. | Under the panel | draft |
 | `A-GA-S01-P02` | Narration |  | The goal isn't a clever demo. It's something a soldier actually uses. | Under the panel | draft |
 
 ## Arc `guards-life` · DISCIPLINE & CREATIVITY
@@ -300,7 +296,7 @@
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
 | `A-JR-S01-P01` | Narration |  | A retrieval process takes about four hours. [EDIT: what was being retrieved, at a non-confidential level] | Under the panel | edit |
-| `A-JR-S01-P02` | Narration |  | [EDIT: the change you made — e.g. parallelising, caching, a better query] | Under the panel | edit |
+| `A-JR-S01-P02` | Narration |  | [EDIT: the change you made, e.g. parallelising, caching, a better query] | Under the panel | edit |
 | `A-JR-S01-P02` | Fact box |  | ~4 hours → ~30 seconds | Under the panel | draft |
 | `A-JR-S01-P02` | Skill chips |  | Python, Parallel Computing | Under the panel | draft |
 
@@ -330,11 +326,11 @@
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
 | `A-TKD-S01-P01` | Narration |  | Before I write my first line of Python, I learn what it takes to keep getting up. | On the art | draft |
-| `A-TKD-S01-P01` | Fact box |  | First Place, Singapore National Games (2018) · Second Place, Singapore Youth Olympic Festival (2018) | On the art | draft |
+| `A-TKD-S01-P01` | Fact box |  | First Place, Singapore National Games (2018); Second Place, Singapore Youth Olympic Festival (2018) | On the art | draft |
 | `A-TKD-S01-P01` | Skill chips |  | Discipline | On the art | draft |
-| `A-TKD-S02-P01` | Fact box |  | Second Place, Singapore National Taekwondo Championships and NSG Championships (2019) · Colours Award, Singapore School Sports Council (2019) | On the art | draft |
+| `A-TKD-S02-P01` | Fact box |  | Second Place, Singapore National Taekwondo Championships and NSG Championships (2019); Colours Award, Singapore School Sports Council (2019) | On the art | draft |
 | `A-TKD-S02-P01` | Narration |  | Second place twice in a year teaches me more than winning would have. | On the art | draft |
-| `A-TKD-S03-P01` | Fact box |  | 3rd Dan black belt — [EDIT: year and grading body] | Under the panel | edit |
+| `A-TKD-S03-P01` | Fact box |  | 3rd Dan black belt: [EDIT: year and grading body] | Under the panel | edit |
 | `A-TKD-S03-P01` | Narration |  | [EDIT: what reaching 3rd Dan meant to you] | Under the panel | edit |
 
 ## Arc `army-photography` · THROUGH MY VIEWFINDER
@@ -365,7 +361,7 @@
 
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
-| `A-TV-S01-P01` | Narration |  | For three years, one advisor keeps track of the whole picture — the internship, the workshops, the rest. | On the art | draft |
+| `A-TV-S01-P01` | Narration |  | For three years, one advisor keeps track of the whole picture: the internship, the workshops, the rest. | On the art | draft |
 
 ## Arc `testimonial-rahul` · A LETTER FROM RAHUL VARMA
 
@@ -377,4 +373,4 @@
 
 | Panel | Type | Who / target | Text | Desktop position | Status |
 |---|---|---|---|---|---|
-| `A-TY2-S01-P01` | Fact box |  | Testimonial pending — coming in 2027. | On the art | draft |
+| `A-TY2-S01-P01` | Fact box |  | Testimonial pending, coming in 2027. | On the art | draft |

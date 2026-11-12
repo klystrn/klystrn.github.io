@@ -63,4 +63,3 @@ line 52 0 68 100 red code
 arrow 30 50 18 50 "slide"
 arrow 70 50 82 50 "slide"
 cap NAR 34 74 32
-ducky 8 100 14 show=0.55

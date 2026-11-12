@@ -81,9 +81,9 @@
     {
       "kind": "chapter",
       "id": "present",
-      "label": "WHAT I'M DOING NOW",
+      "label": "PRESENT DAY",
       "order": "2",
-      "title": "WHAT I'M DOING NOW",
+      "title": "PRESENT DAY",
       "title_type": "TITLE_CHAPTER",
       "years": "none",
       "category": "none",
@@ -99,7 +99,6 @@
               "kind": "scene",
               "id": "C02-S01",
               "label": "A life in three panels",
-              "storyboard": "approved",
               "status": "draft",
               "panels": [
                 {
@@ -121,10 +120,6 @@
                       "title": "ACTIVE TRADING",
                       "art": "present-trading",
                       "arc": "trading-nebius",
-                      "skills": [
-                        "Markets research",
-                        "Risk management"
-                      ],
                       "status": "draft",
                       "copy": [
                         {
@@ -134,12 +129,7 @@
                         },
                         {
                           "type": "SUB",
-                          "text": "Trading since 2024 — now a disciplined process for volatile, AI-linked equities: research, risk decisions and review.",
-                          "status": "draft"
-                        },
-                        {
-                          "type": "NAR",
-                          "text": "At the market, I have to decide what the evidence is actually telling me.",
+                          "text": "Trading since 2024, now a disciplined process for volatile, AI-linked equities: research, risk decisions and review.",
                           "status": "draft"
                         },
                         {
@@ -156,10 +146,6 @@
                       "title": "RUNNING REGISTUDIO",
                       "art": "present-registudio",
                       "arc": "registudio-business",
-                      "skills": [
-                        "Client discovery",
-                        "Pricing strategy"
-                      ],
                       "status": "draft",
                       "copy": [
                         {
@@ -169,12 +155,7 @@
                         },
                         {
                           "type": "SUB",
-                          "text": "Building a web-services business — finding the right clients, defining an offer, learning to price and deliver.",
-                          "status": "draft"
-                        },
-                        {
-                          "type": "NAR",
-                          "text": "When it's my own business, a finished site is only part of the work.",
+                          "text": "Building a web-services business: finding the right clients, defining an offer, learning to price and deliver.",
                           "status": "draft"
                         },
                         {
@@ -191,10 +172,6 @@
                       "title": "SERVING NS",
                       "art": "present-ns",
                       "arc": "guards-media",
-                      "skills": [
-                        "Team management",
-                        "Visual storytelling"
-                      ],
                       "status": "draft",
                       "copy": [
                         {
@@ -204,12 +181,7 @@
                         },
                         {
                           "type": "SUB",
-                          "text": "Team Manager, Media & Design at Guards HQ — leading a team of 9, and on the AI Task Force.",
-                          "status": "draft"
-                        },
-                        {
-                          "type": "NAR",
-                          "text": "And there's a part of my day that doesn't run on my own schedule.",
+                          "text": "Team Manager, Media & Design at Guards HQ, leading a team of 9 and serving on the AI Task Force.",
                           "status": "draft"
                         },
                         {
@@ -224,14 +196,15 @@
                 {
                   "kind": "panel",
                   "id": "C02-S01-P04",
-                  "label": "Into the past",
-                  "type": "PANEL_TRANSITION",
-                  "art": "present-merge",
+                  "label": "What's next",
+                  "type": "PANEL_SPLASH",
+                  "art": "present-ponder",
+                  "size": "page",
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "The three cards slide together into one notebook/code window; red drains to monochrome as a younger Reginald appears.",
+                      "text": "PLACEHOLDER (awaiting your approval). Reginald in a collared work shirt stands at a floor-to-ceiling window high above the city at dusk, seen from behind at three-quarters, one hand at his chin, pondering the skyline. Calm, professional, ready for what's next. As you scroll on, the colour drains to monochrome for the flashback.",
                       "status": "draft"
                     },
                     {
@@ -333,12 +306,12 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "locationX — a planner for the National School Games, built with friends (2021)",
+                      "text": "locationX: a planner for the National School Games, built with friends (2021)",
                       "status": "draft"
                     },
                     {
                       "type": "DIA",
-                      "text": "Wait — what if the teachers just enter the venues first?",
+                      "text": "Wait, what if the teachers just enter the venues first?",
                       "status": "draft",
                       "speaker": "Friend"
                     },
@@ -383,7 +356,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "NRIC validator — solo build",
+                      "text": "NRIC validator: a solo build",
                       "status": "draft"
                     },
                     {
@@ -437,12 +410,12 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Overall-in-charge, SCS@ACE (2020) — 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target",
+                      "text": "Overall-in-charge, SCS@ACE (2020): 129 volunteers for Relay For Life 2020, nearly 25% of Singapore Cancer Society's national target",
                       "status": "draft"
                     },
                     {
                       "type": "FAC",
-                      "text": "Overall-in-charge, ACE Recruitment Drive — recruiting and interviewing new student leaders",
+                      "text": "Overall-in-charge, ACE Recruitment Drive: recruiting and interviewing new student leaders",
                       "status": "draft"
                     },
                     {
@@ -518,13 +491,13 @@
                     },
                     {
                       "type": "PORTAL",
-                      "text": "Trained in Taekwondo to a 3rd Dan black belt",
+                      "text": "Earned my 3rd Dan Black Belt in Taekwondo",
                       "status": "draft",
                       "speaker": "taekwondo"
                     },
                     {
                       "type": "FAC",
-                      "text": "DrCT International (Design Thinking with Robotics and Computational Thinking) — Bronze (2021)",
+                      "text": "DrCT International (Design Thinking with Robotics and Computational Thinking): Bronze, 2021",
                       "status": "draft"
                     }
                   ]
@@ -570,7 +543,7 @@
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: a full lecture theatre — rows of students, like a real lecture — for the module Computing Mathematics.",
+                      "text": "Two beats that set the chapter. First: Reginald walking into Ngee Ann Polytechnic. Second: a full lecture theatre for the module Computing Mathematics, rows of students seated, the lecturer working through real content on the screen.",
                       "status": "draft"
                     },
                     {
@@ -655,7 +628,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Head Secretary, Overflow · 16 workshops taught",
+                      "text": "Head Secretary of Overflow, 16 workshops taught",
                       "status": "draft"
                     },
                     {
@@ -756,7 +729,7 @@
                     },
                     {
                       "type": "DIA",
-                      "text": "Hi Reginald — I'm calling from J.P. Morgan about your internship application.",
+                      "text": "Hi Reginald, I'm calling from J.P. Morgan about your internship application.",
                       "status": "edit",
                       "speaker": "Caller"
                     }
@@ -920,7 +893,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Currencies & Emerging Markets · Athena · Corporate & Investment Bank",
+                      "text": "Currencies & Emerging Markets, Athena, Corporate & Investment Bank",
                       "status": "draft"
                     },
                     {
@@ -1035,7 +1008,7 @@
                     },
                     {
                       "type": "NAR",
-                      "text": "Eventually I stop only asking questions. People start asking me how to see the data — and the next challenge is explaining it so they can decide.",
+                      "text": "Eventually I stop only asking questions. People start asking me how to see the data, and the next challenge is explaining it so they can decide.",
                       "status": "draft"
                     },
                     {
@@ -1295,12 +1268,12 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Diploma in Information Technology · Ngee Ann Polytechnic · May 2025",
+                      "text": "Diploma in Information Technology, Ngee Ann Polytechnic, May 2025",
                       "status": "draft"
                     },
                     {
                       "type": "MODAL",
-                      "text": "Ngee Ann Scholarship (2022–2024) · Director's List (2022, 2023) · 2nd Most Outstanding Performance (2022) · Module Prize: Computing Mathematics (2022) · Module Prize: Design Principles (2022) · Edusave Certificate of Academic Achievement (2023, 2025)",
+                      "text": "Ngee Ann Scholarship (2022–2024) | Director's List (2022, 2023) | 2nd Most Outstanding Performance (2022) | Module Prize: Computing Mathematics (2022) | Module Prize: Design Principles (2022) | Edusave Certificate of Academic Achievement (2023, 2025)",
                       "status": "draft",
                       "speaker": "Awards I received"
                     },
@@ -1390,7 +1363,7 @@
                     },
                     {
                       "type": "SFX",
-                      "text": "KOFF",
+                      "text": "COUGH",
                       "status": "draft"
                     },
                     {
@@ -1455,17 +1428,14 @@
                 {
                   "kind": "panel",
                   "id": "C06-S02-P01",
-                  "label": "First frame",
+                  "label": "You're our photographer",
                   "type": "PANEL_STANDARD",
                   "art": "guards-first-camera",
-                  "portal": [
-                    "army-photography"
-                  ],
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Two beats. First: an army office — Reginald is told he's going to be a photographer. Second: he picks up a Sony A7S and falls in love with it; through the viewfinder a monochrome scene snaps into a deliberate composition with a narrow red focus guide.",
+                      "text": "An army office. Reginald is told he's going to be the photographer.",
                       "status": "draft"
                     },
                     {
@@ -1477,6 +1447,26 @@
                     {
                       "type": "THO",
                       "text": "A photographer? Me?",
+                      "status": "draft"
+                    }
+                  ]
+                },
+                {
+                  "kind": "panel",
+                  "id": "C06-S02-P02",
+                  "label": "Through the viewfinder",
+                  "type": "PANEL_SPLASH",
+                  "art": "guards-viewfinder",
+                  "size": "page",
+                  "interaction": "viewfinder",
+                  "portal": [
+                    "army-photography"
+                  ],
+                  "status": "draft",
+                  "copy": [
+                    {
+                      "type": "VISUAL",
+                      "text": "A page-sized view through the viewfinder of his Sony A7S: a monochrome scene snaps into a deliberate composition with a narrow red focus guide. The viewfinder drifts slightly with the cursor, as if you're looking through the screen yourself.",
                       "status": "draft"
                     },
                     {
@@ -1536,7 +1526,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Team Manager, Media & Design · team of 9 · Guards HQ social accounts · Recruitment Board",
+                      "text": "Team Manager, Media & Design, leading a team of 9, running Guards HQ's social accounts, Recruitment Board",
                       "status": "draft"
                     },
                     {
@@ -1576,7 +1566,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Guards AI Task Force · chatbot for combatants (in progress)",
+                      "text": "Guards AI Task Force: a chatbot for combatants (in progress)",
                       "status": "draft"
                     },
                     {
@@ -1721,7 +1711,7 @@
                         },
                         {
                           "type": "SUB",
-                          "text": "I've traded since 2024. In NS I go deeper — documenting what I think will happen, and what actually does.",
+                          "text": "I've traded since 2024. In NS I go deeper, documenting what I think will happen, and what actually does.",
                           "status": "draft"
                         },
                         {
@@ -1752,7 +1742,7 @@
                         },
                         {
                           "type": "SUB",
-                          "text": "I build an automated trading workflow — and start on Imperium and Market City, both still in progress.",
+                          "text": "I build an automated trading workflow and start on Imperium and Market City, both still in progress.",
                           "status": "draft"
                         },
                         {
@@ -1778,7 +1768,7 @@
                         },
                         {
                           "type": "SUB",
-                          "text": "Back to cardistry after a five-year break — and 60 kg to 75 kg at the gym in 12 months.",
+                          "text": "Back to cardistry after a five-year break, and 60 kg to 75 kg at the gym in 12 months.",
                           "status": "draft"
                         },
                         {
@@ -1879,7 +1869,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "First client secured — [EDIT: month/year]",
+                      "text": "First client secured: [EDIT: month/year]",
                       "status": "edit"
                     },
                     {
@@ -2129,6 +2119,7 @@
                   "label": "Glimpses",
                   "type": "PANEL_STANDARD",
                   "art": "future-glimpses",
+                  "layout": "grid2",
                   "status": "draft",
                   "copy": [
                     {
@@ -2153,7 +2144,7 @@
                     },
                     {
                       "type": "NAR",
-                      "text": "I imagine leading the room as a managing director — answering the kind of questions I used to ask.",
+                      "text": "I imagine leading the room as a managing director, answering the kind of questions I used to ask.",
                       "status": "draft"
                     },
                     {
@@ -2168,7 +2159,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "A future I'm working toward — not a record of what's happened.",
+                      "text": "A future I'm working toward, not a record of what's happened.",
                       "status": "approved"
                     }
                   ]
@@ -2184,26 +2175,21 @@
                 {
                   "kind": "panel",
                   "id": "C08-S03-P01",
-                  "label": "Thank you for reading",
+                  "label": "The park",
                   "type": "PANEL_SPLASH",
                   "art": "future-fade",
-                  "interaction": "cta-links",
+                  "size": "page",
                   "status": "draft",
                   "copy": [
                     {
                       "type": "VISUAL",
-                      "text": "Old Reginald lets out a satisfied breath; camera pulls back; colour fades to black.",
+                      "text": "A page-sized wide shot from behind: the older, imagined Reginald sits small on a park bench, his back to us, looking out over a large park at sunset. The scenery fills the page; he takes up very little of it. Colour slowly fades to black as you scroll into the footer.",
                       "status": "draft"
                     },
                     {
                       "type": "NAR",
                       "text": "For now, the next page is still being written.",
                       "status": "draft"
-                    },
-                    {
-                      "type": "FAC",
-                      "text": "THANK YOU FOR READING.",
-                      "status": "approved"
                     }
                   ]
                 }
@@ -2296,7 +2282,7 @@
                   "copy": [
                     {
                       "type": "NAR",
-                      "text": "[EDIT: one real technical problem — lighting, accuracy, data, performance or privacy — and how you handled it]",
+                      "text": "[EDIT: one real technical problem (lighting, accuracy, data, performance or privacy) and how you handled it]",
                       "status": "edit"
                     }
                   ]
@@ -2389,7 +2375,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "16 workshops · Vue.js · DSA bootcamp · Portfolio with Figma & Web Dev",
+                      "text": "16 workshops, including Vue.js, a DSA bootcamp, and Portfolio with Figma & Web Dev",
                       "status": "draft"
                     }
                   ]
@@ -2601,7 +2587,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Nebius (NBIS) — entered at about $90, exited at about $299 [EDIT: entry and exit month/year; confirm ticker]",
+                      "text": "Nebius (NBIS): entered at about $90, exited at about $299 [EDIT: entry and exit month/year; confirm ticker]",
                       "status": "edit"
                     },
                     {
@@ -2629,7 +2615,7 @@
                   "copy": [
                     {
                       "type": "NAR",
-                      "text": "[EDIT: one real lesson — a changed thesis or a call you got wrong]",
+                      "text": "[EDIT: one real lesson: a changed thesis or a call you got wrong]",
                       "status": "edit"
                     }
                   ]
@@ -2867,7 +2853,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Team of 9 · media and design for army exercises and events · Guards HQ Facebook and Instagram",
+                      "text": "A team of 9 covering media and design for army exercises and events, plus Guards HQ's Facebook and Instagram",
                       "status": "draft"
                     }
                   ]
@@ -2951,7 +2937,7 @@
                   "copy": [
                     {
                       "type": "FAC",
-                      "text": "An army chatbot for Guards combatants — in progress.",
+                      "text": "An army chatbot for Guards combatants, in progress.",
                       "status": "draft"
                     },
                     {
@@ -3282,7 +3268,7 @@
                   "copy": [
                     {
                       "type": "NAR",
-                      "text": "[EDIT: the change you made — e.g. parallelising, caching, a better query]",
+                      "text": "[EDIT: the change you made, e.g. parallelising, caching, a better query]",
                       "status": "edit"
                     },
                     {
@@ -3462,7 +3448,7 @@
       "label": "Taekwondo",
       "parent": "C03-S03-P01",
       "title": "TAEKWONDO",
-      "portal": "Trained in Taekwondo to a 3rd Dan black belt",
+      "portal": "Earned my 3rd Dan Black Belt in Taekwondo",
       "status": "draft",
       "stories": [
         {
@@ -3497,7 +3483,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "First Place, Singapore National Games (2018) · Second Place, Singapore Youth Olympic Festival (2018)",
+                      "text": "First Place, Singapore National Games (2018); Second Place, Singapore Youth Olympic Festival (2018)",
                       "status": "draft"
                     },
                     {
@@ -3530,7 +3516,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Second Place, Singapore National Taekwondo Championships and NSG Championships (2019) · Colours Award, Singapore School Sports Council (2019)",
+                      "text": "Second Place, Singapore National Taekwondo Championships and NSG Championships (2019); Colours Award, Singapore School Sports Council (2019)",
                       "status": "draft"
                     },
                     {
@@ -3563,7 +3549,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "3rd Dan black belt — [EDIT: year and grading body]",
+                      "text": "3rd Dan black belt: [EDIT: year and grading body]",
                       "status": "edit"
                     },
                     {
@@ -3584,7 +3570,7 @@
       "kind": "gallery",
       "id": "army-photography",
       "label": "Through my viewfinder",
-      "parent": "C06-S02-P01",
+      "parent": "C06-S02-P02",
       "title": "THROUGH MY VIEWFINDER",
       "portal": "See my favourite photos from behind the camera",
       "status": "draft",
@@ -3890,7 +3876,7 @@
                     },
                     {
                       "type": "NAR",
-                      "text": "For three years, one advisor keeps track of the whole picture — the internship, the workshops, the rest.",
+                      "text": "For three years, one advisor keeps track of the whole picture: the internship, the workshops, the rest.",
                       "status": "draft"
                     }
                   ]
@@ -3996,7 +3982,7 @@
       "label": "Yap Shi Hao (coming soon)",
       "parent": "C06-S03-P01",
       "title": "A LETTER FROM YAP SHI HAO",
-      "portal": "Coming soon — a testimonial from Guards Formation",
+      "portal": "Coming soon: a testimonial from Guards Formation",
       "letter": {
         "slug": "yap-shi-hao",
         "name": "Yap Shi Hao",
@@ -4033,7 +4019,7 @@
                     },
                     {
                       "type": "FAC",
-                      "text": "Testimonial pending — coming in 2027.",
+                      "text": "Testimonial pending, coming in 2027.",
                       "status": "draft"
                     }
                   ]

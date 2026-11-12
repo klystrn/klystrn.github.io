@@ -20,6 +20,8 @@ const POSES = {
   sit:     { head: [0.1, -6.7], neck: [0.08, -6.1], hip: [0, -3.2], arms: [[[0.5, -4.6], [1.2, -4.2]], [[0.3, -4.6], [0.9, -4.1]]], legs: [[[1.6, -3.2], [1.6, 0]], [[1.4, -3.1], [1.3, 0]]], seat: true },
   type:    { head: [0.25, -6.7], neck: [0.2, -6.1], hip: [0, -3.2], arms: [[[0.7, -4.8], [1.6, -4.5]], [[0.5, -4.7], [1.4, -4.4]]], legs: [[[1.6, -3.2], [1.6, 0]], [[1.4, -3.1], [1.3, 0]]], seat: true },
   bench:   { head: [-0.1, -6.6], neck: [-0.1, -6], hip: [0, -3.2], arms: [[[0.3, -4.6], [0.9, -3.4]], [[-0.2, -4.6], [0.5, -3.4]]], legs: [[[1.5, -3.2], [1.6, 0]], [[1.3, -3.1], [1.3, 0]]], seat: true },
+  ponder:  { head: [0, -7.5], neck: [0, -6.9], hip: [0, -4], arms: [[[0.55, -5.5], [0.35, -6.95]], [[0.45, -4.9], [-0.2, -5.15]]], legs: [[[0.25, -2], [0.3, 0]], [[-0.25, -2], [-0.3, 0]]] },
+  seated:  { head: [0, -6.7], neck: [0, -6.1], hip: [0, -3.2], arms: [[[0.35, -4.7], [0.4, -3.6]], [[-0.35, -4.7], [-0.4, -3.6]]], legs: [[[0.2, -3.2], [0.2, -3.2]], [[-0.2, -3.2], [-0.2, -3.2]]], seat: true, hair: true },
   slump:   { head: [1.1, -5.4], neck: [0.7, -5.6], hip: [0, -3.2], arms: [[[1.5, -4.4], [1.35, -5.3]], [[1.3, -4.3], [1.05, -5.2]]], legs: [[[1.6, -3.2], [1.6, 0]], [[1.4, -3.1], [1.3, 0]]], seat: true },
 };
 
@@ -39,10 +41,11 @@ function roughRect(g, x, y, w, h, o) {
   roughLine(g, x, y, x + w, y, o); roughLine(g, x + w, y, x + w, y + h, o);
   roughLine(g, x + w, y + h, x, y + h, o); roughLine(g, x, y + h, x, y, o);
 }
+const clean = (s) => String(s ?? '').replace(/\s+·\s+/g, ', ').replace(/\s*—\s*/g, ', ');
 function hand(g, x, y, text, o) {
   const t = el('text', { x, y, fill: o.fill, 'font-family': 'Caveat, cursive', 'font-weight': 700, 'font-size': o.size ?? 26,
     'text-anchor': o.anchor ?? 'start', 'dominant-baseline': o.base ?? 'auto' }, g);
-  t.textContent = text; return t;
+  t.textContent = clean(text); return t;
 }
 
 function lineFor(panel, type, n) {
@@ -51,7 +54,7 @@ function lineFor(panel, type, n) {
 }
 
 const GUIDE_ELS = new Set(['crop', 'label', 'vp']);
-const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav', 'ducky']);
+const OVERLAY_ELS = new Set(['cap', 'text', 'card', 'chart', 'list', 'nav', 'ducky', 'board']);
 // Phone layout: which captions sit inside the frame, which straddle its border, which go outside.
 const ZONE = { DIA: 'in', THO: 'in', SFX: 'in', NAR: 'edge', FAC: 'edge', PORTAL: 'out', MODAL: 'out', SKL: 'out', SUB: 'out' };
 const zoneOf = (t) => ZONE[t] || 'out';
@@ -69,7 +72,7 @@ function layerOf(tok) {
   if (tok.includes('real')) return 'evidence';
   return 'art';
 }
-const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']), story: new Set(['art', 'overlay', 'evidence']), mobile: new Set(['art', 'overlay', 'evidence']) };
+const LAYER_SHOW = { all: null, art: new Set(['art']), overlay: new Set(['overlay', 'evidence']), story: new Set(['art', 'overlay', 'evidence']), mobile: new Set(['art', 'overlay', 'evidence']), fx: new Set(['overlay', 'evidence']) };
 
 function renderFrame(frame, panel, key, layer = 'all') {
   const [aw, ah] = frame.aspect.split(':').map(Number);
@@ -88,7 +91,7 @@ function renderFrame(frame, panel, key, layer = 'all') {
   for (const tok of frame.els) {
     const k = tok[0];
     const lay = layerOf(tok);
-    if (layer === 'story' && (k === 'cap' || k === 'ducky')) continue;  // the website draws these as real HTML
+    if ((layer === 'story' || layer === 'fx') && (k === 'cap' || k === 'ducky')) continue;  // the website draws these as real HTML
     if (layer === 'mobile' && k === 'cap' && zoneOf(tok[1]) !== 'in') continue;  // edge/outside captions are HTML around the frame
     const nums = tok.slice(1).filter((t) => /^-?\d+(\.\d+)?$/.test(t)).map(Number);
     const words = tok.slice(1).filter((t) => !/^-?\d+(\.\d+)?$/.test(t));
@@ -106,6 +109,7 @@ function renderFrame(frame, panel, key, layer = 'all') {
       if (layer === 'all') hand(g, X(a) + wpx / 2 + 4, top + 14, 'Ducky', { fill: '#9a7420', size: 20 });
       continue;
     }
+    if (layer === 'fx' && (k === 'dark' || k === 'wash')) continue;
     if (show && !show.has(lay)) { if (k === 'dark' && layer === 'overlay') { /* keep tone hint */ } else continue; }
     const dark = (x, y) => inDark(x, y);
     const ink = (x, y) => (flags.has('red') ? C.red : dark(x, y) ? C.light : C.pencil);
@@ -141,7 +145,7 @@ function renderFrame(frame, panel, key, layer = 'all') {
         if (label) {
           if (k === 'card') {
             const t = el('text', { x: X(a) + 14, y: Y(b + d) - 16, fill: s, 'font-family': 'Archivo, Arial Narrow, sans-serif', 'font-weight': 800, 'font-size': Math.min(34, X(c) / 9), 'font-stretch': '75%' }, g);
-            t.textContent = label;
+            t.textContent = clean(label);
           } else hand(g, X(a + c / 2), k === 'screen' ? Y(b) - 8 : Y(b + d / 2), label, { fill: s, size: 25, anchor: 'middle', base: k === 'screen' ? 'auto' : 'middle' });
         }
         break;
@@ -174,7 +178,7 @@ function renderFrame(frame, panel, key, layer = 'all') {
         const color = flags.has('red') ? C.red : flags.has('ivory') ? '#efe9dc' : C.pencil;
         const t = el('text', { x: X(a), y: Y(b), fill: color, 'font-family': /[㐀-鿿]/.test(label || '') ? '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif' : 'Archivo, Arial Narrow, sans-serif',
           'font-weight': 900, 'font-size': Y(c), 'font-stretch': '68%', 'text-anchor': flags.has('center') ? 'middle' : 'start', 'dominant-baseline': 'middle', 'letter-spacing': flags.has('wide') ? Y(c) * 1.15 : c < 4 ? 6 : 0 }, g);
-        t.textContent = label || '';
+        t.textContent = clean(label);
         break;
       }
       case 'crop': {
@@ -210,6 +214,22 @@ function renderFrame(frame, panel, key, layer = 'all') {
         });
         break;
       }
+      case 'board': {
+        // Genuine content on a screen, slide or whiteboard: title + lines, fitted inside the box.
+        const strs = words.filter((w) => !['red', 'code', 'faint', 'light', 'mono'].includes(w));
+        const lines = (strs[strs.length - 1] || '').split('|');
+        const title = strs.length > 1 ? strs[0] : '';
+        const light = words.includes('light'), mono = words.includes('mono');
+        el('rect', { x: X(a), y: Y(b), width: X(c), height: Y(d), fill: light ? '#f7f4ec' : '#101418', stroke: light ? '#8d877b' : '#2b3138', 'stroke-width': 3 }, g);
+        const fo = el('foreignObject', { x: X(a) + 6, y: Y(b) + 6, width: X(c) - 12, height: Y(d) - 12, 'data-fit': 'board' }, g);
+        const div = document.createElement('div');
+        div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+        const col = light ? '#1d1b19' : '#e6efe9', acc = light ? '#b3121f' : '#ff6b6b';
+        const face = mono ? "'IBM Plex Mono',ui-monospace,monospace" : "'Hanken Grotesk',Arial,sans-serif";
+        div.innerHTML = `<div style="font:500 22px/1.32 ${face};color:${col};display:grid;gap:4px;white-space:pre-wrap">${title ? `<b style="font-family:Archivo,Arial Narrow,sans-serif;font-weight:800;font-stretch:80%;letter-spacing:.04em;color:${acc}">${esc(title)}</b>` : ''}${lines.map((l) => `<span>${esc(l)}</span>`).join('')}</div>`;
+        fo.appendChild(div);
+        break;
+      }
       case 'list': {
         const strs = words.filter((w) => !['red', 'code', 'faint'].includes(w));
         const items = (strs[strs.length - 1] || '').split('|').filter(Boolean);
@@ -240,6 +260,12 @@ function fitFrame(svg) {
   for (const fo of svg.querySelectorAll('foreignObject')) {
     const box = fo.firstChild && fo.firstChild.firstChild;
     if (!box) continue;
+    if (fo.dataset.fit === 'board') {  // fixed box: shrink the text until it fits
+      const bw = +fo.getAttribute('width'), bh = +fo.getAttribute('height');
+      let f = parseFloat(getComputedStyle(box).fontSize) || 22, n = 0;
+      while ((box.scrollHeight > bh || box.scrollWidth > bw) && f > 6 && n++ < 40) { f -= 1; box.style.fontSize = f + 'px'; }
+      continue;
+    }
     let w = box.offsetWidth, h = box.offsetHeight;
     let fs = parseFloat(getComputedStyle(box).fontSize) || 20, guard = 0;
     while (h > H - 2 * pad && fs > 11 && guard++ < 20) { fs -= 1; box.style.fontSize = fs + 'px'; h = box.offsetHeight; w = box.offsetWidth; }

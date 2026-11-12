@@ -69,14 +69,13 @@ cap NAR 3 5 40
 cap FAC 60 70 30
 
 ## Panel C06-S02-P01
-shot: Two beats · army office two-shot → POV through a viewfinder
-camera: Office static; viewfinder focus pull from soft to sharp when the red box locks
-scroll: The officer's line; Reginald's thought; then the viewfinder snaps sharp and the narration lands
-transition: Pull back out of the viewfinder to the team meeting
-mobile: Frames stack; captions under each image
+shot: Two-shot in an army office
+camera: Static
+scroll: The officer's line; then Reginald's thought
+transition: Push into the camera he's handed; the next panel is the viewfinder itself
+mobile: Full frame; speech and thought inside
 tags: GENERATE LATER
-note: Review (11 Nov) applied — first an army office where you're told you'll be a photographer; then picking up the camera and falling for it. The focus box and grid lines are code overlays.
-
+note: Review (11 Nov) applied: an army office where you're told you'll be a photographer.
 frame 4:3 army office
 box 8 62 56 6 "desk"
 ducky 12 62 9 show=0.7
@@ -85,14 +84,24 @@ fig 72 94 58 stand l young "Reginald"
 watch 70 63 hamilton-murph
 cap DIA 4 4 60 tail=30,42
 cap THO 56 22 40 tail=72,38
+
+## Panel C06-S02-P02
+shot: Page-sized POV through the Sony A7S viewfinder
+camera: The scene pans gently with the cursor (or device tilt) while the viewfinder frame stays put, as if you're looking through the screen; focus snaps sharp when the red box locks
+scroll: Viewfinder fills the page; focus pull; narration; then the skills and the portal
+transition: Pull back out of the viewfinder to the team meeting
+mobile: Full page; pans with a drag or tilt; captions on the frame edge
+tags: GENERATE LATER
+note: Review (12 Nov, round 5) applied: the viewfinder is now its own page-sized panel and reacts to the cursor. The focus box, grid and readouts are code overlays; the photo plate is generated wider than the frame so it can pan.
 frame 16:9 through the viewfinder
 dark 0 0 100 100
 box 6 8 88 84 ""
 line 6 50 94 50 faint code
 line 50 8 50 92 faint code
 box 42 36 16 26 "" red code
-cap PORTAL 60 14 30
 fig 50 80 50 stand f adult "subject" faint
+board 8 10 30 6 "" "ISO 800  f/2.8  1/250" mono
+cap PORTAL 60 14 30
 cap NAR 8 74 40
 cap SKL 62 80 32
 
