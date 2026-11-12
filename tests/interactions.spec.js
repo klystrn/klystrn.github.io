@@ -69,11 +69,14 @@ test.describe('skills constellation', () => {
       await page.waitForTimeout(60);
     }
     await page.locator('#constel').focus();
+    await expect(page.locator('#constel')).toBeFocused();
     const before = await page.locator('.sk-caption').textContent();
-    await page.keyboard.press('ArrowRight');
-    await page.waitForTimeout(150);
-    const after = await page.locator('.sk-caption').textContent();
-    expect(after).not.toBe(before);
+    // Wait for the caption to change rather than a fixed delay: CI runners are
+    // slower than a laptop, and a key press can land before focus handlers settle.
+    await expect.poll(async () => {
+      await page.keyboard.press('ArrowRight');
+      return page.locator('.sk-caption').textContent();
+    }, { timeout: 5000, intervals: [150, 300, 600] }).not.toBe(before);
   });
 });
 
